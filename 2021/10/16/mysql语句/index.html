@@ -526,6 +526,8 @@
 <p><strong>4.带语言参数导出</strong><br>  mysqldump -uroot -p –default-character-set=latin1 –set-charset=gbk –skip-opt database_name &gt; outfile_name.sql</p>
 <p>例如，将aaa库备份到文件back_aaa中：<br>　　[root@test1 root]# cd　/home/data/mysql<br>　　[root@test1 mysql]# mysqldump -u root -p –opt aaa &gt; back_aaa</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangzhu/p/3172486.html">参考链接</a></p>
+<p>MYSQL5.7.26<br>查看 tb_courses 表的SQL语句和执行结果如下所示。<br>mysql&gt; SELECT * FROM tb_courses;<br>Empty set (0.00 sec)<br>注意是大写！！！</p>
+<p>修改数据表的条件内容： UPDATE test_table SET email=’flag’ WHERE password=2;<br> 注意是大写！！！<br>DELETE FROM test_table WHERE password&lt;30 AND password&gt;10;<br>注意是大写！！！</p>
 
                 
             </div>

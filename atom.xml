@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-22T13:17:39.000Z</updated>
+  <updated>2021-10-25T05:26:02.337Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字符编码及进制转换</title>
+    <link href="http://example.com/2021/10/25/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E5%8F%8A%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://example.com/2021/10/25/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E5%8F%8A%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</id>
+    <published>2021-10-25T05:22:26.000Z</published>
+    <updated>2021-10-25T05:26:02.337Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;字符编码&quot;&gt;&lt;a href=&quot;#字符编码&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="基础知识" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息探测</title>
+    <link href="http://example.com/2021/10/23/%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B/"/>
+    <id>http://example.com/2021/10/23/%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B/</id>
+    <published>2021-10-23T10:35:18.000Z</published>
+    <updated>2021-10-23T10:35:18.606Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>rsa加密算法</title>
@@ -65,7 +101,7 @@
     <link href="http://example.com/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/"/>
     <id>http://example.com/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/</id>
     <published>2021-10-16T11:47:06.000Z</published>
-    <updated>2021-10-17T13:17:00.257Z</updated>
+    <updated>2021-10-23T12:23:51.334Z</updated>
     
     
       
