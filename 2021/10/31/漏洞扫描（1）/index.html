@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="信息探测, 黛色若梦">
+    <meta name="keywords" content="漏洞扫描, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>信息探测 | 黛色若梦</title>
+    <title>漏洞扫描 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">信息探测</h1>
+                    <h1 class="description center-align post-title">漏洞扫描</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/">
-                                <span class="chip bg-color">基础内容</span>
+                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">基础知识</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-27
+                    2021-10-31
                 </div>
                 
 
@@ -469,50 +469,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="信息探测"><a href="#信息探测" class="headerlink" title="信息探测"></a>信息探测</h1><p>进行安全测试之前，最重要的是信息探测。搜集目标资料最重要的是服务器的配置信息和网站的信息，包括网站注册人、目标服务器系统、目标网站相关子域名、目标服务器所开放的端口和服务器存放网站等。</p>
-<p>例如1： <a target="_blank" rel="noopener" href="http://zhidao.baidu.com/question/14674128.html">http://zhidao.baidu.com/question/14674128.html</a> 是URL</p>
-<p>zhidao.baidu.com就是域名，220.181.18.110 就是IP地址，你通过录入URL <a target="_blank" rel="noopener" href="http://zhidao.baidu.com/question/14674128.html%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9F%A5%E9%81%93%E4%BD%A0%E8%A6%81%E8%AE%BFzhidao.baidu.com%EF%BC%88%E5%9F%9F%E5%90%8D%EF%BC%89%E7%94%B5%E8%84%91%E5%B0%B1%E4%BC%9A%E6%8A%8Azhidao.baidu.com%EF%BC%88%E5%9F%9F%E5%90%8D%EF%BC%89%E8%A7%A3%E6%9E%90%E6%88%90220.181.18.110%EF%BC%88ip%E5%9C%B0%E5%9D%80%EF%BC%89%E7%84%B6%E5%90%8E220.181.18.110%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%91%8A%E8%AF%89220.181.18.110">http://zhidao.baidu.com/question/14674128.html让浏览器知道你要访zhidao.baidu.com（域名）电脑就会把zhidao.baidu.com（域名）解析成220.181.18.110（ip地址）然后220.181.18.110建立连接告诉220.181.18.110</a> 我要看zhidao.baidu.com/question/14674128.html （URL）</p>
-<h2 id="Google-Hack"><a href="#Google-Hack" class="headerlink" title="Google Hack"></a>Google Hack</h2><p>1<a target="_blank" rel="noopener" href="https://blog.csdn.net/wjy397/article/details/52918680">.搜集子域名</a></p>
-<p>BP爬虫查询，搜索引擎，在线网站，crossdomain.xlm(跨域访问。</p>
-<p><img src="/images/(crossdomain.xlm).png" alt="(crossdomain.xlm)"></p>
-<p>其根节点为<cross-domain-policy> ，其下包含一个或多个<allow-access-from>节点，<allow-access-from>有一个属性domain，其值为允许访问的域，可以是确切的 IP 地址、一个确切的域或一个通配符域（任何域）。)，DNS爆破，通过HTTPS证书搜集</p>
-<p>2.搜集Web信息</p>
-<p>Google常用语法 </p>
-<p>例：site:baidu.com</p>
-<p><img src="/images/Google%E5%B8%B8%E8%A7%81%E8%AF%AD%E6%B3%95-16353420711231.jpg" alt="Google常见语法"></p>
-<p>Google只能查询蜘蛛爬行过的网页，遵循网站根目录下robots.txt的约定进行爬行，攻击者可以直接访问robot.txt文件进行查询敏感目录。</p>
-<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><p>配置：配置环境变量才能用cmd快捷访问打开。</p>
-<p><img src="/images/%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BF%90%E8%A1%8Cnmap.png" alt="用命令行运行nmap"></p>
-<p>探测主机信息。用参数来指定扫描方式。</p>
-<p><img src="/images/nmap%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0%20(2).jpg" alt="nmap常见参数 (2)"></p>
-<p><img src="/images/nmap%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0.jpg" alt="nmap常见参数"></p>
-<p><img src="/images/nmap%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%82%E6%95%B0.png" alt="nmap的一些参数"></p>
-<p><img src="/images/%E7%A9%BF%E9%80%8F%E9%98%B2%E7%81%AB%E5%A2%99%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F.png" alt="穿透防火墙进行扫描"></p>
-<p>Nmap脚本引擎</p>
-<p>扫描web敏感文件输入命令： nmap -p 80 –script=http-enum.nse <a target="_blank" rel="noopener" href="http://www.xxser.com/">www.xxser.com</a></p>
-<p><img src="/images/%E8%84%9A%E6%9C%AC.png" alt="脚本"></p>
-<p>所有脚本进行扫描命令： nmap –script all 127.0.0.1 </p>
-<p>使用通用符进行扫描命令： nmap –script “http-*” 127.0.0.1</p>
-<p>参数用双引号保护起来shell的通行键。</p>
-<h2 id="DirBuster"><a href="#DirBuster" class="headerlink" title="DirBuster"></a>DirBuster</h2><p>下载的版本有些功能无法使用，操作无法执行。扫描器如御剑和WWWScan功能亦可使用。这些操作更简单。</p>
-<p>操作来说还好，记得在url里要输入协议。</p>
-<p><img src="/images/DirBuster.png" alt="DirBuster">就说我遇到的一个问题吧。</p>
-<p>未放大前没有start</p>
-<p><img src="/images/Inked%E6%9C%AA%E6%94%BE%E5%A4%A7%E5%89%8D%E7%9A%84%E7%95%8C%E9%9D%A2%E4%B8%8D%E5%AD%98%E5%9C%A8start_LI.jpg" alt="Inked未放大前的界面不存在start_LI"></p>
-<p>放大后</p>
-<p><img src="/images/%E6%94%BE%E5%A4%A7%E5%90%8E%E7%9A%84%E7%95%8C%E9%9D%A2%E5%B0%B1%E5%AD%98%E5%9C%A8start.png" alt="放大后的界面就存在start"></p>
-<p>这是在系统中的JAVA Swing 的某种原因导致的。</p>
-<p>Swing 是一个为Java设计的GUI工具包。</p>
-<p>Swing是JAVA基础类的一部分。</p>
-<p>（Swing包括了图形用户界面（GUI）器件如：文本框，按钮，分隔窗格和表。）</p>
-<p>如：御剑后台扫描珍藏版。目录扫描时要递归地进行测试。对info、news目录进行递归扫描可能某一个目录就是另一个WEB应用程序。</p>
-<p>了解网站命名规则：发现一个xyz_info目录，考虑网站是否都以”xyz_”开头。</p>
-<h2 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h2><p>CMS内容管理系统的根目录”dxs.txt”相当于它的指纹。</p>
-<p>不仅有针对于网站CMS的指纹识别，还有针对服务器操作系统和Web容器的指纹识别等。</p>
-<p>Nmap -o命令可识别服务器操作系统的指纹。</p>
-<p>指纹识别可指纹伪造，端口所提供的具体服务可使用Nmap -A来识别。</p>
-<p>指纹识别小工具：御剑指纹识别系统。</p>
-<p><img src="/images/WEB%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="WEB服务器"></p>
+                <h1 id="漏洞扫描（1）"><a href="#漏洞扫描（1）" class="headerlink" title="漏洞扫描（1）"></a>漏洞扫描（1）</h1><p>漏洞扫描器可以帮我们发现漏洞（SQL注入漏洞、跨站点脚本攻击、缓冲区溢出）。但是像逻辑性漏洞，隐藏很深XSS漏洞或者SQL注入漏洞，就需要人工渗透了。</p>
+<h2 id="1-逻辑性漏洞"><a href="#1-逻辑性漏洞" class="headerlink" title="1.逻辑性漏洞"></a><a target="_blank" rel="noopener" href="http://blog.nsfocus.net/business-logic-vulnerabilities-1208/">1.逻辑性漏洞</a></h2><p>共性都不具有攻击性</p>
+<p>（1）越权访问：分为水平越权和垂直越权。水平越权指的是a与b同为用户，a可以访问b用户的页面，a持有b用户独有的敏感url。垂直越权指的是用户同时可以拥有管理员权限了。</p>
+<p>原因是开发人员只在前端界面进行了简单的菜单隐藏，没有用统一的服务端拦截器/中间件对全部URL进行权限判断。这样只需要在浏览器或bp的攻击工具内发出指定的url请求，即可以实现对于特定接口的越权访问。</p>
+<p>（2）Cookie提权</p>
+<p>记录用户登录状态，Web站点通常在Cookie中记录Sessionld来实现对于用户登录状态的识别。同时有的开发者在Cookie里还会记录该用户的权限，后续在做用户权限判定的时候都从Cookie中取值判断是一个普通用户还是管理员。Cookie本身在浏览器侧可手动修改，攻击者修改了Cookie里记录的权限值，即可将一个普通用户提权（0-&gt;1)。</p>
+<p>检测：提取历史时间段，一个用户在一个Web站点访问一个URL的Cookie参数</p>
+<p>。Cookie参数内值不变的部分为观察对象。当在历史时间内为定值的Cookie在实时流量中出现了变化，且影响了返回内容，则表明存在Cookie提权攻击。检测Cookie参数对于返回内容的影响是，主要是需要监测返回内容中菜单的变化。一般菜单在页面开发的过程中，标签的class属性都会带上menu关键字，可以基于此关键字识别返回的DOM结构里的菜单标签及其内容，并监测Cookie参数对于它的影响。</p>
+<p>（3）验证码更新逻辑绕过导致可爆破</p>
+<p>通过工具或者脚本直接调用红框里的用户名密码校验接口，就绕过了验证码的校验和刷新逻辑，即可以对于登录接口进行暴力破解。在这种场景下，验证码虽然在界面存在，但实际并未起到可以防范暴力破解攻击的效用。</p>
+<p>检测：检测登录接口的暴力破解行为和检测绕过验证码校验的异常访问行为。</p>
+<p>前者核心是从web站点的访问日志中，识别出哪个URL是登录接口。</p>
+<p>定义用户名/密码参数字典，例如用户名在HTTP请求中的参数名通常为username,uname，而密码在HTTP请求中的参数名通常为password,pwd。当一个Web访问请求的GET参数或者POST参数里包含用户名/密码参数字典里的字符串，则认为该接口为登录接口。</p>
+<p>一个源IP（如果攻击者挂了代理，可以使用X-Forward-For字段里记录的真实IP代替），在短时间内对于一个站点的登录接口发出大量的请求，且用户名/密码的参数的值在不断变化，则可以判定为在对于此登录接口进行暴力破解。</p>
+<p>后者</p>
+<p>通过采集N天的Web访问日志，我们可以对于一个站点的访问行为，以及在各个页面的跳转关系(referer,uri以及url访问的先后顺序以及时间间隔)绘制出访问图基。用户直接访问登录校验url的行为，则认为属于发生异常访问行为。具体到这个例子，即为绕过验证码校验的异常登录行为。</p>
 
                 
             </div>
@@ -539,7 +511,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/10/27/%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B/">http://example.com/2021/10/27/%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B/</a>
+                    <a href="http://example.com/2021/10/31/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%EF%BC%881%EF%BC%89/">http://example.com/2021/10/31/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%EF%BC%881%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -577,8 +549,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/">
-                                    <span class="chip bg-color">基础内容</span>
+                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">基础知识</span>
                                 </a>
                             
                         </div>
@@ -750,9 +722,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/10/31/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%EF%BC%881%EF%BC%89/">
                     <div class="card-image">
@@ -770,9 +743,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -781,6 +754,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -799,13 +773,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/25/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E5%8F%8A%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
+                <a href="/2021/10/27/%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="字符编码及进制转换">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="信息探测">
                         
-                        <span class="card-title">字符编码及进制转换</span>
+                        <span class="card-title">信息探测</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -816,7 +790,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-27
                             </span>
                         <span class="publish-author">
                             
@@ -829,8 +803,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">基础知识</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/">
+                        <span class="chip bg-color">基础内容</span>
                     </a>
                     
                 </div>
