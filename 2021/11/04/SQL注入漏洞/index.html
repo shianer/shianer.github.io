@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="漏洞扫描, 黛色若梦">
+    <meta name="keywords" content="SQL注入漏洞, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>漏洞扫描 | 黛色若梦</title>
+    <title>SQL注入漏洞 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">漏洞扫描</h1>
+                    <h1 class="description center-align post-title">SQL注入漏洞</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                                <span class="chip bg-color">基础知识</span>
+                            <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
+                                <span class="chip bg-color">sqli靶场</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-03
+                    2021-11-04
                 </div>
                 
 
@@ -469,66 +469,36 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="漏洞扫描（2）"><a href="#漏洞扫描（2）" class="headerlink" title="漏洞扫描（2）"></a>漏洞扫描（2）</h1><p>Burp Suite使用</p>
-<p>1.Target模块</p>
-<p>是站点地图，用来显示信息。默认记录浏览器访问的所有页面，并且使用Spider模块扫描后，可以清楚的看到爬虫所爬行的页面及每一个页面的请求头和响应。所有页面也可以通过添加过滤器（Filter）来过滤非目标站点。</p>
-<p>具体方法：</p>
-<p>将目标站点添加到Scope。在Filter里可以选择”show only in-scope items”，只显示范围内的列表，即可进行过滤。使用可以根据请求类型，MIME类型，HTTP状态等方式进行过滤显示。</p>
-<p><img src="/images/Filter.png" alt="Filter"></p>
-<p>2.Spider</p>
-<p>完整地枚举应用程序的内容和功能。send to spider 后可以在Target的Site map里看到爬行列表。爬行同时会进行被动漏洞扫描，检测每一个访问过的URL。</p>
-<p><img src="/images/Spider.png" alt="Spider"></p>
-<p><img src="/images/spider%20opition.png" alt="spider opition"></p>
-<p>3.Scanner</p>
-<p>帮助渗透人员发现Web应用程序的安全漏洞。可以针对单一的Url进行测试，可以在拦截到请求后单击“Action”按钮，然后选择“Do an active scan”进行主动扫描。也可以全站扫描，先爬行网站所有的链接。在Target模块里选择需要进行扫描的网站，并单击右键在弹出的快捷菜单中选择“Actively Scan this Host”主动扫描主机。</p>
-<p><img src="/images/%E5%85%A8%E7%AB%99%E6%89%AB%E6%8F%8F.jpg" alt="全站扫描"></p>
-<p>删除不需要扫描的页面，提高扫描的速度。</p>
-<p>配置信息Opition:</p>
-<p><img src="/images/IMG_20211103_213531.jpg" alt="Opition"></p>
-<p>Results中可以查看扫描结果和安全信息。</p>
-<p>4.Intruder</p>
-<p>最重要的是配置Attack Type、程序变量、字典设置。</p>
-<p>拦截到网站请求后选择send to Intruder,然后在手工选择“Intruder”-&gt;”Target”才可看到目标网址和访问端口。</p>
-<p>Intruder的opitions可以看到拦截后的HTTP Request请求，也是我们主要配置的地方，具体配置如下：</p>
-<p>positions</p>
-<p>（1）Attack Type</p>
-<p>攻击类型配置：选择<img src="/images/IMG_20211103_215448.jpg" alt="Attack Type"></p>
-<p>(2)变量</p>
-<p>Burp Suite会自动在请求头中加入许多变量，我们先clean,再add加自己想要的变量。</p>
-<p>payloads</p>
-<p>（3）字典</p>
-<p>Payloads有四个区域：</p>
-<p>1.payload sets:</p>
-<p>payload set 针对指定变量进行配置。</p>
-<p>payload type </p>
-<p><img src="../images/payload%E7%B1%BB%E5%9E%8B.jpg" alt="payload类型"></p>
-<p>2.payload options:</p>
-<p>默认是simpl list类型，随payload type设置而变化。</p>
-<p>3.payload processing:</p>
-<p>为bp最强大的功能之一，可以有效地对字符串进行处理（字典的每一行），可以进行MD5加密，字符串截取、加入前缀、后缀等操作。</p>
-<p>4.payload encodeing:</p>
-<p>在进行请求时，针对某些字符进行URL转码.</p>
-<p>options</p>
-<p>（4）option模块</p>
-<p>配置请求线程、请求结果集格式等。</p>
-<p><img src="../images/%E9%85%8D%E7%BD%AE.jpg" alt="配置"></p>
-<p>配置后单击“Intruder”—&gt;”start attack”进行扫描。</p>
-<p>4.辅助模块</p>
-<p>（1）decoder解码器</p>
-<p>支持对URL、HEX、HTML等格式字符串进行编码或解码操作。</p>
-<p>（2）comparer比较器</p>
-<p>字符串比较器可以迅速帮我们发现两段字符串中的差异。单击“words”进行比较。</p>
-<p>（3）repeater</p>
-<p>http请求编辑工具，点击“go”。</p>
-<p>（4）乱码</p>
-<p>response中文字符往往会乱码，</p>
-<p>配置“option”</p>
-<p><img src="../images/display-16359573457411.png" alt="display"></p>
-<p>http message display选择change font选择微软雅黑或宋体来解决中文乱码问题。</p>
-<p>6.sqlmap插件</p>
-<p>下载python2.7并配置环境，下载salmap有关内容包并配置环境，下载sqlmap.jar</p>
-<p><img src="../images/sqlmap%E6%8F%92%E4%BB%B6-16359573664472.png" alt="sqlmap插件"></p>
-<p><img src="../images/cmd%E4%B8%8Bsqlmap-16359573778163.png" alt="cmd下sqlmap"></p>
+                <h1 id="SQL注入原理"><a href="#SQL注入原理" class="headerlink" title="SQL注入原理"></a>SQL注入原理</h1><p>大多数数据库都会遵循SQL标准，但是每一种数据库都有自己的单行函数及特性。登录表单的登录处最终调用findAdmin方法。找出代码执行中语法存在漏洞的地方。</p>
+<ul>
+<li>正常情况下执行的语句：</li>
+</ul>
+<p>select count (*) from admin where username=’admin’ and password=’password’</p>
+<p>存在admin用户，并且密码为password，所以此时返回结果为“1”，大于0，通过验证，用户登录成功。</p>
+<ul>
+<li>而下面这个语句：</li>
+</ul>
+<p>select count(*) from admin where username=’ ‘ or 1=1– ‘ and password=’ ‘  </p>
+<ul>
+<li>由开发人员本意来理解SQL语句的本义是：</li>
+</ul>
+<p>username=’账户’ and password=’密码’</p>
+<p>现在成为username=’账户’ or 1=1– ‘ and password=’ ‘                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </p>
+<ul>
+<li>password被注释掉了，执行的SQL语句相当于：</li>
+</ul>
+<p>select count（*）from admin</p>
+<ul>
+<li>SQL语句支持多语句执行，所以这里可以直接删除admin表</li>
+</ul>
+<p>‘ or  1=1;drop table admin –</p>
+<ul>
+<li>SQL漏洞形成原因就是：用户输入的数据被SQL解释器执行。</li>
+</ul>
+<p>注释符<img src="/images/Mysql%E6%B3%A8%E9%87%8A%E7%AC%A6-16360892832361.png" alt="Mysql注释符"></p>
+<p>2.在URL里–空格要用–+代替 ，中查询参数名和参数值中空格要用加号+替代，所以几乎所有使用该规范的浏览器在表单提交后，URL查询参数中空格都会被编成加号+。而在另一份规范(RFC 2396，定义URI)里, URI里的保留字符都需转义成%HH格式(Section 3.4 Query Component)，因此空格会被编码成%20，加号+本身也作为保留字而被编成%2B，对于某些遵循RFC 2396标准的应用来说，它可能不接受查询字符串中出现加号+，认为它是非法字符。<br>————————————————<br>版权声明：本文为CSDN博主「「已注销」」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ljh101/article/details/114459724">https://blog.csdn.net/ljh101/article/details/114459724</a></p>
+<p>3.有关逻辑运算 and 优先级大于or</p>
+<p>我们可以用 ’or 1=1# 作为密码输入。原因是为什么？<br>这里涉及到一个逻辑运算，当使用上述所谓的万能密码后，构成的 sql 语句为：<br>Select * from admin where username=’admin’ and password=’’or 1=1#’<br>Explain:上面的这个语句执行后，我们在不知道密码的情况下就登录到了 admin 用户了。<br>原 因 是 在 where 子 句 后 ， 我 们 可 以 看 到 三 个 条 件 语 句 username= ’ admin’ and<br>password= ’ ’or 1=1 。三个条件用 and 和 or 进行连接。在 sql 中，我们 and 的运算优先<br>级大于 or 的元算优先级。因此可以看到 第一个条件（用 a 表示）是真的，第二个条件（用<br>b 表示）是假的，a and b = false,第一个条件和第二个条件执行 and 后是假，再与第三<br>个条件 or 运算，因为第三个条件 1=1 是恒成立的，所以结果自然就为真了。</p>
 
                 
             </div>
@@ -555,7 +525,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/11/03/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F/">http://example.com/2021/11/03/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F/</a>
+                    <a href="http://example.com/2021/11/04/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">http://example.com/2021/11/04/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -593,8 +563,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                                    <span class="chip bg-color">基础知识</span>
+                                <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
+                                    <span class="chip bg-color">sqli靶场</span>
                                 </a>
                             
                         </div>
@@ -766,9 +736,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/11/04/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">
                     <div class="card-image">
@@ -786,9 +757,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -797,6 +768,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -815,7 +787,7 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/31/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%EF%BC%881%EF%BC%89/">
+                <a href="/2021/11/03/%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F/">
                     <div class="card-image">
                         
                         
@@ -832,7 +804,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-03
                             </span>
                         <span class="publish-author">
                             
