@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-05T13:50:25.004Z</updated>
+  <updated>2021-11-14T16:30:53.604Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MYSQL数据库查询语句</title>
+    <link href="http://example.com/2021/11/14/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/"/>
+    <id>http://example.com/2021/11/14/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/</id>
+    <published>2021-11-14T14:09:00.000Z</published>
+    <updated>2021-11-14T16:30:53.604Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MYSQL数据库查询语句&quot;&gt;&lt;a href=&quot;#MYSQL数据库查询语句&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="sqli靶场" scheme="http://example.com/tags/sqli%E9%9D%B6%E5%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL注入漏洞</title>
@@ -180,14 +203,14 @@
     <link href="http://example.com/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/"/>
     <id>http://example.com/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/</id>
     <published>2021-10-16T11:47:06.000Z</published>
-    <updated>2021-10-23T12:23:51.334Z</updated>
+    <updated>2021-11-14T14:21:15.118Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;MYSQL命令&quot;&gt;&lt;a href=&quot;#MYSQL命令&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;MYSQL命令（增删改）&quot;&gt;&lt;a href=&quot;#MYSQL命令（增删改）&quot; class=&quot;headerlink&quot;</summary>
         
       
     
