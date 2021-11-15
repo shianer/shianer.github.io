@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MYSQL数据库查询语句, 黛色若梦">
+    <meta name="keywords" content="loveSQL和[GYCTF2020]Ezsqli wp, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MYSQL数据库查询语句 | 黛色若梦</title>
+    <title>loveSQL和[GYCTF2020]Ezsqli wp | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MYSQL数据库查询语句</h1>
+                    <h1 class="description center-align post-title">loveSQL和[GYCTF2020]Ezsqli wp</h1>
                 </div>
             </div>
         </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-14
+                    2021-11-15
                 </div>
                 
 
@@ -469,160 +469,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MYSQL数据库查询语句"><a href="#MYSQL数据库查询语句" class="headerlink" title="MYSQL数据库查询语句"></a>MYSQL数据库查询语句</h1><p>在做极客大挑战2019的LoveSQL中，在显示位2,3中我尝试都分别查询求字符段内容，发现group_concat() from…中的from不能在2这个显示位，问学长说是好像会有语法错误，但还是不是很清楚，所以写一篇博客补充语法一下，补充完后觉得自己好蠢。。。。这里的解释就是select 2,3 from 一个表名，所以必须在3后面写from。。。<img src="/images/IMG_20211114_223059-16369002933451.jpg" alt="IMG_20211114_223059"></p>
-<p><img src="/images/IMG_20211114_224954.jpg" alt="IMG_20211114_224954"></p>
-<p>补充</p>
-<p>关于数据表的查询 DESC department； <code>ASC</code> 表示按升序分组，关键字 <code>DESC</code> 表示按降序分组</p>
-<h3 id="Q1-关于大小写问题"><a href="#Q1-关于大小写问题" class="headerlink" title="Q1:关于大小写问题"></a>Q1:关于大小写问题</h3><p> 在mysql数据库中，sql关键字和大小写 是不区分大小写的。下面语句的俩种写法，mysql都能够正常的执行。</p>
-<p>/<em>全小写</em>/</p>
-<p>select now();</p>
-<p>/<em>全大写</em>/</p>
-<p>SELECT NOW():</p>
-<p>数据库名和表名</p>
-<p>博主在一次数据库的迁移时，就碰到了数据库表名大小写的问题。在windows服务器上运行好好的应用，在mysql数据库迁移到linux服务器上后，就出现了表不存在的异常。后面经过排查得知，mysql数据库名和表名与操作系统是否区分大小写有关系</p>
-<p>windows系统</p>
-<p>在windows系统下，mysql数据库不区分大小写。也就是说你的select语句中的表名是全大写的，而实际数据库的表名是全小写的，也能够查询到数据。</p>
-<p>查询大写的名称ROLE表，能够查询到表数据。<br>————————————————<br>版权声明：本文为CSDN博主「栗子肉」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_31493023/article/details/113227566">https://blog.csdn.net/weixin_31493023/article/details/113227566</a></p>
-<h3 id="Q2"><a href="#Q2" class="headerlink" title="Q2:"></a>Q2:</h3><h3 id="1-基本查询语句"><a href="#1-基本查询语句" class="headerlink" title="1.基本查询语句"></a>1.基本查询语句</h3><h5 id="读取数据表："><a href="#读取数据表：" class="headerlink" title="读取数据表："></a>读取数据表：</h5><p>select * from runoob_tbl;</p>
-<ul>
-<li>查询语句中你可以使用一个或者多个表，表之间使用逗号(,)分割，并使用WHERE语句来设定查询条件。</li>
-<li>SELECT 命令可以读取一条或者多条记录。</li>
-<li>你可以使用星号（*）来代替其他字段，SELECT语句会返回表的所有字段数据</li>
-<li>你可以使用 WHERE 语句来包含任何条件。</li>
-<li>你可以使用 LIMIT 属性来设定返回的记录数。</li>
-<li>你可以通过OFFSET指定SELECT语句开始查询的数据偏移量。默认情况下偏移量为0。</li>
-</ul>
-<h5 id="SQL-SELECT-WHERE-子句"><a href="#SQL-SELECT-WHERE-子句" class="headerlink" title="SQL SELECT WHERE 子句"></a>SQL SELECT WHERE 子句</h5><p>SELECT *（column） from （table）runoob_tbl WHERE (column limits) runoob_author=’菜鸟教程’;</p>
-<p>（1）多条件查询数据则需要用AND,可以用来查询两个或多个查询条件，都满足才被返回。</p>
-<p>WHERE d_id =’1002’ AND e_salary&gt;=4200;</p>
-<p>（2）OR则不用，只要满足一个条件即可。（用法相同）</p>
-<p>（3）IN 有与OR一样的用法，不过写法有差：</p>
-<p>WHERE d_id =1001 OR d_id =1002;和WHERE d_id IN(1002,1001);</p>
-<p>去掉结果中的重复行，可以使用distinct关键字</p>
-<p>select distinct d_id from employee;</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a><img src="/images/IMG20211114235827(1).jpg" alt="IMG20211114235827(1)"></h3><p>(4)between …  and …</p>
-<p>用来查询某个范围内的值，满足则返回。</p>
-<p>当然也可为 not between … and…                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </p>
-<p>(5)统计函数与分组数据记录查询</p>
-<p> 统计函数</p>
-<table>
-<thead>
-<tr>
-<th>统计函数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>count()</td>
-<td>count(*):统计表中记录条数(包括NULL值字段)count(field): 统计表中记录条数(不包括NULL值字段)</td>
-</tr>
-<tr>
-<td>avg()</td>
-<td>计算字段值的平均值</td>
-</tr>
-<tr>
-<td>sum()</td>
-<td>计算字段值总和</td>
-</tr>
-<tr>
-<td>max()</td>
-<td>查询字段值最大值</td>
-</tr>
-<tr>
-<td>min()</td>
-<td>查询字段值最小值</td>
-</tr>
-</tbody></table>
-<p>  为表命名可用 count(*)  as…</p>
-<p>​                   <img src="/images/%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="统计函数">                      </p>
-<p>如：</p>
-<p>SELECT SUM(shop_price) from goods;</p>
-<p>SELECT SUM(shop_price*goods_number) AS total_prices from goods;</p>
-<p>分组函数</p>
-<p>创建分组</p>
-<p>group by 字段  关键词通常与集合函数一起使用。</p>
-<p><img src="/images/%E5%88%86%E7%BB%84%E5%87%BD%E6%95%B0.png" alt="分组函数"></p>
-<h6 id="having子句限定分组查询"><a href="#having子句限定分组查询" class="headerlink" title="having子句限定分组查询"></a>having子句限定分组查询</h6><p>类似一种显示的控制，过滤出满足条件的数据记录。</p>
-<p>下例为显示以row1字段分组的组中，row2的字段数据记录大于一个的记录。</p>
-<p><img src="/images/having%E8%BF%87%E6%BB%A4%E5%88%86%E7%BB%84.png" alt="having过滤分组"></p>
-<p>with rollup用法：计算数值之和</p>
-<p><img src="/images/IMG_20211115_201714.jpg" alt="IMG_20211115_201714"></p>
-<h1 id="附注"><a href="#附注" class="headerlink" title="附注"></a>附注</h1><p>以最后的一个例子为例，分析一下SQL语句的执行顺序。</p>
-<p><img src="/images/705143-20161217231009386-1903516232.png" alt="img"></p>
-<p>1、从表tab_test中将以row1分组的数据记录传递给2</p>
-<p>2、从1中收到的数据记录选取需要的记录，并传递给3</p>
-<p>3、显示满足自己的条件的从2传过来的数据记录</p>
-<p>多字段分组：分组层级从左到右，先按第一个字段分组。</p>
-<p><img src="/images/IMG_20211115_202031.jpg" alt="IMG_20211115_202031"></p>
-<h3 id="2-排序查询结果"><a href="#2-排序查询结果" class="headerlink" title="2.排序查询结果"></a>2.排序查询结果</h3><p>order dy   字母表顺序</p>
-<ul>
-<li><p>当在 ORDER BY 子句中指定多个列进行排序时，MySQL 会按照列的顺序从左到右依次进行排序。</p>
-</li>
-<li><p>查询的数据并没有以一种特定的顺序显示，如果没有对它们进行排序，则将根据插入到数据表中的顺序显示。使用 ORDER BY 子句对指定的列数据进行排序。</p>
-</li>
-<li><p>```<br>mysql&gt; SELECT * FROM tb_students_info ORDER BY height;<br>+—-+——–+———+——+——+——–+————+<br>| id | name   | dept_id | age  | sex  | height | login_date |<br>+—-+——–+———+——+——+——–+————+<br>|  2 | Green  |       3 |   23 | F    |    158 | 2016-10-22 |<br>|  1 | Dany   |       1 |   25 | F    |    160 | 2015-09-10 |<br>|  4 | Jane   |       1 |   22 | F    |    162 | 2016-12-20 |<br>|  7 | Lily   |       6 |   22 | F    |    165 | 2016-02-26 |<br>| 10 | Tom    |       4 |   23 | M    |    165 | 2016-08-05 |<br>|  8 | Susan  |       4 |   23 | F    |    170 | 2015-10-01 |<br>|  6 | John   |       2 |   21 | M    |    172 | 2015-11-11 |<br>|  5 | Jim    |       1 |   24 | M    |    175 | 2016-01-15 |<br>|  9 | Thomas |       3 |   22 | M    |    178 | 2016-06-07 |<br>|  3 | Henry  |       2 |   23 | M    |    185 | 2015-05-31 |<br>+—-+——–+———+——+——+——–+————+<br>10 rows in set (0.08 sec)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  该语句通过指定 ORDER BY 子句，MySQL 对查询的 height 列的数据按数值的大小进行了升序排序。</span><br><span class="line"></span><br><span class="line">### 3.LIMIT限制查询结果的数量</span><br><span class="line"></span><br><span class="line">###### 1.1 语法格式1</span><br><span class="line"></span><br><span class="line">```sql</span><br><span class="line">LIMIT m;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>m：表示查询多少条记录。偏移量为0，记录从1开始。</p>
-<p>SELECT * FROM tb_user<br>ORDER BY user_id<br>LIMIT 5</p>
-<h6 id="1-2-语法格式2"><a href="#1-2-语法格式2" class="headerlink" title="1.2 语法格式2"></a>1.2 语法格式2</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT m , n;</span><br></pre></td></tr></table></figure>
-
-<p>m：表示开始查询的第一条记录的编号（注意：在查询结果中，第一个结果的记录编号是0，而不是1）。</p>
-<p>n：表示查询多少条记录。</p>
-<p>m指的是偏移量，后面的记录依次类推。</p>
-<p>注意：LIMIT 后的两个参数必须都是正整数。</p>
-<h4 id="例-1"><a href="#例-1" class="headerlink" title="例 1"></a>例 1</h4><p>在 tb_students_info 表中，使用 LIMIT 子句返回从第 4 条记录开始的行数为 5 的记录，偏移量为n，记录从n+1条开始。SQL 语句和运行结果如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM tb_students_info LIMIT 3,5;</span><br><span class="line">+----+-------+---------+------+------+--------+------------+</span><br><span class="line">| id | name  | dept_id | age  | sex  | height | login_date |</span><br><span class="line">+----+-------+---------+------+------+--------+------------+</span><br><span class="line">|  4 | Jane  |       1 |   22 | F    |    162 | 2016-12-20 |</span><br><span class="line">|  5 | Jim   |       1 |   24 | M    |    175 | 2016-01-15 |</span><br><span class="line">|  6 | John  |       2 |   21 | M    |    172 | 2015-11-11 |</span><br><span class="line">|  7 | Lily  |       6 |   22 | F    |    165 | 2016-02-26 |</span><br><span class="line">|  8 | Susan |       4 |   23 | F    |    170 | 2015-10-01 |</span><br><span class="line">+----+-------+---------+------+------+--------+------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<p>由结果可以看到，该语句返回的是从第 4 条记录开始的之后的 5 条记录。LIMIT 关键字后的第一个数字“3”表示从第 4 行开始（记录的位置从 0 开始，第 4 行的位置为 3），第二个数字 5 表示返回的行数。</p>
-<h3 id="4-连接查询"><a href="#4-连接查询" class="headerlink" title="4.连接查询"></a>4.连接查询</h3><p>跨表查询，需要关联多个表进行查询。两个或多个表中存在相同意义的字段时，便可以通过这些字段对不同的表进行连接查询。</p>
-<h5 id="语法：SELECT-…-FROM-表1-连接方式-JOIN-表2-ON-连接条件-WHERE-过滤条件"><a href="#语法：SELECT-…-FROM-表1-连接方式-JOIN-表2-ON-连接条件-WHERE-过滤条件" class="headerlink" title="语法：SELECT … FROM 表1 [连接方式] JOIN 表2 [ON 连接条件] WHERE 过滤条件"></a>语法：SELECT … FROM 表1 [连接方式] JOIN 表2 [ON 连接条件] WHERE 过滤条件</h5><p>加on避免了笛卡尔积现象，但是并不会减少数据行的匹配次数，只是减少返回的数据行。</p>
-<h3 id="5-子查询"><a href="#5-子查询" class="headerlink" title="5.子查询"></a>5.子查询</h3><p>1、内连接(INNER JOIN)使用比较运算符进行表间某(些)列数据的比较操作，并列出这些表中与连接条件相匹配的数据行，组合成新的数据行<br>    ⑴也就是说：在内连接查询中，只有满足条件的记录才能出现在结果关系中</p>
-<p>2、语法形式：from 表1 [inner] join 表2 on 连接条件 where 过滤条件<br>    ⑴内连接通过on条件来筛选出来符合连接条件的数据<br>    ⑵关键字“inner”可以省略，但建议写上<br>————————————————<br>版权声明：本文为CSDN博主「不怕猫的耗子A」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39314932/article/details/110006151">https://blog.csdn.net/qq_39314932/article/details/110006151</a></p>
-<h3 id="内连接：等值连接"><a href="#内连接：等值连接" class="headerlink" title="内连接：等值连接"></a><strong>内连接：等值连接</strong></h3><p>语法形式：<strong>from 表1 [inner] join 表2 on 连接条件 where 过滤条件</strong></p>
-<p>1、内连接中的等值连接最大的特点是：条件是等量关系</p>
-<p>2、等值连接使用的是”=”操作符，表示相等关系</p>
-<p><strong>例3：</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span>  <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> dept d  <span class="keyword">INNER</span> <span class="keyword">JOIN</span> emp e <span class="keyword">ON</span> e.dept_id<span class="operator">=</span>d.id;</span><br></pre></td></tr></table></figure>
-
-<p>自己感觉有一个比较重要的思想：将查询结果看做一张临时表，然后继续在这个临时表中过滤查询数据、这张临时表继续关联其他表等。</p>
-<h3 id="内连接：非等值连接"><a href="#内连接：非等值连接" class="headerlink" title="内连接：非等值连接"></a><strong>内连接：非等值连接</strong></h3><p>1、内连接中的非等值连接最大的特点是：条件是非等量关系</p>
-<p>2、非等值连接使用的是**BETWEEN…AND…**关键字，表示在某个范围内</p>
-<img src="/images/%E9%9D%9E%E7%AD%89%E5%80%BC%E5%86%85%E8%BF%9E%E6%8E%A5.png" alt="非等值内连接" style="zoom: 80%;" />
-
-<img src="/images/%E9%9D%9E%E7%AD%89%E5%80%BC%E5%86%85%E8%BF%9E%E6%8E%A52.png" alt="非等值内连接2" style="zoom:80%;" />
-
-<p>自连接<br>1、自连接最大的特点是：一张表看做两张表，自己连接自己</p>
-<p>2、自连接其实还是两个表连接，只是将一个表用不同的别名，当做两个表</p>
-<p>3、自连接适用于一个表中的某个字段的值“来源于”当前表的另一个字段的情况</p>
-<p>4、语法为：from 表1 as a [连接形式] join 表1 as b on a.xx字段1=b.xx字段名</p>
-<h3 id="6-合并查询结果"><a href="#6-合并查询结果" class="headerlink" title="6.合并查询结果"></a>6.合并查询结果</h3><h5 id="MySQL-UNION"><a href="#MySQL-UNION" class="headerlink" title="MySQL UNION"></a>MySQL UNION</h5><h5 id="操作符用于连接两个以上的-SELECT-语句的结果组合到一个结果集合中。多个-SELECT-语句会删除重复的数据。"><a href="#操作符用于连接两个以上的-SELECT-语句的结果组合到一个结果集合中。多个-SELECT-语句会删除重复的数据。" class="headerlink" title="操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。"></a>操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。</h5><p>语法</p>
-<p>MySQL UNION 操作符语法格式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT expression1, expression2, ... expression_n</span><br><span class="line">FROM tables</span><br><span class="line">[WHERE conditions]</span><br><span class="line">UNION [ALL | DISTINCT]</span><br><span class="line">SELECT expression1, expression2, ... expression_n</span><br><span class="line">FROM tables</span><br><span class="line">[WHERE conditions];</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>expression1, expression2, … expression_n</strong>: 要检索的列。</li>
-<li><strong>tables:</strong> 要检索的数据表。</li>
-<li><strong>WHERE conditions:</strong> 可选， 检索条件。</li>
-<li><strong>DISTINCT:</strong> 可选，删除结果集中重复的数据。默认情况下 UNION 操作符已经删除了重复数据，所以 DISTINCT 修饰符对结果没啥影响。</li>
-<li><strong>ALL:</strong> 可选，返回所有结果集，包含重复数据。</li>
-</ul>
-<h3 id="7-使用正则表达式表示查询"><a href="#7-使用正则表达式表示查询" class="headerlink" title="7.使用正则表达式表示查询"></a>7.使用正则表达式表示查询</h3><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。</p>
-<p>使用正则表达式可以检索或替换符合某个模式的文本内容，根据指定的匹配模式匹配文本中符合要求的特殊字符串。</p>
-<p>   在MySQL中，使用 REGEXP 关键字指定正则表达式的字符匹配模式。</p>
-<ol>
-<li>查询以特定字符或字符串开头的记录<br> 字符^可以匹配以特定字符或者字符串开头的文本。</li>
-</ol>
-<p>【例】在  fruits  表中，查询  f_name  字段以字母  b  开头的记录。SQL  语句如下：</p>
-<p><img src="/images/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E5%8C%B9%E9%85%8D%E5%88%97%E8%A1%A8.png" alt="正则表达式常用的字符匹配列表"></p>
-<p>mysql&gt;  SELECT  *  FROM  fruits<br>    -&gt; WHERE  f_name  REGEXP  ‘^b’;<br>+——+——+————+———+<br>| f_id | s_id | f_name     | f_price |<br>+——+——+————+———+<br>| b1   |  101 | blackberry |   10.20 |<br>| b2   |  104 | berry      |    7.60 |<br>| t1   |  102 | blanana    |   10.30 |<br>+——+——+————+———+</p>
-<ol>
-<li>匹配指定字符串</li>
-</ol>
-<p>  正则表达式可以匹配指定字符串，只要这个字符串在查询文本中即可，如要匹配多个字符串，多个字符串之间 使用分隔符“|”隔开。</p>
-<p>‘|’隔开两个字符，在 fruits 表中，查询 f_name 字段值中包含字符串 on 或者 ap 的记录。</p>
-<p>2.指定字符串连续出现的次数</p>
-<p>“字符串{n,}“ 表示匹配前面的字符串至少n次；“字符串{n,m}”表示匹配前面的字符串至少n次，至多m次。</p>
+                <h1 id="1-loveSQL"><a href="#1-loveSQL" class="headerlink" title="1.loveSQL"></a>1.loveSQL</h1><p>联合查询注入</p>
+<p>（1）整体思路</p>
+<h5 id="观察题目提示"><a href="#观察题目提示" class="headerlink" title="观察题目提示"></a>观察题目提示</h5><p>是SQL注入</p>
+<h5 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h5><p>username或是password，分别试试字符型或数字型之类的注入类型。</p>
+<p>试着加一个单引号，发现</p>
+<p><img src="../images/%E5%9C%A8username%E4%B8%8A%E6%B3%A8%E5%85%A5-16369854801581.png" alt="在username上注入"></p>
+<p><img src="../images/%E5%9C%A8password%E9%87%8C%E6%B3%A8%E5%85%A5-16369854856292.png" alt="在password里注入"></p>
+<p>可以发现注入点如果在password，password已经完整了，会有多余的单引号。而username的123前面只有一个单引号，可后面却有两个单引号</p>
+<p>说明我们令username=12345’ 的时候让整个sql句子里多出了一个单引号，使得句子发生报错了</p>
+<p>因此这是一道关于sql单引号闭合的题目。</p>
+<p>然后就想注释掉后面的语句，用万能钥匙usename=1’ or 1=1#</p>
 
                 
             </div>
@@ -649,7 +506,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/11/14/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/">http://example.com/2021/11/14/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/</a>
+                    <a href="http://example.com/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/">http://example.com/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -860,9 +717,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/">
                     <div class="card-image">
@@ -880,9 +738,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -891,6 +749,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -909,13 +768,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/04/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">
+                <a href="/2021/11/14/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="SQL注入漏洞">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="MYSQL数据库查询语句">
                         
-                        <span class="card-title">SQL注入漏洞</span>
+                        <span class="card-title">MYSQL数据库查询语句</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -926,7 +785,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
                             </span>
                         <span class="publish-author">
                             
