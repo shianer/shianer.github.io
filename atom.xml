@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-17T05:24:39.470Z</updated>
+  <updated>2021-11-17T05:32:23.544Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>loveSQL和[GYCTF2020]Ezsqli wp2</title>
+    <link href="http://example.com/2021/11/17/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp2/"/>
+    <id>http://example.com/2021/11/17/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp2/</id>
+    <published>2021-11-17T05:32:23.000Z</published>
+    <updated>2021-11-17T05:32:23.544Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>loveSQL和[GYCTF2020]Ezsqli wp</title>
