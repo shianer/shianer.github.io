@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-17T05:32:23.544Z</updated>
+  <updated>2021-11-21T04:53:22.058Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,24 +17,61 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>loveSQL和[GYCTF2020]Ezsqli wp2</title>
-    <link href="http://example.com/2021/11/17/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp2/"/>
-    <id>http://example.com/2021/11/17/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp2/</id>
-    <published>2021-11-17T05:32:23.000Z</published>
-    <updated>2021-11-17T05:32:23.544Z</updated>
+    <title>python盲注脚本</title>
+    <link href="http://example.com/2021/11/20/python%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/"/>
+    <id>http://example.com/2021/11/20/python%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/</id>
+    <published>2021-11-20T06:16:17.000Z</published>
+    <updated>2021-11-21T04:53:22.058Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;0x00&lt;/p&gt;
+&lt;p&gt;（1）盲注&lt;/p&gt;
+&lt;p&gt;web方向的培训讲到sql的盲注部分。盲注就是在sql注入过程中，sql语句执行的选择后，选择的数据不能回显到前端页面。此时，我们需要利用一些方法进行判断或者尝试，这个过程称之为盲注。sql注入绝大多数都是盲注了，是一个蛮重</summary>
+        
+      
     
     
     
     
+    <category term="web题目" scheme="http://example.com/tags/web%E9%A2%98%E7%9B%AE/"/>
     
   </entry>
   
   <entry>
-    <title>loveSQL和[GYCTF2020]Ezsqli wp</title>
-    <link href="http://example.com/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/"/>
-    <id>http://example.com/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/</id>
+    <title>sqli1-10</title>
+    <link href="http://example.com/2021/11/18/lesson1-10/"/>
+    <id>http://example.com/2021/11/18/lesson1-10/</id>
+    <published>2021-11-18T13:29:32.000Z</published>
+    <updated>2021-11-20T09:45:31.437Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;之前一直在忙那些大概的框架，不清楚的就一直挖，搞得一直钻牛角尖，正在学的有关的倒没怎么学到，也没怎么总结靶场，现在知道自己的无知有多么可怕，无语浪费了好多时间，现在也应该潜心下来一点点总结了。&lt;/p&gt;
+&lt;p&gt;思路是这样的：&lt;/p&gt;
+&lt;p&gt;首先可以借助通过源码分析注入类型，然</summary>
+        
+      
+    
+    
+    
+    
+    <category term="sqli靶场" scheme="http://example.com/tags/sqli%E9%9D%B6%E5%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>loveSQLwp</title>
+    <link href="http://example.com/2021/11/15/loveSQLwp/"/>
+    <id>http://example.com/2021/11/15/loveSQLwp/</id>
     <published>2021-11-15T13:56:59.000Z</published>
-    <updated>2021-11-17T05:24:39.470Z</updated>
+    <updated>2021-11-20T07:05:59.348Z</updated>
     
     
       
@@ -48,7 +85,7 @@
     
     
     
-    <category term="sqli靶场" scheme="http://example.com/tags/sqli%E9%9D%B6%E5%9C%BA/"/>
+    <category term="web题目" scheme="http://example.com/tags/web%E9%A2%98%E7%9B%AE/"/>
     
   </entry>
   

