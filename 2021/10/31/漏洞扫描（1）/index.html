@@ -470,8 +470,12 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="漏洞扫描（1）"><a href="#漏洞扫描（1）" class="headerlink" title="漏洞扫描（1）"></a>漏洞扫描（1）</h1><p>漏洞扫描器可以帮我们发现漏洞（SQL注入漏洞、跨站点脚本攻击、缓冲区溢出）。但是像逻辑性漏洞，隐藏很深XSS漏洞或者SQL注入漏洞，就需要人工渗透了。</p>
-<h2 id="1-逻辑性漏洞"><a href="#1-逻辑性漏洞" class="headerlink" title="1.逻辑性漏洞"></a><a target="_blank" rel="noopener" href="http://blog.nsfocus.net/business-logic-vulnerabilities-1208/">1.逻辑性漏洞</a></h2><p>共性都不具有攻击性</p>
-<p>（1）越权访问：分为水平越权和垂直越权。水平越权指的是a与b同为用户，a可以访问b用户的页面，a持有b用户独有的敏感url。垂直越权指的是用户同时可以拥有管理员权限了。</p>
+<h2 id="1-逻辑性漏洞"><a href="#1-逻辑性漏洞" class="headerlink" title="1.逻辑性漏洞"></a><a target="_blank" rel="noopener" href="http://blog.nsfocus.net/business-logic-vulnerabilities-1208/">1.逻辑性漏洞</a></h2><p>ShuiZe_</p>
+<p>FOFA黑网引擎</p>
+<p>灯塔资产</p>
+<p>github搜索字段，ip</p>
+<p>共性都不具有攻击性</p>
+<p>（1）越权访问：分为水平越权和垂直越权。水平越权指的是a与b同为用户，a可以访问b用户的页面，a持有b用户独有的敏感url。垂直越权指的是用户同时可以拥有管理员权限了。http://…/?user id=123</p>
 <p>原因是开发人员只在前端界面进行了简单的菜单隐藏，没有用统一的服务端拦截器/中间件对全部URL进行权限判断。这样只需要在浏览器或bp的攻击工具内发出指定的url请求，即可以实现对于特定接口的越权访问。</p>
 <p>（2）Cookie提权</p>
 <p>记录用户登录状态，Web站点通常在Cookie中记录Sessionld来实现对于用户登录状态的识别。同时有的开发者在Cookie里还会记录该用户的权限，后续在做用户权限判定的时候都从Cookie中取值判断是一个普通用户还是管理员。Cookie本身在浏览器侧可手动修改，攻击者修改了Cookie里记录的权限值，即可将一个普通用户提权（0-&gt;1)。</p>
