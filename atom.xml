@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-17T16:58:46.165Z</updated>
+  <updated>2021-12-25T10:35:32.849Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Upload-labs1</title>
+    <link href="http://example.com/2021/12/22/Upload-labs1/"/>
+    <id>http://example.com/2021/12/22/Upload-labs1/</id>
+    <published>2021-12-22T11:47:20.000Z</published>
+    <updated>2021-12-25T10:35:32.849Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;upload1&quot;&gt;&lt;a href=&quot;#upload1&quot; class=&quot;headerlink&quot; title=&quot;upload1&quot;&gt;&lt;/a&gt;upload1&lt;/h1&gt;&lt;p&gt;1.文件上传过程&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sqlmap使用，kali的一些使用和jspstudy环境搭建</title>
+    <link href="http://example.com/2021/12/19/sqlmap%E4%BD%BF%E7%94%A8%EF%BC%8Ckali%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8Cjspstudy%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://example.com/2021/12/19/sqlmap%E4%BD%BF%E7%94%A8%EF%BC%8Ckali%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8Cjspstudy%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</id>
+    <published>2021-12-18T17:11:20.000Z</published>
+    <updated>2021-12-23T12:10:31.335Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h2 id=&quot;（1）sqlmap&quot;&gt;&lt;a href=&quot;#（1）sqlmap&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="sqli靶场" scheme="http://example.com/tags/sqli%E9%9D%B6%E5%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Lesson57-65</title>
@@ -90,7 +135,7 @@
     <link href="http://example.com/2021/12/10/lesson29-39/"/>
     <id>http://example.com/2021/12/10/lesson29-39/</id>
     <published>2021-12-09T16:40:10.000Z</published>
-    <updated>2021-12-11T05:50:24.982Z</updated>
+    <updated>2021-12-23T12:29:15.277Z</updated>
     
     
       
@@ -431,52 +476,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>http请求协议</title>
-    <link href="http://example.com/2021/10/22/http%E8%AF%B7%E6%B1%82%E5%8D%8F%E8%AE%AE/"/>
-    <id>http://example.com/2021/10/22/http%E8%AF%B7%E6%B1%82%E5%8D%8F%E8%AE%AE/</id>
-    <published>2021-10-22T05:15:17.000Z</published>
-    <updated>2021-10-22T12:43:37.433Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;http请求流程&quot;&gt;&lt;a href=&quot;#http请求流程&quot; class=&quot;headerlink&quot; title=&quot;http请求流程&quot;&gt;&lt;/a&gt;http请求流程&lt;/h1&gt;&lt;h2 id=&quot;1-http协议解析（与抓包密切相关）&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="基础内容" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql语句</title>
-    <link href="http://example.com/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/"/>
-    <id>http://example.com/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/</id>
-    <published>2021-10-16T11:47:06.000Z</published>
-    <updated>2021-11-14T14:21:15.118Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MYSQL命令（增删改）&quot;&gt;&lt;a href=&quot;#MYSQL命令（增删改）&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="sqli靶场" scheme="http://example.com/tags/sqli%E9%9D%B6%E5%9C%BA/"/>
     
   </entry>
   

