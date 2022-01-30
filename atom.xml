@@ -31,10 +31,10 @@
   
   <entry>
     <title>php反序列化漏洞（1）</title>
-    <link href="http://example.com/2022/01/29/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%881%EF%BC%89/"/>
-    <id>http://example.com/2022/01/29/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%881%EF%BC%89/</id>
-    <published>2022-01-29T01:26:56.000Z</published>
-    <updated>2022-01-30T11:40:41.564Z</updated>
+    <link href="http://example.com/2022/01/30/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%881%EF%BC%89/"/>
+    <id>http://example.com/2022/01/30/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%881%EF%BC%89/</id>
+    <published>2022-01-30T01:26:56.000Z</published>
+    <updated>2022-01-30T11:55:22.232Z</updated>
     
     
       
@@ -47,6 +47,8 @@
     
     
     
+    
+    <category term="php反序列化" scheme="http://example.com/tags/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     
   </entry>
   
