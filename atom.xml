@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-01-30T02:25:22.260Z</updated>
+  <updated>2022-01-31T15:05:59.647Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -18,14 +18,24 @@
   
   <entry>
     <title>bugku(1)</title>
-    <link href="http://example.com/2022/01/30/bugku-1/"/>
-    <id>http://example.com/2022/01/30/bugku-1/</id>
-    <published>2022-01-30T02:25:22.000Z</published>
-    <updated>2022-01-30T02:25:22.260Z</updated>
+    <link href="http://example.com/2022/01/31/bugku-1/"/>
+    <id>http://example.com/2022/01/31/bugku-1/</id>
+    <published>2022-01-31T02:25:22.000Z</published>
+    <updated>2022-01-31T15:05:59.647Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;bugku-1&quot;&gt;&lt;a href=&quot;#bugku-1&quot; class=&quot;headerlink&quot; title=&quot;bugku(1)&quot;&gt;&lt;/a&gt;bugku(1)&lt;/h1&gt;&lt;h5 id=&quot;1-Simple-SSTI-1&quot;&gt;&lt;a</summary>
+        
+      
     
     
     
     
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
     
   </entry>
   

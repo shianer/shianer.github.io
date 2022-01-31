@@ -430,9 +430,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                <span class="chip bg-color">ctf题目--web</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -444,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-01-30
+                    2022-01-31
                 </div>
                 
 
@@ -465,7 +469,68 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="bugku-1"><a href="#bugku-1" class="headerlink" title="bugku(1)"></a>bugku(1)</h1><h5 id="1-Simple-SSTI-1"><a href="#1-Simple-SSTI-1" class="headerlink" title="1.Simple_SSTI_1"></a>1.Simple_SSTI_1</h5><p>模板注入模型</p>
+<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-01-30%20102910.png" alt="屏幕截图 2022-01-30 102910"></p>
+<h5 id="2-滑稽"><a href="#2-滑稽" class="headerlink" title="2.滑稽"></a>2.滑稽</h5><p>直接在源码页ctrl+f键查找flag.</p>
+<p><img src="/images/%E6%BB%91%E7%A8%BD.png" alt="滑稽"></p>
+<h5 id="3-计算机"><a href="#3-计算机" class="headerlink" title="3.计算机"></a>3.计算机</h5><p>修改最大长度maxlenth</p>
+<p><img src="/images/%E8%AE%A1%E7%AE%97%E5%99%A8.png" alt="计算器"></p>
+<p><img src="/images/%E8%AE%A1%E7%AE%97%E5%99%A82.png" alt="计算器2"></p>
+<h5 id="4-get"><a href="#4-get" class="headerlink" title="4.get"></a>4.get</h5><p>用get方式提交一个what=flag即可</p>
+<h5 id="5-post"><a href="#5-post" class="headerlink" title="5.post"></a>5.post</h5><p>用post方式提交</p>
+<h5 id="6-矛盾"><a href="#6-矛盾" class="headerlink" title="6.矛盾"></a>6.矛盾</h5><p>is_numeric()函数判断参数是否为数字</p>
+<p>=== 在进行比较的时候，会先判断两种字符串的类型是否相等，再比较</p>
+<p>== 在进行比较的时候，会先将字符串类型转化成相同，再比较<br> 注：当涉及到比较数字和字符串时，字符串会被转换成数值并且比较按照数值来进行比较（字母就去掉了）</p>
+<p>我们可以想到用科学计数法表示数字1，既不是纯数字，其值又等于1</p>
+<p>因此，构造payload</p>
+<p>num=1<em>e</em>0.1</p>
+<p>num=1eee</p>
+<p>num=1’都可以</p>
+<p><img src="/images/%E7%9F%9B%E7%9B%BE.png" alt="矛盾"></p>
+<p><img src="/images/70.png" alt="img"></p>
+<h5 id="7-alert"><a href="#7-alert" class="headerlink" title="7.alert"></a>7.alert</h5><p>js里的一般解密就好。HTML DOM alert()，window 上弹出的对话框中显示的纯文本（而非 HTML 文本），这里就在提示</p>
+<p><img src="/images/alert.png" alt="alert"></p>
+<p>末尾存在一些以<code>&amp;#</code>开头<code>;</code>号结尾的东西，是<code>html</code>实体</p>
+<p>我们用Unicode解密</p>
+<p><img src="/images/alert1.png" alt="alert1"></p>
+<p>这里好像拷贝在本地的HTML文档里再用浏览器访问也可以。</p>
+<h5 id="8-你必须让他停下来"><a href="#8-你必须让他停下来" class="headerlink" title="8.你必须让他停下来"></a>8.你必须让他停下来</h5><p>用抓包拦截不断发送的一个个go就好了</p>
+<p><img src="/images/%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%AE%A9%E4%BB%96%E5%81%9C%E4%B8%8B%E6%9D%A5.png" alt="你必须让他停下来"></p>
+<h5 id="9-网站被黑"><a href="#9-网站被黑" class="headerlink" title="9.网站被黑"></a>9.网站被黑</h5><p>这题是一个拿到shell的操作。</p>
+<p>用遇见扫一下后台目录再说。</p>
+<p><img src="/images/9-16436079128423.png" alt="9"></p>
+<p>然后进去这个shell，隐藏网页用bp抓包破解密码即可，但是我之前都是用的社区版，后来发现专业版速度得是好几倍，而且还自己附有字典！</p>
+<p><img src="/images/9.1-16436079003372.png" alt="9.1"></p>
+<p>但要自己找长度</p>
+<p><img src="/images/9.2.png" alt="9.2"></p>
+<p><img src="/images/9.4.png" alt="9.4"></p>
+<h4 id="10-本地管理员"><a href="#10-本地管理员" class="headerlink" title="10.本地管理员"></a>10.本地管理员</h4><p>f12发现一串被注释掉的字符串，</p>
+<p><img src="/images/10-16436083511374.png" alt="10"></p>
+<p>base64解出来是test123，应该是密码，我一开始以为是让我们试试123，后来发现密码应该就是test123。尝试用admin/test123登陆，IP被禁了联想到的是ip的问题，又是xxf</p>
+<p>描述本地管理员，联系本地管理员登陆，burp抓包伪造XFF头</p>
+<p>换头的在旧版最快了。</p>
+<p><img src="/images/10.1-16436092453375.png" alt="10.1"></p>
+<h5 id="11-Flask-FileUpload"><a href="#11-Flask-FileUpload" class="headerlink" title="11.Flask_FileUpload"></a>11.Flask_FileUpload</h5><p>文件上传，注释告诉我们会用python执行，应该是Python执行系统命令。</p>
+<p>当然我们这里可以用上传一句话木马图片的方式上传含有cat flag内容的py指令的图片，但是这里我要用新方法。</p>
+<p>先上传一张普通图片，发到bp中修改内容，如下图：</p>
+<p>先看看在哪个目录可以找到</p>
+<p><img src="/images/11.1.png" alt="11.1"></p>
+<p>然后<img src="/images/11.3-16436110144366.png" alt="11.3"></p>
+<h5 id="12-eval"><a href="#12-eval" class="headerlink" title="12.eval"></a>12.eval</h5><p><img src="/images/12-16436222526641.png" alt="12"></p>
+<p>这是一道PHP题，标题是eval，查了一下函数用法</p>
+<p>var_dump()会将传入的变量打印到页面（变量类型，变量长度和 变量值）</p>
+<p>eval()会执行传入到其中的PHP代码</p>
+<p>echo输出的是最终的结果（变量类型和字符串）</p>
+<p>eval(“var_dump($a);”)就是把$a的内容打印出来</p>
+<p>$a=@$_REQUEST[‘hello’]</p>
+<p>request对象访问任何基于http请求传递的所有信息，所以我们要请求得到hello的信息，然后flag又在flag.php文件里面，所以hello=flag.php只会打出flag.php，所以我们想到用文件file（）试试。</p>
+<p><img src="/images/12.1-16436229078842.png" alt="12.1"></p>
+<h5 id="13-game1"><a href="#13-game1" class="headerlink" title="13.game1"></a>13.game1</h5><p>看到有网页参数怀疑一下是不是sql，后来排除，然后这种题目一般可能有js代码问题，然后也没找到。</p>
+<p>后来猜想玩到一定分会有flag，所以我打开bp,然后开始游戏，结束后自动返回流量包，然后验证一下sign使用了base64加密了，所以我们修改score的值的时候要修改sign值，</p>
+<p>如果我们提交的分数达到了获取flag的阀值就可以获取flag</p>
+<p>sign为 zM + base64编码部分 + ==</p>
+<p>修改玩游戏值获取flag，<img src="/images/13-16436415456061.png" alt="13"></p>
+
                 
             </div>
             <hr/>
@@ -491,7 +556,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/01/30/bugku-1/">http://example.com/2022/01/30/bugku-1/</a>
+                    <a href="http://example.com/2022/01/31/bugku-1/">http://example.com/2022/01/31/bugku-1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -528,7 +593,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                    <span class="chip bg-color">ctf题目--web</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -703,7 +772,7 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2022/01/30/bugku-1/">
+                <a href="/2022/01/31/bugku-1/">
                     <div class="card-image">
                         
                         
@@ -720,7 +789,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-31
                             </span>
                         <span class="publish-author">
                             
@@ -731,6 +800,14 @@
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                        <span class="chip bg-color">ctf题目--web</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
