@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-01-31T15:05:59.647Z</updated>
+  <updated>2022-02-03T13:37:14.422Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>bugku-2</title>
+    <link href="http://example.com/2022/02/01/bugku-2/"/>
+    <id>http://example.com/2022/02/01/bugku-2/</id>
+    <published>2022-02-01T02:25:05.000Z</published>
+    <updated>2022-02-03T13:37:14.422Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;bugku-2&quot;&gt;&lt;a href=&quot;#bugku-2&quot; class=&quot;headerlink&quot; title=&quot;bugku-2&quot;&gt;&lt;/a&gt;bugku-2&lt;/h1&gt;&lt;h3 id=&quot;周二：&quot;&gt;&lt;a href=&quot;#周二：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目——web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE%E2%80%94%E2%80%94web/"/>
+    
+  </entry>
   
   <entry>
     <title>bugku(1)</title>
@@ -451,29 +474,6 @@
     
     
     <category term="文件上传" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--Brute Force</title>
-    <link href="http://example.com/2022/01/11/dvwa--%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"/>
-    <id>http://example.com/2022/01/11/dvwa--%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</id>
-    <published>2022-01-11T05:18:47.000Z</published>
-    <updated>2022-01-24T16:30:11.072Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Brute-Force&quot;&gt;&lt;a href=&quot;#Brute-Force&quot; class=&quot;headerlink&quot; title=&quot;Brute Force&quot;&gt;&lt;/a&gt;Brute</summary>
-        
-      
-    
-    
-    
-    
-    <category term="暴力破解" scheme="http://example.com/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"/>
     
   </entry>
   
