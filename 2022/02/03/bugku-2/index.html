@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ctf%E9%A2%98%E7%9B%AE%E2%80%94%E2%80%94web/">
-                                <span class="chip bg-color">ctf题目——web</span>
+                            <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                <span class="chip bg-color">ctf题目--web</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-02-01
+                    2022-02-03
                 </div>
                 
 
@@ -518,7 +518,7 @@
 <p>发现smtp协议，这是电子邮件传输的协议。</p>
 <p><em><strong>基本概念<br> SMTP（Simple Mail Transfer  Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。SMTP协议属于TCP/IP协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。通过SMTP协议所指定的服务器,就可以把E-mail寄到收信人的服务器上了，整个过程<br> 只要几分钟。SMTP服务器则是遵循SMTP协议的发送邮件服务器，用来发送或中转发出的电子邮件。SMTP<br> 是一种TCP协议支持的提供可靠且有效电子邮件传输的应用层协议。</strong></em></p>
 <p><strong>输入账户和密码发现密码不正确，但是确实是邮箱登录，就用QQ邮箱登录试试，但是电脑邮箱也没法登录，但一定是邮箱</strong><br> <strong>邮箱登录的方式，主流是两种，一种是密码登录，一种是授权码登录，官网提供的邮箱登录一般是账号+密码登录，第三方邮件系统登录的一般都是账号+授权码登录。</strong></p>
-<p>然后常规base64 解码user：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#x75;&#107;&#x75;&#64;&#x31;&#54;&#x33;&#x2e;&#x63;&#111;&#109;">&#x62;&#117;&#x67;&#x6b;&#x75;&#107;&#x75;&#64;&#x31;&#54;&#x33;&#x2e;&#x63;&#111;&#109;</a></p>
+<p>然后常规base64 解码user：<a href="mailto:&#x62;&#x75;&#103;&#x6b;&#x75;&#107;&#x75;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;">&#x62;&#x75;&#103;&#x6b;&#x75;&#107;&#x75;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;</a></p>
 <p>和password：XSLROCPMNWWZQDZL</p>
 <p>其实from就是提示用户了。</p>
 <p>这里要用手机登录，我试过了这是授权码。</p>
@@ -636,7 +636,68 @@ if(md5($key1) == md5($key2) && $key1 !== $key2){
 <p>s214587387a</p>
 <p><img src="/images/23.1.png" alt="23.1"></p>
 <p><img src="/images/23.2.png" alt="23.2"></p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>这三天在划水，但还是总结一下吧：这几天在玩的时候，我学习到一些题目的做法（js,php代码审计，游戏题的情况，反序列化，bp使用，正则表达式，文件包含的复习，和一些小知识点)和遇到题目通常应该怎么做，学习写一些简单的py脚本。多练练题目，还得抽一些时间复习一下sql和几个靶场。</p>
+<h4 id="24-No-one-knows-regex-better-than-me"><a href="#24-No-one-knows-regex-better-than-me" class="headerlink" title="24.No one knows regex better than me"></a>24.No one knows regex better than me</h4><p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51652864/article/details/115418817">https://blog.csdn.net/qq_51652864/article/details/115418817</a></p>
+<p>[(39条消息) <a target="_blank" rel="noopener" href="https://blog.csdn.net/DARKNOTES/article/details/114360112">WP-Bugku积累-正则bypasss] No one knows regex better than me_車鈊的博客-CSDN博客</a></p>
+<p>很有意思的一道逻辑题：</p>
+<p>得到这串代码：审计一下</p>
+<?php 
+error_reporting(0);
+$zero=$_REQUEST['zero'];
+$first=$_REQUEST['first'];
+$second=$zero.$first;
+if(preg_match_all("/Yeedo|wants|a|girl|friend|or|a|flag/i",$second)){
+    $key=$second;
+    if(preg_match("/\.\.|flag/",$key)){
+        die("Noooood hacker!");
+    }else{
+        $third=$first;
+        if(preg_match("/\\|\056\160\150\x70/i",$third)){
+            $end=substr($third,5);
+            highlight_file(base64_decode($zero).$end);//maybe flag in flag.php
+        }
+    }
+}
+else{
+    highlight_file(__FILE__);
+}
+
+------
+
+**补充知识点**
+
+**preg_match 与 preg_match_all 两个函数**的区别就是：preg_match_all()搜索匹配全部情况；preg_match()搜索匹配到一个后终止。
+
+preg_match() 返回 pattern 所匹配的次数。要么是 0 次（没有匹配）或 1 次，因为 preg_match() 在第一次匹配之后将停止搜索。preg_match_all() 则相反，会一直搜索到 subject 的结尾处。如果出错 preg_match() 返回 FALSE。
+
+**两重转义**
+
+在正则表达式中要匹配一个反斜杠时，例如"\\\\",前后两个反斜杠在字符串中分别变成一个反斜杠，解释为两个反斜杠，再交由正则表达式解释为一个反斜杠，需要四个反斜杠。
+
+**字符串 ----> 正则表达式字符串参数 -----> 正则解析转移后的pattern**
+
+![24.1](/images/24.1.png)
+
+**进制转化**
+
+\xnn是十六进制(Hex)，\nnn是八进制（Oct）
+
+------
+
+首先$zero,$first通过request传入一个参数，$second=zero.first,然后$second里必须匹配到/Yeedo|wants|a|girl|friend|a|or|flag|i这里面的字符，$key=$second,接着在$key里不能匹配到/...|flag/,然后$third=first,并且在$里要匹配有/\|\056\160\150\x70/i,$end从third里第五位字符开始截取。
+
+seconde里要存在"/Yeedo|wants|a|girl|friend|or|a|flag/i"，而second=zero.first，所以zero=flag
+
+key=second=zero.first，并且不能存在"/\.\.|flag/"，也就是说zero不能=flag，但可以看下面highlight_file(base64_decode($zero).$end)，会进行base64_decode，所以直接将’flag’进行base64加密得到ZmxhZw==
+
+之后third=first，并且要匹配"/\\|\056\160\150\x70/i"，这是16进制与8进制，转换成10进制，再转成ascii码后即为|.php，但$end=substr($third,5);，故需要在|.php前面加上4个字符，来绕过substr，不过这4个字符得都是"/Yeedo|wants|a|girl|friend|or|a|flag/i"，这里面的（我这里给出一些字符:aaaa oror Flag girl ）这里用Flag的原因是不能匹配/\.\.|flag/，所以完整的payload为：
+
+?zero=ZmxhZw==&first=aaaa（oror)|.php
+
+
+## 总结：
+
+阿西！这三天划水了，但还是总结一下吧：这几天在玩的时候，我学习到一些题目的做法（js,php代码审计，游戏题的情况，反序列化，bp使用，正则表达式，文件包含的复习，和一些小知识点)和遇到题目通常应该怎么做，学习写一些简单的py脚本。多练练题目，还得抽一些时间复习一下sql和几个靶场。
+
 
                 
             </div>
@@ -663,7 +724,7 @@ if(md5($key1) == md5($key2) && $key1 !== $key2){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/01/bugku-2/">http://example.com/2022/02/01/bugku-2/</a>
+                    <a href="http://example.com/2022/02/03/bugku-2/">http://example.com/2022/02/03/bugku-2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -701,8 +762,8 @@ if(md5($key1) == md5($key2) && $key1 !== $key2){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ctf%E9%A2%98%E7%9B%AE%E2%80%94%E2%80%94web/">
-                                    <span class="chip bg-color">ctf题目——web</span>
+                                <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                    <span class="chip bg-color">ctf题目--web</span>
                                 </a>
                             
                         </div>
@@ -879,7 +940,7 @@ if(md5($key1) == md5($key2) && $key1 !== $key2){
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2022/02/01/bugku-2/">
+                <a href="/2022/02/03/bugku-2/">
                     <div class="card-image">
                         
                         
@@ -896,7 +957,7 @@ if(md5($key1) == md5($key2) && $key1 !== $key2){
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-03
                             </span>
                         <span class="publish-author">
                             
@@ -910,8 +971,8 @@ if(md5($key1) == md5($key2) && $key1 !== $key2){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE%E2%80%94%E2%80%94web/">
-                        <span class="chip bg-color">ctf题目——web</span>
+                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                        <span class="chip bg-color">ctf题目--web</span>
                     </a>
                     
                 </div>
