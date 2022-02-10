@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-02-03T14:55:26.030Z</updated>
+  <updated>2022-02-10T13:10:02.690Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,118 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>i春秋-2</title>
+    <link href="http://example.com/2022/02/10/i%E6%98%A5%E7%A7%8B-2/"/>
+    <id>http://example.com/2022/02/10/i%E6%98%A5%E7%A7%8B-2/</id>
+    <published>2022-02-10T02:30:23.000Z</published>
+    <updated>2022-02-10T13:10:02.690Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这里没有备注的部分是ichunqiu中《从0到1-ctfer的成长之路》的题目，还有一些没有新知识点的我就没有打出来了。&lt;/p&gt;
+&lt;h5 id=&quot;1-web常见搜集&quot;&gt;&lt;a href=&quot;#1-web常见搜集&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则表达式</title>
+    <link href="http://example.com/2022/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://example.com/2022/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
+    <published>2022-02-06T03:25:08.000Z</published>
+    <updated>2022-02-10T16:34:22.846Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;正则表达式&quot;&gt;&lt;a href=&quot;#正则表达式&quot; class=&quot;headerlink&quot; title=&quot;正则表达式&quot;&gt;&lt;/a&gt;正则表达式&lt;/h2&gt;&lt;p&gt;这里转载了一些网上看到要点，集合起来。&lt;/p&gt;
+&lt;h4 id=&quot;1-正则表达式定义&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="理论知识" scheme="http://example.com/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>html语言</title>
+    <link href="http://example.com/2022/02/06/html%E8%AF%AD%E8%A8%80/"/>
+    <id>http://example.com/2022/02/06/html%E8%AF%AD%E8%A8%80/</id>
+    <published>2022-02-06T02:58:53.000Z</published>
+    <updated>2022-02-06T02:58:53.811Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>i春秋-1</title>
+    <link href="http://example.com/2022/02/06/i%E6%98%A5%E7%A7%8B-1/"/>
+    <id>http://example.com/2022/02/06/i%E6%98%A5%E7%A7%8B-1/</id>
+    <published>2022-02-06T02:58:29.000Z</published>
+    <updated>2022-02-09T12:29:28.323Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/1.4.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bugku-3</title>
+    <link href="http://example.com/2022/02/04/bugku-3/"/>
+    <id>http://example.com/2022/02/04/bugku-3/</id>
+    <published>2022-02-04T02:53:24.000Z</published>
+    <updated>2022-02-09T03:10:10.174Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;img src=&quot;/images/1.5.png&quot; alt=&quot;1.5&quot; style=&quot;zoom:33%;&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>bugku-2</title>
     <link href="http://example.com/2022/02/03/bugku-2/"/>
     <id>http://example.com/2022/02/03/bugku-2/</id>
     <published>2022-02-03T02:25:05.000Z</published>
-    <updated>2022-02-03T14:55:26.030Z</updated>
+    <updated>2022-02-08T21:10:31.435Z</updated>
     
     
       
@@ -67,7 +174,7 @@
     <link href="http://example.com/2022/01/30/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%881%EF%BC%89/"/>
     <id>http://example.com/2022/01/30/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%EF%BC%881%EF%BC%89/</id>
     <published>2022-01-30T01:26:56.000Z</published>
-    <updated>2022-01-30T11:55:22.232Z</updated>
+    <updated>2022-02-09T07:42:43.845Z</updated>
     
     
       
@@ -358,122 +465,6 @@
     
     
     <category term="xss" scheme="http://example.com/tags/xss/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--Commmand Injection</title>
-    <link href="http://example.com/2022/01/18/DVWA-Commmand-Injection/"/>
-    <id>http://example.com/2022/01/18/DVWA-Commmand-Injection/</id>
-    <published>2022-01-17T16:58:52.000Z</published>
-    <updated>2022-01-24T09:48:48.809Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Command-Injection命令注入&quot;&gt;&lt;a href=&quot;#Command-Injection命令注入&quot; class=&quot;headerlink&quot; title=&quot;Command Injection命令注入&quot;&gt;&lt;/a&gt;Command</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Command Inection" scheme="http://example.com/tags/Command-Inection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--Insecure CAPTCHA</title>
-    <link href="http://example.com/2022/01/17/DVWA-Insecure-CAPTCHA/"/>
-    <id>http://example.com/2022/01/17/DVWA-Insecure-CAPTCHA/</id>
-    <published>2022-01-17T03:41:08.000Z</published>
-    <updated>2022-01-24T13:26:34.205Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;不安全的验证码&quot;&gt;&lt;a href=&quot;#不安全的验证码&quot; class=&quot;headerlink&quot; title=&quot;不安全的验证码&quot;&gt;&lt;/a&gt;不安全的验证码&lt;/h1&gt;&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="验证码" scheme="http://example.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--File Inclusion</title>
-    <link href="http://example.com/2022/01/16/DVWA-File-Inclusion/"/>
-    <id>http://example.com/2022/01/16/DVWA-File-Inclusion/</id>
-    <published>2022-01-16T03:39:31.000Z</published>
-    <updated>2022-01-24T09:49:14.590Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;文件包含&quot;&gt;&lt;a href=&quot;#文件包含&quot; class=&quot;headerlink&quot; title=&quot;文件包含&quot;&gt;&lt;/a&gt;文件包含&lt;/h1&gt;&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="文件包含" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>upload-labs通关总结</title>
-    <link href="http://example.com/2022/01/15/upload-labs%E9%80%9A%E5%85%B3%E6%80%BB%E7%BB%93/"/>
-    <id>http://example.com/2022/01/15/upload-labs%E9%80%9A%E5%85%B3%E6%80%BB%E7%BB%93/</id>
-    <published>2022-01-15T05:14:54.000Z</published>
-    <updated>2022-01-18T11:51:32.412Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;有不对的地方请多指教&lt;/p&gt;
-&lt;img src=&quot;/images/u=3208825021,2870266014&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG.ipg.webp&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="文件上传" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--File Upload</title>
-    <link href="http://example.com/2022/01/15/DVWA-File-Upload/"/>
-    <id>http://example.com/2022/01/15/DVWA-File-Upload/</id>
-    <published>2022-01-15T03:40:09.000Z</published>
-    <updated>2022-01-24T09:49:25.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;文件上传&quot;&gt;&lt;a href=&quot;#文件上传&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="文件上传" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
     
   </entry>
   

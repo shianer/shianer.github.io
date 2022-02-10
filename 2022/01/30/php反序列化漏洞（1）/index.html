@@ -479,8 +479,8 @@
 <h4 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h4><p>序列化的目的是为了方便数据的 传输和存储。</p>
 <h4 id="PHP反序列化和序列化："><a href="#PHP反序列化和序列化：" class="headerlink" title="PHP反序列化和序列化："></a>PHP反序列化和序列化：</h4><p>PHP中一般会用于做缓存，session缓存，cookie等等。</p>
 <h6 id="1-常见的序列化格式"><a href="#1-常见的序列化格式" class="headerlink" title="1.常见的序列化格式"></a>1.常见的序列化格式</h6><p>字节数组，二进制格式，json字符串，xml字符串</p>
-<h6 id="2-PHP常用的函数"><a href="#2-PHP常用的函数" class="headerlink" title="2.PHP常用的函数"></a>2.PHP常用的函数</h6><p>unserialize()  -&gt;序列化</p>
-<p>serialze() –&gt; 反序列化</p>
+<h6 id="2-PHP常用的函数"><a href="#2-PHP常用的函数" class="headerlink" title="2.PHP常用的函数"></a>2.PHP常用的函数</h6><p>unserialize()  –&gt;反序列化</p>
+<p>serialze() –&gt; 序列化</p>
 <h4 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h4><h5 id="php序列化"><a href="#php序列化" class="headerlink" title="php序列化"></a>php序列化</h5><p>序列化函数serialize会检查类中是否存在一个魔术方法 __sleep()。如果存在，__sleep()方法会先被调用，然后才执行序列化操作。</p>
 <p>可以再__sleep()方法里可以决定哪些属性被序列化,没有这个函数的不序列化。</p>
 <p>如果没有__sleep()方法则默认序列化所有属性</p>
