@@ -470,7 +470,8 @@
 <p>3.一些基础知识：PHP代码审计，Linux，Windows命令，打简易的python脚本，这些要学习一下（这个是短板</p>
 <p>4.一些题目自己可以在本地搭建环境来测试</p>
 <p>5.last and the most important :血泪教训：一定要学会一些比较易入门的其他方向知识，以防自己学的太菜一题也做不出来，摆烂了一整天，机灵一点（这个最重要</p>
-<h4 id="web"><a href="#web" class="headerlink" title="web"></a><strong>web</strong></h4><h5 id="1-trick"><a href="#1-trick" class="headerlink" title="1.trick"></a><strong>1.trick</strong></h5><p>用科学计数法绕过，猜测是猜测传入后台后自动转换成字符串类型，去掉单引号，直接传入<code>?num=2e4</code>，后面的也一样直接输入<img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-26%20121158.png" alt="屏幕截图 2022-02-26 121158"></p>
+<h4 id="web"><a href="#web" class="headerlink" title="web"></a><strong>web</strong></h4><h5 id="1-trick"><a href="#1-trick" class="headerlink" title="1.trick"></a><strong>1.trick</strong></h5><p>用科学计数法绕过，猜测是猜测传入后台后自动转换成字符串类型，去掉单引号，直接传入<code>?num=2e4</code>，后面的也一样直接输入</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-26%20121158-16461278642431.png" alt="屏幕截图 2022-02-26 121158"></p>
 <p>intval($len)&lt;15) &amp;&amp; substr($pass,0,$len)==’have a good time’<br>利用intval函数的特性我使用了科学计数法来分割，后来看了wp还可以用</p>
 <p>2.$username=$_POST[‘username’];<br>    $password=addslashes($_POST[‘password’]);<br>post传递if (($username==’’)&amp;&amp;($password==’’))，所以usename=’’<br>$sql = “select username from user where password=’$password’”</p>
 <p>($user==$username)<br>我在想能不能构造出一个使得弱比较成立的比如NULL==FALSE，让password查询为空。</p>
@@ -492,7 +493,7 @@
 <p><a target="_blank" rel="noopener" href="http://110.42.133.120:8080/?len=2e4&amp;pass=have%20a%20good%20time&amp;tl=echo">http://110.42.133.120:8080/?len=2e4&amp;pass=have%20a%20good%20time&amp;tl=echo</a> <code>ls</code>;</p>
 <p><a target="_blank" rel="noopener" href="http://110.42.133.120:8080/?len=2e4&amp;pass=have%20a%20good%20time&amp;tl=echo">http://110.42.133.120:8080/?len=2e4&amp;pass=have%20a%20good%20time&amp;tl=echo</a> <code>cat f*</code>;</p>
 <p>最后可能是做的有点迷了，居然忘记了一些可能会隐藏在源代码里的可能性，一直以为是过滤了什么：回宿舍后试着看看，居然就在源码里找到了。</p>
-<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-26%20223358.png" alt="屏幕截图 2022-02-26 223358"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-26%20223358-16461278754342.png" alt="屏幕截图 2022-02-26 223358"></p>
 <p>这里贴一下wp：</p>
 <p>1.substr特性 可以使用-1绕过 或者十六进制绕过0x开头<br>2.考察逻辑漏洞：账号和密码不可以都为空，那就是说可以其中一个为空，再看后面，可以发现他是通过密码查询账号，并和你输入的账号做比对，如果你输入的是错误的密码，那么查出来的账号就是空的，此时你输入空的账号，就会满足条件，即可绕过<br>3.考察短字符getshell</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo `cat f*`;</span><br></pre></td></tr></table></figure>
@@ -508,11 +509,12 @@
 <p>这里发现空格（用1=1构造闭合）<br>length<br>+<br>select<br>-~<br>#<br>-<br>%<br>^<br>union<br>||<br>sys schemma<br>SeleCT<br>order</p>
 <p>preg_replace()要逐个替换，这个只能手动测用双写或大小写绕过。</p>
 <p>然后注入点判断时发现存在有被替换的字符，这时候要一个一个试试，问了大佬也是这么说的，所以开干，就是有一点小麻烦，以后可能就可以找到更简单的方法啦。刚好来练习一下我的sql盲注脚本！</p>
-<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20233932.png" alt="屏幕截图 2022-02-28 233932"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20233932-16461278848783.png" alt="屏幕截图 2022-02-28 233932"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if（判断语句，x，y）如果判断语句正确则输出X，否则输出Y</span><br></pre></td></tr></table></figure>
 
 <p>一些padload直接在里面看就好了<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cainiao-chuanqi/p/15808581.html">SQL注入__布尔盲注和时间盲注 - 菜鸟-传奇 - 博客园 (cnblogs.com)</a></p>
-<p>这里要整<img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-01%20000654.png" alt="屏幕截图 2022-03-01 000654">理一下post，get等类型的盲注脚本。</p>
+<p>这里要整理一下post，get等类型的盲注脚本。</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-01%20000654-16461278952304.png" alt="屏幕截图 2022-03-01 000654"></p>
 <p>接下来这两题以后做到类似题型再总结吧：</p>
 <p>#3.pop</p>
 <p>#4.cms</p>
@@ -538,7 +540,7 @@
 <p>发现解码太大一直跳不出来，所以试一试转图片：</p>
 <p>在浏览器输入 “data:image/png;base64,”逗号后面加上base64编码，png部分根据文件类型改变。</p>
 <p>我其实看到很多方法，但是这个最小白。</p>
-<p><img src="D:/blog/source/images/%E7%AD%BE%E5%88%B0.png" alt="签到"></p>
+<p><img src="../images/%E7%AD%BE%E5%88%B0-16461279037285.png" alt="签到"></p>
 <h5 id="你好，你有一份秘密考核信件请查收"><a href="#你好，你有一份秘密考核信件请查收" class="headerlink" title="你好，你有一份秘密考核信件请查收"></a>你好，你有一份秘密考核信件请查收</h5><p>用foremost分离</p>
 <p>千层套路网上找一个脚本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import zipfile</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">path = r&quot;C:\Users\86139\Desktop\misc考核题\你好，你有一份秘密考核信件请查收\output\zip&quot;  # 这个自己把控想在哪里开始使用脚本</span><br><span class="line">file = &quot;00000022.zip&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def un_zip(Path, File_name):  # 传入一个路径和当前路径的压缩包名字，返回解压缩后的文件名字</span><br><span class="line">    current_file = Path + os.sep + File_name  # 路径+&#x27;/&#x27;+文件名</span><br><span class="line">    # new_path=&#x27;&#x27;</span><br><span class="line">    os.chdir(Path)  # 改变当前工作路径，方便添加文件夹</span><br><span class="line"></span><br><span class="line">    zip_file = zipfile.ZipFile(current_file)</span><br><span class="line">    # print(zip_file.namelist()[0])</span><br><span class="line">    new_file = zip_file.namelist()[0]  # 新解压的压缩文件为新的路径名字</span><br><span class="line"></span><br><span class="line">    # new_path=current_path + os.sep + new_file</span><br><span class="line">    # os.mkdir(new_path) #新建一个以解压出来的压缩包为名字的文件夹</span><br><span class="line"></span><br><span class="line">    # os.chdir(new_path)</span><br><span class="line">    zip_file.extractall(path=Path, members=zip_file.namelist(), pwd=File_name[0:-4].encode())  # 因为密码就是文件名</span><br><span class="line">    zip_file.close()</span><br><span class="line"></span><br><span class="line">    return new_file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">new = file</span><br><span class="line">new1 = &#x27;&#x27;</span><br><span class="line">while (1):</span><br><span class="line">    # new1=un_zip(path,new) #第一次解压出来了new1</span><br><span class="line">    if (new == &#x27;&#x27;):  # 判断是否解压完毕，是则直接退出</span><br><span class="line">        print(&quot;end:&quot; + new1)</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">    else:  # 否则就开始新的解压</span><br><span class="line">        new1 = un_zip(path, new)</span><br><span class="line">        print(&quot;continue:&quot; + new1)</span><br><span class="line">        new = new1</span><br></pre></td></tr></table></figure>
@@ -550,11 +552,11 @@
 <p><a target="_blank" rel="noopener" href="https://www.sohu.com/a/274916484_704736">利用“已知明文攻击”破解加密的压缩文件_密码 (sohu.com)</a></p>
 <p><strong>在进行明文攻击时，压缩算法一定要相同</strong><br>比如可能提示你存储，快速啥的，这就要在压缩已知文件时的压缩方式选存储等等 还有就是算法(这里可以多种压缩软件都试试，比如winrar、7-z、好压等</p>
 <p>但是这里不知道为什么做不出来：然后我爆破出来的0xfafu。接下来是图片隐写：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45927819/article/details/105325314?ops_request_misc=%7B%22request_id%22:%22164602051616780269866244%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=164602051616780269866244&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-105325314.first_rank_v2_pc_rank_v29&utm_term=jpg%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E4%BF%AE%E6%94%B9%E9%AB%98%E5%BA%A6&spm=1018.2226.3001.4187">(48条消息) CTF–图片隐写之修改图片宽和高_Stray.io的博客-CSDN博客_ctf修改图片高度</a></p>
-<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20120146.png" alt="屏幕截图 2022-02-28 120146"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20120146-16461279154936.png" alt="屏幕截图 2022-02-28 120146"></p>
 <h5 id="不会web的miscer不是好miscer"><a href="#不会web的miscer不是好miscer" class="headerlink" title="不会web的miscer不是好miscer"></a>不会web的miscer不是好miscer</h5><p>抓包，获得flag的payload找出来是-7880和-5457然后看一下http回显的状态码为200 的。</p>
-<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20113512.png" alt="屏幕截图 2022-02-28 113512"></p>
-<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20113348.png" alt="屏幕截图 2022-02-28 113348"></p>
-<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20113237.png" alt="屏幕截图 2022-02-28 113237"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20113512-16461279282207.png" alt="屏幕截图 2022-02-28 113512"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20113348-16461279422028.png" alt="屏幕截图 2022-02-28 113348"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-02-28%20113237-16461279490859.png" alt="屏幕截图 2022-02-28 113237"></p>
 <p>flag{698b0a3e29c5b0861a2d85fb14c2e2e9}</p>
 <h4 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h4><h5 id="ESRSA"><a href="#ESRSA" class="headerlink" title="ESRSA"></a>ESRSA</h5><p>这题真的很绝,就跑一下脚本：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vhkjhwbs/article/details/101160822?ops_request_misc=%7B%22request_id%22:%22164602251516780255257849%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=164602251516780255257849&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-101160822.first_rank_v2_pc_rank_v29&utm_term=esrsa%E7%9A%84n1,n2,c1,c2%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D&spm=1018.2226.3001.4187">(48条消息) CTF ——crypto ——RSA原理及各种题型总结_小锤队长的博客-CSDN博客_ctf rsa</a></p>
@@ -839,13 +841,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/23/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%A2%98%E7%9B%AE/">
+                <a href="/2022/02/23/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="php反序列化题目">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="sql">
                         
-                        <span class="card-title">php反序列化题目</span>
+                        <span class="card-title">sql</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -865,6 +867,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">基础知识</span>
+                    </a>
+                    
                 </div>
                 
             </div>

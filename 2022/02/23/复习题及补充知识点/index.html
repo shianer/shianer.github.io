@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="无标题, 黛色若梦">
+    <meta name="keywords" content="sql, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>无标题 | 黛色若梦</title>
+    <title>sql | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">无标题</h1>
+                    <h1 class="description center-align post-title">sql</h1>
                 </div>
             </div>
         </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-02-21
+                    2022-02-23
                 </div>
                 
 
@@ -568,6 +568,21 @@
 <p>用网页脚本:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;@eval($_POST[&#x27;a&#x27;])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
+<h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>1.piapiapia</p>
+<p>buu自带防扫机制，所以我们没有办法扫得很快</p>
+<p>看看能不能扫出源码，看是白盒（源码泄漏+代码审计）还是黑盒（这里由于字典的稀缺，所以两种都试试）</p>
+<p>fuzz用社区版，因为线程比较小，不然速度太快了。</p>
+<ul>
+<li>-u 指定网址</li>
+<li>-e 指定网站语言</li>
+<li>-w 指定字典</li>
+<li>-r 递归目录（跑出目录后，继续跑目录下面的目录）</li>
+<li>–random-agents 使用随机UA</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python dirsearch.py -u 网址 -e php</span><br></pre></td></tr></table></figure>
+
+<p>py dirsearch.py -u 网址 -e 语言(我一般用*)</p>
+<p>一般出现登录页面都会有注册页面</p>
 
                 
             </div>
@@ -594,7 +609,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/21/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/">http://example.com/2022/02/21/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/</a>
+                    <a href="http://example.com/2022/02/23/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/">http://example.com/2022/02/23/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -809,13 +824,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/02/23/sql%E9%A2%98%E7%9B%AE/">
+                <a href="/2022/03/01/%E8%80%83%E6%A0%B8wp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="sql题目">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="考核wp">
                         
-                        <span class="card-title">sql题目</span>
+                        <span class="card-title">考核wp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -826,7 +841,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
                         </span>
                         <span class="publish-author">
                             
@@ -835,14 +850,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/sqli/">
-                        <span class="chip bg-color">sqli</span>
-                    </a>
-                    
                 </div>
                 
             </div>
