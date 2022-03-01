@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-02-20T13:24:37.814Z</updated>
+  <updated>2022-03-01T09:37:07.637Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,96 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>考核wp</title>
+    <link href="http://example.com/2022/03/01/%E8%80%83%E6%A0%B8wp/"/>
+    <id>http://example.com/2022/03/01/%E8%80%83%E6%A0%B8wp/</id>
+    <published>2022-03-01T09:36:37.000Z</published>
+    <updated>2022-03-01T09:37:07.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;总结：&quot;&gt;&lt;a href=&quot;#总结：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>php反序列化题目</title>
+    <link href="http://example.com/2022/02/23/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%A2%98%E7%9B%AE/"/>
+    <id>http://example.com/2022/02/23/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%A2%98%E7%9B%AE/</id>
+    <published>2022-02-23T06:49:26.000Z</published>
+    <updated>2022-02-23T06:49:26.770Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sql题目</title>
+    <link href="http://example.com/2022/02/23/sql%E9%A2%98%E7%9B%AE/"/>
+    <id>http://example.com/2022/02/23/sql%E9%A2%98%E7%9B%AE/</id>
+    <published>2022-02-23T06:48:40.000Z</published>
+    <updated>2022-02-23T08:17:12.112Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1.piapiapia&lt;/p&gt;
+&lt;p&gt;buu自带防扫机制，所以我们没有办法扫得很快&lt;/p&gt;
+&lt;p&gt;看看能不能扫出源码，看是白盒（源码泄漏+代码审计）还是黑盒（这里由于字典的稀缺，所以两种都试试）&lt;/p&gt;
+&lt;p&gt;fuzz用社区版，因为线程比较小，不然速度太快了。&lt;/p&gt;
+&lt;u</summary>
+        
+      
+    
+    
+    
+    
+    <category term="sqli" scheme="http://example.com/tags/sqli/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>无标题</title>
+    <link href="http://example.com/2022/02/21/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    <id>http://example.com/2022/02/21/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/</id>
+    <published>2022-02-21T13:24:56.000Z</published>
+    <updated>2022-02-25T12:48:15.574Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;sql注入：&quot;&gt;&lt;a href=&quot;#sql注入：&quot; class=&quot;headerlink&quot; title=&quot;sql注入：&quot;&gt;&lt;/a&gt;sql注入：&lt;/h2&gt;&lt;p&gt;文中只举例mysql数据库。&lt;/p&gt;
+&lt;h3 id=&quot;1-原理：&quot;&gt;&lt;a href=&quot;#1-原理：&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="基础知识" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>html语言--web前端</title>
     <link href="http://example.com/2022/02/18/web%E5%89%8D%E7%AB%AF--html%E8%AF%AD%E8%A8%80/"/>
     <id>http://example.com/2022/02/18/web%E5%89%8D%E7%AB%AF--html%E8%AF%AD%E8%A8%80/</id>
     <published>2022-02-18T02:58:53.000Z</published>
-    <updated>2022-02-20T13:24:37.814Z</updated>
+    <updated>2022-02-21T13:29:02.910Z</updated>
     
     
       
@@ -210,7 +295,7 @@
     <link href="http://example.com/2022/02/03/bugku-2/"/>
     <id>http://example.com/2022/02/03/bugku-2/</id>
     <published>2022-02-03T02:25:05.000Z</published>
-    <updated>2022-02-13T09:18:05.072Z</updated>
+    <updated>2022-02-23T07:39:15.870Z</updated>
     
     
       
@@ -386,98 +471,6 @@
     
     
     <category term="js" scheme="http://example.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--XSS(Stored)</title>
-    <link href="http://example.com/2022/01/24/DVWA-XSS-Stored/"/>
-    <id>http://example.com/2022/01/24/DVWA-XSS-Stored/</id>
-    <published>2022-01-24T07:37:14.000Z</published>
-    <updated>2022-01-25T14:36:13.536Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="xss" scheme="http://example.com/tags/xss/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--XSS(Reflected)</title>
-    <link href="http://example.com/2022/01/24/DVWA-XSS-Reflected/"/>
-    <id>http://example.com/2022/01/24/DVWA-XSS-Reflected/</id>
-    <published>2022-01-24T03:43:29.000Z</published>
-    <updated>2022-01-25T13:30:08.492Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;xss-Reflected-反射型&quot;&gt;&lt;a href=&quot;#xss-Reflected-反射型&quot; class=&quot;headerlink&quot; title=&quot;xss(Reflected)反射型&quot;&gt;&lt;/a&gt;xss(Reflected)反射型&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-    <category term="xss" scheme="http://example.com/tags/xss/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--Weak Session IDs</title>
-    <link href="http://example.com/2022/01/24/DVWA-Weak-Session-IDs/"/>
-    <id>http://example.com/2022/01/24/DVWA-Weak-Session-IDs/</id>
-    <published>2022-01-24T03:42:31.000Z</published>
-    <updated>2022-01-25T07:55:36.438Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Weak-Session-Ids&quot;&gt;&lt;a href=&quot;#Weak-Session-Ids&quot; class=&quot;headerlink&quot; title=&quot;Weak Session Ids&quot;&gt;&lt;/a&gt;Weak Session Ids&lt;/h1&gt;&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="弱会话" scheme="http://example.com/tags/%E5%BC%B1%E4%BC%9A%E8%AF%9D/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--XSS(DOM)</title>
-    <link href="http://example.com/2022/01/23/DVWA-XSS-DOM/"/>
-    <id>http://example.com/2022/01/23/DVWA-XSS-DOM/</id>
-    <published>2022-01-23T03:42:56.000Z</published>
-    <updated>2022-01-25T11:38:17.569Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;xss-DOM&quot;&gt;&lt;a href=&quot;#xss-DOM&quot; class=&quot;headerlink&quot; title=&quot;xss(DOM)&quot;&gt;&lt;/a&gt;xss(DOM)&lt;/h1&gt;&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="xss" scheme="http://example.com/tags/xss/"/>
     
   </entry>
   

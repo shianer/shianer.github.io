@@ -469,8 +469,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天的黑盾杯的理论赛都晋级不了还差30名，我反思了一下自己之前的学习知识的确不扎实，很多web专有名词明明已经了解过但还是想不太起来，感觉被打废了。的确自己还是太菜了，sql还是得继续，明年再战！！！</p>
-<hr>
+                <hr>
 <p>第二十三关（过滤）</p>
 <p>好好学PHP和mysql。。。</p>
 <p>又回到熟悉的get界面了。注入点确定后，判断注入方式是单引号。</p>
@@ -569,9 +568,9 @@
 <p>经过测试，初步判断注入点应该在<strong>注册界面</strong>，这里似乎对输入没有做任何检查，甚至能创建一个用户名和密码都为空的账户（查看 MySQL 后台数据证实）。</p>
 <p><img src="/images/24%E8%AF%B8%E5%A6%82%E6%AD%A4%E7%B1%BB%E6%98%AF%E7%BB%95%E8%BF%87%E7%9A%84.png" alt="24诸如此类是绕过的"></p>
 <p><code>mysql_escape_string()</code>和<code>mysql_real_escape_string()</code>是不同的，前者早在<code>PHP 5.3</code>中被弃用，在官方文档里对它的介绍也就一句话，就说处理特殊字符用于 MySQL 查询。</p>
-<p>对这两个的资料也少的可怜，查到一个：<code>mysql_escape_string()</code>没办法判断当前的编码，<code>mysql_real_escape_string()</code>之所以能够防注入，过滤。是因为同时指定了服务端的编码和客户端的编码。</p>
+<p><code>mysql_escape_string()</code>没办法判断当前的编码，<code>mysql_real_escape_string()</code>之所以能够防注入，过滤。是因为同时指定了服务端的编码和客户端的编码。</p>
 <p>这就是二次注入，它的原理是：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）后端（PHP）代码对语句进行了转义</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）保存进数据库（mysql）时没有转义，是原语句</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>后端（PHP）代码对语句进行了转义</span><br><span class="line"></span><br><span class="line">（<span class="number">2</span>）保存进数据库（mysql）时没有转义，是原语句</span><br></pre></td></tr></table></figure>
 
 <p>比如前面所注册的admin ‘#账号，在注册时，后端对其进行了转义（ addslashes() 或者mysql_real_escape_string和mysql_escape_string 等），’#被转义成了其他的东西，所以一次注入无效。<br>但是在保存进数据库的时候，还是admin ‘#。</p>
 <p>那么修改密码时的语句如下：</p>
@@ -584,7 +583,7 @@
 <p>看看源码</p>
 <p><img src="/images/25.png" alt="25"></p>
 <p>判断注入点，注入方法是单引号闭合。</p>
-<h5 id="padload-1"><a href="#padload-1" class="headerlink" title="padload"></a>padload</h5><p>看了一下学长的博客，发现绕过的方式有很多：</p>
+<h5 id="padload-1"><a href="#padload-1" class="headerlink" title="padload"></a>padload</h5><p>绕过的方式有很多：</p>
 <p>（1）大小写变形 Or,OR,oR<br>（2）编码，hex，urlencode<br>（3）添加注释/<em>or</em>/<br>（4）利用符号 and=&amp;&amp; or=||<br>（5）双写绕过</p>
 <p>而我就只用双写绕过，oorrder</p>
 <p>?id=-1’ oorrder by 4 报错，字段位为3。</p>

