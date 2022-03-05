@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-01T09:45:52.447Z</updated>
+  <updated>2022-03-05T14:05:01.183Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>misc(1)</title>
+    <link href="http://example.com/2022/03/05/misc-1/"/>
+    <id>http://example.com/2022/03/05/misc-1/</id>
+    <published>2022-03-05T14:03:40.000Z</published>
+    <updated>2022-03-05T14:05:01.183Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;misc-1&quot;&gt;&lt;a href=&quot;#misc-1&quot; class=&quot;headerlink&quot; title=&quot;misc:(1)&quot;&gt;&lt;/a&gt;misc:(1)&lt;/h1&gt;&lt;h3 id=&quot;攻防世界：&quot;&gt;&lt;a href=&quot;#攻防世界：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf--misc" scheme="http://example.com/tags/ctf-misc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>buu-week2</title>
+    <link href="http://example.com/2022/03/02/buu-week2/"/>
+    <id>http://example.com/2022/03/02/buu-week2/</id>
+    <published>2022-03-02T13:11:55.000Z</published>
+    <updated>2022-03-05T15:02:14.996Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1.[极客大挑战 2019]Knife1&lt;/p&gt;
+&lt;p&gt;连上菜刀直接找flag&lt;/p&gt;
+&lt;p&gt;2.[极客大挑战</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
+    
+  </entry>
   
   <entry>
     <title>考核wp</title>
@@ -431,52 +479,6 @@
     
     
     <category term="js" scheme="http://example.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--XSS(Stored)</title>
-    <link href="http://example.com/2022/01/24/DVWA-XSS-Stored/"/>
-    <id>http://example.com/2022/01/24/DVWA-XSS-Stored/</id>
-    <published>2022-01-24T07:37:14.000Z</published>
-    <updated>2022-01-25T14:36:13.536Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="xss" scheme="http://example.com/tags/xss/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--XSS(Reflected)</title>
-    <link href="http://example.com/2022/01/24/DVWA-XSS-Reflected/"/>
-    <id>http://example.com/2022/01/24/DVWA-XSS-Reflected/</id>
-    <published>2022-01-24T03:43:29.000Z</published>
-    <updated>2022-01-25T13:30:08.492Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;xss-Reflected-反射型&quot;&gt;&lt;a href=&quot;#xss-Reflected-反射型&quot; class=&quot;headerlink&quot; title=&quot;xss(Reflected)反射型&quot;&gt;&lt;/a&gt;xss(Reflected)反射型&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-    <category term="xss" scheme="http://example.com/tags/xss/"/>
     
   </entry>
   
