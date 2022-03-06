@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="misc(1), 黛色若梦">
+    <meta name="keywords" content="php复习--弱比较, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>misc(1) | 黛色若梦</title>
+    <title>php复习--弱比较 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">misc(1)</h1>
+                    <h1 class="description center-align post-title">php复习--弱比较</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ctf-misc/">
-                                <span class="chip bg-color">ctf--misc</span>
+                            <a href="/tags/php/">
+                                <span class="chip bg-color">php</span>
                             </a>
                         
                     </div>
@@ -469,119 +469,115 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="misc-1"><a href="#misc-1" class="headerlink" title="misc:(1)"></a>misc:(1)</h1><h3 id="攻防世界："><a href="#攻防世界：" class="headerlink" title="攻防世界："></a>攻防世界：</h3><p>1.题目提示图下什么都没有，那就可能在图下。</p>
-<p><img src="/C:/Users/86139/Desktop/ctf/images/1-16437241099631.png" alt="1"></p>
-<p>2.看了wp，因为题目是如来十三掌，所以我们先与佛论禅，然后rot13，最后base64.</p>
-<p><img src="/C:/Users/86139/Desktop/ctf/images/2.1-16437258579212.png" alt="2.1"></p>
-<p><img src="/C:/Users/86139/Desktop/ctf/images/2.2.png" alt="2.2"></p>
-<p><img src="/C:/Users/86139/Desktop/ctf/images/2.3.png" alt="2.3"></p>
-<p>3.就是用ps,或stegslove分离动图的帧。因为下载附件之后发现最后面有一张二维码，所以就想着去分离出来，</p>
-<p><img src="/C:/Users/86139/Desktop/ctf/images/3-16437307115143.png" alt="3"></p>
-<p>然后用画图软件去补上三个定位点，然后扫一下就出flag了。</p>
-<h3 id="i春秋："><a href="#i春秋：" class="headerlink" title="i春秋："></a>i春秋：</h3><p>百度杯”CTF比赛 十月场</p>
-<p>web做的有点累了，来换换思路。</p>
-<p>1.challenge</p>
-<p>是没有超过f的字符串组成的，所以就由16进制转字符串</p>
-<p>666c61677b686578327374725f6368616c6c656e67657d</p>
-<p>2.考眼力</p>
-<p>猜想是凯撒密码，所以我们用米斯拉解密工具。</p>
-<p>百度杯”CTF比赛 十二月场</p>
-<p>3.一个十六岁的少年</p>
-<p>啊这，因为是十六岁，所以是base16.</p>
-<p>4.try again</p>
-<p>开010在文本里找flag即可。</p>
-<p>5.嘀嘀嘀</p>
-<p>看长短不一，猜想是莫斯密码</p>
-<p>6.IceCTF Vape Nation</p>
-<p>提示go green是指的是stegsolve里面的green plane只要一直点击左右位移即可。</p>
-<p>7.“百度杯”CTF比赛 十一月场 贝丝家族</p>
-<p>这题主要是：</p>
-<p>MZWGCZ33MVZGQZLJL5STQOJTGRPWK4SVJ56Q====</p>
-<h5 id="四个等号不会是BASE64"><a href="#四个等号不会是BASE64" class="headerlink" title="四个等号不会是BASE64"></a>四个等号不会是BASE64</h5><p>，然后表妹猜想是32</p>
-<p>8.山岚</p>
-<p>谐音栅栏直接解密，用米斯特直接爆。</p>
-<p>9.福尔摩斯</p>
-<p>目给的这种字符一般解不出 ·-· ·-· ·-· ·-· ·-· ·-· , 一般模式电码是点在下面, 横在上面.</p>
-<p>要改为:  .-. .-. .-. .-. .-. .-. . 这样就行了.</p>
-<p>网上找福尔摩斯解码器，或者自己写一个福尔摩斯解码程序进行解码，我写的程序解出来是rrrrrre,提交出错，把字母改成大写通过</p>
-<p>10.签到题</p>
-<h5 id="unicode形式"><a href="#unicode形式" class="headerlink" title="unicode形式"></a>unicode形式</h5><p>，unicode转string，米斯特</p>
-<p>\u0066\u006c\u0061\u0067\u007b\u0074\u0068\u0031\u0073\u005f\u0069\u0073\u005f\u0055\u006e\u0031\u0063\u0030\u0064\u0065\u005f\u0079\u006f\u0075\u005f\u004b\u006e\u006f\u0077\u003f\u007d</p>
-<p>11.百度杯”CTF比赛 十二月场藏在邮件头里的秘密</p>
-<p>Quoted-printable 可译为“可打印字符引用编码”、“使用可打印字符的编码”，我们收邮件，查看信件原始信息，经常会看到这种类型的编码！</p>
-<p>任何一个8位的字节值可编码为3个字符：一个等号”=”后跟随两个十六进制数字(0–9或A–F)表示该字节的数值</p>
-<p>解出来的是UTF-8形式。</p>
-<p>12.签到题-3</p>
-<p>21232f297a57a5a743894a0e4a801fc3</p>
-<p>首先以上了看到的就是一串加密之后的密文，根据所给出的密文格式可以判读不是base64加密，那么我们我们最常用的加密方法就剩下MD5了，所以可以试试，之后成功解密为admin</p>
-<p> 13.敲击</p>
-<p>敲击码试一下</p>
-<p>方方格格，不断敲击</p>
-<p>“wdvtdz  qsxdr werdzxc  esxcfr uygbn”</p>
-<p>flag格式为：flag{小写的字符串}</p>
-<p>就是在键盘上依次连接w-d-v-t-d-z，得到一个x的图形，就是键盘密码。</p>
-<p>xvzoc</p>
-<p>14.xx</p>
-<p>所以是xxencode编码。</p>
-<p>15.你好，i春秋</p>
-<p>我以为是年份久远这题在公众号里被改了，没想到还有这一出。</p>
-<p>礼貌——&gt;回答问题，委婉拒绝——&gt;flag</p>
-<p>16.“百度杯”CTF比赛 十二月场 吃货</p>
-<p>麻辣烫的标配</p>
-<p>flag{abbab_babbb_baaaa_aaabb}</p>
-<p>这个提示，是培根密码。。。</p>
-<p>17.+——+</p>
-<p>brainfuck解密</p>
-<p>18.签到题</p>
-<p>这题主要是和聊天机器人斗智斗勇。。。呸，是陪他聊天然后表白拿flag，注意表白的对象是在提示里的，不要看错啦。</p>
-<p>19.内涵图</p>
-<p>没啥内涵，直接查找010</p>
-<p>20.回归原始</p>
-<p>用二进制转ascii的脚本跑一下</p>
-<h3 id="buu"><a href="#buu" class="headerlink" title="buu"></a>buu</h3><p>1.金三胖</p>
-<p>帧分离就好了</p>
-<p>就是要注意看清楚会有这种混淆的数字与字母</p>
-<p>2.二维码</p>
-<p>打开010editer，发现</p>
-<p>pk为文件形式，可知里面包含文件，进入binwalk<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%88%86%E6%9E%90&spm=1001.2101.3001.7020">分析</a>提取文件</p>
-<h5 id="binwalk"><a href="#binwalk" class="headerlink" title="binwalk"></a>binwalk</h5><p>在kali中默认就安装</p>
-<p>命令：binwalk -e 文件名</p>
-<p>然后分出压缩包，其实这里手动也行。</p>
-<p><img src="/images/%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE%25202022-03-05%2520184746.png" alt="屏幕截图 2022-03-05 184746"></p>
-<p>3.你居然赶我走</p>
-<p>查找一下flag就好</p>
-<p>4.N种解决方法</p>
-<p>这种base64加密图片的题目考核做过了，直接搜索引擎找一下就好了。</p>
-<p><img src="/images/%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE%25202022-03-05%2520190224.png" alt="屏幕截图 2022-03-05 190224"></p>
-<p>5.大白</p>
-<h5 id="修改尺寸的问题"><a href="#修改尺寸的问题" class="headerlink" title="修改尺寸的问题"></a>修改尺寸的问题</h5><p><img src="/images/%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE%25202022-03-05%2520190712.png" alt="屏幕截图 2022-03-05 190712"></p>
-<p>6.基础破解</p>
-<p>7.乌镇峰会种图</p>
-<h5 id="图片隐写技巧（1）"><a href="#图片隐写技巧（1）" class="headerlink" title="图片隐写技巧（1）"></a>图片隐写技巧（1）</h5><p>对于图片一般就是直接拖到Win Hex或者StegSolve中进行分析。</p>
-<p>8.图片中的秘密</p>
-<h5 id="图片隐写（2）"><a href="#图片隐写（2）" class="headerlink" title="图片隐写（2）"></a>图片隐写（2）</h5><p>右键点击属性,找到详细信息,在备注信息中获得flag信息，拉开就全了。</p>
-<p>9.wireshark</p>
-<p>根据提示来说：</p>
-<p><img src="/images/%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE%25202022-03-05%2520201530.png" alt="屏幕截图 2022-03-05 201530"></p>
-<h5 id="登录方法，就直接过滤搜索-GET或POST-，但是http-request-method-POST"><a href="#登录方法，就直接过滤搜索-GET或POST-，但是http-request-method-POST" class="headerlink" title="登录方法，就直接过滤搜索 (GET或POST)，但是http.request.method==POST"></a>登录方法，就直接过滤搜索 (GET或POST)，但是<code>http.request.method==POST</code></h5><p>然后在这一栏里找到flag和</p>
-<p>password=ffb7567a1d4f4abdffdb54e022f8facd</p>
-<p>10.LSB</p>
-<p><a target="_blank" rel="noopener" href="https://www.freesion.com/article/33841278967/">https://www.freesion.com/article/33841278967/</a></p>
-<h5 id="修改LSB值"><a href="#修改LSB值" class="headerlink" title="修改LSB值"></a>修改LSB值</h5><p>png图片是一种无损压缩的位图片形格式，也只有在无损压缩或者无压缩的图片（BMP）上实现lsb隐写。如果图像是jpg图片的话，就没法使用lsb隐写了，原因是jpg图片对像数进行了有损压缩，我们修改的信息就可能会在压缩的过程中被破坏.</p>
-<p>minify，使变小的意思，那应该就是指lsb隐写。</p>
-<p>11.zip伪加密</p>
-<p>这题在考核就做过了，就是我们一般要在010打开之后先把09换成00，这个就是伪加密。</p>
-<p>12.被嗅探的流量</p>
-<p>抓取了一段文件传输的数据，该数据也被该公司截获，你能帮该公司分析他抓取的到底是什么文件的数据吗？</p>
-<p>根据提示，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93&spm=1001.2101.3001.7020">文件传输</a>直接找POST的包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http.request.method==POST</span><br></pre></td></tr></table></figure>
+                <h1 id="php代码复习"><a href="#php代码复习" class="headerlink" title="php代码复习"></a>php代码复习</h1><p>这篇博客比较水，主要是为了方便复习（太菜了，见谅见谅</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-superglobals.html">PHP </a></p>
+<h2 id="1-php类型比较"><a href="#1-php类型比较" class="headerlink" title="1.php类型比较"></a>1.php类型比较</h2><p>php有八种类型</p>
+<p>标量类型：整数型integer,浮点型float,字符串类型string,<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B&spm=1001.2101.3001.7020">布尔类型</a>boolen</p>
+<p>复合类型：对象 object,数组array</p>
+<p>特殊类型：空null,资源resource</p>
+<p>松散比较：使用两个等号 <strong>==</strong> 比较，只比较值。</p>
+<p>严格比较：用三个等号 <strong>===</strong> 比较，除了比较值，也比较类型。</p>
+<h3 id="弱比较类型漏洞"><a href="#弱比较类型漏洞" class="headerlink" title="弱比较类型漏洞"></a>弱比较类型漏洞</h3><p>=== 在进行比较的时候，会先判断两种字符串的类型是否相等，再比较</p>
+<p>== 在进行比较的时候，会先将字符串类型转化成相同，再比较</p>
+<h4 id="1-字符串与数字"><a href="#1-字符串与数字" class="headerlink" title="1.字符串与数字"></a>1.字符串与数字</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换成数值并且比较按照数值来进行</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE%25202022-03-05%2520212637.png" alt="屏幕截图 2022-03-05 212637"></p>
-<p>13.qr</p>
-<p>用专门的二维码转化器转化即可。</p>
-<p>14.镜子里的世界</p>
-<p>lsb隐写</p>
-<p><img src="/images/%25E5%25B1%258F%25E5%25B9%2595%25E6%2588%25AA%25E5%259B%25BE%25202022-03-05%2520215307.png" alt="屏幕截图 2022-03-05 215307"></p>
+<p><strong>var_dump()</strong> 函数用于输出变量的相关信息。</p>
+<p><strong>var_dump()</strong> 函数显示关于一个或多个表达式的结构信息，包括表达式的类型与值。数组将递归展开值，通过缩进显示其结构。</p>
+<h4 id="2-0e开头的hash缺陷"><a href="#2-0e开头的hash缺陷" class="headerlink" title="2.0e开头的hash缺陷"></a>2.0e开头的hash缺陷</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;admin&quot;==0 比较的时候，会将admin转化成数值，强制转化,由于admin是字符串，转化的结果是0自然和0相等</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;1admin&quot;==1 比较的时候会将1admin转化成数值,结果为1，而“admin1“==1 却等于错误，也就是&quot;admin1&quot;被转化成了0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;0e123456&quot;==&quot;0e456789&quot;相互比较的时候，会将0e这类字符串识别为科学技术法的数字，0的无论多少次方都是零，所以相等</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当一个字符串欸当作一个数值来取值，其结果和类型如下:如果该字符串没有包含&#x27;.&#x27;,&#x27;e&#x27;,&#x27;E&#x27;并且其数值值在整形的范围之内</span><br><span class="line">该字符串被当作int来取值，其他所有情况下都被作为float来取值，该字符串的开始部分决定了它的值，如果该字符串以合法的数值开始，则使用该数值，否则其值为0。</span><br><span class="line">php中的hash缺陷,如果hash值是以0e开头的,进行比较时候会变成0乘以10的多少次方,结果还是为0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> $test=1 + &quot;10.5&quot;; </span><br><span class="line"> // $test=11.5(float)</span><br><span class="line">$test=1+&quot;-1.3e3&quot;; //$test=-1299(float)</span><br><span class="line">$test=1+&quot;bob-1.3e3&quot;;</span><br><span class="line">//$test=1(int)</span><br><span class="line">$test=1+&quot;2admin&quot;;</span><br><span class="line">//$test=3(int)</span><br><span class="line"> $test=1+&quot;admin2&quot;;</span><br><span class="line">//$test=1(int)</span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>运用实例</p>
+<h5 id="1-MD5绕过："><a href="#1-MD5绕过：" class="headerlink" title="1.MD5绕过："></a>1.MD5绕过：</h5><p>输入的不能相等，但md5却需要相等，这明显的就是利用Hash的比较缺陷来做</p>
+<p>我们只要找出两个数再md5加密后都为0e开头的即可，常用的有以下几种</p>
+<p>QNKCDZO<br>0e830400451993494058024219903391<br>s878926199a<br>0e545993274517709034328855841020<br>s155964671a<br>0e342768416822451524974117254469<br>s214587387a<br>0e848240448830537924465865611904<br>s214587387a<br>0e848240448830537924465865611904<br>s878926199a<br>0e545993274517709034328855841020<br>s1091221200a<br>0e940624217856561557816327384675</p>
+<p>所以构造a=QNKCDZO&amp;b=s878926199a即可绕过</p>
+<h5 id="3-弱比较类型漏洞的函数"><a href="#3-弱比较类型漏洞的函数" class="headerlink" title="3.弱比较类型漏洞的函数"></a>3.弱比较类型漏洞的<a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-variable-handling-functions.html">函数</a></h5><h6 id="extract变量覆盖"><a href="#extract变量覆盖" class="headerlink" title="extract变量覆盖"></a><strong>extract变量覆盖</strong></h6><p>简单介绍：</p>
+<blockquote>
+<p><code>extract()</code> 函数使用<strong>数组键名</strong>作为<strong>变量名</strong>，使用<strong>数组键值</strong>作为<strong>变量值</strong>，当变量中有同名的元素时，该函数默认将原有的值给覆盖掉。这就造成了变量覆盖</p>
+</blockquote>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-06%20113403-16465389548503.png" alt="屏幕截图 2022-03-06 113403"></p>
+<p><code>POST</code>方法传输进来的值通过<code>extrace()</code>函数处理，我们不知道<code>pass</code>、<code>thepassword_123</code>的值，直接传入以<code>POST</code>的方式传入<code>pass=1&amp;thepassword_123=1</code>就可以进行将原本的变量覆盖，并且使两个变量相等即可。</p>
+<h6 id="ereg正则-00截断及strpos、ereg用数组返回NULL"><a href="#ereg正则-00截断及strpos、ereg用数组返回NULL" class="headerlink" title="ereg正则%00截断及strpos、ereg用数组返回NULL"></a>ereg正则%00截断及strpos、ereg用数组返回NULL</h6><p>ereg()函数搜索由指定的字符串作为由模式指定的字符串，如果发现模式则返回true，否则返回false，搜索对于字母字符是区分大小写的，用于正则表达式匹配。</p>
+<p>一、ereg()函数存在<strong>NULL截断漏洞</strong>,可以%00截断，<strong>遇到%00则默认为字符串的结束</strong>，所以可以绕过一些正则表达式的检查。<br>二、ereg()<strong>只能处理字符串</strong>的，遇到<strong>数组做参数返回NULL。</strong><br>三、空字符串的类型是string，NULL的类型是NULL,false、true是boolean类型<br>四、strpos()函数如果<strong>传入数组，便会返回NU</strong>LL</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-06%20115057.png" alt="屏幕截图 2022-03-06 115057"></p>
+<p>审计一下代码，第一个<code>if</code>语句要求我们输入的值进行首尾匹配必须是<code>1-9</code>之间的数字，第二个if语句又让我们利用<code>strpos()</code> 函数查找相应的字符串在输入的值中第一次出现的位置，且后面是<code>!==</code>，所以要不让值相等类型不同，或是值不同类型相同即可。</p>
+<p>但strpos()函数如果传入数组，便会返回NULL。利用这个漏洞，便可以构造出绕过的payload：</p>
+<p>?nctf[]=1</p>
+<p>ereg()函数返回NULL，===判断NULL和FALSE是不相等的(类型不同)，所以进入第二个语句,因为strpos处理数组时，也是返回NULL，又因为NULL!==FALSE条件成立所以得出flag</p>
+<p><code>strpos()</code> 函数查找相应的字符串在输入的值中第一次出现的位置。</p>
+<p>还可以构造利用<code>%00</code>来构造<code>payload：</code></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?nctf=<span class="number">123</span>%<span class="number">00</span>%<span class="number">23</span>biubiubiu</span><br></pre></td></tr></table></figure>
+
+<h6 id="strcmp比较字符串"><a href="#strcmp比较字符串" class="headerlink" title="strcmp比较字符串"></a>strcmp比较字符串</h6><p>简单介绍：<br>strcmp()函数比较两个字符串(区分大小写）,定义中是比较字符串类型的，但如果输入其他类型这个函数将发生错误，在官方文档的说明中说到在php 5.2版本之前，利用strcmp函数将数组与字符串进行比较会返回-1，但是从5.3开始，会返回0。关键就在于我们如何绕过检查，构造如下<code>payload</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#POST DATA</span></span><br><span class="line">pass[]=<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>数组和字符进行比较结果不会返回<code>1</code>，即为<code>false</code>,加上非的作用，即可变成<code>true</code>,则满足条件</p>
+<h6 id="SESSION验证绕过"><a href="#SESSION验证绕过" class="headerlink" title="SESSION验证绕过"></a>SESSION验证绕过</h6><p>简单介绍：<br>在PHP配置中的默认情况下，Session是用Session ID来确定当前对话所对应的服务器Session，sessionID可在cookie中找到，当我们删除cookie中的sessionID后，$_SESSION[‘password’]就会返回空，我们同样传入空的password就能绕过了。</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-06%20133629.png" alt="屏幕截图 2022-03-06 133629"></p>
+<p>我们GET传入的password和session中存储的password相同才可以得出flag，如果删掉session值，或者修改session值为一个不存在的session，服务器获取不到session，则password为空，这时候我们再GET进去一个空的password的进去拿到flag</p>
+<h6 id="sha-函数比较绕过，MD5（）函数绕过"><a href="#sha-函数比较绕过，MD5（）函数绕过" class="headerlink" title="sha()函数比较绕过，MD5（）函数绕过"></a>sha()函数比较绕过，MD5（）函数绕过</h6><p><code>md5()</code>函数获取不到数组的值，默认数组为0<br><code>sha1()</code>函数无法处理数组类型，将报错并返回false</p>
+<h6 id="十六进制与数字比较"><a href="#十六进制与数字比较" class="headerlink" title="十六进制与数字比较"></a>十六进制与数字比较</h6><blockquote>
+<p>php在转码时会把16进制转化为十进制</p>
+</blockquote>
+<h6 id="preg-replace-e-模式下的代码执行"><a href="#preg-replace-e-模式下的代码执行" class="headerlink" title="preg_replace /e 模式下的代码执行"></a>preg_replace /e 模式下的代码执行</h6><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2557">https://xz.aliyun.com/t/2557</a></p>
+<p>\S*=${phpinfo()}</p>
+<p>?\S*=${eval(getFlag())}&amp;cmd=system(‘cat /flag’);<br>#最后的分号要加，除此之外，也可以：<br>?\S*=${eval($_POST[lemon])}<br>#POST DATA<br>lemon=system(‘cat /flag’);</p>
+<h6 id="绕过escapeshellarg-escapeshellcmd函数"><a href="#绕过escapeshellarg-escapeshellcmd函数" class="headerlink" title="绕过escapeshellarg+escapeshellcmd函数"></a>绕过escapeshellarg+escapeshellcmd函数</h6><p><a target="_blank" rel="noopener" href="http://www.lmxspace.com/2018/07/16/%E8%B0%88%E8%B0%88escapeshellarg%E5%8F%82%E6%95%B0%E7%BB%95%E8%BF%87%E5%92%8C%E6%B3%A8%E5%85%A5%E7%9A%84%E9%97%AE%E9%A2%98/">谈谈escapeshellarg参数绕过和注入的问题 (lmxspace.com)</a></p>
+<p>escapeshellarg</p>
+<p>escapeshellarg() 将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入shell 函数，并且还是确保安全的。</p>
+<p>参数用了 <strong>escapeshellarg</strong> 函数过滤单引号，但参数在拼接命令的时候如果用了双引号的话还是会导致命令执行的漏洞。解析单引号的时候 , 被单引号包裹的内容中如果有变量 , 这个变量名是不会被解析成值的，但是双引号不同 , bash 会将变量名解析成变量的值再使用。</p>
+<p>escapeshellcmd</p>
+<p>escapeshellcmd() 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。反斜线（\）会在以下字符之前插入： &amp;#;`|?~&lt;&gt;^()[]{}$, \x0A 和 \xFF。 *’ 和 “ 仅在不配对的时候被转义。 在 Windows 平台上，所有这些字符以及 % 和 ! 字符都会被空格代替。</p>
+<p>再来看一下<strong>escapeshellcmd</strong> 函数的作用</p>
+<p>对于单个单引号, escapeshellarg 函数转义后,还会在左右各加一个单引号,但 escapeshellcmd 函数是直接加一个转义符，对于成对的单引号, escapeshellcmd 函数默认不转义,但 escapeshellarg 函数转义</p>
+<p>那既然有这个差异，如果escapeshellcmd() 和 escapeshellarg() 一起出现会有什么问题：<br>一开始传入的参数<br>127.0.0.1’ -v -d a=1<br>经过escapeshellarg函数处理，先转义再用单引号括起来<br>‘127.0.0.1’\&#39;‘ -v -d a=1’<br>再经过escapeshellcmd函数处理，数中的\以及a=1’中的单引号进行处理转义<br>‘127.0.0.1’\\‘’ -v -d a=1&#39;<br>由于这一步的处理，使得\被解释成了\而不再是转义字符，所以单引号配对连接之后将语句分割为三个部分</p>
+<p>发现mkdir\chadir函数，创建目录和改变当前的目录，应该是要我们写文件进去的，system()函数又是一串namp命令后面拼接上GET传入的参数，因为参数经过了上面的参数处理，；等都会被转义，所以就要从拼接的namp命令想办法了，查了百度谷歌没查到，看了WP才知道</p>
+<p>nmap命令中 参数-oG可以实现将命令和结果写到文件（也就是可以写木马）</p>
+<p>接下来就写payload，escapeshellarg函数会先对host变量中的单引号进行转义，并且转义之后，在 &#39; 的左右两边再加上单引号，变成 ‘&#39;‘</p>
+<p>然后escapeshellcmd函数，会对host变量中的特殊字符进行转义</p>
+<p>（&amp;#;`|*?~&lt;&gt;^()[]{}$, \x0A//和\xFF以及不配对的单/双引号转义）</p>
+<p>那么上面的 \ 就会被再次转义，比如变成 ‘\‘’<br>在字符串首尾加上单引号，经过<code>escapeshellarg</code>函数之后，就可以实现将单引号给闭合了，在经过<code>escapeshellcmd</code>函数的时候单引号就是配对的，就不会进行转义</p>
+<p>‘ <?php phpinfo();?> -oG 1.php’<br>如果最后的单引号是没有空格，则文件名后面就会多出\，所以后面要加上空格<br>前面加空格不加则无影响，因为不会影响到一句话木马里面的内容</p>
+<p>md5强类型<br>(string)$_POST[‘a1’]!==(string)$_POST[‘a2’]<br> &amp;&amp; md5($_POST[‘a1’])===md5($_POST[‘a2’])}<br>例如这段代码，使用数组就不可行，因为最后转为字符串进行比较，所以只能构造两个MD5值相同的不同字符串.</p>
+<p>两组经过url编码后的值</p>
+<p>#1<br>a=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2<br>b=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2<br>#2<br>a=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2<br>b=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%</p>
+<h6 id="PHP精度绕过缺陷"><a href="#PHP精度绕过缺陷" class="headerlink" title="PHP精度绕过缺陷"></a>PHP精度绕过缺陷</h6><p>几次都碰到这个点，记录一下，省的以后忘了再去查</p>
+<p>浮点运算的坑</p>
+<p>在用PHP进行浮点数的运算中,经常会出现一些和预期结果不一样的值，先来看个小例子</p>
+<p>输出的是57，而我们预想的应该是58</p>
+<p>具体详细的原理可以看这位师傅的描述<br><a target="_blank" rel="noopener" href="http://www.haodaquan.com/12">http://www.haodaquan.com/12</a></p>
+<p>简单的说因为PHP 通常使用 IEEE 754 双精度格式而且由于浮点数的精度有限的原因。除此之外取整而导致的最大相对误差为 1.11e-16,当小数小于10^-16后，PHP对于小数就大小不分了</p>
+<h6 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h6><p>可以使用-1绕过 或者十六进制绕过0x开头</p>
+<h6 id="intval"><a href="#intval" class="headerlink" title="intval"></a>intval</h6><p>利用intval函数的特性我使用了科学计数法来分割</p>
+<p>2e4</p>
+<p>只输出2</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-06%20142147.png" alt="屏幕截图 2022-03-06 142147"></p>
+<p>输出2</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-06%20142207.png" alt="屏幕截图 2022-03-06 142207"></p>
+<h6 id="is-numeric"><a href="#is-numeric" class="headerlink" title="is_numeric()"></a>is_numeric()</h6><p>判断变量是否为数字或数字字符串，不仅检查10进制，<strong>16进制</strong>也可以。</p>
+<p>绕方法:<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=16%E8%BF%9B%E5%88%B6&spm=1001.2101.3001.7020">16进制</a>会被判断为数字<br>%00即空格会被判断为非数字–&gt;即直接跳过检测了</p>
+<p>当然弱类型绕过还可以213a</p>
+<p>输出213</p>
+<p>is_numeric函数对于空字符%00，无论是%00放在前后都可以判断为非数值，而%20空格字符只能放在数值后。所以，查看函数发现该函数对对于第一个空格字符会跳过空格字符判断，接着后面的判断</p>
+<h6 id="这里找到一篇很全面的文章："><a href="#这里找到一篇很全面的文章：" class="headerlink" title="这里找到一篇很全面的文章："></a>这里找到一篇很全面的文章：</h6><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33942040/article/details/109958431?ops_request_misc=%7B%22request_id%22:%22164654785516780366598917%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=164654785516780366598917&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-3-109958431.first_rank_v2_pc_rank_v29&utm_term=substr%E7%BB%95%E8%BF%87&spm=1018.2226.3001.4187">(50条消息) php安全特性函数以及绕过方法_goddemon-CSDN博客</a></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43431158/article/details/103265404">https://blog.csdn.net/qq_43431158/article/details/103265404</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Mrsm1th/p/6745532.html">php 弱类型总结 - Mrsm1th - 博客园 (cnblogs.com)</a></p>
+<h3 id="2-php变量"><a href="#2-php变量" class="headerlink" title="2.php变量"></a>2.php变量</h3><p>全局变量</p>
+<p>$<em>GLOBE,</em></p>
+<p>_$_REQUEST(用于收集HTML表单提交的数据method=”post”)包含了 $_GET、$_POST 和 $_COOKIE 的内容。可用来收集通过 GET 和 POST 方法发送的表单数据。</p>
+<p>,$<em>POST（用于收集HTML表单提交的数据method=”post”）</em></p>
+<p>_，$_GET（”method=”get”）</p>
+<h3 id="2-php函数"><a href="#2-php函数" class="headerlink" title="2.php函数"></a>2.php函数</h3><p><img src="../images/2.33.png" alt="2.33"></p>
+<h3 id="3-php对象"><a href="#3-php对象" class="headerlink" title="3.php对象"></a>3.php<a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-oop.html">对象</a></h3><p><img src="../images/2.34.png" alt="2.34"></p>
+<p><img src="../images/2.35.png" alt="2.35"></p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p>考核之后我发现自己的PHP的知识点其实并不牢固，连最简单的函数绕过的都不太会，所以记录了比较全面的函数弱比较绕过类型，希望对以后代码审计学习有所帮助。</p>
 
                 
             </div>
@@ -608,7 +604,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/03/05/misc-1/">http://example.com/2022/03/05/misc-1/</a>
+                    <a href="http://example.com/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/">http://example.com/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -646,8 +642,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ctf-misc/">
-                                    <span class="chip bg-color">ctf--misc</span>
+                                <a href="/tags/php/">
+                                    <span class="chip bg-color">php</span>
                                 </a>
                             
                         </div>
@@ -823,13 +819,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/">
+                <a href="/2022/03/05/Linux-windows%E6%8C%87%E4%BB%A4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="php复习--弱比较">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Linux,windows指令">
                         
-                        <span class="card-title">php复习--弱比较</span>
+                        <span class="card-title">Linux,windows指令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -851,14 +847,6 @@
                     </div>
                 </div>
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/php/">
-                        <span class="chip bg-color">php</span>
-                    </a>
-                    
-                </div>
-                
             </div>
         </div>
         
@@ -868,13 +856,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/02/buu-week2/">
+                <a href="/2022/03/05/misc-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="buu-week2">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="misc(1)">
                         
-                        <span class="card-title">buu-week2</span>
+                        <span class="card-title">misc(1)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -885,7 +873,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-05
                             </span>
                         <span class="publish-author">
                             
@@ -898,8 +886,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
-                        <span class="chip bg-color">ctf题目--web</span>
+                    <a href="/tags/ctf-misc/">
+                        <span class="chip bg-color">ctf--misc</span>
                     </a>
                     
                 </div>

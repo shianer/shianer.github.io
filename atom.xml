@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-05T14:05:01.183Z</updated>
+  <updated>2022-03-06T00:54:06.742Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux,windows指令</title>
+    <link href="http://example.com/2022/03/05/Linux-windows%E6%8C%87%E4%BB%A4/"/>
+    <id>http://example.com/2022/03/05/Linux-windows%E6%8C%87%E4%BB%A4/</id>
+    <published>2022-03-05T15:33:02.000Z</published>
+    <updated>2022-03-06T00:54:06.742Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>php复习--弱比较</title>
+    <link href="http://example.com/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://example.com/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</id>
+    <published>2022-03-05T15:32:32.000Z</published>
+    <updated>2022-03-06T06:30:40.419Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;php代码复习&quot;&gt;&lt;a href=&quot;#php代码复习&quot; class=&quot;headerlink&quot; title=&quot;php代码复习&quot;&gt;&lt;/a&gt;php代码复习&lt;/h1&gt;&lt;p&gt;这篇博客比较水，主要是为了方便复习（太菜了，见谅见谅&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="php" scheme="http://example.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>misc(1)</title>
@@ -44,7 +81,7 @@
     <link href="http://example.com/2022/03/02/buu-week2/"/>
     <id>http://example.com/2022/03/02/buu-week2/</id>
     <published>2022-03-02T13:11:55.000Z</published>
-    <updated>2022-03-05T15:02:14.996Z</updated>
+    <updated>2022-03-06T06:34:01.209Z</updated>
     
     
       
@@ -69,7 +106,7 @@
     <link href="http://example.com/2022/03/01/%E8%80%83%E6%A0%B8wp/"/>
     <id>http://example.com/2022/03/01/%E8%80%83%E6%A0%B8wp/</id>
     <published>2022-03-01T09:36:37.000Z</published>
-    <updated>2022-03-01T09:45:52.447Z</updated>
+    <updated>2022-03-06T06:29:28.674Z</updated>
     
     
       
@@ -433,52 +470,6 @@
     
     
     <category term="CSRF" scheme="http://example.com/tags/CSRF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--SQL(Blind)</title>
-    <link href="http://example.com/2022/01/26/DVWA-SQL-Blind/"/>
-    <id>http://example.com/2022/01/26/DVWA-SQL-Blind/</id>
-    <published>2022-01-26T03:42:01.000Z</published>
-    <updated>2022-01-26T14:05:32.673Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;sql-blind&quot;&gt;&lt;a href=&quot;#sql-blind&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="sqli" scheme="http://example.com/tags/sqli/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DVWA--Java Script</title>
-    <link href="http://example.com/2022/01/25/DVWA-Java-Script/"/>
-    <id>http://example.com/2022/01/25/DVWA-Java-Script/</id>
-    <published>2022-01-25T03:47:40.000Z</published>
-    <updated>2022-01-26T02:54:09.659Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;1-概念&quot;&gt;&lt;a href=&quot;#1-概念&quot; class=&quot;headerlink&quot; title=&quot;1.概念&quot;&gt;&lt;/a&gt;1.概念&lt;/h2&gt;&lt;p&gt;Java</summary>
-        
-      
-    
-    
-    
-    
-    <category term="js" scheme="http://example.com/tags/js/"/>
     
   </entry>
   
