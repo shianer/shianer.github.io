@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="php代码环境, 黛色若梦">
+    <meta name="keywords" content="game--week1, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>php代码环境 | 黛色若梦</title>
+    <title>game--week1 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">php代码环境</h1>
+                    <h1 class="description center-align post-title">game--week1</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-                                <span class="chip bg-color">php代码审计</span>
+                            <a href="/tags/game/">
+                                <span class="chip bg-color">game</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-03-13
+                    2022-03-20
                 </div>
                 
 
@@ -469,13 +469,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>代码审计动态调配：phpstorm+PHPstudy+xdebug+seay源码审计</p>
-<p>系统的学习一下PHP代码审计，自己之前的一些代码知识都差不多忘光了。用phpstorm和xdebug搭建一下代码审计环境.这个还是搞了挺久。</p>
-<p>phpstorm激活码2022：<a target="_blank" rel="noopener" href="http://www.xitongcheng.com/soft/bcjz_xiazai_14992.html">Phpstorm下载_phpstorm集成开发环境软件免费下载2021.2.1 官网版－系统城软件园 (xitongcheng.com)</a></p>
-<p>然后在小皮面板的7.x后基本上的扩展里面都有xdebug，所以我们只需勾选再配置php.ini就好了，然后至于火狐的扩展有两个我们可以选择其中一种。然后最主要的还是phpstorm的配置，这个要细心。</p>
-<p>具体的参考一下下面的博客：</p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018090880?utm_source=sf-similar-article">PhpStorm配置Xdebug调试 - SegmentFault 思否</a></p>
-<p><a target="_blank" rel="noopener" href="https://kento.blog.csdn.net/article/details/121828751?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_default&utm_relevant_index=1">(51条消息) tp代码审计动态调试环境搭建（phpstudy+phpstorm）史上最详细_KKKKKento的博客-CSDN博客_phpstorm phpstudy 代码审计</a></p>
+                <h1 id="game–week1"><a href="#game–week1" class="headerlink" title="game–week1"></a>game–week1</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今天本来是来看看虎符题目的，但是web的题目是在没办法没做出来所以只好去打纳新题。</p>
+<p>nssctf</p>
+<h4 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h4><h5 id="1-classic"><a href="#1-classic" class="headerlink" title="1.classic"></a>1.classic</h5><p>看起来像凯撒，所以就试了试，然后</p>
+<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-19%20150751.png" alt="屏幕截图 2022-03-19 150751"></p>
+<p>不对，提示base，然后base32解密就好了。</p>
+<h5 id="2-Vigenere"><a href="#2-Vigenere" class="headerlink" title="2.Vigenere"></a>2.Vigenere</h5><h6 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h6><p>直接网站解一下就好了。</p>
+<p><a target="_blank" rel="noopener" href="https://guballa.de/vigenere-solver">Vigenere Solver - www.guballa.de</a></p>
+<h5 id="3-factor"><a href="#3-factor" class="headerlink" title="3.factor"></a>3.factor</h5><p>n=240546297453496858231088405356129350257,你能把这个整数分解成两个素数的积吗？=&gt; n = p * q<br>flag:NSSCTF{md5(min(p,q)+max(p,q))}</p>
+<p>也是找个网站可以解出来：</p>
+<p><img src="D:/blog/source/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-19%20163959.png" alt="屏幕截图 2022-03-19 163959"></p>
+<p>然后计算和再找个MD5网站加密就解出来了。</p>
+<h3 id="web"><a href="#web" class="headerlink" title="web"></a>web</h3><h4 id="1-baby-php"><a href="#1-baby-php" class="headerlink" title="1.baby_php"></a>1.baby_php</h4><p><code> &lt;?php</code> </p>
+<p> <code> highlight_file(__FILE__); include_once(&#39;flag.php&#39;);</code> </p>
+<p>if(isset($_POST[‘a’])&amp;&amp;!preg_match(‘/[0-9]/‘,$_POST[‘a’])&amp;&amp;intval($<em>POST[‘a’]){</em></p>
+<p>这里是preg_match函数绕过，可以用数组a[]=123</p>
+<p>  if(isset($_POST[‘b1’])&amp;&amp;$_POST[‘b2’]){  </p>
+<p>​     if($_POST[‘b1’]!=$_POST[‘b2’]&amp;&amp;md5($_POST[‘b1’])===md5($_POST[‘b2’])){   </p>
+<p>//md5的此处是===，只能用数组绕过编码</p>
+<p>b1[]=1&amp;b2=2</p>
+<p>​      if($_POST[‘c1’]!=$_POST[‘c2’]&amp;&amp;is_string($_POST[‘c1’])&amp;&amp;is_string($_POST[‘c2’])&amp;&amp;md5($_POST[‘c1’])==md5($_POST[‘c2’])){</p>
+<p>//我一开始是用c1[]=aa&amp;c2[]=bb来绕过，但是发现这里无法实现is_string()的函数，所以我们可以用hash的弱比较相等。</p>
+<p>c1=QNKCDZO&amp;c2=byGcY</p>
+<p>QNKCDZO<br>  240610708<br>  byGcY<br>  sonZ7y<br>  aabg7XSs<br>  aabC9RqS<br>  s878926199a<br>  s155964671a<br>  s214587387a<br>  s1091221200a</p>
+<p>​         echo $flag; </p>
+<p>​      }else{         echo “yee”;   </p>
+<p>​    }    </p>
+<p> }else{       echo “nop”;   </p>
+<p>  }</p>
+<p>   }else{     echo “go on”;  </p>
+<p>} </p>
+<p>}else{  </p>
+<p> echo “let’s get some php”; </p>
+<p>} ?&gt; </p>
+<p>let’s get some php</p>
+<h4 id="2-ezgame"><a href="#2-ezgame" class="headerlink" title="2.ezgame"></a>2.ezgame</h4><p>这题是真水得不能再水了，我一开始以为是JS代码审计混淆，然后一直在找重要代码。结果后来在JS代码直接找到了。</p>
+<h4 id="3-babysql"><a href="#3-babysql" class="headerlink" title="3.babysql"></a>3.babysql</h4><p>fuzz一下发现：</p>
+<h3 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h3><h4 id="1-办公文件里的秘密"><a href="#1-办公文件里的秘密" class="headerlink" title="1.办公文件里的秘密"></a>1.办公文件里的秘密</h4><p>010打开发现是zip文件修改为压缩包格式即可，然后在文件里找就好了。</p>
+<h4 id="2-你能拼出flag吗？"><a href="#2-你能拼出flag吗？" class="headerlink" title="2.你能拼出flag吗？"></a>2.你能拼出flag吗？</h4><p>base家族全上，但是这题最有意思的是百度一下，得到原石活动礼包码。</p>
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h3><h5 id="1-easyc"><a href="#1-easyc" class="headerlink" title="1.easyc"></a>1.easyc</h5><p>这是一题C语言的异或题，只要保证使得a数组输进去的值与2异或后回显是b数组即可，但是这里要注意的是要自己不断调试，flag就是原始a数组的字符串。</p>
+<h5 id="2-easypython"><a href="#2-easypython" class="headerlink" title="2.easypython"></a>2.easypython</h5><p>原理还是要了解一下base64的加密过程和python语法，这题是因为有很明显的=特征，所以可以猜测出来是base64加密方法。</p>
 
                 
             </div>
@@ -502,7 +535,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/">http://example.com/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/</a>
+                    <a href="http://example.com/2022/03/20/game-week1/">http://example.com/2022/03/20/game-week1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -540,8 +573,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-                                    <span class="chip bg-color">php代码审计</span>
+                                <a href="/tags/game/">
+                                    <span class="chip bg-color">game</span>
                                 </a>
                             
                         </div>
@@ -713,9 +746,56 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/03/20/game-week1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="game--week1">
+                        
+                        <span class="card-title">game--week1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hzk
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/game/">
+                        <span class="chip bg-color">game</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/03/14/SQL%E6%B3%A8%E5%85%A5%E9%A2%98%E7%9B%AE-BUU/">
                     <div class="card-image">
@@ -733,9 +813,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -749,51 +829,6 @@
                     
                     <a href="/tags/sql/">
                         <span class="chip bg-color">sql</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/07/buu3/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="buu3">
-                        
-                        <span class="card-title">buu3</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-07
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            hzk
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
-                        <span class="chip bg-color">ctf题目--web</span>
                     </a>
                     
                 </div>
