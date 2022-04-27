@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="NISA的赛题复现, 黛色若梦">
+    <meta name="keywords" content="NISA的赛题复现, shiango">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>NISA的赛题复现 | 黛色若梦</title>
+    <title>NISA的赛题复现 | shiango</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="黛色若梦" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="shiango" type="application/atom+xml">
 </head>
 
 
@@ -44,7 +44,7 @@
                     
                     <img src="/medias/logo.png" class="logo-img" alt="LOGO">
                     
-                    <span class="logo-span">黛色若梦</span>
+                    <span class="logo-span">shiango</span>
                 </a>
             </div>
             
@@ -143,7 +143,7 @@
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">黛色若梦</div>
+        <div class="logo-name">shiango</div>
         <div class="logo-desc">
             
             A Freshman
@@ -717,7 +717,7 @@ foreach ($newclass as $key=>$value)
 
 <p>分析：</p>
 <p>这里if语句绕过可以用preg_match或是主要是通过绕过正则</p>
-<h5 id="1-关于preg-match-的绕过问题："><a href="#1-关于preg-match-的绕过问题：" class="headerlink" title="1.关于preg_match()的绕过问题："></a>1.关于preg_match()的绕过问题：</h5><p>（1）数组绕过，即传入的参数为数组（新生赛有做过，但是不适用于一些限制只能用字符串的情况，json_decode()不满足）</p>
+<h5 id="1-关于preg-match-的绕过问题："><a href="#1-关于preg-match-的绕过问题：" class="headerlink" title="1.关于preg_match()的绕过问题："></a>1.关于preg_match()的绕过问题：</h5><p>（1）数组绕过，即传入的参数为数组（新生赛有做过，但是不适用于一些限制只能用字符串的情况，json_decode()不满足），这里就是传入键值对</p>
 <p><img src="../images/4.5.png" alt="4.5"></p>
 <p>但是如果禁止传递数组的时候怎么绕过？这就涉及到：</p>
 <p>（2）（出现正则匹配的情况）利用<a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html">PCRE回溯次数限制绕过</a>：</p>
@@ -908,7 +908,7 @@ alert(res);                  //显示为ZHang
 <h3 id="12-hardsql"><a href="#12-hardsql" class="headerlink" title="12. hardsql"></a>12. hardsql</h3><p>这一题要打盲注脚本，所以我想先把python学完在来系统学习一下盲注脚本的写法，这里先不做了。</p>
 <h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>感觉这种入门难度的ctf比赛适合自己的水平，但是平时如果不多练题，多接触题型，了解特征，在比赛的时候即使题目太简单也只能坐牢，所以还是要多练习题型和多拓展知识面为这一阶段的重点。</p>
 <p>1.系统学习常见题型并练习题目：</p>
-<p>sql,</p>
+<p>sql,√</p>
 <p>xss,</p>
 <p>ssti,</p>
 <p>ssrf,</p>
@@ -934,7 +934,7 @@ alert(res);                  //显示为ZHang
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">hzk</a>
+                    <a href="/about" rel="external nofollow noreferrer">hz</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -957,7 +957,7 @@ alert(res);                  //显示为ZHang
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint policy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">hzk</a>
+                    <a href="/about" target="_blank">hz</a>
                     !
                 </span>
             </div>
@@ -1181,7 +1181,7 @@ alert(res);                  //显示为ZHang
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            hzk
+                            hz
                             
                         </span>
                     </div>
@@ -1226,7 +1226,7 @@ alert(res);                  //显示为ZHang
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
-                            hzk
+                            hz
                             
                         </span>
                     </div>
@@ -1434,7 +1434,7 @@ alert(res);                  //显示为ZHang
                 <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
-            <a href="/about" target="_blank">hzk</a>
+            <a href="/about" target="_blank">hz</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
