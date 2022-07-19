@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-05-16T14:31:04.698Z</updated>
+  <updated>2022-07-18T14:56:39.800Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,78 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vulhub复现1</title>
+    <link href="http://example.com/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/"/>
+    <id>http://example.com/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/</id>
+    <published>2022-07-10T02:36:45.000Z</published>
+    <updated>2022-07-18T14:56:39.800Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;前言：&lt;/p&gt;
+&lt;p&gt;搭建靶场其实挺快的，就是我之前一直要用wmdk硬盘来搭建ubuntu一直显示分区无读写权限，后来就用iso重新下了，之后有需要再来琢磨。在kali和ubuntu里面都搭好了，花了点时间，下面开始记录学习过程。&lt;/p&gt;
+&lt;h1 id=&quot;漏洞复现&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="漏洞复现" scheme="http://example.com/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nssctf-1</title>
+    <link href="http://example.com/2022/05/30/nssctf-1/"/>
+    <id>http://example.com/2022/05/30/nssctf-1/</id>
+    <published>2022-05-30T13:36:59.000Z</published>
+    <updated>2022-06-01T14:42:31.560Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;nssctf-1&quot;&gt;&lt;a href=&quot;#nssctf-1&quot; class=&quot;headerlink&quot; title=&quot;nssctf-1&quot;&gt;&lt;/a&gt;nssctf-1&lt;/h1&gt;&lt;h4 id=&quot;suctf-2019-EasySQL&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>game-week3</title>
+    <link href="http://example.com/2022/05/25/game-week3/"/>
+    <id>http://example.com/2022/05/25/game-week3/</id>
+    <published>2022-05-25T14:25:48.000Z</published>
+    <updated>2022-05-26T12:59:12.468Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;Dest0g3-520&quot;&gt;&lt;a href=&quot;#Dest0g3-520&quot; class=&quot;headerlink&quot; title=&quot;Dest0g3 520&quot;&gt;&lt;/a&gt;Dest0g3 520&lt;/h4&gt;&lt;p&gt;打完iscc,刚好找个迎新赛放放松。&lt;/p&gt;
+&lt;h5</summary>
+        
+      
+    
+    
+    
+    
+    <category term="game" scheme="http://example.com/tags/game/"/>
+    
+  </entry>
   
   <entry>
     <title>misc-隐写术</title>
@@ -68,30 +140,26 @@
   </entry>
   
   <entry>
-    <title>NSSCTF1</title>
-    <link href="http://example.com/2022/04/29/NSSCTF1/"/>
-    <id>http://example.com/2022/04/29/NSSCTF1/</id>
-    <published>2022-04-29T14:41:31.000Z</published>
-    <updated>2022-04-29T14:41:55.631Z</updated>
+    <title>game--week4</title>
+    <link href="http://example.com/2022/04/22/game--week4/"/>
+    <id>http://example.com/2022/04/22/game--week4/</id>
+    <published>2022-04-22T12:52:25.000Z</published>
+    <updated>2022-05-25T14:26:50.061Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;好久没做赛题了，今天来练练厦门理工的题目拓展视野，大多都是赛后复现的。看完wp后不得不感慨一句出misc的师傅好强。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
     
     
     
     
-    
-    <category term="ctf赛题" scheme="http://example.com/tags/ctf%E8%B5%9B%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ssti例题</title>
-    <link href="http://example.com/2022/04/27/ssti%E4%BE%8B%E9%A2%98/"/>
-    <id>http://example.com/2022/04/27/ssti%E4%BE%8B%E9%A2%98/</id>
-    <published>2022-04-27T08:32:35.000Z</published>
-    <updated>2022-04-27T08:32:35.943Z</updated>
-    
-    
-    
-    
+    <category term="ctf-games" scheme="http://example.com/tags/ctf-games/"/>
     
   </entry>
   
@@ -100,7 +168,7 @@
     <link href="http://example.com/2022/04/19/rce/"/>
     <id>http://example.com/2022/04/19/rce/</id>
     <published>2022-04-19T12:50:42.000Z</published>
-    <updated>2022-04-28T14:05:03.419Z</updated>
+    <updated>2022-05-26T12:59:07.435Z</updated>
     
     
       
@@ -417,52 +485,6 @@
     
     
     <category term="misc" scheme="http://example.com/tags/misc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>buu-week2</title>
-    <link href="http://example.com/2022/03/02/buu2/"/>
-    <id>http://example.com/2022/03/02/buu2/</id>
-    <published>2022-03-02T13:11:55.000Z</published>
-    <updated>2022-03-06T06:34:01.209Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;1.[极客大挑战 2019]Knife1&lt;/p&gt;
-&lt;p&gt;连上菜刀直接找flag&lt;/p&gt;
-&lt;p&gt;2.[极客大挑战</summary>
-        
-      
-    
-    
-    
-    
-    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>考核wp</title>
-    <link href="http://example.com/2022/03/01/%E8%80%83%E6%A0%B8wp/"/>
-    <id>http://example.com/2022/03/01/%E8%80%83%E6%A0%B8wp/</id>
-    <published>2022-03-01T09:36:37.000Z</published>
-    <updated>2022-03-06T06:29:28.674Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;总结：&quot;&gt;&lt;a href=&quot;#总结：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

