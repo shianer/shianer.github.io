@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-07-18T14:56:39.800Z</updated>
+  <updated>2022-08-15T14:00:59.875Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,105 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>hole--week1（8.08-8.14）</title>
+    <link href="http://example.com/2022/08/08/hole-week2/"/>
+    <id>http://example.com/2022/08/08/hole-week2/</id>
+    <published>2022-08-08T02:29:50.000Z</published>
+    <updated>2022-08-15T14:00:59.875Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;（1）靶场复现&quot;&gt;&lt;a href=&quot;#（1）靶场复现&quot; class=&quot;headerlink&quot; title=&quot;（1）靶场复现&quot;&gt;&lt;/a&gt;（1）靶场复现&lt;/h2&gt;&lt;h3 id=&quot;1-vulfocus&quot;&gt;&lt;a href=&quot;#1-vulfocus&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="漏洞挖掘" scheme="http://example.com/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hole--week1</title>
+    <link href="http://example.com/2022/07/25/hole-week1/"/>
+    <id>http://example.com/2022/07/25/hole-week1/</id>
+    <published>2022-07-25T07:47:41.000Z</published>
+    <updated>2022-08-15T07:05:48.834Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="漏洞挖掘" scheme="http://example.com/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>game--week5</title>
+    <link href="http://example.com/2022/07/19/game-week5/"/>
+    <id>http://example.com/2022/07/19/game-week5/</id>
+    <published>2022-07-19T02:01:56.000Z</published>
+    <updated>2022-07-26T02:31:27.459Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;7.13–7.20记录&lt;/p&gt;
+&lt;h3 id=&quot;1-夏令营内部赛&quot;&gt;&lt;a href=&quot;#1-夏令营内部赛&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf-games" scheme="http://example.com/tags/ctf-games/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vulhub2</title>
+    <link href="http://example.com/2022/07/19/vulhub2/"/>
+    <id>http://example.com/2022/07/19/vulhub2/</id>
+    <published>2022-07-19T02:00:01.000Z</published>
+    <updated>2022-07-21T09:08:15.567Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;衔接上文&lt;/p&gt;
+&lt;h3 id=&quot;（1）2-coldfusion反序列化漏洞（CVE-2017-3066）&quot;&gt;&lt;a href=&quot;#（1）2-coldfusion反序列化漏洞（CVE-2017-3066）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="漏洞复现" scheme="http://example.com/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vulhub复现1</title>
     <link href="http://example.com/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/"/>
     <id>http://example.com/2022/07/10/vulhub%E5%A4%8D%E7%8E%B01/</id>
     <published>2022-07-10T02:36:45.000Z</published>
-    <updated>2022-07-18T14:56:39.800Z</updated>
+    <updated>2022-07-19T03:02:29.386Z</updated>
     
     
       
@@ -38,6 +132,30 @@
     
     
     <category term="漏洞复现" scheme="http://example.com/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nssctf2</title>
+    <link href="http://example.com/2022/07/09/nssctf-2/"/>
+    <id>http://example.com/2022/07/09/nssctf-2/</id>
+    <published>2022-07-09T04:06:01.000Z</published>
+    <updated>2022-08-07T02:35:36.576Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h5 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h5&gt;&lt;p&gt;为接下来的网鼎杯好好准备，练了一些nssctf 的题目，这个暑假要把nssctf所有的web题目做完。&lt;/p&gt;
+&lt;h5</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
     
   </entry>
   
@@ -369,122 +487,6 @@
     
     
     <category term="sql" scheme="http://example.com/tags/sql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>php代码环境</title>
-    <link href="http://example.com/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/"/>
-    <id>http://example.com/2022/03/13/php%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83/</id>
-    <published>2022-03-13T02:33:59.000Z</published>
-    <updated>2022-04-29T05:21:10.963Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;环境搭建&quot;&gt;&lt;a href=&quot;#环境搭建&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="php代码审计" scheme="http://example.com/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>buu3</title>
-    <link href="http://example.com/2022/03/07/buu3/"/>
-    <id>http://example.com/2022/03/07/buu3/</id>
-    <published>2022-03-07T14:36:21.000Z</published>
-    <updated>2022-03-13T03:37:44.772Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;buu3&quot;&gt;&lt;a href=&quot;#buu3&quot; class=&quot;headerlink&quot; title=&quot;buu3&quot;&gt;&lt;/a&gt;buu3&lt;/h1&gt;&lt;h5 id=&quot;1-极客大挑战-2019-HardSQL&quot;&gt;&lt;a href=&quot;#1-极客大挑战-2019-HardSQL&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="ctf题目--web" scheme="http://example.com/tags/ctf%E9%A2%98%E7%9B%AE-web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux,windows指令</title>
-    <link href="http://example.com/2022/03/05/Linux-windows%E6%8C%87%E4%BB%A4/"/>
-    <id>http://example.com/2022/03/05/Linux-windows%E6%8C%87%E4%BB%A4/</id>
-    <published>2022-03-05T15:33:02.000Z</published>
-    <updated>2022-03-13T11:02:03.553Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;linux-windows指令&quot;&gt;&lt;a href=&quot;#linux-windows指令&quot; class=&quot;headerlink&quot; title=&quot;linux,windows指令&quot;&gt;&lt;/a&gt;linux,windows指令&lt;/h1&gt;&lt;h2 id=&quot;linux&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="基础知识" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>php复习--弱比较</title>
-    <link href="http://example.com/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://example.com/2022/03/05/php%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0/</id>
-    <published>2022-03-05T15:32:32.000Z</published>
-    <updated>2022-03-19T10:25:43.644Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;php代码复习&quot;&gt;&lt;a href=&quot;#php代码复习&quot; class=&quot;headerlink&quot; title=&quot;php代码复习&quot;&gt;&lt;/a&gt;php代码复习&lt;/h1&gt;&lt;p&gt;这篇博客比较水，主要是为了方便复习（太菜了，见谅见谅&lt;/p&gt;
-&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="php" scheme="http://example.com/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>misc(1)</title>
-    <link href="http://example.com/2022/03/05/misc-1/"/>
-    <id>http://example.com/2022/03/05/misc-1/</id>
-    <published>2022-03-05T14:03:40.000Z</published>
-    <updated>2022-04-23T13:34:52.225Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;misc-1&quot;&gt;&lt;a href=&quot;#misc-1&quot; class=&quot;headerlink&quot; title=&quot;misc:(1)&quot;&gt;&lt;/a&gt;misc:(1)&lt;/h1&gt;&lt;h3 id=&quot;攻防世界：&quot;&gt;&lt;a href=&quot;#攻防世界：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="misc" scheme="http://example.com/tags/misc/"/>
     
   </entry>
   
