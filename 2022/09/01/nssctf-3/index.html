@@ -430,9 +430,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                <span class="chip bg-color">ctf题目--web</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -444,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-08-15
+                    2022-09-01
                 </div>
                 
 
@@ -465,7 +469,37 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h5 id="鹤城杯-2021-Middle-magic（WEB-PHP）"><a href="#鹤城杯-2021-Middle-magic（WEB-PHP）" class="headerlink" title="[鹤城杯 2021]Middle magic（WEB PHP）"></a>[鹤城杯 2021]Middle magic（WEB PHP）</h5> <?php 
+ highlight_file(__FILE__);
+ include "./flag.php"; 
+ include "./result.php";
+ if(isset($_GET['aaa']) && strlen($_GET['aaa']) < 20){  
+ $aaa = preg_replace('/^(.*)level(.*)$/', '${1}<!-- filtered -->${2}', $_GET['aaa']); 
+ if(preg_match('/pass_the_level_1#/', $aaa)){  
+ echo "here is level 2";      
+ if (isset($_POST['admin']) and isset($_POST['root_pwd'])) {       if ($_POST['admin'] == $_POST['root_pwd'])       
+ echo '<p>The level 2 can not pass!</p>';     
+ // START FORM PROCESSING
+ else if (sha1($_POST['admin']) === sha1($_POST['root_pwd'])){         echo "here is level 3,do you kown how to overcome it?";         if (isset($_POST['level_3'])) {   
+ $level_3 = json_decode($_POST['level_3']);                     if ($level_3->result == $result) {  
+ echo "success:".$flag;  
+ }    
+ else {
+ echo "you never beat me!";           }      
+ }
+ else{  
+ echo "out";  
+ }
+ }   
+ else{    
+ die("no");       }     // perform validations on the form data     }
+ else{       echo '<p>out!</p>'; 
+ }
+ }
+ else{   
+ echo 'nonono!';   }  
+ echo '<hr>'; }
+ ?>
                 
             </div>
             <hr/>
@@ -491,7 +525,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/08/15/nssctf-3/">http://example.com/2022/08/15/nssctf-3/</a>
+                    <a href="http://example.com/2022/09/01/nssctf-3/">http://example.com/2022/09/01/nssctf-3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -528,7 +562,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                                    <span class="chip bg-color">ctf题目--web</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -698,17 +736,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/08/17/%E6%8A%A4%E7%BD%91%E4%B9%8B%E6%BA%AF%E6%BA%90%E5%AD%A6%E4%B9%A0/">
+                <a href="/2022/09/01/nssctf-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="护网之溯源学习">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="nssctf-3">
                         
-                        <span class="card-title">护网之溯源学习</span>
+                        <span class="card-title">nssctf-3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -718,9 +757,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -729,11 +768,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">渗透学习</span>
+                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                        <span class="chip bg-color">ctf题目--web</span>
                     </a>
                     
                 </div>
@@ -747,13 +787,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/08/15/hole-week3/">
+                <a href="/2022/08/30/nssctf-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="hole--week3(8.15-8.20)">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="nssctf2">
                         
-                        <span class="card-title">hole--week3(8.15-8.20)</span>
+                        <span class="card-title">nssctf2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -764,7 +804,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-30
                             </span>
                         <span class="publish-author">
                             
@@ -777,8 +817,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">
-                        <span class="chip bg-color">漏洞挖掘</span>
+                    <a href="/tags/ctf%E9%A2%98%E7%9B%AE-web/">
+                        <span class="chip bg-color">ctf题目--web</span>
                     </a>
                     
                 </div>
