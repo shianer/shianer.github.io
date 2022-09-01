@@ -471,8 +471,8 @@
             <div id="articleContent">
                 <h5 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h5><p>首先写写自己的最近的心得吧。</p>
 <p>过了一个忙碌的暑假生活，想清楚了很多事情，也算学到一些东西。</p>
-<p>一个没有社会履历的人突然只身去到一个完全陌生的环境，心绪其实不仅是能不能做好mdhw这件事。是从一开始独自出行一个人的恐慌孤单，担心自己做不好的焦虑到后来的认真在实践中去学习，慢慢去适应。其实没有人会永远陪在我们身边，总要自己去面对。认识了很多不同的人，或轻或重，他们终教会我社会和成年的一笔。成长就是这样，不管行业现状怎样，有些事情得做，也有些东西总会被看见，要去成为一个真的热爱，有实力的人。早些也好晚些也罢，在试错的过程中不断纠正自己，强大内心，不断看清自己真正想要什么适合什么。</p>
-<p>很喜欢一种态度，认真去做好决定，认定了就去做，做了就不后悔，过得开心，慢慢改变就好~</p>
+<p>一个没有社会履历的人突然只身去到一个完全陌生的环境，其实不仅是担心能不能做好第一次hw。是从一开始独自出行一个人的恐慌孤单，担心自己做不好的焦虑到后来的认真在实践中去学习，慢慢去适应。很多事情只有自己试过了才知道，总要自己去面对新的事物。去认识了很多不同的人，或是教训或是帮助，或轻或重，他们终教会我走向成熟的一笔。成长就是这样，不管行业现状怎样，有些事情得做，也有些东西总会被看见，要去成为一个真的热爱，有实力的人。早些也好晚些也罢，在试错的过程中不断纠正自己，强大内心，不断看清自己真正想要什么适合什么。</p>
+<p>认真去做好决定，认定了就去做，做了就不后悔，过得开心，慢慢改变就好~</p>
 <p>现在对自己的接下来一个学期的规划也慢慢清晰了，希望自己能耐得下性子去慢慢做，完成每一个tips。</p>
 <h5 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h5><p>还是要好好练题目，自己有时候看代码逻辑会钻牛角jian,有点煎熬，希望这学期能随着坚持做题慢慢好转。现在为后面的两场省级ctf比赛做准备，主要还是看题型和题目做法，扩大知识面。</p>
 <h5 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h5><p>参考blog</p>
@@ -566,12 +566,9 @@ if(!isset($_GET[&#39;mode&#39;]))&#123;
     eval($shell); 
 &#125; 
 </code></pre>
-<p>​<br>    if(isset($_GET[‘file’])){<br>        if(strlen($_GET[‘file’]) &gt; 15 | filter($_GET[‘file’])) exit(“hacker”);<br>        include $_GET[‘file’];<br>    } </p>
-<p>​<br>    function filter($var){<br>        $banned = [“while”, “for”, “$_”, “include”, “env”, “require”, “?”, “:”, “^”, “+”, “-“, “%”, “*”, “`”];<br>    foreach($banned as $ban){<br>        if(strstr($var, $ban)) return True;<br>    } </p>
-<pre><code>return False;
-&#125; 
-
-function checkNums($var)&#123; 
+<p>​<br>​    if(isset($_GET[‘file’])){<br>​        if(strlen($_GET[‘file’]) &gt; 15 | filter($_GET[‘file’])) exit(“hacker”);<br>​        include $_GET[‘file’];<br>​    } </p>
+<p>​<br>​    function filter($var){<br>​        $banned = [“while”, “for”, “$_”, “include”, “env”, “require”, “?”, “:”, “^”, “+”, “-“, “%”, “*”, “`”];<br>​    foreach($banned as $ban){<br>​        if(strstr($var, $ban)) return True;<br>​    }<br>​<br>    return False;<br>    } </p>
+<pre><code>function checkNums($var)&#123; 
     $alphanum = &#39;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;; 
     $cnt = 0; 
     for($i = 0; $i &lt; strlen($alphanum); $i++)&#123; 
